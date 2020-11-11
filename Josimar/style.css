@@ -34,6 +34,8 @@ header{
 .list_social_network{
 	list-style-type: none;
 	text-transform: none;
+	text-align: left;
+	padding: 0;
 }
 .item_social_network{
 	display: inline;
@@ -54,7 +56,7 @@ header{
 	background: #fff;
 }
 .profile_informations{
-	width: 50%;
+	width: 710px;
 	height: 200px;
 	color: #246ab1;
 	padding: 10px 0 0 20px;
@@ -81,8 +83,8 @@ h2{
 	width: 100%;
 	background: #246ab1;
 	text-align: center;
+	margin-top: 30px;
 	display: block;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 /* CARDS KANBAN TITLE */
 .card_title{
@@ -153,8 +155,8 @@ h2{
 .profile_latest_activities {
 	width: 100%;
 	background: #4e99e8;
+	margin-top: 20px;
 	display: inline-block;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .last_activity{
 	height: 100px;
