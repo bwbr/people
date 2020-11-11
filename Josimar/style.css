@@ -82,6 +82,7 @@ h2{
 	background: #246ab1;
 	text-align: center;
 	display: block;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 /* CARDS KANBAN TITLE */
 .card_title{
@@ -153,6 +154,7 @@ h2{
 	width: 100%;
 	background: #4e99e8;
 	display: inline-block;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .last_activity{
 	height: 100px;
