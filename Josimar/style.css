@@ -19,6 +19,7 @@ body {
 header{
 	color: #fff;
 	height: 200px;	
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);	
 }
 .name{
 	font-weight: bold;
@@ -46,7 +47,6 @@ header{
 	height: 200px;
 	padding: 5px;
 	background: #fff;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	display: inline-block;
 	float: left;
 }
@@ -56,6 +56,8 @@ header{
 	background: #fff;
 }
 .profile_informations{
+	background: #ffffff;
+	background-image: linear-gradient(to right, #ffffff, #ccc);
 	width: 710px;
 	height: 200px;
 	color: #246ab1;
@@ -63,7 +65,7 @@ header{
 	text-align: left;
 	display: inline-block;
 	position: absolute;
-	float: left;
+	float: left;	
 }
 a{
 	text-transform: none;
@@ -84,7 +86,9 @@ h2{
 	background: #246ab1;
 	text-align: center;
 	margin-top: 30px;
-	display: block;
+	padding-bottom: 10px;
+	display: block;	
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 /* CARDS KANBAN TITLE */
 .card_title{
@@ -108,11 +112,11 @@ h2{
 }
 /* CARDS KANBAN */
 .card {
-	width: 250px;
+	width: 30%;
 	height: 250px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	display: inline-block;
-	margin: 20px;	
+	margin: 10px;	
 	box-sizing: border-box;		
 }
 .card_body {
@@ -156,7 +160,8 @@ h2{
 	width: 100%;
 	background: #4e99e8;
 	margin-top: 20px;
-	display: inline-block;
+	display: inline-block;	
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .last_activity{
 	height: 100px;
