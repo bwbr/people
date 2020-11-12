@@ -20,42 +20,72 @@
 
 		<header> <a name="informacoes"> </a>
 			<h1> Thayane Carvalho dos Santos </h1>			
-			<div class="foto"> <img id="minha_foto" src="https://s.gravatar.com/avatar/ac5c67f8e14ed947ed754568d7bab6d1?s=80"> </div>
+			<div class="foto"> <img id="minha_foto" src="https://s.gravatar.com/avatar/ac5c67f8e14ed947ed754568d7bab6d1?s=80" alt="Foto de Thayane"> </div>
 		</header>
 
 		<main>
 			<form>
-				<div>
+				<fieldset>
 					<label for="Nome"> Nome completo: </label>
-					<input type="text" id="Nome" class="input_padrao">
+					<input type="text" id="Nome" class="input_padrao" required placeholder="Seu Nome Completo">
 
 					<label for="Email"> Email: </label>
-					<input type="text" id="Email" class="input_padrao">
+					<input type="email" id="Email" class="input_padrao" required placeholder="seuemail@seudominio.com">
 
 					<label for="Telefone"> Telefone: </label>
-					<input type="text" id="Telefone" class="input_padrao">
+					<input type="tel" id="Telefone" class="input_padrao" required placeholder="(xx) x xxxx-xxxx">
 
 					<label for="Mensagem"> Mensagem: </label>
-					<textarea id="Mensagem" rows="15" class="input_padrao"> </textarea>
-				</div>
+					<textarea id="Mensagem" rows="15" class="input_padrao" required placeholder="Sua mensagem"> </textarea>
+				</fieldset>
 
-				<div>
-					<p> Como prefere que entremos em contato: </p>
+				<fieldset>
+					<legend> Como prefere que entremos em contato: </legend>
 
 					<label> <input type="radio" value="Email" id="Preferencia_Email"> Email </label>
 					
 					<label> <input type="radio" value="Email" id="Preferencia_Telefone"> Telefone </label>					
 
-					<label> <input type="radio" value="Email" id="Preferencia_Whats"> Whatsapp </label>
-					
-				</div>
-				
-				<div>
-					<label class="checkbox"> <input type="checkbox"> Quero receber as novidades por email </label>
-				</div>
+					<label> <input type="radio" value="Email" id="Preferencia_Whats" checked> Whatsapp </label>					
+				</fieldset>
 
-				<input type="submit" value="Confirmar e Enviar">
+				<fieldset>
+					<legend> Em qual turno prefere que entremos em contato? 
+						<select class="dropdawn">
+							<option> Manhâ </option>
+							<option> Tarde </option>
+							<option> Noite </option>
+						</select>
+					</legend>
+					
+				</fieldsect>
+				
+				<fieldset>
+					<label class="checkbox"> <input type="checkbox" checked> Quero receber as novidades por email </label>
+				</fieldset>
+
+				<input type="submit" value="Confirmar e Enviar" class="enviar">
 			</form>
+
+			<table>
+				<thead> 
+					<tr>
+						<th> Dia: </th>
+						<th> Horário: </th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr>
+						<td> Seg - Sex </td>
+						<td> 07:00 - 12:00 </td>
+					</tr>
+					<tr>
+						<td> Seg - Sex </td>
+						<td> 13:00 - 16:00 </td>
+					</tr>
+				</tbody>
+			</table>
 		</main>
 
 		<footer>

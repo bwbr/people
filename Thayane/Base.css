@@ -8,7 +8,7 @@ body {
 }
 
 nav {
-	background-color: #FFD4D4;
+	background-color: #FFD4D45C;
 	margin: .5em;
 	padding: 1em;
 	text-align: center;
@@ -37,7 +37,7 @@ nav a:visited {
 }
 
 header {
-	background-color: #FFD4D4;
+	background-color: #FFD4D45C;
 	margin: 0.5em;
 	height: 12em;
 }
@@ -84,7 +84,7 @@ article {
 }
 
 main {
-	background-color: #FFD4D4;
+	background-color: #FFD4D45C;
 	padding: 1em;
 	margin: 0.5em;
 }
@@ -125,7 +125,7 @@ main {
 	padding: .15em;
 }
 
-form label, form p {
+form label, form legend {
 	display: block;
 	font-weight: bold;
 	margin: 1em 0 0 1em;
@@ -138,12 +138,47 @@ form label, form p {
 	width: 50%;
 }
 
+.dropdawn {
+	margin: .5em;
+	padding: .2em .4em;
+}
+
 .checkbox {
 	margin: .5em;
 }
 
+.enviar {
+	width: 40%;
+	padding: 1em;
+	background-color: #FF8787D0;
+	border: none;
+	border-radius: 1em;
+	font-weight: bold;
+	font-size: 1.1em;
+	transition: 1s all;
+	cursor: pointer;
+}
+
+.enviar:hover {
+	background-color: #FF8787;
+	transform: scale(1.1);
+}
+
+table {
+	margin: 2em 0;
+}
+
+thead {
+	font-weight: bold;
+}
+
+td, th {
+	border: #000 solid;
+	padding: .4em;
+}
+
 footer {
-	background-color: #FFD4D4;
+	background-color: #FFD4D45C;
 	margin: 0.5em;
 	height: 4em;
 	padding: 1em;
