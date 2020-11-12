@@ -102,14 +102,15 @@ h2{
 	vertical-align: middle;
 	display: table-cell;
 }
-.title_to_do {	
+.title_to_do{	
+	text-align: right;
 	background: #fcc;  	
 }
 .title_in_progress {
-	background: #cfc;
+	background: #ffc;
 }
 .title_done{
-	background: #ffc;
+	background: #cfc;
 }
 /* CARDS KANBAN */
 .card {
@@ -130,12 +131,12 @@ h2{
 	background-image: linear-gradient(to right, #ffffff, #fcc);
 }
 .card_in_progress {
-	background: #f0fff0;
-	background-image: linear-gradient(to right, #ffffff, #cfc);
-}
-.card_done{
 	background: #fffff0;
 	background-image: linear-gradient(to right, #ffffff, #ffc);
+}
+.card_done{
+	background: #f0fff0;
+	background-image: linear-gradient(to right, #ffffff, #cfc);
 }
 .activity {
 	font-size: 15px;
@@ -148,12 +149,12 @@ h2{
 	background: #fff0f5;
 }
 .activity_in_progress {	
-	border-left: 5px solid #cfc;
-	background: #f0fff0;
-}
-.activity_done{	
 	border-left: 5px solid #ffc;
 	background: #fffff0;
+}
+.activity_done{	
+	border-left: 5px solid #cfc;
+	background: #f0fff0;
 }
 
 /* LATEST ACTIVITIES */
@@ -187,6 +188,8 @@ footer{
 	height: 50px;
 	margin-top: 20px;
 	background:#ccc;
+	color: #fff;
+	text-align: center;
 	background-image: linear-gradient(to top, #ccc, #c0c0c0);
 	padding: 20px;
 }
