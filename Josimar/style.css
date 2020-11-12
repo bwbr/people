@@ -185,6 +185,7 @@ h2{
 /* FOOTER */
 footer{
 	height: 50px;
+	margin-top: 20px;
 	background:#ccc;
 	background-image: linear-gradient(to top, #ccc, #c0c0c0);
 	padding: 20px;
