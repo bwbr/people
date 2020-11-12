@@ -19,16 +19,44 @@
 		</nav>
 
 		<header> <a name="informacoes"> </a>
-			<h1> Thayane Carvalho dos Santos </h1>
-			
-			<div class="foto">
-				<img id="minha_foto" src="https://s.gravatar.com/avatar/ac5c67f8e14ed947ed754568d7bab6d1?s=80">
-			</div>
-
-			<div class="informacoes">
-
-			</div>
+			<h1> Thayane Carvalho dos Santos </h1>			
+			<div class="foto"> <img id="minha_foto" src="https://s.gravatar.com/avatar/ac5c67f8e14ed947ed754568d7bab6d1?s=80"> </div>
 		</header>
+
+		<main>
+			<form>
+				<div>
+					<label for="Nome"> Nome completo: </label>
+					<input type="text" id="Nome" class="input_padrao">
+
+					<label for="Email"> Email: </label>
+					<input type="text" id="Email" class="input_padrao">
+
+					<label for="Telefone"> Telefone: </label>
+					<input type="text" id="Telefone" class="input_padrao">
+
+					<label for="Mensagem"> Mensagem: </label>
+					<textarea id="Mensagem" rows="15" class="input_padrao"> </textarea>
+				</div>
+
+				<div>
+					<p> Como prefere que entremos em contato: </p>
+
+					<label> <input type="radio" value="Email" id="Preferencia_Email"> Email </label>
+					
+					<label> <input type="radio" value="Email" id="Preferencia_Telefone"> Telefone </label>					
+
+					<label> <input type="radio" value="Email" id="Preferencia_Whats"> Whatsapp </label>
+					
+				</div>
+				
+				<div>
+					<label class="checkbox"> <input type="checkbox"> Quero receber as novidades por email </label>
+				</div>
+
+				<input type="submit" value="Confirmar e Enviar">
+			</form>
+		</main>
 
 		<footer>
 			<p class="copyright"> &copy; Copyright Thayane Carvalho dos Santos </p>
