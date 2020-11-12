@@ -7,33 +7,10 @@ body {
 	padding: 1%;
 }
 
-header {
-	background-color: #FDD;
-}
-
-.h3_01 {
-	font-weight: bold;
-	margin: 1% 0 .1% 0;
-}
-
-
-#borboleta{
-	height: 50px;
-}
-
-h1 {
-	text-align: center;
-	font-size: 2em;
-	font-weight: bolder;
-}
-
-h2 {
-	font-size: 1.6em;
-	font-weight: bolder;
-	margin-bottom: .3em;
-}
-
 nav {
+	background-color: #FFD4D4;
+	margin: .5em;
+	padding: 1em;
 	text-align: center;
 }
 
@@ -107,9 +84,9 @@ article {
 }
 
 main {
-	background-color: #FEF;
-	width: 940px;
+	background-color: #FFD4D4;
 	padding: 1em;
+	margin: 0.5em;
 }
 
 .kanbam {
@@ -136,6 +113,7 @@ main {
 }
 
 .h3_02 {
+	font-size: 1.2em;
 	font-weight: bold;
 	margin: 0 0 5% 0;
 }
