@@ -1,0 +1,223 @@
+/* BODY */
+body {	
+	background: #ccc;
+	background-image: linear-gradient(to bottom, #ffffff, #cccccc);
+	background-repeat: no-repeat;
+	font-family: Arial, sans-serif;
+	text-decoration: none;	
+}
+
+/* CONTAINER */
+.container{
+	width: 940px;
+	height: 100%;
+	margin: 0 auto;
+}
+
+hide{
+	display:none;
+}
+
+/* HEADER */
+header{
+	color: #363636;
+	height: 200px;	
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.0), 0 6px 20px 0 rgba(0, 0, 0, 0.19);	
+}
+.name{
+	font-weight: bold;
+}
+.name_result{
+	color: #000000;
+}
+.social_network{
+	margin-top: 20px;
+	font-weight: bold;
+	display: block;
+}
+.list_social_network{
+	list-style-type: none;
+	text-transform: none;
+	text-align: left;
+	padding: 0;
+}
+.item_social_network{
+	display: inline;
+}
+/* PHOTO */
+.profile_photo{
+	width: 200px;
+	height: 200px;
+	padding: 5px;
+	background: #fff;
+	display: inline-block;
+	float: left;
+}
+.profile_photo img{
+	width: 100%;
+	height: 100%;
+	background: #fff;
+}
+.profile_informations{
+	background: #ffffff;
+	background-image: linear-gradient(to right, #ffffff, #ccc);
+	width: 710px;
+	height: 200px;
+	color: #363636;
+	padding: 10px 0 0 20px;
+	text-align: left;
+	display: inline-block;
+	position: absolute;
+	float: left;	
+}
+a{
+	text-transform: none;
+	text-decoration: none;
+	color: #000000;
+}
+h2{
+	width: 100%;
+	height: 50px;	
+	color: #727376;
+	padding:  10px 0 0 0;
+	margin-bottom: 0;
+	text-align: center;	
+}
+
+/* FRAME KANBAN */
+.profile_frame_kanban {
+	width: 100%;
+	background: #ccc;
+	background-image: linear-gradient(to right, #ffffff, #DCDCDC);
+	text-align: center;
+	margin-top: 30px;
+	padding-bottom: 10px;
+	display: block;	
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.0), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+/* CARDS KANBAN TITLE */
+.card_title{
+	width: 250px;
+	height: 50px;
+	color: #363636;
+	font-weight:bold;
+	text-align: left;
+	padding-left: 10px;
+	vertical-align: middle;
+	display: table-cell;
+}
+.title_to_do{	
+	background: #fcc;  	
+}
+.title_in_progress {
+	background: #ffc;
+}
+.title_done{
+	background: #cfc;
+}
+/* CARDS KANBAN */
+.card {
+	width: 30%;
+	height: 250px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.0), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	text-align: left;
+	display: inline-block;
+	margin: 10px;	
+	box-sizing: border-box;		
+}
+.card_body {
+	width: 100%;
+	height: 200px;
+	overflow-y: scroll;
+}
+.card_to_do {
+	background: #fff0f5;
+	background-image: linear-gradient(to right, #ffffff, #fcc);
+}
+.card_in_progress {
+	background: #fffff0;
+	background-image: linear-gradient(to right, #ffffff, #ffc);
+}
+.card_done{
+	background: #f0fff0;
+	background-image: linear-gradient(to right, #ffffff, #cfc);
+}
+.activity {
+	font-size: 15px;
+	text-align: justify;
+	padding: 10px;
+	border:1px solid #ccc;
+	border-radius: 0 5px 5px 0;
+	margin: 5px;
+	color: #000;
+	cursor:pointer;
+}
+.activity_to_do {	
+	border-left: 5px solid #ffb6c1;
+	background: #fff0f5;
+}
+.activity_in_progress {	
+	border-left: 5px solid #f0e68c;
+	background: #fffff0;
+}
+.activity_done{	
+	border-left: 5px solid #90ee90;
+	background: #f0fff0;
+}
+.activity:hover{
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.0), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	background:#ffffff;
+	transition: 1s all;
+	transform: scale(1.0);
+	transform: translateX(-1px);
+}
+
+/* LATEST ACTIVITIES */
+.profile_latest_activities {
+	width: 100%;
+	background: #fff;
+	background-image: linear-gradient(to right, #ffffff, #DCDCDC);
+	margin-top: 20px;
+	display: inline-block;	
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.0), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.last_activity{
+	height: 100px;
+	color: #000;
+	background: #fff;
+	border: 1px solid #ccc;
+	margin: 20px;
+	padding: 10px;	
+	text-align: left;
+	overflow-y: scroll;
+}
+.last_activity_body {	
+	width: 100%;
+	height: 20px;
+	border-bottom: 1px dashed #ccc;
+	display: inline-block;
+}
+
+/* FOOTER */
+footer{
+	height: 50px;
+	margin-top: 30px;
+	background:#ccc;
+	color: #727376;
+	text-align: center;
+	background-image: linear-gradient(to top, #ccc, #c0c0c0);
+	padding: 20px;
+	vertical-align: middle;
+}
+.copyright{	
+	margin-top: 20px;
+	font-size: 12px;
+	display: inline-block;
+}
+.by{	
+	display: block;
+	float: right;
+}
+.logo_by{
+	width: 80px;
+}
