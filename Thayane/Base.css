@@ -100,6 +100,13 @@ main {
 	box-sizing: border-box;
 	border: .2em dotted #000;
 	overflow-y: scroll;
+
+	-ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.kanbam::-webkit-scrollbar {
+  display: none;
 }
 
 #fazer {
