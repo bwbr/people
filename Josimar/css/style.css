@@ -3,7 +3,7 @@ body {
 	background: #ccc;
 	background-image: linear-gradient(to bottom, #ffffff, #cccccc);
 	background-repeat: no-repeat;
-	font-family: Arial, sans-serif;
+	font-family: 'Open Sans', sans-serif;
 	text-decoration: none;	
 }
 
@@ -14,7 +14,7 @@ body {
 	margin: 0 auto;
 }
 
-hide{
+.hide{
 	display:none;
 }
 
@@ -95,26 +95,6 @@ h2{
 	display: block;	
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.0), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-/* CARDS KANBAN TITLE */
-.card_title{
-	width: 250px;
-	height: 50px;
-	color: #363636;
-	font-weight:bold;
-	text-align: left;
-	padding-left: 10px;
-	vertical-align: middle;
-	display: table-cell;
-}
-.title_to_do{	
-	background: #fcc;  	
-}
-.title_in_progress {
-	background: #ffc;
-}
-.title_done{
-	background: #cfc;
-}
 /* CARDS KANBAN */
 .card {
 	width: 30%;
@@ -122,13 +102,39 @@ h2{
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.0), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	text-align: left;
 	display: inline-block;
-	margin: 10px;	
-	box-sizing: border-box;		
+	margin: 10px;
+	box-sizing: border-box;
+}
+/* CARDS KANBAN TITLE */
+.card_title{
+	width: 100vw; /* only change is here "%" to "vw" ! */
+    height: 50px;
+	color: #363636;
+	font-weight:bold;
+	display: table-cell;
+	vertical-align: middle;
+	text-align: left;
+	padding-left: 20px;
+}
+.title_to_do{	
+	background: #fcc;
+}
+.title_in_progress {
+	background: #ffc;
+}
+.title_done{
+	background: #cfc;
 }
 .card_body {
 	width: 100%;
 	height: 200px;
-	overflow-y: scroll;
+	overflow-y: scroll;		
+	overflow-x: none;	
+	-ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+.card_body::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
 }
 .card_to_do {
 	background: #fff0f5;
@@ -143,7 +149,7 @@ h2{
 	background-image: linear-gradient(to right, #ffffff, #cfc);
 }
 .activity {
-	font-size: 15px;
+	font-size: 12px;
 	text-align: justify;
 	padding: 10px;
 	border:1px solid #ccc;
@@ -171,6 +177,10 @@ h2{
 	transform: scale(1.0);
 	transform: translateX(-1px);
 }
+.activity:active{
+	background:#ecebeb;
+	border-left: 5px solid #808080;
+}
 
 /* LATEST ACTIVITIES */
 .profile_latest_activities {
@@ -183,25 +193,28 @@ h2{
 }
 .last_activity{
 	height: 100px;
+	font-size: 12px;
+	text-align: left;
 	color: #000;
 	background: #fff;
 	border: 1px solid #ccc;
-	margin: 20px;
-	padding: 10px;	
-	text-align: left;
+	margin: 20px;	
 	overflow-y: scroll;
+	overflow-x: hidden; 		
 }
 .last_activity_body {	
 	width: 100%;
-	height: 20px;
+	height: auto;
+	padding:5px;	
 	border-bottom: 1px dashed #ccc;
-	display: inline-block;
+	display: block;
+	vertical-align: middle;
 }
 
 /* FOOTER */
 footer{
 	height: 50px;
-	margin-top: 30px;
+	margin-top: 20px;
 	background:#ccc;
 	color: #727376;
 	text-align: center;

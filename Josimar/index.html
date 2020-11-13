@@ -6,6 +6,8 @@
 		<title>Perfil</title>
 		<link rel="stylesheet" href="css/rest.css" />
 		<link rel="stylesheet" href="css/style.css" />
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
 		<!-- Place your kit's code here -->
 		<script src="https://kit.fontawesome.com/ab861c8c92.js" crossorigin="anonymous"></script> 
 	</head>
@@ -30,7 +32,7 @@
 					<ul class="list_social_network">
 						<li class="item_social_network"><a href="#"><i class="fab fa-facebook-f"></i> facebook </a>|</li>
 						<li class="item_social_network"><a href="#"><i class="fab fa-instagram"></i> Instagram </a>|</li>
-						<li class="item_social_network"><a href="#"><i class="fab fa-linkedin"></i> LinkedIn </a>|</li>					
+						<li class="item_social_network"><a href="#"><i class="fab fa-linkedin"></i> LinkedIn </a>|</li>			
 						<li class="item_social_network"><a href="#"><i class="fab fa-twitter"></i> Twitter </a></li>
 					</ul>
 				</div>
@@ -45,7 +47,10 @@
 
 					<!--Card To do-->
 					<div class="card card_to_do">
-						<div class="card_title title_to_do">Fazer</div>
+						<div class="card_title title_to_do">
+							<i class="fas fa-list-ul"></i>
+							<span>Fazer</span>
+						</div>
 						<div class="card_body body_to_do">
 							<!-- Activity To do-->
 							<div class="activity activity_to_do">
@@ -92,7 +97,10 @@
 
 					<!--Card In Progress-->
 					<div class="card card_in_progress">
-						<div class="card_title title_in_progress">Fazendo</div>
+						<div class="card_title title_in_progress">
+							<i class="fas fa-tasks"></i>
+							<span>Fazendo</span>
+						</div>
 						<div class="card_body body_in_progress">
 							<!--Activity In Progress-->
 							<div class="activity activity_in_progress">
@@ -104,15 +112,18 @@
 					<!--Card Done-->
 					<div class="card card_done">
 						<!--Activity Done-->
-						<div class="card_title title_done">Feito</div>
+						<div class="card_title title_done">							
+							<i class="fas fa-check"></i>
+							<span>Feito</span>
+						</div>
 						<div class="card_body body_done">
-							<div class="activity activity_done hide">
+							<div class="activity activity_done">
 								FRONT END / 1-HTML & CSS / Módulo 3
 							</div>
-							<div class="activity activity_done hide">
+							<div class="activity activity_done">
 								FRONT END / 1-HTML & CSS / Módulo 2
 							</div>
-							<div class="activity activity_done hide">
+							<div class="activity activity_done">
 								FRONT END / 1-HTML & CSS / Módulo 1
 							</div>
 						</div>
@@ -127,9 +138,87 @@
 
 					<!--Last_activity-->
 					<div class="last_activity">
-						<span class="last_activity_body">Conlusão de (FRONT END / 1-HTML & CSS / Módulo 1) em 10/11/2020.</span>
-						<span class="last_activity_body">Conlusão de (FRONT END / 1-HTML & CSS / Módulo 2) em 11/11/2020.</span>
-						<span class="last_activity_body">Conlusão de (FRONT END / 1-HTML & CSS / Módulo 3) em 13/11/2020.</span>
+						<span class="last_activity_body activity_in_progress">
+							<i class="fas fa-tasks"></i>
+							Começou <strong>FRONT END / 1-HTML & CSS / Módulo 4</strong> em <strong>13/11/2020</strong>.
+						</span>						
+						<span class="last_activity_body activity_done">
+							<i class="fas fa-check"></i>
+							Concluiu <strong>FRONT END / 1-HTML & CSS / Módulo 3</strong> em <strong>13/11/2020</strong>.
+						</span>
+						<span class="last_activity_body activity_in_progress">
+							<i class="fas fa-tasks"></i>
+							Começou <strong>FRONT END / 1-HTML & CSS / Módulo 3</strong> em <strong>11/11/2020</strong>.
+						</span>						
+						<span class="last_activity_body activity_done">
+							<i class="fas fa-check"></i>
+							Conluiu <strong>FRONT END / 1-HTML & CSS / Módulo 2</strong> em <strong>11/11/2020</strong>.
+						</span>
+						<span class="last_activity_body activity_in_progress">
+							<i class="fas fa-tasks"></i>
+							Começou <strong>FRONT END / 1-HTML & CSS / Módulo 2</strong> em <strong>11/10/2020</strong>.
+						</span>
+						<span class="last_activity_body activity_done">
+							<i class="fas fa-check"></i>
+							Conluiu <strong>FRONT END / 1-HTML & CSS / Módulo 1</strong> em <strong>10/11/2020</strong>.
+						</span>
+						<span class="last_activity_body activity_in_progress">
+							<i class="fas fa-tasks"></i>
+							Começou <strong>FRONT END / 1-HTML & CSS / Módulo 1</strong> em <strong>10/11/2020</strong>.
+						</span>	
+						<span class="last_activity_body activity_to_do">
+							<i class="fas fa-list-ul"></i>
+							Cadastrou <strong>FRONT END / 4-Sites interativos, itegrando o JavaScript ao NavegadorI / Módulo 3</strong> em <strong>10/11/2020</strong>.
+						</span>	
+						<span class="last_activity_body activity_to_do">
+							<i class="fas fa-list-ul"></i>
+							Cadastrou <strong>FRONT END / 4-Sites interativos, itegrando o JavaScript ao NavegadorI / Módulo 2</strong> em <strong>10/11/2020</strong>.
+						</span>
+						<span class="last_activity_body activity_to_do">
+							<i class="fas fa-list-ul"></i>
+							Cadastrou <strong>FRONT END / 4-Sites interativos, itegrando o JavaScript ao NavegadorI / Módulo 1</strong> em <strong>10/11/2020</strong>.
+						</span>							
+						<span class="last_activity_body activity_to_do">
+							<i class="fas fa-list-ul"></i>
+							Cadastrou <strong>FRONT END / 3-Front end UI / Módulo 5</strong> em <strong>10/11/2020</strong>.
+						</span>	
+						<span class="last_activity_body activity_to_do">
+							<i class="fas fa-list-ul"></i>
+							Cadastrou <strong>FRONT END / 3-Front end UI / Módulo 4</strong> em <strong>10/11/2020</strong>.
+						</span>	
+						<span class="last_activity_body activity_to_do">
+							<i class="fas fa-list-ul"></i>
+							Cadastrou <strong>FRONT END / 3-Front end UI / Módulo 3</strong> em <strong>10/11/2020</strong>.
+						</span>	
+						<span class="last_activity_body activity_to_do">
+							<i class="fas fa-list-ul"></i>
+							Cadastrou <strong>FRONT END / 3-Front end UI / Módulo 2</strong> em <strong>10/11/2020</strong>.
+						</span>	
+						<span class="last_activity_body activity_to_do">
+							<i class="fas fa-list-ul"></i>
+							Cadastrou <strong>FRONT END / 3-Front end UI / Módulo 1</strong> em <strong>10/11/2020</strong>.
+						</span>	
+						<span class="last_activity_body activity_to_do">
+							<i class="fas fa-list-ul"></i>
+							Cadastrou <strong>FRONT END / 2-JavaScript a linguagem da Web / Módulo 3</strong> em <strong>10/11/2020</strong>.
+						</span>	
+						<span class="last_activity_body activity_to_do">
+							<i class="fas fa-list-ul"></i>
+							Cadastrou <strong>FRONT END / 2-JavaScript a linguagem da Web / Módulo 2</strong> em <strong>10/11/2020</strong>.
+						</span>	
+						<span class="last_activity_body activity_to_do">
+							<i class="fas fa-list-ul"></i>
+							Cadastrou <strong>FRONT END / 2-JavaScript a linguagem da Web / Módulo 1</strong> em <strong>10/11/2020</strong>.
+						</span>	
+						<span class="last_activity_body activity_to_do">
+							<i class="fas fa-list-ul"></i>
+							Cadastrou <strong>INICIANDO / 1-Git e Github / Módulo 2</strong> em <strong>10/11/2020</strong>.
+						</span>	
+						<span class="last_activity_body activity_to_do">
+							<i class="fas fa-list-ul"></i>
+							Cadastrou <strong>INICIANDO / 1-Git e Github / Módulo 1</strong> em <strong>10/11/2020</strong>.
+						</span>	
+						
 					</div>
 
 				</div>
