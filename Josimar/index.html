@@ -3,6 +3,7 @@
 
 	<head>
 		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width">
 		<title>Perfil</title>
 		<link rel="stylesheet" href="css/rest.css" />
 		<link rel="stylesheet" href="css/style.css" />
@@ -18,23 +19,29 @@
 
 			<!--Header-->
 			<header>
-				<!--Photo-->
-				<div class="profile_photo">	
-					<img src="https://s.gravatar.com/avatar/cd07e63954d66e5867deebeb40ba3def?s=200&r=g" />	
-				</div>
 				<!--Informations-->
-				<div class="profile_informations">	
-
-					<h2>Dados Pessoais</h2>
+				<div class="profile_informations">
+					<!--Photo-->											
+					<div class="profile_photo">	
+						<img src="https://s.gravatar.com/avatar/cd07e63954d66e5867deebeb40ba3def?s=200&r=g" />	
+					</div>
 					
-					<span class="name">Nome: </span><span class="name_result">Josimar dos Santos</span>
-					<span class="social_network">Redes Sociais:</span>
-					<ul class="list_social_network">
-						<li class="item_social_network"><a href="#"><i class="fab fa-facebook-f"></i> facebook </a>|</li>
-						<li class="item_social_network"><a href="#"><i class="fab fa-instagram"></i> Instagram </a>|</li>
-						<li class="item_social_network"><a href="#"><i class="fab fa-linkedin"></i> LinkedIn </a>|</li>			
-						<li class="item_social_network"><a href="#"><i class="fab fa-twitter"></i> Twitter </a></li>
-					</ul>
+					<ul class="list_profile">
+						<li><h2>Dados Pessoais</h2></li>
+						<li>
+							<span class="label_name">Nome: </span>
+							<span class="name">Josimar dos Santos</span>
+						</li>
+						<li>
+							<span class="label_social_network">Redes Sociais:</span>
+							<ol class="list_social_network">
+								<li class="item_social_network"><a href="#"><i class="fab fa-facebook-f"></i><span> facebook </span></a> |</li>
+								<li class="item_social_network"><a href="#"><i class="fab fa-instagram"></i><span> Instagram </span></a> |</li>
+								<li class="item_social_network"><a href="#"><i class="fab fa-linkedin"></i><span> LinkedIn </span></a> |</li>	
+								<li class="item_social_network"><a href="#"><i class="fab fa-twitter"></i><span> Twitter </span></a></li>
+							</ol>
+						</li>
+					</ul>					
 				</div>
 			</header>
 
@@ -48,8 +55,9 @@
 					<!--Card To do-->
 					<div class="card card_to_do">
 						<div class="card_title title_to_do">
-							<i class="fas fa-list-ul"></i>
+							<span><i class="fas fa-list-ul"></i></span>
 							<span>Fazer</span>
+							<span><i class="fas fa-plus"></i></span>
 						</div>
 						<div class="card_body body_to_do">
 							<!-- Activity To do-->
@@ -98,7 +106,7 @@
 					<!--Card In Progress-->
 					<div class="card card_in_progress">
 						<div class="card_title title_in_progress">
-							<i class="fas fa-tasks"></i>
+							<span><i class="fas fa-cogs"></i></span>
 							<span>Fazendo</span>
 						</div>
 						<div class="card_body body_in_progress">
@@ -113,7 +121,7 @@
 					<div class="card card_done">
 						<!--Activity Done-->
 						<div class="card_title title_done">							
-							<i class="fas fa-check"></i>
+							<span><i class="fas fa-check"></i></span>
 							<span>Feito</span>
 						</div>
 						<div class="card_body body_done">
@@ -138,95 +146,94 @@
 
 					<!--Last_activity-->
 					<div class="last_activity">
-						<span class="last_activity_body activity_in_progress">
-							<i class="fas fa-tasks"></i>
-							Começou <strong>FRONT END / 1-HTML & CSS / Módulo 4</strong> em <strong>13/11/2020</strong>.
-						</span>						
-						<span class="last_activity_body activity_done">
-							<i class="fas fa-check"></i>
-							Concluiu <strong>FRONT END / 1-HTML & CSS / Módulo 3</strong> em <strong>13/11/2020</strong>.
-						</span>
-						<span class="last_activity_body activity_in_progress">
-							<i class="fas fa-tasks"></i>
-							Começou <strong>FRONT END / 1-HTML & CSS / Módulo 3</strong> em <strong>11/11/2020</strong>.
-						</span>						
-						<span class="last_activity_body activity_done">
-							<i class="fas fa-check"></i>
-							Conluiu <strong>FRONT END / 1-HTML & CSS / Módulo 2</strong> em <strong>11/11/2020</strong>.
-						</span>
-						<span class="last_activity_body activity_in_progress">
-							<i class="fas fa-tasks"></i>
-							Começou <strong>FRONT END / 1-HTML & CSS / Módulo 2</strong> em <strong>11/10/2020</strong>.
-						</span>
-						<span class="last_activity_body activity_done">
-							<i class="fas fa-check"></i>
-							Conluiu <strong>FRONT END / 1-HTML & CSS / Módulo 1</strong> em <strong>10/11/2020</strong>.
-						</span>
-						<span class="last_activity_body activity_in_progress">
-							<i class="fas fa-tasks"></i>
-							Começou <strong>FRONT END / 1-HTML & CSS / Módulo 1</strong> em <strong>10/11/2020</strong>.
-						</span>	
-						<span class="last_activity_body activity_to_do">
-							<i class="fas fa-list-ul"></i>
-							Cadastrou <strong>FRONT END / 4-Sites interativos, itegrando o JavaScript ao NavegadorI / Módulo 3</strong> em <strong>10/11/2020</strong>.
-						</span>	
-						<span class="last_activity_body activity_to_do">
-							<i class="fas fa-list-ul"></i>
-							Cadastrou <strong>FRONT END / 4-Sites interativos, itegrando o JavaScript ao NavegadorI / Módulo 2</strong> em <strong>10/11/2020</strong>.
-						</span>
-						<span class="last_activity_body activity_to_do">
-							<i class="fas fa-list-ul"></i>
-							Cadastrou <strong>FRONT END / 4-Sites interativos, itegrando o JavaScript ao NavegadorI / Módulo 1</strong> em <strong>10/11/2020</strong>.
-						</span>							
-						<span class="last_activity_body activity_to_do">
-							<i class="fas fa-list-ul"></i>
-							Cadastrou <strong>FRONT END / 3-Front end UI / Módulo 5</strong> em <strong>10/11/2020</strong>.
-						</span>	
-						<span class="last_activity_body activity_to_do">
-							<i class="fas fa-list-ul"></i>
-							Cadastrou <strong>FRONT END / 3-Front end UI / Módulo 4</strong> em <strong>10/11/2020</strong>.
-						</span>	
-						<span class="last_activity_body activity_to_do">
-							<i class="fas fa-list-ul"></i>
-							Cadastrou <strong>FRONT END / 3-Front end UI / Módulo 3</strong> em <strong>10/11/2020</strong>.
-						</span>	
-						<span class="last_activity_body activity_to_do">
-							<i class="fas fa-list-ul"></i>
-							Cadastrou <strong>FRONT END / 3-Front end UI / Módulo 2</strong> em <strong>10/11/2020</strong>.
-						</span>	
-						<span class="last_activity_body activity_to_do">
-							<i class="fas fa-list-ul"></i>
-							Cadastrou <strong>FRONT END / 3-Front end UI / Módulo 1</strong> em <strong>10/11/2020</strong>.
-						</span>	
-						<span class="last_activity_body activity_to_do">
-							<i class="fas fa-list-ul"></i>
-							Cadastrou <strong>FRONT END / 2-JavaScript a linguagem da Web / Módulo 3</strong> em <strong>10/11/2020</strong>.
-						</span>	
-						<span class="last_activity_body activity_to_do">
-							<i class="fas fa-list-ul"></i>
-							Cadastrou <strong>FRONT END / 2-JavaScript a linguagem da Web / Módulo 2</strong> em <strong>10/11/2020</strong>.
-						</span>	
-						<span class="last_activity_body activity_to_do">
-							<i class="fas fa-list-ul"></i>
-							Cadastrou <strong>FRONT END / 2-JavaScript a linguagem da Web / Módulo 1</strong> em <strong>10/11/2020</strong>.
-						</span>	
-						<span class="last_activity_body activity_to_do">
-							<i class="fas fa-list-ul"></i>
-							Cadastrou <strong>INICIANDO / 1-Git e Github / Módulo 2</strong> em <strong>10/11/2020</strong>.
-						</span>	
-						<span class="last_activity_body activity_to_do">
-							<i class="fas fa-list-ul"></i>
-							Cadastrou <strong>INICIANDO / 1-Git e Github / Módulo 1</strong> em <strong>10/11/2020</strong>.
-						</span>	
+						<div class="last_activity_body activity_in_progress">
+							<span><i class="fas fa-cogs"></i></span>
+							<span>Começou "<strong>FRONT END / 1-HTML & CSS / Módulo 4</strong>" em <strong>13/11/2020</strong>.</span>
+						</div>						
+						<div class="last_activity_body activity_done">
+							<span><i class="fas fa-check"></i></span>
+							<span>Concluiu "<strong>FRONT END / 1-HTML & CSS / Módulo 3</strong>" em <strong>13/11/2020</strong>.</span>
+						</div>
+						<div class="last_activity_body activity_in_progress">
+							<span><i class="fas fa-cogs"></i></span>
+							<span>Começou "<strong>FRONT END / 1-HTML & CSS / Módulo 3</strong>" em <strong>11/11/2020</strong>.</span>
+						</div>						
+						<div class="last_activity_body activity_done">
+							<span><i class="fas fa-check"></i></span>
+							<span>Conluiu "<strong>FRONT END / 1-HTML & CSS / Módulo 2</strong>" em <strong>11/11/2020</strong>.</span>
+						</div>
+						<div class="last_activity_body activity_in_progress">
+							<span><i class="fas fa-cogs"></i></span>
+							<span>Começou "<strong>FRONT END / 1-HTML & CSS / Módulo 2</strong>" em <strong>11/10/2020</strong>.</span>
+						</div>
+						<div class="last_activity_body activity_done">
+							<span><i class="fas fa-check"></i></span>
+							<span>Conluiu "<strong>FRONT END / 1-HTML & CSS / Módulo 1</strong>" em <strong>10/11/2020</strong>.</span>
+						</div>
+						<div class="last_activity_body activity_in_progress">
+							<span><i class="fas fa-cogs"></i></span>
+							<span>Começou "<strong>FRONT END / 1-HTML & CSS / Módulo 1</strong>" em <strong>10/11/2020</strong>.</span>
+						</div>	
+						<div class="last_activity_body activity_to_do">
+							<span><i class="fas fa-list-ul"></i></span>
+							<span>Cadastrou "<strong>FRONT END / 4-Sites interativos, itegrando o JavaScript ao NavegadorI / Módulo 3</strong>" em <strong>10/11/2020</strong>.</span>
+						</div>	
+						<div class="last_activity_body activity_to_do">
+							<span><i class="fas fa-list-ul"></i></span>
+							<span>Cadastrou "<strong>FRONT END / 4-Sites interativos, itegrando o JavaScript ao NavegadorI / Módulo 2</strong>" em <strong>10/11/2020</strong>.</span>
+						</div>
+						<div class="last_activity_body activity_to_do">
+							<span><i class="fas fa-list-ul"></i></span>
+							<span>Cadastrou "<strong>FRONT END / 4-Sites interativos, itegrando o JavaScript ao NavegadorI / Módulo 1</strong>" em <strong>10/11/2020</strong>.</span>
+						</div>							
+						<div class="last_activity_body activity_to_do">
+							<span><i class="fas fa-list-ul"></i></span>
+							<span>Cadastrou "<strong>FRONT END / 3-Front end UI / Módulo 5</strong>" em <strong>10/11/2020</strong>.</span>
+						</div>	
+						<div class="last_activity_body activity_to_do">
+							<span><i class="fas fa-list-ul"></i></span>
+							<span>Cadastrou "<strong>FRONT END / 3-Front end UI / Módulo 4</strong>" em <strong>10/11/2020</strong>.</span>
+						</div>	
+						<div class="last_activity_body activity_to_do">
+							<span><i class="fas fa-list-ul"></i></span>
+							<span>Cadastrou "<strong>FRONT END / 3-Front end UI / Módulo 3</strong>" em <strong>10/11/2020</strong>.</span>
+						</div>	
+						<div class="last_activity_body activity_to_do">
+							<span><i class="fas fa-list-ul"></i></span>
+							<span>Cadastrou "<strong>FRONT END / 3-Front end UI / Módulo 2</strong>" em <strong>10/11/2020</strong>.</span>
+						</div>	
+						<div class="last_activity_body activity_to_do">
+							<span><i class="fas fa-list-ul"></i></span>
+							<span>Cadastrou "<strong>FRONT END / 3-Front end UI / Módulo 1</strong>" em <strong>10/11/2020</strong>.</span>
+						</div>	
+						<div class="last_activity_body activity_to_do">
+							<span><i class="fas fa-list-ul"></i></span><span>Cadastrou "<strong>FRONT END / 2-JavaScript a linguagem da Web / Módulo 3</strong>" em <strong>10/11/2020</strong>.</span>
+						</div>	
+						<div class="last_activity_body activity_to_do">
+							<span><i class="fas fa-list-ul"></i></span>
+							<span>Cadastrou "<strong>FRONT END / 2-JavaScript a linguagem da Web / Módulo 2</strong>" em <strong>10/11/2020</strong>.</span>
+						</div>	
+						<div class="last_activity_body activity_to_do">
+							<span><i class="fas fa-list-ul"></i></span>
+							<span>Cadastrou "<strong>FRONT END / 2-JavaScript a linguagem da Web / Módulo 1</strong>" em <strong>10/11/2020</strong>.</span>
+						</div>	
+						<div class="last_activity_body activity_to_do">
+							<span><i class="fas fa-list-ul"></i></span>
+							<span>Cadastrou "<strong>INICIANDO / 1-Git e Github / Módulo 2</strong>" em <strong>10/11/2020</strong>.</span>
+						</div>	
+						<div class="last_activity_body activity_to_do">
+							<span><i class="fas fa-list-ul"></i></span>
+							<span>Cadastrou "<strong>INICIANDO / 1-Git e Github / Módulo 1</strong>" em <strong>10/11/2020</strong>.</span>
+						</div>	
 						
 					</div>
 
 				</div>
 			</main>
 			<!--Footer-->
-			<footer>
-				<div class="copyright">&copy; 2020 <strong>Blue Wolf</strong> BR Desenvolvimento</div>
+			<footer>				
 				<span class="by"><img src="img/bwbr_title.png" class="logo_by" /></span>
+				<div class="copyright">&copy; 2020 <strong>Blue Wolf</strong> BR Desenvolvimento</div>
 			</footer>
 
 		</div>
