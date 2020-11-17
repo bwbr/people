@@ -5,10 +5,11 @@ html {
 body {
 	font-size: 1.3em;
 	padding: 1%;
+	font-family: 'Lato', sans-serif;
 }
 
 nav {
-	background-color: #FFD4D4;
+	background-color: #FFD4D45C;
 	margin: .5em;
 	padding: 1em;
 	text-align: center;
@@ -37,9 +38,16 @@ nav a:visited {
 }
 
 header {
-	background-color: #FFD4D4;
+	background-color: #FFD4D45C;
 	margin: 0.5em;
 	height: 12em;
+}
+
+h1 {
+	text-align: center;
+	font-size: 3em;
+	font-weight: bolder;
+	font-family: 'Cookie', cursive;
 }
 
 .h3_01 {
@@ -67,12 +75,6 @@ header {
     float: left;
 }
 
-h1 {
-	text-align: center;
-	font-size: 2em;
-	font-weight: bolder;
-}
-
 h2 {
 	font-size: 1.6em;
 	font-weight: bolder;
@@ -84,7 +86,7 @@ article {
 }
 
 main {
-	background-color: #FFD4D4;
+	background-color: #FFD4D45C;
 	padding: 1em;
 	margin: 0.5em;
 }
@@ -98,6 +100,13 @@ main {
 	box-sizing: border-box;
 	border: .2em dotted #000;
 	overflow-y: scroll;
+
+	-ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.kanbam::-webkit-scrollbar {
+  display: none;
 }
 
 #fazer {
@@ -110,6 +119,10 @@ main {
 
 #feitas {
 	background-color: #0F0;
+}
+
+.formacoes:before {
+	content: "\272F";
 }
 
 .h3_02 {
@@ -125,8 +138,66 @@ main {
 	padding: .15em;
 }
 
+form label, form legend {
+	display: block;
+	font-weight: bold;
+	margin: 1em 0 0 1em;
+}
+
+.input_padrao {
+	display: block;
+	margin: .5em;
+	padding: .2em .4em;
+	width: 50%;
+}
+
+.dropdawn {
+	margin: .5em;
+	padding: .2em .4em;
+}
+
+.checkbox {
+	margin: .5em;
+}
+
+.enviar {
+	width: 40%;
+	padding: 1em;
+	background-color: #FF8787D0;
+	border: none;
+	border-radius: 1em;
+	font-weight: bold;
+	font-size: 1.1em;
+	transition: 1s all;
+	cursor: pointer;
+}
+
+.enviar:hover {
+	background-color: #FF8787;
+	transform: scale(1.1);
+}
+
+table {
+	margin: 2em 0;
+}
+
+thead {
+	font-weight: bold;
+}
+
+td, th {
+	border: #000 solid;
+	padding: .4em;
+}
+
+.h3_03 {
+	font-size: 1.2em;
+	font-weight: bold;
+	margin: 1em 0 .3em 0;
+}
+
 footer {
-	background-color: #FFD4D4;
+	background-color: #FFD4D45C;
 	margin: 0.5em;
 	height: 4em;
 	padding: 1em;
