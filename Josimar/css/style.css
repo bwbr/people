@@ -2,8 +2,8 @@
 body {	
 	background: #ccc;
 	background-image: linear-gradient(to bottom, #ffffff, #cccccc);
-	background-repeat: no-repeat;
-	font-family: Arial, sans-serif;
+	font-family: 'Open Sans', sans-serif;
+	background-repeat: repeat-x;
 	text-decoration: none;	
 }
 
@@ -14,7 +14,7 @@ body {
 	margin: 0 auto;
 }
 
-hide{
+.hide{
 	display:none;
 }
 
@@ -24,26 +24,6 @@ header{
 	height: 200px;	
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.0), 0 6px 20px 0 rgba(0, 0, 0, 0.19);	
 }
-.name{
-	font-weight: bold;
-}
-.name_result{
-	color: #000000;
-}
-.social_network{
-	margin-top: 20px;
-	font-weight: bold;
-	display: block;
-}
-.list_social_network{
-	list-style-type: none;
-	text-transform: none;
-	text-align: left;
-	padding: 0;
-}
-.item_social_network{
-	display: inline;
-}
 /* PHOTO */
 .profile_photo{
 	width: 200px;
@@ -51,6 +31,7 @@ header{
 	padding: 5px;
 	background: #fff;
 	display: inline-block;
+	position: absolute;	
 	float: left;
 }
 .profile_photo img{
@@ -61,22 +42,53 @@ header{
 .profile_informations{
 	background: #ffffff;
 	background-image: linear-gradient(to right, #ffffff, #ccc);
-	width: 710px;
-	height: 200px;
+	width: 100%;
+	height: 210px;
 	color: #363636;
-	padding: 10px 0 0 20px;
-	text-align: left;
-	display: inline-block;
-	position: absolute;
-	float: left;	
 }
+.profile_informations ul{
+	width:70%;
+	list-style-type: none;
+	text-transform: none;
+	text-align: left;
+	margin:0 auto;
+	margin-left: 250px;
+	padding: 0;
+}
+.list_profile{
+	text-align: left;
+}
+.label_name{
+	font-weight: bold;
+}
+.name{
+	color: #000000;
+}
+.label_social_network{
+	margin-top: 20px;
+	font-weight: bold;
+	display: block;
+}
+.list_social_network{
+	list-style-type: none;
+	text-transform: none;
+	padding: 0;	
+	text-align: left;
+	display: inline;
+	float: left;
+}
+.item_social_network{
+	text-align: left;
+	display: inline;
+}
+
 a{
 	text-transform: none;
 	text-decoration: none;
 	color: #000000;
 }
+
 h2{
-	width: 100%;
 	height: 50px;	
 	color: #727376;
 	padding:  10px 0 0 0;
@@ -95,26 +107,6 @@ h2{
 	display: block;	
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.0), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-/* CARDS KANBAN TITLE */
-.card_title{
-	width: 250px;
-	height: 50px;
-	color: #363636;
-	font-weight:bold;
-	text-align: left;
-	padding-left: 10px;
-	vertical-align: middle;
-	display: table-cell;
-}
-.title_to_do{	
-	background: #fcc;  	
-}
-.title_in_progress {
-	background: #ffc;
-}
-.title_done{
-	background: #cfc;
-}
 /* CARDS KANBAN */
 .card {
 	width: 30%;
@@ -122,13 +114,67 @@ h2{
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.0), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	text-align: left;
 	display: inline-block;
-	margin: 10px;	
-	box-sizing: border-box;		
+	margin: 10px;
+	box-sizing: border-box;
+}
+.card span:first-child{	
+	width: 20px;
+	height: 20px;
+	padding: 4px;
+	text-align: center;
+	background-color: #fff;	
+	border-bottom: 1px solid #ccc;
+	border-radius: 50%;
+	display: inline-block;
+	vertical-align: middle;
+	box-shadow: inset 0 4px 8px 0 rgba(0, 0, 0, 0.0);
+
+}
+/* CARDS KANBAN TITLE */
+.card_title{
+	width: 100vw; /* only change is here "%" to "vw" ! */
+    height: 50px;
+	color: #363636;
+	font-weight:bold;
+	display: table-cell;
+	vertical-align: middle;
+	text-align: left;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.title_to_do{	
+	background: #fcc;
+}
+.title_to_do span:last-child{	
+	width: 20px;
+	height: 20px;
+	padding: 4px;
+	color:#ffb6c1;
+	text-align: center;
+	background-color: #fff0f5;	
+	border-bottom: 1px solid #ccc;
+	border-radius: 50%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.0);	
+	display: inline-block;
+	vertical-align: middle;
+	float:right;
+}
+.title_in_progress {
+	background: #ffc;
+}
+.title_done{
+	background: #cfc;
 }
 .card_body {
 	width: 100%;
 	height: 200px;
-	overflow-y: scroll;
+	overflow-y: scroll;		
+	overflow-x: none;	
+	-ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+.card_body::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
 }
 .card_to_do {
 	background: #fff0f5;
@@ -143,7 +189,7 @@ h2{
 	background-image: linear-gradient(to right, #ffffff, #cfc);
 }
 .activity {
-	font-size: 15px;
+	font-size: 12px;
 	text-align: justify;
 	padding: 10px;
 	border:1px solid #ccc;
@@ -171,6 +217,18 @@ h2{
 	transform: scale(1.0);
 	transform: translateX(-1px);
 }
+.activity:active{
+	background:#ecebeb;
+	border-left: 5px solid #808080;
+	background-image: -webkit-repeating-radial-gradient(center center, rgba(0,0,0,.2), rgba(0,0,0,.2) 1px, transparent 1px, transparent 100%);
+	background-image: -moz-repeating-radial-gradient(center center, rgba(0,0,0,.2), rgba(0,0,0,.2) 1px, transparent 1px, transparent 100%);
+	background-image: -ms-repeating-radial-gradient(center center, rgba(0,0,0,.2), rgba(0,0,0,.2) 1px, transparent 1px, transparent 100%);
+	background-image: repeating-radial-gradient(center center, rgba(0,0,0,.2), rgba(0,0,0,.2) 1px, transparent 1px, transparent 100%);
+	-webkit-background-size: 3px 3px;
+	-moz-background-size: 3px 3px;
+	background-size: 3px 3px;
+}
+
 
 /* LATEST ACTIVITIES */
 .profile_latest_activities {
@@ -183,25 +241,49 @@ h2{
 }
 .last_activity{
 	height: 100px;
+	font-size: 12px;
+	text-align: left;
 	color: #000;
 	background: #fff;
 	border: 1px solid #ccc;
-	margin: 20px;
-	padding: 10px;	
-	text-align: left;
+	margin: 20px;	
 	overflow-y: scroll;
+	overflow-x: hidden; 		
 }
 .last_activity_body {	
-	width: 100%;
-	height: 20px;
+	width: auto;
+	height: auto;
+	padding:5px;
+	text-align: justify;	
 	border-bottom: 1px dashed #ccc;
+	display: block;
+	vertical-align: middle;
+}
+.last_activity_body span:first-child{	
+	width: 15px;
+	height: 15px;
+	padding: 3px;	
+	font-size: 12px;	
+	font-weight:bold;
+	text-align: center;
+	background-color: #fff;	
+	border-bottom: 1px solid #ccc;
+	border-radius: 50%;
 	display: inline-block;
+	vertical-align: middle;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.0);
+}
+.last_activity_body span:last-child{	
+	margin-left: 10px;
+}
+.last_activity_body strong{	
+	color: #727376;
 }
 
 /* FOOTER */
 footer{
 	height: 50px;
-	margin-top: 30px;
+	margin-top: 20px;
 	background:#ccc;
 	color: #727376;
 	text-align: center;
@@ -220,4 +302,112 @@ footer{
 }
 .logo_by{
 	width: 80px;
+}
+
+@media screen and (max-width: 480px) {
+
+			.container, header, main, footer{
+		        width: auto;
+		        height: auto;	  
+		    }
+
+			.profile_photo{
+				width: 150px;
+				height: 150px;
+				padding: 5px;
+				background: #fff;
+				position: relative;
+				display: inline-block;
+				float: none;
+			}
+			.profile_photo img{
+				width: 100%;
+				height: 100%;
+				background: #fff;
+			}
+
+			.profile_informations{				
+				width: 100vw;
+				height: auto;
+				padding: 20px;
+				color: #363636;
+				background: #ffffff;
+				background-image: linear-gradient(to right, #ffffff, #ccc);
+				text-align: center;
+				display: table-cell;
+				vertical-align: middle;
+			}
+			.profile_informations ul{
+				width:100%;
+				list-style-type: none;
+				text-transform: none;
+				text-align: center;
+				margin:0 auto;
+			}
+			.list_profile{
+				display: inline-block;
+			}
+			.label_name{
+				font-weight: bold;
+			}
+			.name{
+				color: #000000;
+			}
+			.label_social_network{
+				font-weight: bold;
+			}
+			.list_social_network{
+				list-style-type: none;
+				text-transform: none;
+				display: inline;
+				float: none;
+			}
+			.item_social_network{
+				text-align: left;
+				display: inline;
+			}
+
+		    .item_social_network span{
+		    	display: none;
+		    }
+		    .profile_latest_activities{
+		   		padding-bottom: 10px;
+		    }
+		    .profile_frame_kanban, .profile_latest_activities { 
+		   		width: 100%; 
+		   		text-align: center;    	 		
+		   		display:inline-block;
+		    }
+		    .card, .last_activity{
+		    	width: 90%;
+		    	margin: 0 auto;
+		    	margin-bottom: 20px;
+		    	display: block;
+		    }
+		    .last_activity{
+				height: 200px;
+			}
+
+			footer{
+				height: auto;
+				margin-top: 20px;
+				background:#ccc;
+				color: #727376;
+				text-align: center;
+				background-image: linear-gradient(to top, #ccc, #c0c0c0);
+				padding: 20px;
+				vertical-align: middle;
+			}
+			.copyright{	
+				margin-top: 20px;
+				font-size: 12px;
+				display: block;
+			}
+			.by{	
+				display: inline;
+				float: none;
+			}
+			.logo_by{
+				width: 80px;
+			}
 }
