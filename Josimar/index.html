@@ -1,12 +1,15 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
-
 	<head>
 		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width">
 		<title>Perfil</title>
-		<link rel="stylesheet" href="rest.css" />
-		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="css/rest.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
 		<!-- Place your kit's code here -->
 		<script src="https://kit.fontawesome.com/ab861c8c92.js" crossorigin="anonymous"></script> 
 	</head>
@@ -17,23 +20,29 @@
 
 			<!--Header-->
 			<header>
-				<!--Photo-->
-				<div class="profile_photo">	
-					<img src="https://s.gravatar.com/avatar/cd07e63954d66e5867deebeb40ba3def?s=200&r=g" />	
-				</div>
 				<!--Informations-->
-				<div class="profile_informations">	
-
-					<h2>Dados Pessoais</h2>
+				<div class="profile_informations">
+					<!--Photo-->											
+					<div class="profile_photo">	
+						<img src="https://s.gravatar.com/avatar/cd07e63954d66e5867deebeb40ba3def?s=200&r=g" />	
+					</div>
 					
-					<span class="name">Nome: </span><span class="name_result">Josimar dos Santos</span>
-					<span class="social_network">Redes Sociais:</span>
-					<ul class="list_social_network">
-						<li class="item_social_network"><a href="#"><i class="fab fa-facebook-f"></i> facebook </a>|</li>
-						<li class="item_social_network"><a href="#"><i class="fab fa-instagram"></i> Instagram </a>|</li>
-						<li class="item_social_network"><a href="#"><i class="fab fa-linkedin"></i> LinkedIn </a>|</li>					
-						<li class="item_social_network"><a href="#"><i class="fab fa-twitter"></i> Twitter </a></li>
-					</ul>
+					<ul class="list_profile">
+						<li><h2>Dados Pessoais</h2></li>
+						<li>
+							<span class="label_name">Nome: </span>
+							<span class="name">Josimar dos Santos</span>
+						</li>
+						<li>
+							<span class="label_social_network">Redes Sociais:</span>
+							<ol class="list_social_network">
+								<li class="item_social_network"><a href="#"><i class="fab fa-facebook-f"></i><span> facebook </span></a> |</li>
+								<li class="item_social_network"><a href="#"><i class="fab fa-instagram"></i><span> Instagram </span></a> |</li>
+								<li class="item_social_network"><a href="#"><i class="fab fa-linkedin"></i><span> LinkedIn </span></a> |</li>	
+								<li class="item_social_network"><a href="#"><i class="fab fa-twitter"></i><span> Twitter </span></a></li>
+							</ol>
+						</li>
+					</ul>					
 				</div>
 			</header>
 
@@ -46,49 +55,65 @@
 
 					<!--Card To do-->
 					<div class="card card_to_do">
-						<div class="card_title title_to_do">Fazer</div>
-						<div class="card_body body_to_do">
+						<div class="card_title title_to_do">
+							<span><i class="fas fa-list-ul"></i></span>
+							<span>Fazer</span>
+							<span id="plus"><i class="fas fa-plus"></i></span>
+						</div>
+						<div id="to_do" class="card_body body_to_do">
 							<!-- Activity To do-->
-							<div class="activity activity_to_do">
-								Tarefa A
+							<div id="37" class="activity activity_to_do">
+								INICIANDO / 1-Git e Github / Módulo 1
 							</div>
-							<div class="activity activity_to_do">
-								Tarefa B
+							<div id="36" class="activity activity_to_do">
+								INICIANDO / 1-Git e Github / Módulo 2
 							</div>
-							<div class="activity activity_to_do">
-								Tarefa C
+							<div id="35" class="activity activity_to_do">
+								FRONT END / 2-JavaScript a linguagem da Web / Módulo 1
 							</div>
-							<div class="activity activity_to_do">
-								Tarefa D
+							<div id="34" class="activity activity_to_do">
+								FRONT END / 2-JavaScript a linguagem da Web / Módulo 2
 							</div>
-							<div class="activity activity_to_do">
-								Tarefa E
+							<div id="33" class="activity activity_to_do">
+								FRONT END / 2-JavaScript a linguagem da Web / Módulo 3
 							</div>
-							<div class="activity activity_to_do">
-								Tarefa F
+							<div id="32" class="activity activity_to_do">
+								FRONT END / 3-Front end UI / Módulo 1
 							</div>
-							<div class="activity activity_to_do">
-								Tarefa G
+							<div id="31" class="activity activity_to_do">
+								FRONT END / 3-Front end UI / Módulo 2
 							</div>
-							<div class="activity activity_to_do">
-								Tarefa H
+							<div id="30" class="activity activity_to_do">
+								FRONT END / 3-Front end UI / Módulo 3
 							</div>
-							<div class="activity activity_to_do">
-								Tarefa I
+							<div id="29" class="activity activity_to_do">
+								FRONT END / 3-Front end UI / Módulo 4
 							</div>
-							<div class="activity activity_to_do">
-								Tarefa Z
+							<div id="28" class="activity activity_to_do">
+								FRONT END / 3-Front end UI / Módulo 5
+							</div>
+							<div id="27" class="activity activity_to_do">
+								FRONT END / 4-Sites interativos, itegrando o JavaScript ao NavegadorI / Módulo 1
+							</div>
+							<div id="26" class="activity activity_to_do">
+								FRONT END / 4-Sites interativos, itegrando o JavaScript ao NavegadorI / Módulo 2
+							</div>
+							<div id="25" class="activity activity_to_do">
+								FRONT END / 4-Sites interativos, itegrando o JavaScript ao NavegadorI / Módulo 3
 							</div>
 						</div>
 					</div>
 
 					<!--Card In Progress-->
 					<div class="card card_in_progress">
-						<div class="card_title title_in_progress">Fazendo</div>
-						<div class="card_body body_in_progress">
+						<div class="card_title title_in_progress">
+							<span><i class="fas fa-cogs"></i></span>
+							<span>Fazendo</span>
+						</div>
+						<div id="in_progress" class="card_body body_in_progress">
 							<!--Activity In Progress-->
-							<div class="activity activity_in_progress">
-								Tarefa Y
+							<div id="24" class="activity activity_in_progress">
+								FRONT END / 1-HTML & CSS / Módulo 4
 							</div>
 						</div>
 					</div>
@@ -96,10 +121,19 @@
 					<!--Card Done-->
 					<div class="card card_done">
 						<!--Activity Done-->
-						<div class="card_title title_done">Feito</div>
-						<div class="card_body body_done">
-							<div class="activity activity_done">
-								Tarefa X
+						<div class="card_title title_done">							
+							<span><i class="fas fa-check"></i></span>
+							<span>Feito</span>
+						</div>
+						<div id="done" class="card_body body_done">
+							<div id="23" class="activity activity_done">
+								FRONT END / 1-HTML & CSS / Módulo 3
+							</div>
+							<div id="22" class="activity activity_done">
+								FRONT END / 1-HTML & CSS / Módulo 2
+							</div>
+							<div id="21" class="activity activity_done">
+								FRONT END / 1-HTML & CSS / Módulo 1
 							</div>
 						</div>
 					</div>
@@ -113,17 +147,122 @@
 
 					<!--Last_activity-->
 					<div class="last_activity">
-						<span class="last_activity_body">Conclui a tarefa X em 2020-10-22</span>
+						<div id="20" class="last_activity_body activity_in_progress">
+							<span><i class="fas fa-cogs"></i></span>
+							<span>Começou "<strong>FRONT END / 1-HTML & CSS / Módulo 4</strong>" em <strong>13/11/2020</strong>.</span>
+						</div>						
+						<div id="19" class="last_activity_body activity_done">
+							<span><i class="fas fa-check"></i></span>
+							<span>Concluiu "<strong>FRONT END / 1-HTML & CSS / Módulo 3</strong>" em <strong>13/11/2020</strong>.</span>
+						</div>
+						<div id="18" class="last_activity_body activity_in_progress">
+							<span><i class="fas fa-cogs"></i></span>
+							<span>Começou "<strong>FRONT END / 1-HTML & CSS / Módulo 3</strong>" em <strong>11/11/2020</strong>.</span>
+						</div>						
+						<div id="17" class="last_activity_body activity_done">
+							<span><i class="fas fa-check"></i></span>
+							<span>Conluiu "<strong>FRONT END / 1-HTML & CSS / Módulo 2</strong>" em <strong>11/11/2020</strong>.</span>
+						</div>
+						<div id="16" class="last_activity_body activity_in_progress">
+							<span><i class="fas fa-cogs"></i></span>
+							<span>Começou "<strong>FRONT END / 1-HTML & CSS / Módulo 2</strong>" em <strong>11/10/2020</strong>.</span>
+						</div>
+						<div id="15" class="last_activity_body activity_done">
+							<span><i class="fas fa-check"></i></span>
+							<span>Conluiu "<strong>FRONT END / 1-HTML & CSS / Módulo 1</strong>" em <strong>10/11/2020</strong>.</span>
+						</div>
+						<div id="14" class="last_activity_body activity_in_progress">
+							<span><i class="fas fa-cogs"></i></span>
+							<span>Começou "<strong>FRONT END / 1-HTML & CSS / Módulo 1</strong>" em <strong>10/11/2020</strong>.</span>
+						</div>	
+						<div id="13" class="last_activity_body activity_to_do">
+							<span><i class="fas fa-list-ul"></i></span>
+							<span>Cadastrou "<strong>FRONT END / 4-Sites interativos, itegrando o JavaScript ao NavegadorI / Módulo 3</strong>" em <strong>10/11/2020</strong>.</span>
+						</div>	
+						<div id="12" class="last_activity_body activity_to_do">
+							<span><i class="fas fa-list-ul"></i></span>
+							<span>Cadastrou "<strong>FRONT END / 4-Sites interativos, itegrando o JavaScript ao NavegadorI / Módulo 2</strong>" em <strong>10/11/2020</strong>.</span>
+						</div>
+						<div id="11" class="last_activity_body activity_to_do">
+							<span><i class="fas fa-list-ul"></i></span>
+							<span>Cadastrou "<strong>FRONT END / 4-Sites interativos, itegrando o JavaScript ao NavegadorI / Módulo 1</strong>" em <strong>10/11/2020</strong>.</span>
+						</div>							
+						<div id="10" class="last_activity_body activity_to_do">
+							<span><i class="fas fa-list-ul"></i></span>
+							<span>Cadastrou "<strong>FRONT END / 3-Front end UI / Módulo 5</strong>" em <strong>10/11/2020</strong>.</span>
+						</div>	
+						<div id="9" class="last_activity_body activity_to_do">
+							<span><i class="fas fa-list-ul"></i></span>
+							<span>Cadastrou "<strong>FRONT END / 3-Front end UI / Módulo 4</strong>" em <strong>10/11/2020</strong>.</span>
+						</div>	
+						<div id="8" class="last_activity_body activity_to_do">
+							<span><i class="fas fa-list-ul"></i></span>
+							<span>Cadastrou "<strong>FRONT END / 3-Front end UI / Módulo 3</strong>" em <strong>10/11/2020</strong>.</span>
+						</div>	
+						<div id="7" class="last_activity_body activity_to_do">
+							<span><i class="fas fa-list-ul"></i></span>
+							<span>Cadastrou "<strong>FRONT END / 3-Front end UI / Módulo 2</strong>" em <strong>10/11/2020</strong>.</span>
+						</div>	
+						<div id="6" class="last_activity_body activity_to_do">
+							<span><i class="fas fa-list-ul"></i></span>
+							<span>Cadastrou "<strong>FRONT END / 3-Front end UI / Módulo 1</strong>" em <strong>10/11/2020</strong>.</span>
+						</div>	
+						<div id="5" class="last_activity_body activity_to_do">
+							<span><i class="fas fa-list-ul"></i></span><span>Cadastrou "<strong>FRONT END / 2-JavaScript a linguagem da Web / Módulo 3</strong>" em <strong>10/11/2020</strong>.</span>
+						</div>	
+						<div id="4" class="last_activity_body activity_to_do">
+							<span><i class="fas fa-list-ul"></i></span>
+							<span>Cadastrou "<strong>FRONT END / 2-JavaScript a linguagem da Web / Módulo 2</strong>" em <strong>10/11/2020</strong>.</span>
+						</div>	
+						<div id="3" class="last_activity_body activity_to_do">
+							<span><i class="fas fa-list-ul"></i></span>
+							<span>Cadastrou "<strong>FRONT END / 2-JavaScript a linguagem da Web / Módulo 1</strong>" em <strong>10/11/2020</strong>.</span>
+						</div>	
+						<div id="2" class="last_activity_body activity_to_do">
+							<span><i class="fas fa-list-ul"></i></span>
+							<span>Cadastrou "<strong>INICIANDO / 1-Git e Github / Módulo 2</strong>" em <strong>10/11/2020</strong>.</span>
+						</div>	
+						<div id="1" class="last_activity_body activity_to_do">
+							<span><i class="fas fa-list-ul"></i></span>
+							<span>Cadastrou "<strong>INICIANDO / 1-Git e Github / Módulo 1</strong>" em <strong>10/11/2020</strong>.</span>
+						</div>	
+						
 					</div>
 
 				</div>
 			</main>
 			<!--Footer-->
-			<footer>
-				<span></span>
+			<footer>				
+				<span class="by"><img src="img/bwbr_title.png" class="logo_by" /></span>
+				<div class="copyright">&copy; 2020 <strong>Blue Wolf</strong> BR Desenvolvimento</div>
 			</footer>
 
-		</div>
+		</div>		
+		<script>			
+			$(function(){
+				$('#to_do div').click(function(){					
+					id = $(this).attr("id");
+					id = "#"+id;					
+					$(id).removeClass("activity activity_to_do");
+					$(id).addClass("activity activity_in_progress");
+					$("#in_progress").append($(id));
+				});
+				$('#in_progress div').click(function(){
+					id = $(this).attr("id");
+					id = "#"+id;					
+					$(id).removeClass("activity activity_in_progress");
+					$(id).addClass("activity activity_done");
+					$("#done").append($(id));
+				});
+				$('#done div').click(function(){
+					id = $(this).attr("id");
+					id = "#"+id;
+					$(id).removeClass("activity activity_done");
+					$(id).addClass("activity activity_to_do");
+					$("#to_do").append($(id));
+				});
+			});
+		</script>
 		<!-- Ready to use Font Awesome. Activate interlock. Dynotherms - connected. Infracells - up. Icons are go! -->
 	</body>	
 </html>
