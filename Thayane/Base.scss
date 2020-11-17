@@ -1,14 +1,4 @@
-//Cores
-$cor_de_fundo: #FEE;
-$cor_das_partes_fundo: #FFD4D45C;
-$cor_fundo_artigo:#FEF;
-$cor_mouse_por_cima_link:#00E;
-$cor_link_visitado: #009;
-$cor_borda_itens: #000;
-
-//Fontes
-$fonte_familia_titulo: 'Lato', sans-serif;
-$fonte_familia_texto: 'Cookie', cursive;
+@import 'Variaveis';
 
 html {
 	background-color: $cor_de_fundo;
@@ -33,15 +23,17 @@ nav {
 
 	a {
 		color: #000;
-		textcor_borda_kanban-size: 1.4em;
+		text-transform: uppercase;
+		font-weight: bold;
+		font-size: 1.4em;
 		text-decoration: none;
 
-		:hover {
+		&:hover {
 			color: $cor_mouse_por_cima_link;
 			text-decoration: underline;
 		}
 
-		:visited {
+		&:visited {
 			color: $cor_link_visitado;
 		}
 	}
@@ -108,7 +100,7 @@ main {
 	margin: 1%;
 	padding: 2% 2%;
 	box-sizing: border-box;
-	border: .2em dotted $cor_borda_itens;
+	border: .2em dotted #000;
 	overflow-y: scroll;
 
 	-ms-overflow-style: none;
@@ -181,7 +173,7 @@ form label, form legend {
 	transition: 1s all;
 	cursor: pointer;
 
-	:hover {
+	&:hover {
 		background-color: #FF8787;
 		transform: scale(1.1);
 	}

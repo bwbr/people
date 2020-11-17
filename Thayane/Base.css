@@ -22,16 +22,18 @@ nav li {
 
 nav a {
   color: #000;
-  textcor_borda_kanban-size: 1.4em;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.4em;
   text-decoration: none;
 }
 
-nav a :hover {
+nav a:hover {
   color: #00E;
   text-decoration: underline;
 }
 
-nav a :visited {
+nav a:visited {
   color: #009;
 }
 
@@ -97,7 +99,7 @@ main {
   padding: 2% 2%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  border: 0.2em dotted #000;
+  border: .2em dotted #000;
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -171,7 +173,7 @@ form label, form legend {
   cursor: pointer;
 }
 
-.enviar :hover {
+.enviar:hover {
   background-color: #FF8787;
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
