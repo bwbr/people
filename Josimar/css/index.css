@@ -31,8 +31,7 @@ header{
 	padding: 5px;
 	background: #fff;
 	display: inline-block;
-	position: absolute;	
-	float: left;
+	position: absolute;
 }
 .profile_photo img{
 	width: 100%;
@@ -196,7 +195,7 @@ h2{
 	border-radius: 0 5px 5px 0;
 	margin: 5px;
 	color: #000;
-	cursor:pointer;
+	cursor: move;
 }
 .activity_to_do {	
 	border-left: 5px solid #ffb6c1;
@@ -217,7 +216,7 @@ h2{
 	transform: scale(1.0);
 	transform: translateX(-1px);
 }
-.activity:active{
+.activity_default, .activity:active{
 	background:#ecebeb;
 	border-left: 5px solid #808080;
 	background-image: -webkit-repeating-radial-gradient(center center, rgba(0,0,0,.2), rgba(0,0,0,.2) 1px, transparent 1px, transparent 100%);
@@ -304,6 +303,7 @@ footer{
 	width: 80px;
 }
 
+/* MOBILE */
 @media screen and (max-width: 480px) {
 
 			.container, header, main, footer{
