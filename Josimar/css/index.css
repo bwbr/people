@@ -1,7 +1,7 @@
 /* BODY */
 body {	
 	background: #ccc;
-	background-image: linear-gradient(to bottom, #ffffff, #cccccc);
+	background-image: linear-gradient(to bottom, #fff, #ccc);
 	font-family: 'Open Sans', sans-serif;
 	background-repeat: repeat-x;
 	text-decoration: none;	
@@ -39,8 +39,7 @@ header{
 	background: #fff;
 }
 .profile_informations{
-	background: #ffffff;
-	background-image: linear-gradient(to right, #ffffff, #ccc);
+	background: #fff;
 	width: 100%;
 	height: 210px;
 	color: #363636;
@@ -61,7 +60,7 @@ header{
 	font-weight: bold;
 }
 .name{
-	color: #000000;
+	color: #000;
 }
 .label_social_network{
 	margin-top: 20px;
@@ -99,7 +98,6 @@ h2{
 .profile_frame_kanban {
 	width: 100%;
 	background: #ccc;
-	background-image: linear-gradient(to right, #ffffff, #DCDCDC);
 	text-align: center;
 	margin-top: 30px;
 	padding-bottom: 10px;
@@ -261,7 +259,6 @@ input{
 .profile_latest_activities {
 	width: 100%;
 	background: #fff;
-	background-image: linear-gradient(to right, #ffffff, #DCDCDC);
 	margin-top: 20px;
 	display: inline-block;	
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.0), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
