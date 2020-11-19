@@ -121,8 +121,16 @@ main {
   background-color: #0F0;
 }
 
+.formacoes{
+	background-color: #FFFAFA;
+}
+
 .formacoes:before {
   content: "\272F";
+}
+
+.movendo {
+	background-color: #ADD8E6AA;
 }
 
 .h3_02 {
@@ -176,7 +184,7 @@ form label, form legend {
 .enviar:hover {
   background-color: #FF8787;
   -webkit-transform: scale(1.1);
-          transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 table {

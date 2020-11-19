@@ -26,12 +26,21 @@ function finalizarArrastar() {
 }
 
 cartoes.forEach(cartoes => {
+    //Mouse
     cartoes.addEventListener('dragstart', iniciarArrastar);
     cartoes.addEventListener('dragend', finalizarArrastar);
+    //Touch
+    cartoes.addEventListener("touchstart", iniciarArrastar, false);
+    cartoes.addEventListener("touchend", finalizarArrastar, false);
 });
   
 listas.forEach( lista => {
+    //Mouse
     lista.addEventListener('dragover', arrastarSobre);
     lista.addEventListener('dragleave', arrastarFim);
     lista.addEventListener('drop', soltar);
+    //Touch (não está funcionando)
+    //lista.addEventListener("touchcancel", arrastarSobre, false);
+    //lista.addEventListener("touchleave", arrastarFim, false);
+    //lista.addEventListener("touchmove", soltar, false);
 })
