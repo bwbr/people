@@ -1,0 +1,32 @@
+O que precisa ter:
+
+No Header: 
+    Bluewolfbr (esquerda) / Menu de navegação (direita)
+        No menu: Sobre + Kanban + Skills + Atividades + Contato
+    Foto + Nome + Cargo / Breve descrição sobre si
+
+No Main:
+    Section 1:
+        Header:
+            Kanban
+        Body:
+            Quadro Kanban
+    Section 2:
+        Header:
+            Skills
+        Body:
+            Nome da skill / Barra da skill
+    Section 3:
+        Header:
+            Atividades
+        Body:
+            Nome da atividade + Data de conclusão
+    Section 4:
+        Header:
+            Contato
+        Body:
+            Mapa / Formulário
+                No formulário: email + mensagem + limpar + enviar
+
+No Footer:
+    Criado por Thayane Copyright Bluewolfbr
