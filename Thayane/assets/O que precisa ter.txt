@@ -113,3 +113,74 @@ No Footer:
                     </body>
                 </section>
             </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <header> <a name="informacoes"> </a>
+			<h1> Thayane Carvalho dos Santos </h1>
+			
+			<div class="foto">
+				<img id="minha_foto" src="https://s.gravatar.com/avatar/ac5c67f8e14ed947ed754568d7bab6d1?s=80" alt="Foto de Thayane">
+			</div>
+
+			<div class="informacoes">
+				<ul>		
+					<li> 
+						<h3 class="h3_01"> Email: </h3>
+						<p> thayane.carvalho@bluewolfbr.com</p>
+					</li>
+
+					<li> 
+						<h3 class="h3_01"> Profissão: </h3>
+						<p> Programadora na BlueWolf </p>
+					</li>
+
+					<li>
+						<h3 class="h3_01"> Educação: </h3>
+						<p> Estudante do 4° período de Jogos Digitais </p>
+					</li>
+				</ul>		
+			</div>
+		</header>
+
+		<main>
+			<h2> Quadro Kanbam </h2>
+			<ol id="fazer" class="kanbam" data-kanbam> 
+				<h3 class="h3_02"> A fazer</h3> 
+				<li class="formacoes" data-formacao draggable="true"> Formação Angular </li>
+				<li class="formacoes" data-formacao draggable="true"> Formação Node.JS </li>
+				<li class="formacoes" data-formacao draggable="true"> Formação Spring Framework </li>
+				<li class="formacoes" data-formacao draggable="true"> Formação Java e Orientação a Objetos </li>
+				<li class="formacoes" data-formacao draggable="true"> Formação Expert em Orientação a Objetos </li>		
+			</ol>
+
+			<ol id="fazendo" class="kanbam" data-kanbam> 
+				<h3 class="h3_02"> Fazendo </h3>
+				<li class="formacoes" data-formacao draggable="true"> Formação Front End </li>			
+			</ol>
+
+			<ol id="feitas" class="kanbam" data-kanbam> 
+				<h3 class="h3_02"> Feitas </h3>
+				<li class="formacoes" data-formacao draggable="true"> Formação Iniciante </li>
+			</ol>			
+		</main>
+
+		<footer>
+			<h2> <a name="atividades"> </a> Últimas atividades: </h2>
+			<ul>
+				<li> Formação Iniciante (Término em: 11/11/2020 as 09:00) </li>
+			</ul>
+			<p class="copyright"> &copy; Copyright Thayane Carvalho dos Santos </p>
+		</footer>	
+		<script type="module" src="./Index.js"></script>

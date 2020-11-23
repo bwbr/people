@@ -1,0 +1,28 @@
+body {
+    min-height: 75rem;
+}
+
+.navbar-light{
+    background-color: #FFD4D4;
+}
+
+h1{
+    font-size: 1.5rem;
+}
+
+.h3_menor{
+    font-size: 1.3rem;
+}
+
+.margem_topo{
+    margin-top: 1.5rem;
+}
+
+.jumbotron {
+    background-color: #FFD4D45C;
+}
+
+#minha_foto{
+    border: 1px solid #000;
+    border-radius: 100%; 
+}
