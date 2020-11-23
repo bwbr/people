@@ -16,13 +16,18 @@ h1{
 
 .margem_topo{
     margin-top: 1.5rem;
+    background-color: #FFD4D45C;
 }
 
 .jumbotron {
-    background-color: #FFD4D45C;
+    background-color: #FFF0;
 }
 
 #minha_foto{
     border: 1px solid #000;
     border-radius: 100%; 
+}
+
+li{
+    list-style: none;
 }
