@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+// Obs: lighten/darken(cor, %); para tons claros/escuros e após vírgula indicar porcentagem da tonalidade
+
+//variáveis
+$navbar-bg-color: #17a2b8;
+$navbar-text-color: #ffffff;
+$fonte-global: #363636;
+
+    //cores rgb
+$bg-to-do-rgb:rgb(217, 83, 79);
+$bg-in-progress-rgb:rgb(240, 173, 78);
+$bg-done-rgb:rgb(92, 184, 92);
+$white-rgb:rgb(255,255,255);
+$font-color-rgb:rgb(255,255,255);
+
+    //cores hexadecimal
+$bg-to-do-hex:#d9534f; 
+$bg-in-progress-hex:#f0ad4e;
+$bg-done-hex:#5cb85c;
+$white-hex:#ffffff;
+$font-color-hex: #ffffff;
+
+//placeholders
+%sombra-box{
+    -webkit-box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0), 0 6px 20px 0 rgba(0, 0, 0, 0.30) !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0), 0 6px 20px 0 rgba(0, 0, 0, 0.30) !important; 
+}
+
+//mixins geral
+@media (min-width:980px){
+    .container{
+        width: 90%;
+    }
+}
+@mixin link-sem-efeito {
+    text-decoration: none !important;
+    text-transform: none !important;
+}
+@mixin scrollbar-oculto {
+    height: 200px;      
+    overflow-y: scroll;
+    overflow-x: none;
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
+    &::-webkit-scrollbar {display: none; /* Safari and Chrome */ }
+}
+@mixin bg-cards-grsdient($deg, $color-rgb, $color-hex, $p-top, $p-botton) {
+    background: $color-rgb !important;
+    background: linear-gradient($deg, $color-rgb $p-top, $white-rgb $p-botton) !important;
+    background: $white-rgb !important;
+    background: -moz-linear-gradient($deg, $color-rgb 0%, $p-botton) !important;
+    background: -webkit-linear-gradient($deg,$color-rgb 0%, $white-rgb $p-botton) !important;
+    background: linear-gradient($deg, $color-rgb 0%, $white-rgb $p-botton) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=$white-hex,endColorstr=$color-hex,GradientType=1) !important;
+}
+
+//mixins cards
+@mixin format-card ($color-rgb, $color-hex){
+    @include bg-cards-grsdient(0deg, $color-rgb, $color-hex, 10%, 90%); //bg-cards(deg, collor-rgb, collor-hex, porcent-top, porcent-botton);
+    @extend %sombra-box;
+    border: 0 !important;
+}
+@mixin format-card-header ($color-rgb) {
+    background: $color-rgb !important;
+    border: 0 !important;    
+}
+@mixin format-activity($color-rgb) {    
+    border-radius: 0 !important;
+    border-left:5px solid $color-rgb !important; cursor: move;
+    &:hover {
+        transition: 1s all;
+        background-color: lighten($color-rgb, 60%) !important;
+    }
+}
+
+
+/*--GERAL--*/
+body{
+    font-size: 1rem;
+    font-family: 'Open Sans', "Helvetica", Helvetica, Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    color: $fonte-global;
+}
+
+.photo{ 
+    border: 1px solid #ccc;
+    border-radius: 50%;
+}
+
+.name {
+    h3{
+        font-size: 1.6rem;
+    }    
+    h5{
+        font-size: 1rem;
+    } 
+}
+
+/*--NAVBAR--*/
+.nav-link, .btn-link{
+    @include link-sem-efeito;
+}
+.navbar{
+    @extend %sombra-box;
+    background-color: $navbar-bg-color !important;
+    .navbar-brand{
+        color: $navbar-text-color !important;
+    }
+    .nav-link{
+        color: $white-hex !important;
+    }
+}
+
+/*--KANBAN--*/
+
+.card-to-do{
+    @include format-card($bg-to-do-rgb,$bg-to-do-hex);
+    .card-header{
+        @include format-card-header($bg-to-do-rgb);
+    }        
+    .activities{
+        @include scrollbar-oculto;
+        .activity{ 
+            .card-header{
+                background-color: $white-hex !important;
+            }
+            .btn-link{
+                color: $fonte-global !important;
+            }
+            @include format-activity($bg-to-do-hex);
+        }
+    }
+}
+.card-in-progress{
+    @include format-card($bg-in-progress-rgb,$bg-in-progress-hex);
+    .card-header{
+        @include format-card-header($bg-in-progress-rgb); 
+    }            
+    .activities{
+        @include scrollbar-oculto;
+        .activity{              
+            border-radius: 0 !important;
+            border-left:5px solid $bg-in-progress-hex !important;    
+            .card-header{
+                background-color: $white-hex !important;
+            }
+            .btn-link{
+                color: $fonte-global !important;
+            }
+            @include format-activity($bg-in-progress-hex);
+        }
+    }
+}   
+.card-done{
+    @include format-card($bg-done-rgb,$bg-done-hex);
+    .card-header{
+        @include format-card-header($bg-done-rgb);
+    }          
+    .activities{
+        @include scrollbar-oculto;
+        .activity{  
+            border-radius: 0 !important;
+            border-left:5px solid $bg-done-hex !important; 
+            .card-header{
+                background-color: $white-hex !important;
+            }
+            .btn-link{
+                color: $fonte-global !important;
+            }
+            @include format-activity($bg-done-hex);
+        }
+    }
+}
+

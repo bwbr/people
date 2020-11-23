@@ -1,5 +1,5 @@
 const activity = document.querySelectorAll('.activity');
-const card_body = document.querySelectorAll('.card_body');
+const card_body = document.querySelectorAll('.activities');
 
 let firstCard = null;
 let selectedCard = null; let 
@@ -49,13 +49,13 @@ for(let i = 0; i < activity.length; i++){
 			selectedCard = this;
 			/* Envia informações do "card" para a função referentes 
 			ao estilo antigo, ao estilo atual e qual "atividade" irá alterar */
-			colorActivity(selectedCard, firstCard, draggedActivity);
+			color_activity(selectedCard, firstCard, draggedActivity);
 		});
 	}
 
 }
 // Remove e adiciona novo estilo de cor conforme o "card" selecionado
-function colorActivity(s, f, a){
+function color_activity(s, f, a){
 	switch (s.id) {//Card selecionado (to_do, in_progress, done)
 		case "to_do": //Caso to_do
 			a.classList.remove("activity_" + f.id + "");//Remove classe antiga
