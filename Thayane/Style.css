@@ -6,6 +6,13 @@ body {
     background-color: #FFD4D4;
 }
 
+@media (min-width: 576px){
+    .mr-auto, .mx-auto {
+        position:absolute;
+        right:0px;
+    }
+}
+
 h1{
     font-size: 1.5rem;
 }
@@ -16,7 +23,7 @@ h1{
 
 .margem_topo{
     margin-top: 1.5rem;
-    background-color: #FFD4D45C;
+    background-color: #ffd4d43f;
 }
 
 .jumbotron {
@@ -30,4 +37,9 @@ h1{
 
 li{
     list-style: none;
+}
+
+.espacamento_blocos{
+    margin: .5rem 0;
+    padding: 0 .5rem;
 }
