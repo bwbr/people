@@ -36,6 +36,32 @@ h1{
     background-color: #ffd4d43f;
 }
 
+.kanbam {
+    display: inline-block;
+    height: 15rem;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+  
+.kanbam::-webkit-scrollbar {
+    display: none;
+}
+
+.formacoes{
+    background-color: #FFFAFA;
+    margin: .2rem 0;
+    padding: 0 .2rem;
+}
+
+.formacoes:before {
+  content: "\272F";
+}
+
+.movendo {
+	background-color: #ADD8E6AA;
+}
+
 .jumbotron {
     background-color: #FFF0;
 }
