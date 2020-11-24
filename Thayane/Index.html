@@ -9,8 +9,8 @@
         <link href="Style.css" rel="stylesheet">
 	</head>
 
-	<body >
-        <div class="margem_topo container">
+	<body data-spy="scroll" data-target=".navbar">
+        <div class="margem_topo">
             <nav class="navbar navbar-expand-sm fixed-top navbar-light">
                 <a class="navbar-brand" href="#">BlueWolfBR</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,7 +19,7 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#Sobre">Sobre</a> 
+                            <a class="nav-link" href="#Sobre">Sobre</a> 
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#Kanban">Kanban</a>
@@ -37,28 +37,33 @@
                 </div>
             </nav>
 
-            <header id="Sobre">
-                <div class="jumbotron">
-                    <h1>Thayane Carvalho dos Santos</h1>
-                    <h3 class="h3_menor">Desenvolvedora de Software</h3>
-                    <img id="minha_foto" src="https://s.gravatar.com/avatar/ac5c67f8e14ed947ed754568d7bab6d1?s=80" alt="Foto de Thayane">
+            <header id="Sobre" class="container-fluid container_meu">
+                <div class="row media border p-0">
+                    <div class="col-sm-12 col-md-6 mt-3">
+                        <div class="row d-flex align-items-center">											
+                            <div class="col-4 col-sm-2 col-md-3 pr-0">	
+                                <img class="rounded-circle align-self-center" src="https://s.gravatar.com/avatar/ac5c67f8e14ed947ed754568d7bab6d1?s=80" alt="Foto de Thayane">	
+                            </div>
+                            <div class="col-8 col-sm-10 col-md-9 name text-left pl-0">	
+                                <h1>Thayane Carvalho dos Santos</h1>
+                                <h3 class="h3_menor">Desenvolvedora de Software</h3>
+                            </div>
+                        </div>
+						  </div>
+						  
+                    <div class="col-sm-12 col-md-6 pl-0"> 	
+                        <div class="m-3 text-justify">
+                           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam pellentesque, magna a egestas facilisis, dolor justo accumsan tellus, ac lacinia lorem velit quis tortor. In ut iaculis tellus, ut vehicula dolor. Sed pellentesque, magna vitae fermentum dignissim, libero velit varius mi, euismod lacinia leo sem sed odio. Quisque malesuada neque ut fermentum convallis. In at lacus ac quam sollicitudin vulputate a quis erat. Quisque ullamcorper porttitor nibh, quis facilisis enim aliquam eu. Sed a enim sed nunc posuere semper. Sed sit amet mi aliquam, aliquam quam sed, pulvinar tellus. In condimentum velit et sagittis rutrum.
+                        </div>
+                    </div>
                 </div>
-        
-                <div class="jumbotron">
-                    <p class="lead">
-                        Estudante do 4° período de Jogos Digitais
-                    </p>
-                </div>            
-            </header>
+            </header>      
 
             <main class="">
-                <section id="Kanban" class="espacamento_blocos">
-                    <header>
-                        <h2>Quadro Kanbam</h2>
-                    </header>
-                        
-                    <body>
-                        <ul id="fazer" class="kanbam" data-kanbam> 
+                <section id="Kanban" class="container-fluid container_meu">
+                    <h2>Quadro Kanbam</h2>
+                    <div class="row">
+                        <ul id="fazer" class="kanbam col-sm-4" data-kanbam> 
                             <h3 class="h3_02"> A fazer</h3> 
                             <li class="formacoes" data-formacao draggable="true"> Formação Angular </li>
                             <li class="formacoes" data-formacao draggable="true"> Formação Node.JS </li>
@@ -66,20 +71,20 @@
                             <li class="formacoes" data-formacao draggable="true"> Formação Java e Orientação a Objetos </li>
                             <li class="formacoes" data-formacao draggable="true"> Formação Expert em Orientação a Objetos </li>		
                         </ul>
-                
-                        <ul id="fazendo" class="kanbam" data-kanbam> 
+                    
+                        <ul id="fazendo" class="kanbam col-sm-4" data-kanbam> 
                             <h3 class="h3_02"> Fazendo </h3>
                             <li class="formacoes" data-formacao draggable="true"> Formação Front End </li>			
                         </ul>
-                
-                        <ul id="feitas" class="kanbam" data-kanbam> 
+                    
+                        <ul id="feitas" class="kanbam col-sm-4" data-kanbam> 
                             <h3 class="h3_02"> Feitas </h3>
                             <li class="formacoes" data-formacao draggable="true"> Formação Iniciante </li>
                         </ul>
-                    </body>
+                    </div>
                 </section>
     
-                <section class="espacamento_blocos" id="Skills">
+                <section id="Skills" class="container-fluid container_meu">
                     <h2>Skills</h2>                        
 
                     <ul class="list-group">
@@ -104,17 +109,22 @@
                     </ul>
                 </section>
     
-                <section class="espacamento_blocos" id="Atividades">
+                <section id="Atividades" class="container-fluid container_meu">
                     <div>
                         <h2>Atividades</h2>
                     </div>
                         
                     <div>
-                        <p>Nada</p>
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Formação Iniciante
+                                <span class="badge badge-primary badge-pill">12</span>
+                            </li>
+                        </ul>
                     </div>
                 </section>
 
-                <section  id="Contato">
+                <section class="container-fluid container_meu" id="Contato">
                     <h2>Contato</h2>
                     <div class="row">
                         <div class="col-md-6">

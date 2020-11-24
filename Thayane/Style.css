@@ -1,5 +1,6 @@
 body {
     min-height: 75rem;
+    position: relative;
 }
 
 .navbar-light{
@@ -13,10 +14,8 @@ body {
     }
 }
 
-.container{
-    margin-right: 0;
-    margin-left: 0;
-    max-width: 100%;
+.container_meu{
+    padding-top:60px;
 }
 
 .espacamento_blocos{
@@ -39,11 +38,6 @@ h1{
 
 .jumbotron {
     background-color: #FFF0;
-}
-
-#minha_foto{
-    border: 1px solid #000;
-    border-radius: 100%; 
 }
 
 li{
