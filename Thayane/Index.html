@@ -9,34 +9,34 @@
         <link href="Style.css" rel="stylesheet">
 	</head>
 
-	<body class="container-fluid">	
-        <nav class="navbar navbar-expand-sm fixed-top navbar-light">
+	<body >
+        <div class="margem_topo container">
+            <nav class="navbar navbar-expand-sm fixed-top navbar-light">
                 <a class="navbar-brand" href="#">BlueWolfBR</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                  </button>
-                  <div class="collapse navbar-collapse" id="navbarCollapse">
-                  <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#Sobre">Sobre</a> 
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#Kanban">Kanban</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#Skills">Skills</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#Atividades">Atividades</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#Contato">Contato</a>
-                    </li>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#Sobre">Sobre</a> 
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#Kanban">Kanban</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#Skills">Skills</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#Atividades">Atividades</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#Contato">Contato</a>
+                        </li>
                     </ul>
-                  </div>
-        </nav>
+                </div>
+            </nav>
 
-        <div class="margem_topo">
             <header id="Sobre">
                 <div class="jumbotron">
                     <h1>Thayane Carvalho dos Santos</h1>
@@ -82,29 +82,24 @@
                 <section class="espacamento_blocos" id="Skills">
                     <h2>Skills</h2>
                         
-                    <ul>
-                        <li class=""><!--HTML-->
-                            <label for="html">HTML</label>
-                            <input type="range" id="html" name="html" min="0" max="100" value="100">
-                            <!--<div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>-->
+                    <ul class="list-group">
+                        <li class="list-group-item">HTML
+                            <div class="progress">
+                                <div class="progress-bar bg-success" style="width: 100%"></div>
+                            </div>
                         </li>
                         
-                        <li class=""><!--CSS-->
-                            <label for="css">CSS</label>
-                            <input type="range" id="css" name="css" min="0" max="100" value="100">
-                            <!--<div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>-->
+                        <li class="list-group-item">CSS
+                            <div class="progress">
+                                <div class="progress-bar bg-success" style="width: 100%"></div>
+                            </div>
                         </li> 
 
-                        <li class=""><!--JS-->
-                            <label for="js">JS</label>
-                            <input type="range" id="js" name="js" min="0" max="100" value="66.66">
-                            <!--<div class="progress">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>-->
+                        <li class="list-group-item">JS
+                            <div class="progress">
+                                <div class="progress-bar bg-success" style="width:66.66%"></div>
+                                <div class="progress-bar bg-danger" style="width:33.34%"></div>
+                            </div>
                         </li>
                     </ul>
                 </section>
@@ -118,44 +113,44 @@
                         <p>Nada</p>
                     </div>
                 </section>
-    
-                <section id="Contato" class="espacamento_blocos">
-                    <h2>Contato</h2>  
-                    <div class="row">
-                        <div class="col-md-6">
-                            <form>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="email_tamanho">Email:</span>
-                                    </div>
-                                    <input type="email" id="Email" class="form-control" required placeholder="seuemail@seudominio.com">
-                                </div>
 
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Mensagem:</span>
-                                    </div>
+                <section class="row">
+                    <div class="col-md-6">
+                        <form>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="email_tamanho">Email:</span>
+                                </div>
+                                <input type="email" id="Email" class="form-control" required placeholder="seuemail@seudominio.com">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Mensagem:</span>
+                                </div>
                                     <textarea id="Mensagem" rows="15" class="form-control" required placeholder="Sua mensagem"> </textarea>
-                                </div>
+                            </div>
 
-                                <div class="direita mb-2">                                    
-                                    <input type="reset" value="Limpar" class="btn btn-danger">
-                                    <input type="submit" value="Enviar" class="btn btn-success ml-3" onclick="alert('Mensagem enviada com sucesso!')">
-                                </div>
-                            </form>
-                        </div>
+                            <div class="direita mb-2">                                    
+                                <input type="reset" value="Limpar" class="btn btn-danger">
+                                <input type="submit" value="Enviar" class="btn btn-success ml-3" onclick="alert('Mensagem enviada com sucesso!')">
+                            </div>
+                        </form>
+                    </div>
 
-                        <div class="col-md-6 mapa">
-                            <iframe class="mapa__imagem" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d145863.68527581138!2d-37.08475705274437!3d-10.967926050883452!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x71ab04015be27cd%3A0x804434fd92ec3b36!2sAracaju%2C%20SE!5e0!3m2!1spt-BR!2sbr!4v1605206687163!5m2!1spt-BR!2sbr" width="100%" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-                        </div>
+                    <div class="col-md-6 mapa">
+                        <iframe class="mapa__imagem" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d145863.68527581138!2d-37.08475705274437!3d-10.967926050883452!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x71ab04015be27cd%3A0x804434fd92ec3b36!2sAracaju%2C%20SE!5e0!3m2!1spt-BR!2sbr!4v1605206687163!5m2!1spt-BR!2sbr" width="100%" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
                     </div>
                 </section>
-            </main>
-
-            <footer class="espacamento_blocos">
-                <p class="copyright"> Criado por: Thayane Carvalho dos Santos &copy; Copyright BlueWolfBR</p>
-            </footer>	
+            </main>    
+            
+            
         </div>
+        <footer class="rodape page-footer pt-1 pb-1">
+            <div class="container p-0">
+                <p class="footer-copyright text-center"> Criado por: Thayane Carvalho dos Santos &copy; Copyright BlueWolfBR</p>
+            </div>
+        </footer>	
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
       <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../assets/dist/js/bootstrap.bundle.min.js"></script>		
 	</body>

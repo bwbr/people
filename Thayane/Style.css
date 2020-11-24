@@ -13,6 +13,12 @@ body {
     }
 }
 
+.container{
+    margin-right: 0;
+    margin-left: 0;
+    max-width: 100%;
+}
+
 .espacamento_blocos{
     margin: .5rem 0;
     padding: 0 .5rem;
@@ -42,6 +48,16 @@ h1{
 
 li{
     list-style: none;
+}
+
+.list-group-item{
+    background-color: #FFF0;
+    margin: .2rem 0;
+}
+
+.progress{
+    height: 1.5rem;
+    width: 90%;
 }
 
 .direita{
@@ -76,4 +92,18 @@ li{
     .mapa__imagem{
         height: 100%;
     }
+}
+
+.rodape{
+    background-color: #FFD4D4;
+    padding: 0;
+    
+}
+div{
+    padding: 0;
+}
+
+.footer-copyright{
+    margin-top: .5rem;
+    margin-bottom: .5rem;
 }
