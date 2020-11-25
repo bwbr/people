@@ -1,0 +1,186 @@
+O que precisa ter:
+
+No Header: 
+    Bluewolfbr (esquerda) / Menu de navegação (direita)
+        No menu: Sobre + Kanban + Skills + Atividades + Contato
+    Foto + Nome + Cargo / Breve descrição sobre si
+
+No Main:
+    Section 1:
+        Header:
+            Kanban
+        Body:
+            Quadro Kanban
+    Section 2:
+        Header:
+            Skills
+        Body:
+            Nome da skill / Barra da skill
+    Section 3:
+        Header:
+            Atividades
+        Body:
+            Nome da atividade + Data de conclusão
+    Section 4:
+        Header:
+            Contato
+        Body:
+            Mapa / Formulário
+                No formulário: email + mensagem + limpar + enviar
+
+No Footer:
+    Criado por Thayane Copyright Bluewolfbr
+
+
+
+
+
+
+
+    <header>
+                <div>
+                    <h1>Thayane Carvalho dos Santos</h1>
+                    <sub>Desenvolvedora de Software</sub>
+                    <img id="minha_foto" src="https://s.gravatar.com/avatar/ac5c67f8e14ed947ed754568d7bab6d1?s=80" alt="Foto de Thayane">
+                </div>
+        
+                <div>
+                    <p>
+                        Estudante do 4° período de Jogos Digitais
+                    </p>
+                </div>
+                </header>
+
+            <main>
+                <section>
+                    <header>
+                        <h2>Quadro Kanbam</h2>
+                    </header>
+                    
+                    <body>
+                        <ul id="fazer" class="kanbam" data-kanbam> 
+                            <h3 class="h3_02"> A fazer</h3> 
+                            <li class="formacoes" data-formacao draggable="true"> Formação Angular </li>
+                            <li class="formacoes" data-formacao draggable="true"> Formação Node.JS </li>
+                            <li class="formacoes" data-formacao draggable="true"> Formação Spring Framework </li>
+                            <li class="formacoes" data-formacao draggable="true"> Formação Java e Orientação a Objetos </li>
+                            <li class="formacoes" data-formacao draggable="true"> Formação Expert em Orientação a Objetos </li>		
+                        </ul>
+            
+                        <ul id="fazendo" class="kanbam" data-kanbam> 
+                            <h3 class="h3_02"> Fazendo </h3>
+                            <li class="formacoes" data-formacao draggable="true"> Formação Front End </li>			
+                        </ul>
+            
+                        <ul id="feitas" class="kanbam" data-kanbam> 
+                            <h3 class="h3_02"> Feitas </h3>
+                            <li class="formacoes" data-formacao draggable="true"> Formação Iniciante </li>
+                        </ul>
+                    </body>
+                </section>
+
+                <section>
+                    <header>
+                        <h2>Skills</h2>
+                    </header>
+                    
+                    <body>
+                        <ul>
+                            <li>
+                                HTML                            
+                            </li>
+                        </ul>
+                    </body>
+                </section>
+
+                <section>
+                    <header>
+                        <h2>Atividades</h2>
+                    </header>
+                    
+                    <body>
+                        <p>Nada</p>
+                    </body>
+                </section>
+
+                <section>
+                    <header>
+                        <h2>Contato</h2>
+                    </header>
+                    
+                    <body>
+                        <p>Nada</p>
+                    </body>
+                </section>
+            </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <header> <a name="informacoes"> </a>
+			<h1> Thayane Carvalho dos Santos </h1>
+			
+			<div class="foto">
+				<img id="minha_foto" src="https://s.gravatar.com/avatar/ac5c67f8e14ed947ed754568d7bab6d1?s=80" alt="Foto de Thayane">
+			</div>
+
+			<div class="informacoes">
+				<ul>		
+					<li> 
+						<h3 class="h3_01"> Email: </h3>
+						<p> thayane.carvalho@bluewolfbr.com</p>
+					</li>
+
+					<li> 
+						<h3 class="h3_01"> Profissão: </h3>
+						<p> Programadora na BlueWolf </p>
+					</li>
+
+					<li>
+						<h3 class="h3_01"> Educação: </h3>
+						<p> Estudante do 4° período de Jogos Digitais </p>
+					</li>
+				</ul>		
+			</div>
+		</header>
+
+		<main>
+			<h2> Quadro Kanbam </h2>
+			<ol id="fazer" class="kanbam" data-kanbam> 
+				<h3 class="h3_02"> A fazer</h3> 
+				<li class="formacoes" data-formacao draggable="true"> Formação Angular </li>
+				<li class="formacoes" data-formacao draggable="true"> Formação Node.JS </li>
+				<li class="formacoes" data-formacao draggable="true"> Formação Spring Framework </li>
+				<li class="formacoes" data-formacao draggable="true"> Formação Java e Orientação a Objetos </li>
+				<li class="formacoes" data-formacao draggable="true"> Formação Expert em Orientação a Objetos </li>		
+			</ol>
+
+			<ol id="fazendo" class="kanbam" data-kanbam> 
+				<h3 class="h3_02"> Fazendo </h3>
+				<li class="formacoes" data-formacao draggable="true"> Formação Front End </li>			
+			</ol>
+
+			<ol id="feitas" class="kanbam" data-kanbam> 
+				<h3 class="h3_02"> Feitas </h3>
+				<li class="formacoes" data-formacao draggable="true"> Formação Iniciante </li>
+			</ol>			
+		</main>
+
+		<footer>
+			<h2> <a name="atividades"> </a> Últimas atividades: </h2>
+			<ul>
+				<li> Formação Iniciante (Término em: 11/11/2020 as 09:00) </li>
+			</ul>
+			<p class="copyright"> &copy; Copyright Thayane Carvalho dos Santos </p>
+		</footer>	
+		<script type="module" src="./Index.js"></script>
