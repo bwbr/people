@@ -36,6 +36,39 @@ h1{
     background-color: #ffd4d43f;
 }
 
+.card-deck .card {
+    margin-bottom: 15px;
+}
+
+.card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+
+@media (max-width: 767.9px){
+    .col-sm-4 {
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+@media (min-width: 768px){
+    .col-sm-4 {
+        -ms-flex: 0 0 30%;
+        flex: 0 0 30%;
+    }
+}
+
 .kanbam {
     display: inline-block;
     height: 15rem;
@@ -54,7 +87,7 @@ h1{
     padding: 0 .2rem;
 }
 
-.formacoes:before {
+.card-header:before {
   content: "\272F";
 }
 
