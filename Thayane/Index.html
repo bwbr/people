@@ -10,8 +10,8 @@
 	</head>
 
 	<body data-spy="scroll" data-target=".navbar">
-      <div class="margem_topo">
-        <nav class="navbar navbar-expand-sm fixed-top navbar-light">
+    	<div class="margem_topo">
+        	<nav class="navbar navbar-expand-sm fixed-top navbar-light">
                 <a class="navbar-brand" href="#">BlueWolfBR</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -19,7 +19,7 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav mr-auto pr-3 pr-1600-3">
                         <li class="nav-item">
-                            <a class="nav-link" href="#Sobre">Sobre</a> 
+                            <a class="nav-link" href="#Sobre">Sobre</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#Kanban">Kanban</a>
@@ -40,31 +40,31 @@
             <header id="Sobre" class="container-fluid container_meu">
                 <div class="row media border p-1">
                     <div class="col-sm-12 col-md-6 col-lg-4 mt-3">
-                        <div class="row d-flex align-items-center">											
-                            <div class="col-4 col-sm-2 col-md-3 col-lg-4 col-xl-3 pr-0">	
-                                <img class="rounded-circle align-self-center" src="https://s.gravatar.com/avatar/ac5c67f8e14ed947ed754568d7bab6d1?s=80" alt="Foto de Thayane">	
+                        <div class="row d-flex align-items-center">
+                            <div class="col-4 col-sm-2 col-md-3 col-lg-4 col-xl-3 pr-0">
+                                <img class="rounded-circle align-self-center" src="https://s.gravatar.com/avatar/ac5c67f8e14ed947ed754568d7bab6d1?s=80" alt="Foto de Thayane">
                             </div>
-                            <div class="col-8 col-sm-10 col-md-9 col-lg-8 col-xl-9 name text-left pl-0">	
+                            <div class="col-8 col-sm-10 col-md-9 col-lg-8 col-xl-9 name text-left pl-0">
                                 <h1>Thayane Carvalho dos Santos</h1>
                                 <h3 class="h3_menor">Desenvolvedora de Software</h3>
                             </div>
                         </div>
 						  </div>
-						  
-                    <div class="col-sm-12 col-md-6 col-lg-8 pl-0"> 	
+
+                    <div class="col-sm-12 col-md-6 col-lg-8 pl-0">
                         <div class="m-3 text-justify">
                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam pellentesque, magna a egestas facilisis, dolor justo accumsan tellus, ac lacinia lorem velit quis tortor. In ut iaculis tellus, ut vehicula dolor. Sed pellentesque, magna vitae fermentum dignissim, libero velit varius mi, euismod lacinia leo sem sed odio. Quisque malesuada neque ut fermentum convallis. In at lacus ac quam sollicitudin vulputate a quis erat. Quisque ullamcorper porttitor nibh, quis facilisis enim aliquam eu. Sed a enim sed nunc posuere semper. Sed sit amet mi aliquam, aliquam quam sed, pulvinar tellus. In condimentum velit et sagittis rutrum.
                         </div>
                     </div>
                 </div>
-            </header>      
+            </header>
 
             <main class="">
                 <section id="Kanban" class="container-fluid container_meu">
                     <h2>Quadro Kanbam</h2>
-                    <div class="row card-deck">   
+                    <div class="row card-deck">
                         <div id="accordion_fazer" class="kanbam col-sm-4 pt-3 m-1 bg-danger" data-kanbam>
-                            <h3 class="h3_02"> A fazer</h3> 
+                            <h3 class="h3_02"> A fazer</h3>
                             <div class="card formacoes" data-formacao draggable="true">
                                 <div class="card-header">
                                     <a class="card-link" data-toggle="collapse" href="#collapse1">
@@ -76,21 +76,8 @@
                                     Lorem ipsum..
                                     </div>
                                 </div>
-                            </div>
-                        
-                            <div class="card formacoes" data-formacao draggable="true">
-                                <div class="card-header">
-                                    <a class="collapsed card-link" data-toggle="collapse" href="#collapse2">
-                                        Formação Node.JS
-                                    </a>
-                                </div>
-                                <div id="collapse2" class="collapse" data-parent="#accordion_fazer">
-                                    <div class="card-body">
-                                    Lorem ipsum..
-                                    </div>
-                                </div>
-                            </div>
-                        
+                            </div>                            
+
                             <div class="card formacoes" data-formacao draggable="true">
                                 <div class="card-header">
                                     <a class="collapsed card-link" data-toggle="collapse" href="#collapse3">
@@ -103,7 +90,7 @@
                                     </div>
                                 </div>
                             </div>
-                        
+
                             <div class="card formacoes" data-formacao draggable="true">
                                 <div class="card-header">
                                     <a class="collapsed card-link" data-toggle="collapse" href="#collapse4">
@@ -132,7 +119,7 @@
                         </div>
 
                         <div id="accordion_fazendo" class="kanbam col-sm-4 pt-3 m-1 bg-warning" data-kanbam>
-                            <h3 class="h3_02"> Fazendo </h3> 
+                            <h3 class="h3_02"> Fazendo </h3>
                             <div class="card formacoes" data-formacao draggable="true">
                                 <div class="card-header">
                                     <a class="card-link" data-toggle="collapse" href="#collapse6">
@@ -144,29 +131,42 @@
                                         Lorem ipsum..
                                     </div>
                                 </div>
-                            </div>                             
+                            </div>
+
+                            <div class="card formacoes" data-formacao draggable="true">
+                                <div class="card-header">
+                                    <a class="collapsed card-link" data-toggle="collapse" href="#collapse2">
+                                        Formação Node.JS
+                                    </a>
+                                </div>
+                                <div id="collapse2" class="collapse" data-parent="#accordion_fazendo">
+                                    <div class="card-body">
+                                    Lorem ipsum..
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <div id="accordion_feita" class="kanbam col-sm-4 pt-3 m-1 bg-success" data-kanbam>
-                            <h3 class="h3_02"> Feitas </h3> 
+                            <h3 class="h3_02"> Feitas </h3>
                             <div class="card formacoes" data-formacao draggable="true">
                                 <div class="card-header">
-                                    <a class="card-link" data-toggle="collapse" href="#collapse6">
+                                    <a class="card-link" data-toggle="collapse" href="#collapse7">
                                         Formação Iniciante
                                     </a>
                                 </div>
-                                <div id="collapse6" class="collapse" data-parent="#accordion_feita">
+                                <div id="collapse7" class="collapse" data-parent="#accordion_feita">
                                     <div class="card-body">
                                         Lorem ipsum..
                                     </div>
                                 </div>
-                            </div>                             
+                            </div>
                         </div>
                     </div>
                 </section>
-    
+
                 <section id="Skills" class="container-fluid container_meu">
-                    <h2>Skills</h2>                        
+                    <h2>Skills</h2>
 
                     <ul class="list-group">
                         <li class="list-group-item d-flex justify-content-between align-items-center">HTML
@@ -174,12 +174,12 @@
                                 <div class="progress-bar bg-success" style="width: 100%"></div>
                             </div>
                         </li>
-                        
+
                         <li class="list-group-item d-flex justify-content-between align-items-center">CSS
                             <div class="progress">
                                 <div class="progress-bar bg-success" style="width: 100%"></div>
                             </div>
-                        </li> 
+                        </li>
 
                         <li class="list-group-item d-flex justify-content-between align-items-center">JS
                             <div class="progress">
@@ -189,12 +189,12 @@
                         </li>
                     </ul>
                 </section>
-    
+
                 <section id="Atividades" class="container-fluid container_meu">
                     <div>
                         <h2>Atividades</h2>
                     </div>
-                        
+
                     <div>
                         <ul class="list-group">
                             <li class="list-group-item d-flex justify-content-between align-items-center text-primary">
@@ -224,7 +224,7 @@
                                         <textarea id="Mensagem" rows="15" class="form-control" required placeholder="Sua mensagem"> </textarea>
                                 </div>
 
-                                <div class="direita mb-2">                                    
+                                <div class="direita mb-2">
                                     <input type="reset" value="Limpar" class="btn btn-danger">
                                     <input type="submit" value="Enviar" class="btn btn-success ml-3" onclick="alert('Mensagem enviada com sucesso!')">
                                 </div>
@@ -236,18 +236,18 @@
                         </div>
                     </div>
                 </section>
-            </main>         
+            </main>
         </div>
-        
+
         <footer class="rodape page-footer pt-1 pb-1">
             <div class="container p-0">
                 <p class="footer-copyright text-center"> Criado por: Thayane Carvalho dos Santos &copy; Copyright BlueWolfBR</p>
             </div>
-        </footer>	
+		</footer>
 
 	    <script src="Index.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../assets/dist/js/bootstrap.bundle.min.js"></script>		
+        <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 	</body>
 
 </html>
