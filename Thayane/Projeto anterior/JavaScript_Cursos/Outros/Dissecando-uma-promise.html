@@ -1,0 +1,44 @@
+<!-- Dissecando-uma-promise.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Dissecando uma promise</title>
+</head>
+<body>
+    <script>
+        /* A variável promise recebe uma instância de Promise. O construtor de Promise recebe uma 
+        função como parâmetro. É essa função passada como parâmetro que será chamada internamente 
+        pela Promise, quando for criada. Como é a própria Promise que chama essa função, ela passa 
+        sempre dois parâmetros para ela nesta ordem: a função na qual passamos o valor de sucesso e 
+        a função que passamos o valor de fracasso.*/
+        let promise = new Promise((resolve, reject) => {
+            setTimeout(() => resolve('PROMISE RESOLVIDA'), 5000);
+        });
+        //Pegar o resultado dessa ação quando concluída
+        promise.then(resultado => console.log(resultado));
+    </script>
+
+    <!--<script>    
+    /*Queremos que nossa promise esteja preparada para resolver ou rejeitar. 
+    Para efeito didático, vamos colocar um variável booleana. Se for true, resolvemos, 
+    se for false, rejeitamos.*/
+        let ok = false;
+        let promise = new Promise((resolve, reject) => {
+
+            // como temos mais de uma instrução, precisamos colocar um bloco em nossa arrow function! Lembrou?
+            setTimeout(() => {
+                if(ok) {
+                    resolve('PROMISE CONCLUÍDA');
+                } else {
+                    reject('HOUVE PROBLEMAS');
+                }
+            }, 5000);
+        });
+
+        promise
+            .then(resultado => console.log(resultado))
+            .catch(erro => console.log(erro));
+    </script>-->
+</body>
+</html>
