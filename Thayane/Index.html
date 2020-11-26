@@ -5,12 +5,16 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title> Thayane </title>
 
-        <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Estilos -->
+        <link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="Style.css" rel="stylesheet">
 	</head>
 
+    <!-- Corpo -->
 	<body data-spy="scroll" data-target=".navbar">
     	<div class="margem_topo">
+
+            <!-- Menu de Navegação -->
         	<nav class="navbar navbar-expand-sm fixed-top navbar-light">
                 <a class="navbar-brand" href="#">BlueWolfBR</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,6 +41,7 @@
                 </div>
             </nav>
 
+            <!-- Informações sobre mim -->
             <header id="Sobre" class="container-fluid container_meu">
                 <div class="row media border p-1">
                     <div class="col-sm-12 col-md-6 col-lg-4 mt-3">
@@ -60,9 +65,12 @@
             </header>
 
             <main class="">
+                <!-- Quadro Kanban -->
                 <section id="Kanban" class="container-fluid container_meu">
                     <h2>Quadro Kanbam</h2>
                     <div class="row card-deck">
+
+                        <!-- Formações a fazer -->
                         <div id="accordion_fazer" class="kanbam col-sm-4 pt-3 m-1 bg-danger" data-kanbam>
                             <h3 class="h3_02"> A fazer</h3>
                             <div class="card formacoes" data-formacao draggable="true">
@@ -118,6 +126,7 @@
                             </div>
                         </div>
 
+                        <!-- Formações fazendo -->
                         <div id="accordion_fazendo" class="kanbam col-sm-4 pt-3 m-1 bg-warning" data-kanbam>
                             <h3 class="h3_02"> Fazendo </h3>
                             <div class="card formacoes" data-formacao draggable="true">
@@ -147,6 +156,7 @@
                             </div>
                         </div>
 
+                        <!-- Formações feitas -->
                         <div id="accordion_feita" class="kanbam col-sm-4 pt-3 m-1 bg-success" data-kanbam>
                             <h3 class="h3_02"> Feitas </h3>
                             <div class="card formacoes" data-formacao draggable="true">
@@ -165,6 +175,7 @@
                     </div>
                 </section>
 
+                <!-- Skills -->
                 <section id="Skills" class="container-fluid container_meu">
                     <h2>Skills</h2>
 
@@ -190,6 +201,7 @@
                     </ul>
                 </section>
 
+                <!-- Atividades -->
                 <section id="Atividades" class="container-fluid container_meu">
                     <div>
                         <h2>Atividades</h2>
@@ -205,6 +217,7 @@
                     </div>
                 </section>
 
+                <!-- Contato -->
                 <section class="container-fluid container_meu" id="Contato">
                     <h2>Contato</h2>
                     <div class="row">
@@ -239,12 +252,14 @@
             </main>
         </div>
 
+        <!-- Rodapé -->
         <footer class="rodape page-footer pt-1 pb-1">
             <div class="container p-0">
                 <p class="footer-copyright text-center"> Criado por: Thayane Carvalho dos Santos &copy; Copyright BlueWolfBR</p>
             </div>
 		</footer>
 
+        <!-- Scripts -->
 	    <script src="Index.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
