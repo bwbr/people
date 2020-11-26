@@ -1,0 +1,17 @@
+/*--NAVBAR--*/
+.nav-link, .btn-link{
+    @include link-sem-efeito;
+}
+.navbar{
+    margin-bottom: 0;
+    top:0;
+    @extend %shadow-box;
+    @include navbar;
+    .navbar-brand{
+        color: $navbar-text-color !important;
+    }
+    .nav-link{
+        color: $navbar-text-color !important;
+    }
+}
+
