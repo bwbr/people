@@ -91,7 +91,7 @@ h1{
     scrollbar-width: none;
 }
   
-.kanbam::-webkit-scrollbar {
+..scroll::-webkit-scrollbar { /* coloca uma classe chamada scroll */
     display: none;
 }
 
@@ -101,8 +101,8 @@ h1{
     padding: 0 .2rem;
 }
 
-.card-header:before {
-  content: "\272F";
+.card-header .card-link::before {/* Estrelhinha posicionada */
+    content: "\272F";
 }
 
 .movendo {
