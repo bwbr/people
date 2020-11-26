@@ -6,7 +6,7 @@
         <title> Thayane </title>
 
         <!-- Estilos -->
-        <link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="Style.css" rel="stylesheet">
 	</head>
 
@@ -157,21 +157,34 @@
                         </div>
 
                         <!-- Formações feitas -->
-                        <div id="accordion_feita" class="kanbam col-sm-4 pt-3 m-1 bg-success" data-kanbam>
-                            <h3 class="h3_02"> Feitas </h3>
-                            <div class="card formacoes" data-formacao draggable="true">
-                                <div class="card-header">
-                                    <a class="card-link" data-toggle="collapse" href="#collapse7">
-                                        Formação Iniciante
-                                    </a>
-                                </div>
-                                <div id="collapse7" class="collapse" data-parent="#accordion_feita">
-                                    <div class="card-body">
-                                        Lorem ipsum..
+
+                            <!--Inicio de seu card FEITAS--> 
+                            <div class="card col-sm-4 p-0 pb-3 bg-success">
+                                <div class="card-header title">
+                                    <h3 class="h3_02"> Feitas </h3>
+                                </div>                               
+                                <div class="card-body scroll kanbam">
+                                <!--Rolagem a partir daqui--> 
+                                    <div id="accordion_feita" data-kanbam>
+                                        <!--Inicio de seu card FORMAÇÕES--> 
+                                        <div class="card formacoes" data-formacao draggable="true">
+                                            <div class="card-header">
+                                                <a class="card-link" data-toggle="collapse" href="#collapse7">
+                                                    Formação Iniciante
+                                                </a>
+                                            </div>
+                                            <div id="collapse7" class="collapse" data-parent="#accordion_feita">
+                                                <div class="card-body">
+                                                    Lorem ipsum..
+                                                </div>
+                                            </div>
+                                        </div>  
                                     </div>
-                                </div>
+                                <!--Rolagem finaliza aqui--> 
+                                </div>                                 
                             </div>
-                        </div>
+                            <!--Fim de seu card FEITAS-->                            
+                        </div>  
                     </div>
                 </section>
 
