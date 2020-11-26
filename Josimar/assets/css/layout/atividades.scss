@@ -1,0 +1,10 @@
+/*--ATIVIDADE--*/
+.atividades{
+    background: $bg-atividades;    
+    color: $title-atividades;
+    .list-group{
+        @include scrollbar-oculto;
+    }
+}
+
+

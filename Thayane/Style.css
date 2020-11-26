@@ -1,0 +1,176 @@
+body {
+    min-height: 75rem;
+    position: relative;
+}
+
+.navbar-light{
+    background-color: #FFD4D4;
+}
+
+@media (min-width: 576px){
+    .mr-auto, .mx-auto {
+        position:absolute;
+        right:0px;
+    }
+}
+
+@media screen and (min-width: 1600px){
+    .pr-1600-3{
+        padding-right: 2rem!important;
+    }
+}
+
+@media (min-width: 1800px){
+    .col-xl-3 {
+        -ms-flex: 0 0 20%;
+        flex: 0 0 20%;
+        max-width: 20%;
+    }
+}
+
+.container_meu{
+    padding-top:60px;
+}
+
+.espacamento_blocos{
+    margin: .5rem 0;
+    padding: 0 .5rem;
+}
+
+h1{
+    font-size: 1.5rem;
+}
+
+.h3_menor{
+    font-size: 1.3rem;
+}
+
+.margem_topo{
+    margin-top: 1.5rem;
+    background-color: #ffd4d43f;
+}
+
+.card-deck .card {
+    margin-bottom: 15px;
+}
+
+.card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+
+@media (max-width: 767.9px){
+    .col-sm-4 {
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+@media (min-width: 768px){
+    .col-sm-4 {
+        -ms-flex: 0 0 30%;
+        flex: 0 0 30%;
+    }
+}
+
+.kanbam {
+    display: inline-block;
+    height: 15rem;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+  
+.kanbam::-webkit-scrollbar {
+    display: none;
+}
+
+.formacoes{
+    background-color: #FFFAFA;
+    margin: .2rem 0;
+    padding: 0 .2rem;
+}
+
+.card-header:before {
+  content: "\272F";
+}
+
+.movendo {
+	background-color: #ADD8E6AA;
+}
+
+.jumbotron {
+    background-color: #FFF0;
+}
+
+li{
+    list-style: none;
+}
+
+.list-group-item{
+    background-color: #FFF0;
+    margin: .2rem 0;
+}
+
+.progress{
+    height: 1.5rem;
+    width: 90%;
+}
+
+.direita{
+    display: flex!important;
+    justify-content: flex-end;
+}
+
+.input-group-text {
+    -ms-flex-align: start;
+    align-items: start;
+}
+
+#email_tamanho{
+    width: 109.59px;
+}
+
+@media screen and (max-width:767.9px){
+    .mapa{
+        margin: .5rem 0;
+        padding: 0 .5rem;       
+    }
+
+    .mapa__imagem{
+        height: 300px;
+    }
+}
+
+@media screen and (min-width:768px){
+    .mapa{
+        order: -1;        
+    }
+    .mapa__imagem{
+        height: 100%;
+    }
+}
+
+.rodape{
+    background-color: #FFD4D4;
+    margin-top: .5rem;
+    padding: 0;    
+}
+div{
+    padding: 0;
+}
+
+.footer-copyright{
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+}

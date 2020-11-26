@@ -1,0 +1,69 @@
+//mixins geral
+@mixin link-sem-efeito {
+    &:hover, :active, :link{
+        text-decoration: none !important;
+        text-transform: none !important;
+    }
+}
+@mixin scrollbar-oculto {
+    height: 200px;      
+    overflow-y: scroll;
+    overflow-x: none;
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
+    &::-webkit-scrollbar {display: none; /* Safari and Chrome */ }
+}
+
+//mixins navbar
+@mixin navbar {
+    background: rgb(86,192,255);
+    background: -moz-linear-gradient(254deg, rgba(86,192,255,1) 0%, rgba(49,107,170,1) 0%, rgba(9,14,77,1) 44%);
+    background: -webkit-linear-gradient(254deg, rgba(86,192,255,1) 0%, rgba(49,107,170,1) 0%, rgba(9,14,77,1) 44%);
+    background: linear-gradient(254deg, rgba(86,192,255,1) 0%, rgba(49,107,170,1) 0%, rgba(9,14,77,1) 44%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#56c0ff",endColorstr="#090e4d",GradientType=1);
+}
+
+//mixins sobre
+@mixin border-photo {
+    border-radius: 50%;
+    border-top: 5px solid rgb(66,139,202);
+    border-right: 5px solid rgb(66,139,202);
+    border-bottom: 5px solid rgb(48, 92, 131);
+    border-left: 5px solid rgb(34, 66, 94);
+    }
+
+//mixins cards
+
+@mixin bg-kanban {
+    background: rgb(14,5,187);
+    background: -moz-radial-gradient(circle, rgba(14,5,187,1) 0%, rgba(0,212,255,1) 0%, rgba(5,64,187,1) 100%);
+    background: -webkit-radial-gradient(circle, rgba(14,5,187,1) 0%, rgba(0,212,255,1) 0%, rgba(5,64,187,1) 100%);
+    background: radial-gradient(circle, rgba(14,5,187,1) 0%, rgba(0,212,255,1) 0%, rgba(5,64,187,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0e05bb",endColorstr="#0540bb",GradientType=1);
+}
+
+
+@mixin bg-cards-gradient($deg, $color-rgb, $color-hex, $p-top, $p-botton) {
+    background: $color-rgb !important;
+    background: linear-gradient($deg, $color-rgb $p-top, $bg-aux-gradient-rgb $p-botton) !important;
+    background: $bg-aux-gradient-rgb !important;
+    background: -moz-linear-gradient($deg, $color-rgb $p-top, $p-botton) !important;
+    background: -webkit-linear-gradient($deg,$color-rgb $p-top, $bg-aux-gradient-rgb $p-botton) !important;
+    background: linear-gradient($deg, $color-rgb $p-top, $bg-aux-gradient-rgb $p-botton) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='"'$bg-aux-gradient-hex'"',endColorstr='"'$color-hex'"',GradientType=1) !important;
+}
+
+@mixin format-card ($color-rgb, $color-hex){
+    @include bg-cards-gradient(180deg, $color-rgb, $color-hex, 0%, 100%); //bg-cards(deg, collor-rgb, collor-hex, porcent-top, porcent-botton);
+    @extend %shadow-box;
+    border: 0 !important;
+}
+
+@mixin format-card-header ($color-rgb) {
+    border: 0 !important;    
+}
+
+@mixin format-activity($color-rgb) {  
+    border-radius: 0 !important;
+    border-left:5px solid $color-rgb !important;
+}
