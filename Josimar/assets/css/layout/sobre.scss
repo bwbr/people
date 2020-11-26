@@ -1,0 +1,10 @@
+.sobre{
+    background-image: url('../img/bg-sobre.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 10% 30% 30% 30%;
+}
+.photo{
+    @extend %shadow-box;
+    @include border-photo;
+}

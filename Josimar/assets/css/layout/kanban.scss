@@ -1,0 +1,60 @@
+/*--KANBAN--*/
+.kanban{
+    @include bg-kanban;
+    color: $title-kanban;
+    .card{      
+        width: auto;
+        .card-header:last-child{
+            color: $text-color-global !important;             
+        }
+        .card-body{    
+            .btn-link{
+                width: 100%;
+                color: $text-color-global !important; 
+            }                   
+        }
+    }
+}
+.card-to-do{
+    @include format-card($bg-to-do-rgb,$bg-to-do-hex);
+    color: $text-color-global !important;
+    .card-header{
+        @include format-card-header($bg-to-do-rgb);
+    }        
+    .activities{
+        @include scrollbar-oculto;
+        .activity{ 
+            @include format-activity($bg-to-do-hex);
+        }
+    }
+}
+.card-in-progress{
+    @include format-card($bg-in-progress-rgb,$bg-in-progress-hex);
+    color: $text-color-global !important;
+    .card-header{
+        @include format-card-header($bg-in-progress-rgb); 
+    }            
+    .activities{
+        @include scrollbar-oculto;
+        .activity{              
+            border-radius: 1 !important;
+            border-left:5px solid $bg-in-progress-hex !important;   
+            @include format-activity($bg-in-progress-hex);
+        }
+    }
+}   
+.card-done{
+    @include format-card($bg-done-rgb,$bg-done-hex);
+    color: $text-color-global !important;
+    .card-header{
+        @include format-card-header($bg-done-rgb);
+    }          
+    .activities{
+        @include scrollbar-oculto;
+        .activity{  
+            border-radius: 0 !important;
+            border-left:5px solid $bg-done-hex !important; 
+            @include format-activity($bg-done-hex);
+        }
+    }
+}
