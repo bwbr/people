@@ -35,12 +35,7 @@ cartoes.forEach(cartoes => {
 });
   
 listas.forEach( lista => {
-    //Mouse
     lista.addEventListener('dragover', arrastarSobre);
     lista.addEventListener('dragleave', arrastarFim);
     lista.addEventListener('drop', soltar);
-    //Touch (não está funcionando)
-    //lista.addEventListener("touchcancel", arrastarSobre, false);
-    //lista.addEventListener("touchleave", arrastarFim, false);
-    //lista.addEventListener("touchmove", soltar, false);
 })
