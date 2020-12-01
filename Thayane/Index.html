@@ -58,7 +58,7 @@
 
                     <div class="col-sm-12 col-md-6 col-lg-8 pl-0">
                         <div class="m-3 text-justify">
-                           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam pellentesque, magna a egestas facilisis, dolor justo accumsan tellus, ac lacinia lorem velit quis tortor. In ut iaculis tellus, ut vehicula dolor. Sed pellentesque, magna vitae fermentum dignissim, libero velit varius mi, euismod lacinia leo sem sed odio. Quisque malesuada neque ut fermentum convallis. In at lacus ac quam sollicitudin vulputate a quis erat. Quisque ullamcorper porttitor nibh, quis facilisis enim aliquam eu. Sed a enim sed nunc posuere semper. Sed sit amet mi aliquam, aliquam quam sed, pulvinar tellus. In condimentum velit et sagittis rutrum.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam pellentesque, magna a egestas facilisis, dolor justo accumsan tellus, ac lacinia lorem velit quis tortor. In ut iaculis tellus, ut vehicula dolor. Sed pellentesque, magna vitae fermentum dignissim, libero velit varius mi, euismod lacinia leo sem sed odio. Quisque malesuada neque ut fermentum convallis. In at lacus ac quam sollicitudin vulputate a quis erat. Quisque ullamcorper porttitor nibh, quis facilisis enim aliquam eu. Sed a enim sed nunc posuere semper. Sed sit amet mi aliquam, aliquam quam sed, pulvinar tellus. In condimentum velit et sagittis rutrum.
                         </div>
                     </div>
                 </div>
@@ -71,16 +71,12 @@
                     <div class="row card-deck">
 
                         <!-- Formações a fazer -->
-                        <div id="accordion_fazer" class="kanbam col-sm-4 pt-3 m-1 bg-danger" data-kanbam>
-                            <div class="form-row">
-                                <div class="col">
-                                    <h3 class="h3_02">A fazer</h3>
-                                </div>
-                                <div class="col">
-                                    <button id="btn-add" class="navbar-toggler bg-success mr-auto" type="button" data-toggle="collapse" data-target="#Adicionar" aria-controls="Adicionar" aria-expanded="false" aria-label="Toggle navigation">
-                                        <span id=sinal>+</span>
-                                    </button>
-                                </div>
+                        <div id="accordion_fazer" class="kanbam col-sm-4 pt-3 m-1 bg-danger">
+                            <div class="d-flex justify-content-between">
+                                <h3 class="h3_02">A fazer</h3>
+                                <button id="btn-add" class="navbar-toggler bg-success" type="button" data-toggle="collapse" data-target="#Adicionar" aria-controls="Adicionar" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span id=sinal>+</span>
+                                </button>
                             </div>
 
                             <!-- Formulário para adicionar tarefa -->
@@ -90,16 +86,29 @@
                                   <a role="button" aria-label="submit form" href="javascript:void(0)" data-form-btn id="ConfirmarAdicionar" class="btn btn-primary" type="submit">Enviar</a>
                                 </div>
                             </form>
+
+                            <div id="addAqui" class="rolagem scroll" data-kanbam>
+
+                            </div>
                         </div>
 
                         <!-- Formações fazendo -->
-                        <div id="accordion_fazendo" class="kanbam col-sm-4 pt-3 m-1 bg-warning" data-kanbam>
-                            <h3 class="h3_02"> Fazendo </h3>              
+                        <div id="accordion_fazendo" class="kanbam col-sm-4 pt-3 m-1 bg-warning">
+                            <h3 class="h3_02"> Fazendo </h3>     
+                            
+                            <div class="rolagem scroll" data-kanbam>
+
+                            </div>
                         </div>
+                        
 
                         <!-- Formações feitas -->
-                        <div id="accordion_feita" class="kanbam col-sm-4 pt-3 m-1 bg-success" data-kanbam>
+                        <div id="accordion_feita" class="kanbam col-sm-4 pt-3 m-1 bg-success">
                             <h3 class="h3_02"> Feitas </h3>
+
+                            <div class="rolagem scroll" data-kanbam>
+
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -152,15 +161,15 @@
                     <div class="row">
                         <div class="col-md-6">
                             <form>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
+                                <div id="contato1">
+                                    <div class="input-group-prepend mb-1">
                                         <span class="input-group-text" id="email_tamanho">Email:</span>
                                     </div>
                                     <input type="email" id="Email" class="form-control" required placeholder="seuemail@seudominio.com">
                                 </div>
 
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
+                                <div id="contato2">
+                                    <div class="input-group-prepend mb-1">
                                         <span class="input-group-text">Mensagem:</span>
                                     </div>
                                         <textarea id="Mensagem" rows="15" class="form-control" required placeholder="Sua mensagem"> </textarea>
@@ -189,14 +198,16 @@
 		</footer>
 
         <!-- Scripts -->
-        <script src="/assets/JS/Arrastar.js"></script>
-        <script src="/assets/JS/CriarFormacoes/CriarFormacoes.js"></script>
-        <script src="/assets/JS/CriarFormacoes/BotaoAdd_X.js"></script>
-        <script src="/assets/JS/CriarAtividades.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+        
+        <script src="/assets/JS/MudarClasseResponsivo.js"></script>
+        <script src="/assets/JS/Arrastar.js"></script>
+        <script src="/assets/JS/CriarFormacoes/CriarFormacoes.js"></script>
+        <script src="/assets/JS/CriarFormacoes/BotaoAdd_X.js"></script>
+        <script src="/assets/JS/CriarAtividades.js"></script>
     </body>
 
 </html>

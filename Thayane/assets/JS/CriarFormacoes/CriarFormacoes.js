@@ -1,5 +1,5 @@
 var campos = document.querySelector('[data-form-formacao]');
-var tarefas = document.querySelector('#accordion_fazer');
+var tarefas = document.querySelector('#addAqui');
 var $ = document.querySelector.bind(document);
 let i = 8;
 
