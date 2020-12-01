@@ -72,15 +72,11 @@
 
                         <!-- Formações a fazer -->
                         <div id="accordion_fazer" class="kanbam col-sm-4 pt-3 m-1 bg-danger" data-kanbam>
-                            <div class="form-row">
-                                <div class="col">
-                                    <h3 class="h3_02">A fazer</h3>
-                                </div>
-                                <div class="col">
-                                    <button id="btn-add" class="navbar-toggler bg-success mr-auto" type="button" data-toggle="collapse" data-target="#Adicionar" aria-controls="Adicionar" aria-expanded="false" aria-label="Toggle navigation">
-                                        <span id=sinal>+</span>
-                                    </button>
-                                </div>
+                            <div class="d-flex justify-content-between">
+                                <h3 class="h3_02">A fazer</h3>
+                                <button id="btn-add" class="navbar-toggler bg-success" type="button" data-toggle="collapse" data-target="#Adicionar" aria-controls="Adicionar" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span id=sinal>+</span>
+                                </button>
                             </div>
 
                             <!-- Formulário para adicionar tarefa -->
@@ -152,14 +148,14 @@
                     <div class="row">
                         <div class="col-md-6">
                             <form>
-                                <div class="input-group mb-3">
+                                <div id="contato1" class="mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="email_tamanho">Email:</span>
                                     </div>
                                     <input type="email" id="Email" class="form-control" required placeholder="seuemail@seudominio.com">
                                 </div>
 
-                                <div class="input-group mb-3">
+                                <div id="contato2" class="mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Mensagem:</span>
                                     </div>
@@ -189,6 +185,7 @@
 		</footer>
 
         <!-- Scripts -->
+        <script src="/assets/JS/MudarClasseResponsivo.js"></script>
         <script src="/assets/JS/Arrastar.js"></script>
         <script src="/assets/JS/CriarFormacoes/CriarFormacoes.js"></script>
         <script src="/assets/JS/CriarFormacoes/BotaoAdd_X.js"></script>

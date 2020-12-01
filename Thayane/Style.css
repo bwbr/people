@@ -91,7 +91,7 @@ h1{
     scrollbar-width: none;
 }
   
-..scroll::-webkit-scrollbar { /* coloca uma classe chamada scroll */
+.scroll::-webkit-scrollbar { /* coloca uma classe chamada scroll */
     display: none;
 }
 
