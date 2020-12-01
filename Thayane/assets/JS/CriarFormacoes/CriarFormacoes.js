@@ -1,7 +1,6 @@
 var campos = document.querySelector('[data-form-formacao]');
 var tarefas = document.querySelector('#accordion_fazer');
 var $ = document.querySelector.bind(document);
-let retorno = "";
 let i = 8;
 
 $('[data-form-btn]').addEventListener('click', (event) => {
@@ -25,4 +24,5 @@ $('[data-form-btn]').addEventListener('click', (event) => {
         i++;
         z.innerHTML += formacao;        
         tarefas.appendChild(z);
+        campos.value = '';
 }}); 
