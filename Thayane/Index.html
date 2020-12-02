@@ -68,7 +68,19 @@
                 <!-- Quadro Kanban -->
                 <section id="Kanban" class="container-fluid container_meu">
                     <h2>Quadro Kanbam</h2>
-                    <div class="row card-deck">
+                    <ul id="navKanban" class="nav nav-tabs">
+                        <li class="nav-item">
+                          <a class="nav-link active" data-toggle="tab" href="#accordion_fazer">A fazer</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" data-toggle="tab" href="#accordion_fazendo">Fazendo</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" data-toggle="tab" href="#accordion_feita">Feitas</a>
+                        </li>
+                      </ul>
+                    
+                    <div id="kanbanTab" class="row card-deck">
 
                         <!-- Formações a fazer -->
                         <div id="accordion_fazer" class="kanbam col-sm-4 pt-3 m-1 bg-danger">
