@@ -6,7 +6,7 @@
         <title> Thayane </title>
 
         <!-- Estilos -->
-        <link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/app/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="Style.css" rel="stylesheet">
 	</head>
 
@@ -95,7 +95,7 @@
                             <form data-form class="input-group mb-3 collapse navbar-collapse" id="Adicionar">
                                 <input id="novaFormacao" data-form-formacao type="text" name="novaFormacao" class="form-control" placeholder="Escreva algo..">
                                 <div class="input-group-append">
-                                  <a role="button" aria-label="submit form" href="javascript:void(0)" data-form-btn id="ConfirmarAdicionar" class="btn btn-primary" type="submit">Enviar</a>
+                                  <button aria-label="submit form" data-form-btn id="ConfirmarAdicionar" class="btn btn-primary" type="submit">Enviar</button>
                                 </div>
                             </form>
 
@@ -213,14 +213,20 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+        <script>window.jQuery || document.write('<script src="../app/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../app/dist/js/bootstrap.bundle.min.js"></script>
         
-        <script src="/assets/JS/MudarClasseResponsivo.js"></script>
-        <script src="/assets/JS/Arrastar.js"></script>
-        <script src="/assets/JS/CriarFormacoes/CriarFormacoes.js"></script>
-        <script src="/assets/JS/CriarFormacoes/BotaoAdd_X.js"></script>
-        <script src="/assets/JS/CriarAtividades.js"></script>
-        <script src="/assets/JS/ContarQuantidadeDeTarefas.js"></script>
+        <script src="/app/js/models/AddFormacao.js"></script>
+        <script src="/app/js/controllers/AddFormacaoController.js"></script>
+        <script src="app/js/models/AddFormacoes.js"></script>
+        <script src="app/js/views/AddFormacoesView.js"></script>
+        <script src="app/js/app.js"></script>
+
+        <!--<script src="/app/js/MudarClasseResponsivo.js"></script>-->
+        <!--<script src="/app/js/Arrastar.js"></script>-->
+        <!--<script src="/app/js/CriarFormacoes/CriarFormacoes.js"></script>-->
+        <!--<script src="/app/js/CriarFormacoes/BotaoAdd_X.js"></script>-->
+        <!--<script src="/app/js/CriarAtividades.js"></script>-->
+        <!--<script src="/app/js/ContarQuantidadeDeTarefas.js"></script>-->
     </body>
 
 </html>
