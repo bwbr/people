@@ -70,13 +70,13 @@
                     <h2>Quadro Kanbam</h2>
                     <ul id="navKanban" class="nav nav-tabs">
                         <li class="nav-item">
-                          <a class="nav-link active" data-toggle="tab" href="#accordion_fazer">A fazer</a>
+                          <a class="nav-link active" data-toggle="tab" href="#accordion_fazer">A fazer <span id="span_aFazer" class="badge badge-danger">0</span></a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" data-toggle="tab" href="#accordion_fazendo">Fazendo</a>
+                          <a class="nav-link" data-toggle="tab" href="#accordion_fazendo">Fazendo <span id="span_fazendo" class="badge badge-warning">0</span></a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" data-toggle="tab" href="#accordion_feita">Feitas</a>
+                          <a class="nav-link" data-toggle="tab" href="#accordion_feita">Feitas <span id="span_feitas" class="badge badge-success">0</span></a>
                         </li>
                       </ul>
                     
@@ -100,7 +100,7 @@
                             </form>
 
                             <div id="addAqui" class="rolagem scroll" data-kanbam>
-
+                                
                             </div>
                         </div>
 
@@ -108,7 +108,7 @@
                         <div id="accordion_fazendo" class="kanbam col-sm-4 pt-3 m-1 bg-warning">
                             <h3 class="h3_02"> Fazendo </h3>     
                             
-                            <div class="rolagem scroll" data-kanbam>
+                            <div id="nav-link-kanban_fazendo" class="rolagem scroll" data-kanbam>
 
                             </div>
                         </div>
@@ -118,7 +118,7 @@
                         <div id="accordion_feita" class="kanbam col-sm-4 pt-3 m-1 bg-success">
                             <h3 class="h3_02"> Feitas </h3>
 
-                            <div class="rolagem scroll" data-kanbam>
+                            <div id="nav-link-kanban_feitas" class="rolagem scroll" data-kanbam>
 
                             </div>
                         </div>
@@ -220,6 +220,7 @@
         <script src="/assets/JS/CriarFormacoes/CriarFormacoes.js"></script>
         <script src="/assets/JS/CriarFormacoes/BotaoAdd_X.js"></script>
         <script src="/assets/JS/CriarAtividades.js"></script>
+        <script src="/assets/JS/ContarQuantidadeDeTarefas.js"></script>
     </body>
 
 </html>

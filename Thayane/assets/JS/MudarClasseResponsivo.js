@@ -25,14 +25,10 @@ function tamanho(){
         feitas.className = 'kanbam col-sm-4 pt-3 m-1 bg-success';
     }else{
         kanbam.className = 'tab-content';
-        navKanban.className = 'nav nav-tabs';
+        navKanban.className = 'nav nav-tabs justify-content-end';
         aFazer.className = 'container tab-pane active col-sm-4 pt-3 m-1 bg-danger';
         fazendo.className = 'container tab-pane fade col-sm-4 pt-3 m-1 bg-warning';
         feitas.className = 'container tab-pane fade col-sm-4 pt-3 m-1 bg-success';
     }
 }
 document.body.onresize = () => tamanho();
-
-
-
-
