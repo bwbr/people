@@ -1,0 +1,14 @@
+{
+  "name": "thayane",
+  "version": "1.0.0",
+  "description": "colocando em prática o que foi aprendido nos cursos de html, css e js em um projeto de página com informações pessoais",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Thayane Carvalho dos Santos",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^2.3.2"
+  }
+}
