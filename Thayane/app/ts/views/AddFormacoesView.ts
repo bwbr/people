@@ -1,14 +1,4 @@
-class AddFormacoesView{
-    private _elemento: Element;
-
-    constructor(seletor: string){
-        this._elemento = document.querySelector(seletor);
-    }
-
-    update(model: AddFormacoes): void{
-        this._elemento.innerHTML = this.template(model);
-    }
-
+class AddFormacoesView extends View<AddFormacoes>{
     template(model: AddFormacoes): string{
         return `
             ${model.paraArray().map(formacao =>
@@ -30,18 +20,4 @@ class AddFormacoesView{
             ).join('')}
         `
     }
-
-    /*
-    <div class="card-header">
-                    <a class="card-link" data-toggle="collapse" href="#collapse${i}">
-                       ${campos.value}
-                    </a>
-                </div>
-                <div id="collapse${i}" class="collapse" data-parent="#accordion_fazer">
-                    <div class="card-body">
-                        'Lorem ipsum...'
-                    </div>
-                </div>
-            </div>
-    */
 }

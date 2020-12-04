@@ -1,12 +1,12 @@
 class AddFormacaoController{
-    private _inputFormacao: HTMLInputElement;
+    private _inputFormacao: JQuery;
     private _formacoes = new AddFormacoes();
     private _numA: number;
     private _numB: number;
     private _addFormacoesView = new AddFormacoesView('#addAqui')
     
     constructor(){
-        this._inputFormacao = <HTMLInputElement>document.querySelector('#novaFormacao');
+        this._inputFormacao = $('#novaFormacao');
         this._numA = 0;
         this._numB = 0;
         this._addFormacoesView.update(this._formacoes);
@@ -16,7 +16,7 @@ class AddFormacaoController{
         event.preventDefault();
 
         const addFormacao = new AddFormacao(
-            this._inputFormacao.value,
+            this._inputFormacao.val(),
             this._numA,
             this._numB
         );
