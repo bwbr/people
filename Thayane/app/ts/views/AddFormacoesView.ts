@@ -1,4 +1,7 @@
-class AddFormacoesView extends View<AddFormacoes>{
+import { View } from './View';
+import { AddFormacoes } from '../models/AddFormacoes';
+
+export class AddFormacoesView extends View<AddFormacoes>{
     template(model: AddFormacoes): string{
         return `
             ${model.paraArray().map(formacao =>

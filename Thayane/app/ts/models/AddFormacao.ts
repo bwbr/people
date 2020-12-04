@@ -1,4 +1,4 @@
-class AddFormacao{
+export class AddFormacao{
     constructor(private _formacao: string, private a: number, private b: number){
     }
 

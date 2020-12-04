@@ -1,12 +1,17 @@
-class AddFormacoesView {
-    constructor(seletor) {
-        this._elemento = document.querySelector(seletor);
-    }
-    update(model) {
-        this._elemento.innerHTML = this.template(model);
-    }
-    template(model) {
-        return `
+System.register(["./View"], function (exports_1, context_1) {
+    "use strict";
+    var __moduleName = context_1 && context_1.id;
+    var View_1, AddFormacoesView;
+    return {
+        setters: [
+            function (View_1_1) {
+                View_1 = View_1_1;
+            }
+        ],
+        execute: function () {
+            AddFormacoesView = class AddFormacoesView extends View_1.View {
+                template(model) {
+                    return `
             ${model.paraArray().map(formacao => `
                 <div class="card formacoes arrastar_js" draggable="true">
                     <div class="card-header">
@@ -23,5 +28,9 @@ class AddFormacoesView {
                 </div>
             `).join('')}
         `;
-    }
-}
+                }
+            };
+            exports_1("AddFormacoesView", AddFormacoesView);
+        }
+    };
+});

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+	<head lang="pt-br">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title> Thayane </title>
+
+        <!-- Estilos -->
+        <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="Style.css" rel="stylesheet">
+	</head>
+
+    <!-- Corpo -->
+	<body data-spy="scroll" data-target=".navbar">
+    	<div class="margem_topo">
+
+            <!-- Menu de Navegação -->
+        	<nav class="navbar navbar-expand-sm fixed-top navbar-light">
+                <a class="navbar-brand" href="#">BlueWolfBR</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav mr-auto pr-3 pr-1600-3">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#Sobre">Sobre</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#Kanban">Kanban</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#Skills">Skills</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#Atividades">Atividades</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#Contato">Contato</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Informações sobre mim -->
+            <header id="Sobre" class="container-fluid container_meu">
+                <div class="row media border p-1">
+                    <div class="col-sm-12 col-md-6 col-lg-4 mt-3">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-4 col-sm-2 col-md-3 col-lg-4 col-xl-3 pr-0">
+                                <img class="rounded-circle align-self-center" src="https://s.gravatar.com/avatar/ac5c67f8e14ed947ed754568d7bab6d1?s=80" alt="Foto de Thayane">
+                            </div>
+                            <div class="col-8 col-sm-10 col-md-9 col-lg-8 col-xl-9 name text-left pl-0">
+                                <h1>Thayane Carvalho dos Santos</h1>
+                                <span class="text-muted">Desenvolvedora de Software</span>
+                            </div>
+                        </div>
+						  </div>
+
+                    <div class="col-sm-12 col-md-6 col-lg-8 pl-0">
+                        <div class="m-3 text-justify">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam pellentesque, magna a egestas facilisis, dolor justo accumsan tellus, ac lacinia lorem velit quis tortor. In ut iaculis tellus, ut vehicula dolor. Sed pellentesque, magna vitae fermentum dignissim, libero velit varius mi, euismod lacinia leo sem sed odio. Quisque malesuada neque ut fermentum convallis. In at lacus ac quam sollicitudin vulputate a quis erat. Quisque ullamcorper porttitor nibh, quis facilisis enim aliquam eu. Sed a enim sed nunc posuere semper. Sed sit amet mi aliquam, aliquam quam sed, pulvinar tellus. In condimentum velit et sagittis rutrum.
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="">
+                <!-- Quadro Kanban -->
+                <section id="Kanban" class="container-fluid container_meu">
+                    <h2>Quadro Kanbam</h2>
+                    <ul id="navKanban" class="nav nav-tabs">
+                        <li class="nav-item">
+                          <a class="nav-link active" data-toggle="tab" href="#accordion_fazer">A fazer <span id="span_aFazer" class="badge badge-danger">0</span></a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" data-toggle="tab" href="#accordion_fazendo">Fazendo <span id="span_fazendo" class="badge badge-warning">0</span></a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" data-toggle="tab" href="#accordion_feita">Feitas <span id="span_feitas" class="badge badge-success">0</span></a>
+                        </li>
+                      </ul>
+                    
+                    <div id="kanbanTab" class="row card-deck">
+
+                        <!-- Formações a fazer -->
+                        <div id="accordion_fazer" class="kanbam col-sm-4 pt-3 m-1 bg-danger">
+                            <div class="d-flex justify-content-between">
+                                <h3 class="h3_02">A fazer</h3>
+                                <button id="btn-add" class="navbar-toggler bg-success" type="button" data-toggle="collapse" data-target="#Adicionar" aria-controls="Adicionar" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span id=sinal>+</span>
+                                </button>
+                            </div>
+
+                            <!-- Formulário para adicionar tarefa -->
+                            <form data-form class="input-group mb-3 collapse navbar-collapse" id="Adicionar">
+                                <input id="novaFormacao" data-form-formacao type="text" name="novaFormacao" class="form-control" placeholder="Escreva algo..">
+                                <div class="input-group-append">
+                                  <button aria-label="submit form" data-form-btn id="ConfirmarAdicionar" class="btn btn-primary" type="submit">Enviar</button>
+                                </div>
+                            </form>
+
+                            <div id="addAqui" class="rolagem scroll" data-kanbam>
+                                
+                            </div>
+                        </div>
+
+                        <!-- Formações fazendo -->
+                        <div id="accordion_fazendo" class="kanbam col-sm-4 pt-3 m-1 bg-warning">
+                            <h3 class="h3_02"> Fazendo </h3>     
+                            
+                            <div id="nav-link-kanban_fazendo" class="rolagem scroll" data-kanbam>
+
+                            </div>
+                        </div>
+                        
+
+                        <!-- Formações feitas -->
+                        <div id="accordion_feita" class="kanbam col-sm-4 pt-3 m-1 bg-success">
+                            <h3 class="h3_02"> Feitas </h3>
+
+                            <div id="nav-link-kanban_feitas" class="rolagem scroll" data-kanbam>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Skills -->
+                <section id="Skills" class="container-fluid container_meu">
+                    <h2>Skills</h2>
+
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">HTML
+                            <div class="progress">
+                                <div class="progress-bar bg-success" style="width: 100%"></div>
+                            </div>
+                        </li>
+
+                        <li class="list-group-item d-flex justify-content-between align-items-center">CSS
+                            <div class="progress">
+                                <div class="progress-bar bg-success" style="width: 100%"></div>
+                            </div>
+                        </li>
+
+                        <li class="list-group-item d-flex justify-content-between align-items-center">JS
+                            <div class="progress">
+                                <div class="progress-bar bg-success" style="width:66.66%"></div>
+                                <div class="progress-bar bg-danger" style="width:33.34%"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- Atividades -->
+                <section id="Atividades" class="container-fluid container_meu">
+                    <div>
+                        <h2>Atividades</h2>
+                    </div>
+
+                    <div>
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between align-items-center text-primary">
+                                Formação Iniciante
+                                <span class="text-muted">11/11/2020</span>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Contato -->
+                <section class="container-fluid container_meu" id="Contato">
+                    <h2>Contato</h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form>
+                                <div id="contato1">
+                                    <div class="input-group-prepend mb-1">
+                                        <span class="input-group-text" id="email_tamanho">Email:</span>
+                                    </div>
+                                    <input type="email" id="Email" class="form-control" required placeholder="seuemail@seudominio.com">
+                                </div>
+
+                                <div id="contato2">
+                                    <div class="input-group-prepend mb-1">
+                                        <span class="input-group-text">Mensagem:</span>
+                                    </div>
+                                        <textarea id="Mensagem" rows="15" class="form-control" required placeholder="Sua mensagem"> </textarea>
+                                </div>
+
+                                <div class="direita mb-2">
+                                    <input type="reset" value="Limpar" class="btn btn-danger">
+                                    <input type="submit" value="Enviar" class="btn btn-success ml-3" onclick="alert('Mensagem enviada com sucesso!')">
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="col-md-6 mapa">
+                            <iframe class="mapa__imagem" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d145863.68527581138!2d-37.08475705274437!3d-10.967926050883452!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x71ab04015be27cd%3A0x804434fd92ec3b36!2sAracaju%2C%20SE!5e0!3m2!1spt-BR!2sbr!4v1605206687163!5m2!1spt-BR!2sbr" width="100%" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <!-- Rodapé -->
+        <footer class="rodape page-footer pt-1 pb-1">
+            <div class="container p-0">
+                <p class="footer-copyright text-center"> Criado por: Thayane Carvalho dos Santos &copy; Copyright BlueWolfBR</p>
+            </div>
+		</footer>
+
+        <!-- Scripts -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+       
+        <script src="dist/js/bootstrap.bundle.min.js"></script>
+        
+        <script src="lib/jquery.min.js"></script>
+        <script src="lib/system.js"></script>
+        <script>
+            System.defaultJSExtensions = true;
+            System.import('js/app.js').catch(err => console.error(err));
+        </script>
+        <!--<script src="/app/js/MudarClasseResponsivo.js"></script>-->
+        <!--<script src="/app/js/Arrastar.js"></script>-->
+        <!--<script src="/app/js/CriarFormacoes/CriarFormacoes.js"></script>-->
+        <!--<script src="/app/js/CriarFormacoes/BotaoAdd_X.js"></script>-->
+        <!--<script src="/app/js/CriarAtividades.js"></script>-->
+        <!--<script src="/app/js/ContarQuantidadeDeTarefas.js"></script>-->
+    </body>
+
+</html>

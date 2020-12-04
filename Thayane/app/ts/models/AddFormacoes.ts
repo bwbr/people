@@ -1,4 +1,6 @@
-class AddFormacoes{
+import { AddFormacao } from './AddFormacao';
+
+export class AddFormacoes{
     private _formacoes: AddFormacao[] = [];
 
     adiciona(formacao: AddFormacao){

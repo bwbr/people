@@ -1,4 +1,8 @@
-class AddFormacaoController{
+import { AddFormacoesView } from '../views/AddFormacoesView';
+import { AddFormacoes } from '../models/AddFormacoes';
+import { AddFormacao } from '../models/AddFormacao';
+
+export class AddFormacaoController{
     private _inputFormacao: JQuery;
     private _formacoes = new AddFormacoes();
     private _numA: number;
