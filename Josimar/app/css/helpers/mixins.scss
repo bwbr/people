@@ -1,0 +1,102 @@
+//foratando link reutilizável
+
+@mixin link {
+    color: $link-color !important;
+    text-transform: none !important;
+    text-decoration: none !important;
+}
+
+//oculta scroll reutilizável
+
+@mixin scrollbar-oculto {
+    height: 200px;      
+    overflow-y: scroll;
+    overflow-x: none;
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
+    &::-webkit-scrollbar {display: none; /* Safari and Chrome */ }
+}
+
+//mixins navbar
+
+@mixin navbar {
+    background:  rgb(117, 193, 236);
+    background: -moz-linear-gradient(254deg, rgb(117, 193, 236) 0%, rgba(49,107,170,1) 0%, rgb(34, 66, 94) 44%);
+    background: -webkit-linear-gradient(254deg, rgb(117, 193, 236) 0%, rgba(49,107,170,1) 0%, rgb(34, 66, 94) 44%);
+    background: linear-gradient(254deg, rgb(117, 193, 236) 0%, rgba(49,107,170,1) 0%, rgb(34, 66, 94) 44%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#56c0ff",endColorstr="#090e4d",GradientType=1);
+}
+
+//mixins sobre
+
+@mixin border-photo {
+    border-radius: 50%;
+    border-top: 5px solid rgb(66,139,202);
+    border-right: 5px solid rgb(66,139,202);
+    border-bottom: 5px solid rgb(48, 92, 131);
+    border-left: 5px solid rgb(34, 66, 94);
+    }
+
+//mixins cards
+
+@mixin bg-kanban {
+    background: rgb(34, 66, 94);
+    background: -moz-radial-gradient(circle, rgb(34, 66, 94) 0%, rgb(66,139,202) 0%, rgb(48, 92, 131) 100%);
+    background: -webkit-radial-gradient(circle, rgb(34, 66, 94) 0%, rgb(66,139,202) 0%, rgb(48, 92, 131) 100%);
+    background: radial-gradient(circle, rgb(34, 66, 94) 0%, rgb(66,139,202) 0%, rgb(48, 92, 131) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0e05bb",endColorstr="#0540bb",GradientType=1);
+}
+
+//gradiente reutilizável
+
+@mixin bg-cards-gradient($deg, $color-rgb, $color-hex, $p-top, $p-botton) {
+    background: $color-rgb !important;
+    background: linear-gradient($deg, $color-rgb $p-top, $bg-aux-gradient-rgb $p-botton) !important;
+    background: $bg-aux-gradient-rgb !important;
+    background: -moz-linear-gradient($deg, $color-rgb $p-top, $p-botton) !important;
+    background: -webkit-linear-gradient($deg,$color-rgb $p-top, $bg-aux-gradient-rgb $p-botton) !important;
+    background: linear-gradient($deg, $color-rgb $p-top, $bg-aux-gradient-rgb $p-botton) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='"'$bg-aux-gradient-hex'"',endColorstr='"'$color-hex'"',GradientType=1) !important;
+}
+
+//formatação dos cards kanban
+
+@mixin format-card ($color-rgb, $color-hex){
+    @include bg-cards-gradient(180deg, $color-rgb, $color-hex, 0%, 100%);
+    @extend %shadow-box;
+    border: 0 !important;
+    .no-expand{
+        @include scrollbar-oculto;
+    }
+}
+
+//formatação do body das atividades em kanban
+
+@mixin format-activity($color-rgb) {  
+    .activities{
+        @include scrollbar-oculto;
+        border-radius: 5px;
+        background:lighten($color: $color-rgb, $amount: 30);
+        .activity{              
+            border-radius: 0px !important;
+            border:0;
+            border-left:5px solid $color-rgb !important;
+        }
+    }
+}
+
+//bg cinza gradiente radial utilizado em SKILLS e CONTATO do layout (reutilizável)
+
+@mixin format-bg-gray-radial {
+    background: rgb(255,255,255);
+    background: -moz-radial-gradient(circle, rgba(255,255,255,1) 63%, rgba(222,222,222,1) 89%, rgba(195,195,195,1) 100%);
+    background: -webkit-radial-gradient(circle, rgba(255,255,255,1) 63%, rgba(222,222,222,1) 89%, rgba(195,195,195,1) 100%);
+    background: radial-gradient(circle, rgba(255,255,255,1) 63%, rgba(222,222,222,1) 89%, rgba(195,195,195,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#c3c3c3",GradientType=1);
+}
+
+//formatação do form em contato
+
+@mixin format-contato-form ($color-rgb, $color-hex) {
+    @include bg-cards-gradient(180deg, $color-rgb, $color-hex, 0%, 100%);
+}

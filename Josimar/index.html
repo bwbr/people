@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+
     <!-- Required meta tags -->
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="shortcut icon" type="image/x-icon" href="app/img/1574bwbr.ico">
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="app/css/index.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/ab861c8c92.js" crossorigin="anonymous"></script>
     
     <title>People</title>
   </head>
-  <body>
-
-    <!--Container-->
-
-    <div class="container-flex">
+  <body onresize="layout()">
 
       <!--Menu--> 
-      <nav class="nav navbar navbar-expand-md navbar-dark fixed-top">
+
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top">
         <a class="navbar-brand" href="#"><h1>BluewolfBR</h1></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -27,49 +28,54 @@
           <div class="w-100 d-flex justify-content-md-end">
             <ul class="navbar-nav">
               <li class="nav-item active">
-                <a class="nav-link" href="#Sobre" data-toggle="collapse" data-target="#navbarCollapse">Sobre <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#Sobre" >Sobre <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#Kanban" data-toggle="collapse" data-target="#navbarCollapse">Kanban</a>
+                <a class="nav-link" href="#Kanban">Kanban</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#Skills" data-toggle="collapse" data-target="#navbarCollapse">Skills</a>
+                <a class="nav-link" href="#Skills">Skills</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#Atividades" data-toggle="collapse" data-target="#navbarCollapse">Atividades</a>
+                <a class="nav-link" href="#Atividades">Atividades</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#Contato" data-toggle="collapse" data-target="#navbarCollapse">Contato</a>
+                <a class="nav-link" href="#Contato">Contato</a>
               </li>
             </ul>       
           </div>          
         </div>
       </nav>
 
+    <!--Container-->
+
+    <div class="container-flex">
 
       <!--Header-->
 
-      <header id="Sobre" class="sobre p-3 w-100">
+      <header id="Sobre" class="sobre p-3">
         <div class="container p-0">
           <div class="row d-flex align-items-center">
             <div class="col-sm-12 col-md-6">
               <div class="row d-flex align-items-center">
-                <!--Photo-->											
-                <div class="col col-sm-6 col-md-6">	
-                    <img class="w-100 photo rounded-circle" src="https://s.gravatar.com/avatar/cd07e63954d66e5867deebeb40ba3def?s=200&r=g" />	
-                </div>
+
+                <!--Photo-->						
+
+                <div  id="avatar_url" class="col col-sm-6 col-md-6"></div>
+
                 <!--Name-->	
+
                 <div class="col col-sm-6 col-md-6 name text-center">	
                   <strong><span id="nome"></span></strong>
-                  <blockquote class="blockquote text-center">
-                    <p class="mb-0">Desenvolvedor de Software</p>
-                  </blockquote>                  
+                  <span class="text-muted">Desenvolvedor de Software</span>            
                 </div>
               </div>
             </div>
-            <div class="col-sm-12 col-md-6 text-center"> 
+            <div class="col-sm-12 col-md-6 text-center p-3"> 
+
               <!--Description-->	
-              <div class="alert alert-light text-dark">
+
+              <div class="alert alert-light text-dark m-0">
                 <span id="bio"></span>
               </div>
             </div>
@@ -84,343 +90,157 @@
           <header>
             <h3>Kanban</h3>
           </header>
-          <main>
-            <div class="row d-flex justify-content-between align-items-center">
-              <div class="col">
 
-                <!--To-Do-->
+          <!--Nav-tabs cards mobile-->
 
-                <div class="card card-to-do sm-12 text-dark bg-danger mb-1">
-                  <div class="card-header">
-                    <h5><i class="fas fa-list"></i> To Do</h5>
-                  </div>
-                  <div class="card-body">
-                    <p class="card-text">
-                      <!--Atividade-Inicio-->
-                      <!--Atividade-->
-                      <div id="9" id="accordion" class="activities">
-                        <div class="card activity m-1" draggable="true">
-                          <div class="card-header" id="heading-9">
-                            <h5 class="mb-0">
-                              <div class="btn btn-link d-flex justify-content-between" data-toggle="collapse" data-target="#collapse-9" aria-expanded="true" aria-controls="collapse-9">
-                                Atividade #9
-                                <div class="d-flex justify-content-end">
-                                  <div id="collapse-9" class="collapse mr-3">
-                                    <i class="fas fa-edit"></i>
-                                  </div>
-                                  <div id="collapse-9" class="collapse"> 
-                                    <i class="fas fa-compress-alt"></i>
-                                  </div>
-                                  <div id="collapse-9" class="collapse show">
-                                    <i class="fas fa-expand-alt"></i>
-                                  </div>
-                                </div>                                
-                              </div>
-                            </h5>
-                          </div>                      
-                          <div id="collapse-9" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                            <div class="card-body text-justify">
-                              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                            </div>
-                            <div class="card-footer bg-wight d-flex justify-content-between">
-                              <!--Icones de navegação entre os cards-->
-                              <i class="fas fa-chevron-left"></i>
-                              <i class="fas fa-chevron-right"></i>
-                            </div>
-                          </div>
+          <nav>
+            <div class="nav nav-tabs nav-justified ml-1 mr-1" id="nav-tab" role="tablist">
+              <a class="nav-item nav-link-to-do" id="nav-to-do-tab" data-toggle="tab" href="#nav-to-do" role="tab" aria-controls="nav-to-do" aria-selected="true">
+                <h6><i class="fas fa-list"></i> Fazer </h6>
+              </a>
+              <a class="nav-item nav-link-in-progress" id="nav-in-progress-tab" data-toggle="tab" href="#nav-in-progress" role="tab" aria-controls="nav-in-progress" aria-selected="false">
+                <h6><i class="fas fa-tasks"></i> Fazendo </h6>
+              </a>
+              <a class="nav-item nav-link-done" id="nav-done-tab" data-toggle="tab" href="#nav-done" role="tab" aria-controls="nav-done" aria-selected="false">
+                <h6><i class="fas fa-calendar-check"></i> Feito </h6>
+              </a>
+            </div>
+          </nav> 
+
+          <!--Cards tabs-->
+        
+          <main class="d-flex justify-content-center">
+              <!--Tab-content cards-->
+
+              <div class="row d-flex justify-content-between w-100" id="nav-tabContent">
+
+                <div class="col-sm-12 col-md-4 p-0 show active" id="nav-to-do" role="tabpanel" aria-labelledby="nav-to-do-tab">
+                  
+                    <!--To-Do-->
+
+                    <div class="card card-to-do sm-12 text-dark bg-danger mb-1 ml-1 mr-1">
+                      <div class="card-header d-flex justify-content-between">
+                        <h5><i class="fas fa-list"></i> Fazer </h5>
+                        <div class="d-flex justify-content-end align-items-end">
+                          <a href="" id="add_btn" class="btn btn-sm border-0" data-toggle="collapse" data-target="#cardToDo" aria-expanded="false" aria-controls="cardToDo">
+                            <i class="fas fa-plus"></i>
+                          </a>
+                          <span class="badge badge-pill badge-to-do p-1">0</span>
                         </div>
-                        <!--Atividade-->
-                        <div id="8" class="card activity m-1" draggable="true">
-                          <div class="card-header" id="heading-8">
-                            <h5 class="mb-0">
-                              <div class="btn btn-link d-flex justify-content-between collapsed" data-toggle="collapse" data-target="#collapse-8" aria-expanded="false" aria-controls="collapse-8">
-                                Atividade #8
-                                <div class="d-flex justify-content-end">
-                                  <div id="collapse-8" class="collapse mr-3">
-                                    <i class="fas fa-edit"></i>
-                                  </div>
-                                  <div id="collapse-8" class="collapse"> 
-                                    <i class="fas fa-compress-alt"></i>
-                                  </div>
-                                  <div id="collapse-8" class="collapse show">
-                                    <i class="fas fa-expand-alt"></i>
+                      </div>
+                      <div class="card-body to-do">
+                        <div class="no-expand">     
+                          <div id="mensagemView"></div> 
+
+                          <!--Add Activities Form-->
+
+                          <div id="cardToDo" class="activities p-1 collapse fade">                            
+                            <form id="form_activity" class="card form pb-3 pl-3 pr-3 pt-0">                             
+                              <div class="form-group row">
+                                <label for="id" class="col-sm-12 col-form-label">ID</label>
+                                <div class="col-sm-9">
+                                  <input type="text" class="form-control" id="id" skip="1" required>
                                 </div>
-                                </div>                                
-                            </h5>
-                          </div>
-                          <div id="collapse-8" class="collapse" aria-labelledby="heading-8" data-parent="#accordion">
-                            <div class="card-body text-justify">
-                              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                            </div>
-                            <div class="card-footer bg-wight d-flex justify-content-between">
-                              <!--Icones de navegação entre os cards-->
-                              <i class="fas fa-chevron-left"></i>
-                              <i class="fas fa-chevron-right"></i>
-                            </div>
-                          </div>
-                        </div>
-                        <!--Atividade-->
-                        <div id="7" class="card activity m-1" draggable="true">
-                          <div class="card-header" id="heading-7">
-                            <h5 class="mb-0">
-                              <div class="btn btn-link d-flex justify-content-between collapsed" data-toggle="collapse" data-target="#collapse-7" aria-expanded="false" aria-controls="collapse-7">
-                                Atividade #7
-                                <div class="d-flex justify-content-end">
-                                  <div id="collapse-7" class="collapse mr-3">
-                                    <i class="fas fa-edit"></i>
-                                  </div>
-                                  <div id="collapse-7" class="collapse"> 
-                                    <i class="fas fa-compress-alt"></i>
-                                  </div>
-                                  <div id="collapse-7" class="collapse show">
-                                    <i class="fas fa-expand-alt"></i>
-                                  </div>
-                                </div>                                
+                                <label for="titulo" class="col-sm-12 col-form-label">Título</label>
+                                <div class="col-sm-9">
+                                  <input type="text" class="form-control" id="titulo" skip="1" required>
+                                </div>
                               </div>
-                            </h5>
+                              <div class="form-group row">
+                                <label for="descricao" class="col-sm-12 col-form-label">Descrição</label>
+                                <div class="col-sm-12">
+                                  <textarea  type="text" class="form-control" id="descricao" placeholder="" aria-valuemax="200" skip="1" required></textarea>
+                                </div>
+                                <div class="col-sm-9">
+                                  <input type="hidden" class="form-control" id="idCard" value="cardToDo">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <div class="col-12 d-flax d-flex justify-content-between">
+                                  <button type="button" class="btn btn-sm btn-secondary mr-3">Limpar</button>
+                                  <button type="submit" class="btn btn-sm btn-success">Enviar</button>
+                                </div>
+                              </div>
+                            </form>
                           </div>
-                          <div id="collapse-7" class="collapse" aria-labelledby="heading-7" data-parent="#accordion">
-                            <div class="card-body text-justify">
-                              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                            </div>
-                            <div class="card-footer bg-wight d-flex justify-content-between">
-                              <!--Icones de navegação entre os cards-->
-                              <i class="fas fa-chevron-left"></i>
-                              <i class="fas fa-chevron-right"></i>
-                            </div>
+                           <!--End Add Activities Form-->
+
+                          <!--Begin Activities-->                          
+                          
+                          <div id="cardToDo" class="activities collapse show fade" data-card="ActivitiesView">                
+
+                            <!--Activities-->
+
                           </div>
-                        </div>
+
+                          <!--End Activities--> 
+                                          
+                        </div>     
                       </div>
-                      <!--Atividade-Fim-->
-                    </p>
-                  </div>
+                    </div>
+
                 </div>
 
-              </div>
-
-              <div class="col">
-
-                <!--In-Progress-->
-
-                <div class="card card-in-progress sm-12 text-dark bg-warning mb-1">
-                  <div class="card-header"><h5><i class="fas fa-tasks"></i> In Progress</h5></div>
-                  <div class="card-body">
-                    <p class="card-text ">
-                      <!--Atividade-Inicio-->
-                      <div id="accordion" class="activities">
-                        <!--Atividade-->
-                        <div id="6" class="card activity m-1" draggable="true">
-                          <div class="card-header" id="heading-6">
-                            <h5 class="mb-0">
-                              <div class="btn btn-link d-flex justify-content-between collapsed" data-toggle="collapse" data-target="#collapse-6" aria-expanded="true" aria-controls="collapse-6">
-                                Atividade #6
-                                <div class="d-flex justify-content-end">
-                                  <div id="collapse-6" class="collapse mr-3">
-                                    <i class="fas fa-edit"></i>
-                                  </div>
-                                  <div id="collapse-6" class="collapse"> 
-                                    <i class="fas fa-compress-alt"></i>
-                                  </div>
-                                  <div id="collapse-6" class="collapse show">
-                                    <i class="fas fa-expand-alt"></i>
-                                  </div>
-                                </div>                                
-                              </div>
-                            </h5>
-                          </div>                      
-                          <div id="collapse-6" class="collapse" aria-labelledby="heading-6" data-parent="#accordion">
-                            <div class="card-body text-justify">
-                              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                            </div>
-                            <div class="card-footer bg-wight d-flex justify-content-between">
-                              <!--Icones de navegação entre os cards-->
-                              <i class="fas fa-chevron-left"></i>
-                              <i class="fas fa-chevron-right"></i>
-                            </div>
-                          </div>
-                        </div>
-                        <!--Atividade-->
-                        <div id="5" class="card activity m-1" draggable="true">
-                          <div class="card-header" id="heading-5">
-                            <h5 class="mb-0">
-                              <div class="btn btn-link d-flex justify-content-between collapsed" data-toggle="collapse" data-target="#collapse-5" aria-expanded="false" aria-controls="collapse-5">
-                                Atividade #5
-                                <div class="d-flex justify-content-end">
-                                  <div id="collapse-5" class="collapse mr-3">
-                                    <i class="fas fa-edit"></i>
-                                  </div>
-                                  <div id="collapse-5" class="collapse"> 
-                                    <i class="fas fa-compress-alt"></i>
-                                  </div>
-                                  <div id="collapse-5" class="collapse show">
-                                    <i class="fas fa-expand-alt"></i>
-                                  </div>
-                                </div>                                
-                              </div>
-                            </h5>
-                          </div>
-                          <div id="collapse-5" class="collapse" aria-labelledby="heading-5" data-parent="#accordion">
-                            <div class="card-body text-justify">
-                              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                            </div>
-                            <div class="card-footer bg-wight d-flex justify-content-between">
-                              <!--Icones de navegação entre os cards-->
-                              <i class="fas fa-chevron-left"></i>
-                              <i class="fas fa-chevron-right"></i>
-                            </div>
-                          </div>
-                        </div>
-                        <!--Atividade-->
-                        <div id="4" class="card activity m-1" draggable="true">
-                          <div class="card-header" id="heading-4">
-                            <h5 class="mb-0">
-                              <div class="btn btn-link d-flex justify-content-between collapsed" data-toggle="collapse" data-target="#collapse-4" aria-expanded="false" aria-controls="collapse-4">
-                                Atividade #4
-                                <div class="d-flex justify-content-end">
-                                  <div id="collapse-4" class="collapse mr-3">
-                                    <i class="fas fa-edit"></i>
-                                  </div>
-                                  <div id="collapse-4" class="collapse"> 
-                                    <i class="fas fa-compress-alt"></i>
-                                  </div>
-                                  <div id="collapse-4" class="collapse show">
-                                    <i class="fas fa-expand-alt"></i>
-                                  </div>
-                                </div>                                
-                              </div>
-                            </h5>
-                          </div>
-                          <div id="collapse-4" class="collapse" aria-labelledby="heading-4" data-parent="#accordion">
-                            <div class="card-body text-justify">
-                              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                            </div>
-                            <div class="card-footer bg-wight d-flex justify-content-between">
-                              <!--Icones de navegação entre os cards--> 
-                              <i class="fas fa-chevron-left"></i>
-                              <i class="fas fa-chevron-right"></i>
-                            </div>
-                          </div>
+                <div class="col-sm-12 col-md-4 p-0" id="nav-in-progress" role="tabpanel" aria-labelledby="nav-in-progress-tab">
+                  
+                    <!--In-Progress-->
+                  
+                    <div class="card card-in-progress sm-12 text-dark bg-warning mb-1 ml-1 mr-1">
+                      <div class="card-header d-flex justify-content-between">
+                        <h5><i class="fas fa-tasks"></i> Fazendo </h5>
+                        <div class="d-flex justify-content-end align-items-end">
+                          <span class="badge badge-pill badge-in-progress p-1">0</span>
                         </div>
                       </div>
-                      <!--Atividade-Fim-->
-                    </p>
-                  </div>
-                </div>
-
-              </div>
-
-              <div class="col">
+                      <div class="card-body in-progress">
+                  
+                        <!--Begin Activities--> 
+                  
+                        <div id="cardInProgress" class="activities">
+                  
+                          <!--Activities-->
                 
-                <!--Done-->
+                        </div>
 
-                <div class="card card-done sm-12 text-dark bg-success mb-1">
-                  <div class="card-header"><h5><i class="far fa-calendar-check"></i> Done</h5></div>
-                  <div class="card-body">
-                    <p class="card-text ">
-                      <!--Atividade-Inicio-->
-                      <div id="accordion" class="activities">
-                        <div id="3" class="card activity m-1" draggable="true">
-                          <div class="card-header" id="heading-3">
-                            <h5 class="mb-0">
-                              <div class="btn btn-link d-flex justify-content-between collapsed" data-toggle="collapse" data-target="#collapse-3" aria-expanded="true" aria-controls="collapse-3">
-                                Atividade #3
-                                <div class="d-flex justify-content-end">
-                                  <div id="collapse-3" class="collapse mr-3">
-                                    <i class="fas fa-edit"></i>
-                                  </div>
-                                  <div id="collapse-3" class="collapse"> 
-                                    <i class="fas fa-compress-alt"></i>
-                                  </div>
-                                  <div id="collapse-3" class="collapse show">
-                                    <i class="fas fa-expand-alt"></i>
-                                  </div>
-                                </div>                                
-                              </div>
-                            </h5>
-                          </div>                      
-                          <div id="collapse-3" class="collapse" aria-labelledby="heading-3" data-parent="#accordion">
-                            <div class="card-body text-justify">
-                              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                            </div>
-                            <div class="card-footer bg-wight d-flex justify-content-between">
-                              <!--Icones de navegação entre os cards-->
-                              <i class="fas fa-chevron-left"></i>
-                              <i class="fas fa-chevron-right"></i>
-                            </div>
-                          </div>
-                        </div>
-                        <!--Atividade-->
-                        <div id="2" class="card activity m-1" draggable="true">
-                          <div class="card-header" id="heading-2">
-                            <h5 class="mb-0">
-                              <div class="btn btn-link d-flex justify-content-between collapsed" data-toggle="collapse" data-target="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
-                                Atividade #2
-                                <div class="d-flex justify-content-end">
-                                  <div id="collapse-2" class="collapse mr-3">
-                                    <i class="fas fa-edit"></i>
-                                  </div>
-                                  <div id="collapse-2" class="collapse"> 
-                                    <i class="fas fa-compress-alt"></i>
-                                  </div>
-                                  <div id="collapse-2" class="collapse show">
-                                    <i class="fas fa-expand-alt"></i>
-                                  </div>
-                                </div>                                
-                              </div>
-                            </h5>
-                          </div>
-                          <div id="collapse-2" class="collapse" aria-labelledby="heading-2" data-parent="#accordion">
-                            <div class="card-body text-justify">
-                              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                            </div>
-                            <div class="card-footer bg-wight d-flex justify-content-between">
-                              <!--Icones de navegação entre os cards-->
-                              <i class="fas fa-chevron-left"></i>
-                              <i class="fas fa-chevron-right"></i>
-                            </div>
-                          </div>
-                        </div>
-                        <!--Atividade-->
-                        <div id="1" class="card activity m-1" draggable="true">
-                          <div class="card-header" id="heading-1">
-                            <h5 class="mb-0">
-                              <div class="btn btn-link d-flex justify-content-between collapsed" data-toggle="collapse" data-target="#collapse-1" aria-expanded="false" aria-controls="collapse-1">
-                                Atividade #1
-                                <div class="d-flex justify-content-end">
-                                  <div id="collapse-1" class="collapse mr-3">
-                                    <i class="fas fa-edit"></i>
-                                  </div>
-                                  <div id="collapse-1" class="collapse"> 
-                                    <i class="fas fa-compress-alt"></i>
-                                  </div>
-                                  <div id="collapse-1" class="collapse show">
-                                    <i class="fas fa-expand-alt"></i>
-                                  </div>
-                                </div>                                
-                              </div>
-                            </h5>
-                          </div>
-                          <div id="collapse-1" class="collapse" aria-labelledby="heading-1" data-parent="#accordion">
-                            <div class="card-body text-justify">
-                              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                            </div>
-                            <div class="card-footer bg-wight d-flex justify-content-between">
-                              <!--Icones de navegação entre os cards-->
-                              <i class="fas fa-chevron-left"></i>
-                              <i class="fas fa-chevron-right"></i>
-                            </div>
-                          </div>
+                        <!--End Activities--> 
+                          
+                      </div>
+                    </div>
+
+                </div>
+
+                <div class="col-sm-12 col-md-4 p-0" id="nav-done" role="tabpanel" aria-labelledby="nav-done-tab">
+                            
+                    <!--Done-->
+
+                    <div class="card card-done sm-12 text-dark bg-success mb-1 ml-1 mr-1">
+                      <div class="card-header d-flex justify-content-between">
+                        <h5><i class="far fa-calendar-check"></i> Feito </h5>
+                        <div class="d-flex justify-content-end align-items-end">
+                          <span class="badge badge-pill badge-done p-1">0</span>
                         </div>
                       </div>
-                      <!--Atividade-Fim-->
-                    </p>
-                  </div>
+                      <div class="card-body done">
+                  
+                        <!--Begin Activities--> 
+                  
+                        <div id="cardDone" class="activities">
+
+                            <!--Activities-->
+
+                        </div>
+                  
+                        <!--End Activities--> 
+                  
+                      </div>
+                    </div>
+
                 </div>
 
               </div>
             </div>
           </main>
-        </div>
+
       </section>
 
       <!--Skills-->
@@ -432,42 +252,35 @@
           </header>
           <main>
 
-            <div class="row">
-              <div class="col col-md-2">HTML/CSS</div>              
-              <div class="col col-md-4">
+            <div class="row p-2 m-1 border align-items-center rounded kanban">
+              <div class="col-md-2"><h6><i class="fas fa-list"></i> Fazer </h6></div>
+              <div class="col-md-4">
                 <div class="progress">
-                  <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div id="progress-to-do" class="progress-bar progress-bar-striped progress-bar-blue" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
               </div>
+              <div class="col-md-6 col-sm-12 text-right"><h6 class="percent-to-do"> 0 </h6></div>
             </div>
 
-            <div class="row">
-              <div class="col col-md-2">JavaScript</div>
-              <div class="col col-md-4">
+            <div class="row p-2 m-1 border align-items-center rounded kanban">
+              <div class="col-md-2"><h6><i class="fas fa-tasks"></i> Fazendo </h6></div>
+              <div class="col-md-4">
                 <div class="progress">
-                  <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div id="progress-in-progress" class="progress-bar progress-bar-striped progress-bar-blue" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>                
+              </div>
+              <div class="col-md-6 col-sm-12 text-right"><h6 class="percent-in-progress"> 0 </h6></div>
+            </div>
+
+            <div class="row p-2 m-1 border align-items-center rounded kanban">
+              <div class="col-md-2"><h6><i class="fas fa-calendar-check"></i> Feito </h6></div>
+              <div class="col-md-4">
+                <div class="progress">
+                  <div id="progress-done" class="progress-bar progress-bar-striped progress-bar-blue" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
               </div>
+              <div class="col-md-6 col-sm-12 text-right"><h6 class="percent-done"> 0 </h6></div>
             </div>
-
-            <div class="row">
-              <div class="col col-md-2">Java</div>
-              <div class="col col-md-4">
-                <div class="progress">
-                  <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col col-md-2">Design Pattern</div>
-              <div class="col col-md-4">
-                <div class="progress">
-                  <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div>
-            </div>
-
           </main>
         </div>
       </section>
@@ -480,74 +293,7 @@
             <h3>Atividades</h3>
           </header>
           <main> 
-            <div class="list-group">
-              <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 text-justify justify-content-between">
-                  <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                  <small class="w-25 text-muted text-right ml-3">3 dias atrás</small>
-                </div>
-              </a>
-              <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 text-justify justify-content-between">
-                  <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                  <small class="w-25 text-muted text-right ml-3">3 dias atrás</small>
-                </div>
-              </a>
-              <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 text-justify justify-content-between">
-                  <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                  <small class="w-25 text-muted text-right ml-3">3 dias atrás</small>
-                </div>
-              </a>
-              <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 text-justify justify-content-between">
-                  <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                  <small class="w-25 text-muted text-right ml-3">3 dias atrás</small>
-                </div>
-              </a>
-              <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 text-justify justify-content-between">
-                  <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                  <small class="w-25 text-muted text-right ml-3">3 dias atrás</small>
-                </div>
-              </a>
-              <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 text-justify justify-content-between">
-                  <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                  <small class="w-25 text-muted text-right ml-3">3 dias atrás</small>
-                </div>
-              </a>
-              <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 text-justify justify-content-between">
-                  <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                  <small class="w-25 text-muted text-right ml-3">3 dias atrás</small>
-                </div>
-              </a>
-              <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 text-justify justify-content-between">
-                  <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                  <small class="w-25 text-muted text-right ml-3">3 dias atrás</small>
-                </div>
-              </a>
-              <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 text-justify justify-content-between">
-                  <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                  <small class="w-25 text-muted text-right ml-3">3 dias atrás</small>
-                </div>
-              </a>
-              <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 text-justify justify-content-between">
-                  <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                  <small class="w-25 text-muted text-right ml-3">3 dias atrás</small>
-                </div>
-              </a>
-              <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 text-justify justify-content-between">
-                  <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                  <small class="w-25 text-muted text-right ml-3">3 dias atrás</small>
-                </div>
-              </a>
-            </div>
+            <div id="list-atividades" class="list-group"></div>
           </main>
         </div>
       </section>
@@ -561,20 +307,20 @@
           </header>
           <main>
             <div class="row flex-column-reverse flex-md-row">
-              <div class="col-sm-12 col-md-6">
+              <div class="col-sm-12 col-md-6 mb-3">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.852744617505!2d-37.06469798456071!3d-10.974485525868614!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x71ab16ab748d159%3A0xf868691114fa6b61!2sAv.%20Maria%20Pastora%20-%20Farol%C3%A2ndia%2C%20Aracaju%20-%20SE%2C%2049030-210!5e0!3m2!1spt-BR!2sbr!4v1605916608677!5m2!1spt-BR!2sbr" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>              
               </div>
-              <div class="col-sm-12 col-md-6">
-                <form>
+              <div class="col-sm-12 col-md-6 p-6">
+                <form class="card form mb-3 p-3">
                   <div class="form-group row">
-                    <label for="email" class="col-sm-2 col-form-label">Email</label>
-                    <div class="col-sm-10">
+                    <label for="email" class="col-sm-3 col-form-label">Email</label>
+                    <div class="col-sm-9">
                       <input type="text" class="form-control" id="email" value="email@example.com">
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="inputmessage" class="col-sm-2 col-form-label">mensagem</label>
-                    <div class="col-sm-10">
+                    <label for="inputdescricao" class="col-sm-3 col-form-label">mensagem</label>
+                    <div class="col-sm-9">
                       <textarea  type="text" class="form-control" id="inputmessage" placeholder=""></textarea>
                     </div>
                   </div>
@@ -593,10 +339,10 @@
 
       <!--Footer-->
 
-      <footer class="footer page-footer font-small pt-4">
+      <footer class="footer page-footer font-small pt-3">
         <div class="container p-0">
           <!-- Copyright -->
-          <div class="footer-copyright text-center py-3">
+          <div class="footer-copyright text-center pt-3">
             <span>Create by: </span>
             <a href="https://github.com/josimarsts">Josimar Santos</a>
             <span>© 2020 Copyright: BluewolfBR</span>
@@ -605,18 +351,30 @@
       </footer>
 
     </div>    
+    <!-- scripts -->
+    
+    <script src="app/js/models/Atividade.js"></script> 
+    <script src="app/js/controllers/AtividadeController.js"></script> 
+    <script src="app/js/models/Atividades.js"></script> 
+    <script src="app/js/views/View.js"></script> 
+    <script src="app/js/views/AtividadesView.js"></script> 
+    <script src="app/js/views/MensagemView.js"></script> 
+    <script src="app/js/app.js"></script> 
+    
+    <!-- helpers -->
 
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-
-    <script src="assets/js/scroll_smooth.js"></script>
-    <script src="assets/js/api_git.js"></script>
-    <script src="assets/js/drag_and_drop.js"></script>
+    <script src="app/js/helpers/media.js"></script>
+    <script src="app/js/helpers/hide_nav.js"></script>
+    <script src="app/js/helpers/hide_alert.js"></script>
+    <script src="app/js/helpers/scroll_smooth.js"></script>
+    <script src="app/js/helpers/api_git.js"></script>
+    <script src="app/js/helpers/activities.js"></script>
 
     <!-- Ready to use Font Awesome. Activate interlock. Dynotherms - connected. Infracells - up. Icons are go! -->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>    
+
   </body>
 </html>
