@@ -1,6 +1,6 @@
 function layout(){
     setTimeout(function(){
-
+        
         //let winWidth = $(window).width();// comprimento do browser
         let docWidth = document.body.clientWidth; //comprimento do documento HTML
 
@@ -10,8 +10,7 @@ function layout(){
                 addClasses();
             }
 
-        } 
-        if (docWidth > 760){
+        } else {
             
             if(document.querySelector("#nav-tabContent").classList.contains("tab-content") == true){
                 removeClasses();

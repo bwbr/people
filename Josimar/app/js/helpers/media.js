@@ -6,7 +6,7 @@ function layout() {
                 addClasses();
             }
         }
-        if (docWidth > 760) {
+        else {
             if (document.querySelector("#nav-tabContent").classList.contains("tab-content") == true) {
                 removeClasses();
             }

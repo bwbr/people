@@ -1,7 +1,7 @@
 class AtividadeController {
     constructor() {
         this._atividades = new Atividades();
-        this._atividadesView = new AtividadesView('[data-card="ActivitiesView"]');
+        this._atividadesView = new AtividadesView('[data-card]');
         this._mensagemView = new MensagemView('#mensagemView');
         this._inputId = document.querySelector('#id');
         this._inputTitulo = document.querySelector('#titulo');

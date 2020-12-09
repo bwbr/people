@@ -5,7 +5,7 @@ class AtividadeController {
         private _inputDescricao: HTMLInputElement; 
         private _inputIdCard: HTMLInputElement;
         private _atividades = new Atividades();
-        private _atividadesView = new AtividadesView('[data-card="ActivitiesView"]');
+        private _atividadesView = new AtividadesView('[data-card]');
         private _mensagemView = new MensagemView('#mensagemView');
 
         constructor(){
