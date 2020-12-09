@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "outDir": "app/js",
+        "noEmitOnError": true,
+        "noImplicitAny": true,
+        "moduleResolution": "Node", //*
+        //"allowSyntheticDefaultImports": true, //*
+        "removeComments": true //remove comentarios
+    },
+    "include": [
+        "app/ts/**/*"
+    ]
+}

@@ -1,0 +1,110 @@
+/*--KANBAN--*/
+
+@media screen and (max-width: 768px) {
+    .kanban{
+        .card-to-do, .card-in-progress, .card-done{
+            .card-header{
+                align-content: flex-end;
+                h5{
+                    display: none;
+                }
+            }
+        }
+    }
+  }
+@media screen and (min-width: 769px) {
+    .kanban{
+        .nav-tabs{
+            display: none;
+        }
+    }
+  }
+
+
+
+.kanban{
+    @include bg-kanban;
+    color: $title-kanban;
+    .card{      
+        width: auto;
+        .card-body{    
+            .btn-link{
+               // width: 100%;
+                @include link;
+                color: $text-color-global !important;    
+            }                   
+        }
+    }
+}
+
+.nav-tabs{
+    border:0;
+    .nav-link-to-do{
+        background:lighten($color: $bg-to-do-hex, $amount: 0);
+        color: $text-color-global !important;
+        border:0;
+        border-radius: 5px 5px 0 0;
+        padding:0px;
+        padding-top:10px;
+        padding-bottom:10px;
+    }
+    .nav-link-in-progress{ 
+        background:lighten($color: $bg-in-progress-hex, $amount: 0);
+        color: $text-color-global !important;
+        border:0;
+        border-radius: 5px 5px 0 0;
+        padding:0px;
+        padding-top:10px;
+        padding-bottom:10px;
+    }
+    .nav-link-done{
+        background:lighten($color: $bg-done-hex, $amount: 0);
+        color: $text-color-global !important;
+        border:0;
+        border-radius: 5px 5px 0 0;
+        padding:0px;
+        padding-top:10px;
+        padding-bottom:10px;
+    }
+}
+
+.card-to-do{
+    @include format-card($bg-to-do-rgb,$bg-to-do-hex);
+    .card-header{
+        .btn-sm{
+            background:lighten($color: $bg-to-do-hex, $amount: 30);
+            color: $text-color-global !important; 
+            font-size: 10px !important; 
+        }
+        .badge{
+            background:darken($color: $bg-to-do-hex, $amount: 20);
+            @extend %shadow-box-inset;
+            color: $title-kanban;
+            margin-left: 10px !important; 
+        }
+    }      
+
+    @include format-activity($bg-to-do-hex);
+}
+.card-in-progress{
+    @include format-card($bg-in-progress-rgb,$bg-in-progress-hex);
+    .card-header{
+        .badge{
+            background:darken($color: $bg-in-progress-hex, $amount: 20);
+            @extend %shadow-box-inset;
+            color: $title-kanban;
+        }
+    }            
+    @include format-activity($bg-in-progress-hex);
+}   
+.card-done{
+    @include format-card($bg-done-rgb,$bg-done-hex);
+    .card-header{
+        .badge{
+            background:darken($color: $bg-done-hex, $amount: 20);
+            @extend %shadow-box-inset;
+            color: $title-kanban;
+        }
+    }          
+    @include format-activity($bg-done-hex);
+}

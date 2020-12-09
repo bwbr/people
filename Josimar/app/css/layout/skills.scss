@@ -1,0 +1,14 @@
+.skills{
+    @include format-bg-gray-radial; 
+    color: $title-skills;
+    .progress{
+        border:0.1em solid #6b6a6a;
+        border-top:0;
+    }
+    .progress-bar-blue{
+        background-color: rgb(117, 193, 236) !important;
+    }
+    .progress-bar-success{
+        background-color: rgb(92, 184, 92) !important;
+    }
+}

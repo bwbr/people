@@ -1,0 +1,15 @@
+/*--NAVBAR--*/
+.navbar{
+    @extend %shadow-box;
+    @include navbar;
+    .nav-link, .navbar-brand{
+        @include link;
+        color: $navbar-text-color !important;
+    }
+    .nav-item:hover{
+        @extend %shadow-box;
+        border-radius: 5px;
+        background-color: $link-color;
+    }
+}
+

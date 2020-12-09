@@ -1,0 +1,22 @@
+{
+  "name": "josimar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "tsc",
+    "start": "tsc -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jquery": "^2.0.42",
+    "@types/moment": "^2.13.0",
+    "typescript": "^2.7.2"
+  },
+  "dependencies": {
+    "jquery": "^3.5.1",
+    "moment": "^2.29.1"
+  }
+}
