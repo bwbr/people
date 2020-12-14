@@ -98,6 +98,10 @@ h1{
     display: none;
 }
 
+.relativo input{
+    width: 100%;
+}
+
 .formacoes{
     background-color: #FFFAFA;
     margin: .2rem 0;

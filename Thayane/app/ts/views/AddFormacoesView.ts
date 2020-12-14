@@ -9,13 +9,13 @@ export class AddFormacoesView extends View<AddFormacoes>{
                 <div class="card formacoes arrastar_js" draggable="true">
                     <div class="card-header">
                         <a class="card-link" data-toggle="collapse" href="#collapse${formacao.numA}">
-                            ${formacao.formacao}
+                            ${formacao.formacaoTitulo}
                         </a>
                     </div>
             
                     <div id="collapse${formacao.numB}" class="collapse" data-parent="#accordion_fazer">
                         <div class="card-body">
-                            'Lorem ipsum...'
+                            ${formacao.formacaoDescricao}
                         </div>
                     </div>
                 </div>

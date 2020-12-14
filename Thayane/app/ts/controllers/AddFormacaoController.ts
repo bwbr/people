@@ -3,14 +3,16 @@ import { AddFormacoes } from '../models/AddFormacoes';
 import { AddFormacao } from '../models/AddFormacao';
 
 export class AddFormacaoController{
-    private _inputFormacao: JQuery;
+    private _inputFormacaoTitulo: JQuery;
+    private _inputFormacaoDescricao: JQuery;
     private _formacoes = new AddFormacoes();
     private _numA: number;
     private _numB: number;
     private _addFormacoesView = new AddFormacoesView('#addAqui')
     
     constructor(){
-        this._inputFormacao = $('#novaFormacao');
+        this._inputFormacaoTitulo = $('#novaFormacaoTitulo');
+        this._inputFormacaoDescricao = $('#novaFormacaoDescricao');
         this._numA = 0;
         this._numB = 0;
         this._addFormacoesView.update(this._formacoes);
@@ -20,7 +22,8 @@ export class AddFormacaoController{
         event.preventDefault();
 
         const addFormacao = new AddFormacao(
-            this._inputFormacao.val(),
+            this._inputFormacaoTitulo.val(),
+            this._inputFormacaoDescricao.val(),
             this._numA,
             this._numB
         );
@@ -31,6 +34,7 @@ export class AddFormacaoController{
     }
 
     _limparFormulario(){
-        this._inputFormacao = $('#novaFormacao').val("");
+        this._inputFormacaoTitulo = $('#novaFormacaoTitulo').val("");
+        this._inputFormacaoDescricao = $('#novaFormacaoDescricao').val("");
     }
 }

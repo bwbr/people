@@ -93,9 +93,10 @@
 
                             <!-- Formulário para adicionar tarefa -->
                             <form data-form class="input-group mb-3 collapse navbar-collapse" id="Adicionar">
-                                <input id="novaFormacao" data-form-formacao type="text" name="novaFormacao" class="form-control" placeholder="Escreva algo..">
-                                <div class="input-group-append">
-                                  <button aria-label="submit form" data-form-btn id="ConfirmarAdicionar" class="btn btn-primary" type="submit">Enviar</button>
+                                <div class="form-group relativo">
+                                    <input id="novaFormacaoTitulo" data-form-formacao type="text" name="novaFormacaoTitulo" class="form-control mt-2" placeholder="Título" required>
+                                    <input id="novaFormacaoDescricao" data-form-formacao type="text" name="novaFormacaoDescricao" class="form-control mt-2" placeholder="Descrição" required>
+                                    <button aria-label="submit form" data-form-btn id="ConfirmarAdicionar" class="btn btn-primary mt-2" type="submit">Adicionar</button>
                                 </div>
                             </form>
 
@@ -213,11 +214,11 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-       
-        <script src="dist/js/bootstrap.bundle.min.js"></script>
         
         <script src="lib/jquery.min.js"></script>
         <script src="lib/system.js"></script>
+        
+        <script src="dist/js/bootstrap.bundle.min.js"></script>
         <script>
             System.defaultJSExtensions = true;
             System.import('js/app.js').catch(err => console.error(err));
