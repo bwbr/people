@@ -4,8 +4,9 @@
         "outDir": "app/js",
         "noEmitOnError": true,
         "noImplicitAny": true,
-        "moduleResolution": "Node", //*
-        //"allowSyntheticDefaultImports": true, //*
+        "module": "system",
+        "moduleResolution": "node", //*
+        "allowSyntheticDefaultImports": true, //*
         "removeComments": true //remove comentarios
     },
     "include": [

@@ -1,10 +1,19 @@
-//remove alert apos exibir
-$('#form_activity').submit(e =>{
+$('#form_activity_add').submit(e => {
+  alerts(e);
+});
+
+$('#form_activity_edit').submit(e => {
+  alerts(e);
+});
+
+
+function alerts(e: any){
+  e.preventDefault();
   $('[data-form]').removeClass('show');
   $('[data-card]').addClass('show');
-  e.preventDefault();
-    $('#mensagemView').removeClass('show');
-    setTimeout(function() {
-      $('#mensagemView').remove()
-    }, 4000); 
-});
+  setTimeout(function () {
+      $('#mensagemView .alert').removeClass('show');
+      $('#mensagemView .alert').addClass('hide');
+      $('#mensagemView').html('');
+  }, 4000);
+}

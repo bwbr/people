@@ -1,20 +1,19 @@
-class Atividade {
-    constructor(_id, _titulo, _descricao, _idCard) {
-        this._id = _id;
-        this._titulo = _titulo;
-        this._descricao = _descricao;
-        this._idCard = _idCard;
-    }
-    get id() {
-        return this._id;
-    }
-    get titulo() {
-        return this._titulo;
-    }
-    get descricao() {
-        return this._descricao;
-    }
-    get idCard() {
-        return this._idCard;
-    }
-}
+System.register([], function (exports_1, context_1) {
+    "use strict";
+    var __moduleName = context_1 && context_1.id;
+    var Atividade;
+    return {
+        setters: [],
+        execute: function () {
+            Atividade = class Atividade {
+                constructor(id, titulo, descricao, idCard) {
+                    this.id = id;
+                    this.titulo = titulo;
+                    this.descricao = descricao;
+                    this.idCard = idCard;
+                }
+            };
+            exports_1("Atividade", Atividade);
+        }
+    };
+});
