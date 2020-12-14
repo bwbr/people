@@ -27,5 +27,10 @@ export class AddFormacaoController{
 
         this._formacoes.adiciona(addFormacao);
         this._addFormacoesView.update(this._formacoes);
+        this._limparFormulario();
+    }
+
+    _limparFormulario(){
+        this._inputFormacao = $('#novaFormacao').val("");
     }
 }
