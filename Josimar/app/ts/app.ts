@@ -1,7 +1,12 @@
+import {AtividadeController} from './controllers/AtividadeController';
+
 const controller = new AtividadeController();
 
-document
-    .querySelector('#form_activity')
-    .addEventListener('submit', controller.adiciona.bind(controller));
+controller.atualiza();
 
-    
+// submete o form que adiciona atividades
+$('#form_activity_add').submit(controller.adiciona.bind(controller));
+// submete o form que edita atividades
+$('#form_activity_edit').submit(controller.edita.bind(controller));
+// limpa o form que adiciona atividades
+$('#clear_btn').click(controller.limpa.bind(controller));

@@ -20,7 +20,11 @@
     }
   }
 
+.bg-to-do{background:lighten($color: $bg-to-do-hex, $amount: 20);}
 
+.bg-in-progress{background:lighten($color: $bg-in-progress-hex, $amount: 20);}
+
+.bg-done{background:lighten($color: $bg-done-hex, $amount: 20);}
 
 .kanban{
     @include bg-kanban;

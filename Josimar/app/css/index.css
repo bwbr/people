@@ -144,6 +144,15 @@ a:hover, a :active, a :link {
 @media screen and (min-width: 769px) {
   .kanban .nav-tabs {
     display: none; } }
+.bg-to-do {
+  background: #eba5a3; }
+
+.bg-in-progress {
+  background: #f8d9ac; }
+
+.bg-done {
+  background: #a3d7a3; }
+
 .kanban {
   background: #22425e;
   background: -moz-radial-gradient(circle, #22425e 0%, #428bca 0%, #305c83 100%);
