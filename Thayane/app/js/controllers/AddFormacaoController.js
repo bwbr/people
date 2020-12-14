@@ -29,6 +29,10 @@ System.register(["../views/AddFormacoesView", "../models/AddFormacoes", "../mode
                     const addFormacao = new AddFormacao_1.AddFormacao(this._inputFormacao.val(), this._numA, this._numB);
                     this._formacoes.adiciona(addFormacao);
                     this._addFormacoesView.update(this._formacoes);
+                    this._limparFormulario();
+                }
+                _limparFormulario() {
+                    this._inputFormacao = $('#novaFormacao').val("");
                 }
             };
             exports_1("AddFormacaoController", AddFormacaoController);
