@@ -93,9 +93,12 @@
 
                             <!-- Formulário para adicionar tarefa -->
                             <form data-form class="input-group mb-3 collapse navbar-collapse" id="Adicionar">
-                                <input id="novaFormacao" data-form-formacao type="text" name="novaFormacao" class="form-control" placeholder="Escreva algo..">
-                                <div class="input-group-append">
-                                  <button aria-label="submit form" data-form-btn id="ConfirmarAdicionar" class="btn btn-primary" type="submit">Enviar</button>
+                                <div class="form-group relativo">
+                                    <input id="novaFormacaoTitulo" data-form-formacao type="text" name="novaFormacaoTitulo" class="form-control mt-2 pr-2 pl-2" placeholder="Título" required>
+                                    <input id="novaFormacaoDescricao" data-form-formacao type="text" name="novaFormacaoDescricao" class="form-control mt-2 pr-2 pl-2" placeholder="Descrição" required>
+                                </div>
+                                <div class="input-group-append ml-2 direita">
+                                  <button aria-label="submit form" data-form-btn id="ConfirmarAdicionar" class="btn btn-primary direita" type="submit">Adicionar</button>
                                 </div>
                             </form>
 

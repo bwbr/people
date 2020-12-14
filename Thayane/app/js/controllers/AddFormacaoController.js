@@ -19,20 +19,22 @@ System.register(["../views/AddFormacoesView", "../models/AddFormacoes", "../mode
                 constructor() {
                     this._formacoes = new AddFormacoes_1.AddFormacoes();
                     this._addFormacoesView = new AddFormacoesView_1.AddFormacoesView('#addAqui');
-                    this._inputFormacao = $('#novaFormacao');
+                    this._inputFormacaoTitulo = $('#novaFormacaoTitulo');
+                    this._inputFormacaoDescricao = $('#novaFormacaoDescricao');
                     this._numA = 0;
                     this._numB = 0;
                     this._addFormacoesView.update(this._formacoes);
                 }
                 adiciona(event) {
                     event.preventDefault();
-                    const addFormacao = new AddFormacao_1.AddFormacao(this._inputFormacao.val(), this._numA, this._numB);
+                    const addFormacao = new AddFormacao_1.AddFormacao(this._inputFormacaoTitulo.val(), this._inputFormacaoDescricao.val(), this._numA, this._numB);
                     this._formacoes.adiciona(addFormacao);
                     this._addFormacoesView.update(this._formacoes);
                     this._limparFormulario();
                 }
                 _limparFormulario() {
-                    this._inputFormacao = $('#novaFormacao').val("");
+                    this._inputFormacaoTitulo = $('#novaFormacaoTitulo').val("");
+                    this._inputFormacaoDescricao = $('#novaFormacaoDescricao').val("");
                 }
             };
             exports_1("AddFormacaoController", AddFormacaoController);
