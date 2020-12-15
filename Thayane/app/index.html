@@ -92,11 +92,15 @@
                             </div>
 
                             <!-- Formulário para adicionar tarefa -->
-                            <form data-form class="input-group mb-3 collapse navbar-collapse" id="Adicionar">
-                                <div class="form-group relativo">
-                                    <input id="novaFormacaoTitulo" data-form-formacao type="text" name="novaFormacaoTitulo" class="form-control mt-2" placeholder="Título" required>
-                                    <input id="novaFormacaoDescricao" data-form-formacao type="text" name="novaFormacaoDescricao" class="form-control mt-2" placeholder="Descrição" required>
-                                    <button aria-label="submit form" data-form-btn id="ConfirmarAdicionar" class="btn btn-primary mt-2" type="submit">Adicionar</button>
+                            <form data-form-formacao class="col mb-3 mt-1 collapse navbar-collapse fundoAdd" id="Adicionar">
+                                <div class="row p-1">
+                                    <input id="novaFormacaoTitulo" type="text" name="novaFormacaoTitulo" class="form-control mt-2" placeholder="Título" required maxlength="40">
+                                </div>
+                                <div class="row p-1">
+                                    <textarea id="novaFormacaoDescricao" type="text" rows="2" name="novaFormacaoDescricao" class="form-control mt-2" placeholder="Descrição" required style="resize: none" maxlength="80"></textarea>
+                                </div>
+                                <div class="row p-1 direita">
+                                    <button aria-label="submit form" id="ConfirmarAdicionar" class="btn btn-primary mt-2" type="submit">Adicionar</button>
                                 </div>
                             </form>
 
@@ -128,28 +132,44 @@
 
                 <!-- Skills -->
                 <section id="Skills" class="container-fluid container_meu">
-                    <h2>Skills</h2>
+                    <div class="d-flex justify-content-between">
+                        <h2>Skills</h2>
+                        <button id="btn-add-skill" class="navbar-toggler bg-success" type="button" data-toggle="collapse" data-target="#AdicionarSkill" aria-controls="AdicionarSkill" aria-expanded="false" aria-label="Toggle navigation">
+                            <span id=sinal-skill>+</span>
+                        </button>
+                    </div>
 
-                    <ul class="list-group">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">HTML
-                            <div class="progress">
-                                <div class="progress-bar bg-success" style="width: 100%"></div>
-                            </div>
-                        </li>
+                    <form data-form-skill class="col mb-3 mt-1 collapse navbar-collapse fundoAdd" id="AdicionarSkill">
+                        <div class="input-group p-1">
+                            <input id="novaSkillTitulo" type="text" name="novaSkillTitulo" class="form-control mt-2" placeholder="Título" required maxlength="40">
+                        </div>
+                        <div class="input-group p-1 pb-3">
+                            <input id="novaSkillPorcentagem" type="number" name="novaSkillPorcentagem" class="form-control mt-2 mr-1" placeholder="%" required aria-valuemax="100" aria-valuemin="0" aria-valuenow="20">
+                            <button aria-label="submit form" id="ConfirmarAdicionarSkill" class="btn btn-primary mt-2 ml-1" type="submit">Adicionar</button>
+                        </div>
+                    </form>
 
-                        <li class="list-group-item d-flex justify-content-between align-items-center">CSS
-                            <div class="progress">
-                                <div class="progress-bar bg-success" style="width: 100%"></div>
-                            </div>
-                        </li>
-
-                        <li class="list-group-item d-flex justify-content-between align-items-center">JS
-                            <div class="progress">
-                                <div class="progress-bar bg-success" style="width:66.66%"></div>
-                                <div class="progress-bar bg-danger" style="width:33.34%"></div>
-                            </div>
-                        </li>
+                    <ul id="novaSkill" class="list-group">
+                        
                     </ul>
+                    
+                    <!-- Modal -->
+                    <div class="modal" id="myModal" style="display: none;" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Valor inválido!</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    Insira um valor entre 0 e 100!
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="btn-modal" type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </section>
 
                 <!-- Atividades -->
@@ -217,18 +237,12 @@
         
         <script src="lib/jquery.min.js"></script>
         <script src="lib/system.js"></script>
-        
+
         <script src="dist/js/bootstrap.bundle.min.js"></script>
         <script>
             System.defaultJSExtensions = true;
             System.import('js/app.js').catch(err => console.error(err));
         </script>
-        <!--<script src="/app/js/MudarClasseResponsivo.js"></script>-->
-        <!--<script src="/app/js/Arrastar.js"></script>-->
-        <!--<script src="/app/js/CriarFormacoes/CriarFormacoes.js"></script>-->
-        <!--<script src="/app/js/CriarFormacoes/BotaoAdd_X.js"></script>-->
-        <!--<script src="/app/js/CriarAtividades.js"></script>-->
-        <!--<script src="/app/js/ContarQuantidadeDeTarefas.js"></script>-->
     </body>
 
 </html>

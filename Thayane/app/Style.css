@@ -98,8 +98,9 @@ h1{
     display: none;
 }
 
-.relativo input{
-    width: 100%;
+.fundoAdd{
+    border-radius: .2rem;
+    background-color: #A1ACB3;
 }
 
 .formacoes{
