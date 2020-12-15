@@ -47,22 +47,20 @@ System.register(["../services/localStorage", "../views/index", "../models/index"
                     event.preventDefault();
                     const atividade = new index_2.Atividade(this.autoIncrement(), this._inputTitulo.value, this._inputDescricao.value, ('cardToDo'));
                     this._atividades.adiciona(atividade);
-                    this._localStorage.addStorage(this._atividades, 'Atividades');
+                    this._localStorage.addStorage('Atividades', this._atividades);
                     this._mensagemView.update('Atividade adicionada com sucesso!');
                     this.atualiza();
                     this.limpa();
                 }
                 edita(id, id_card) {
-                    console.log('entrou em editar');
                     let array = this.buscaId(id);
                     console.log(array);
                     for (let chave in array) {
                         if (array.hasOwnProperty(chave)) {
                             array = array[chave];
-                            for (let i = 0; i <= array.length; i++) {
-                                if (array[i].id == id) {
-                                    localStorage.setItem(array[i].idCard, id_card);
-                                }
+                            for (let i = 0; i < array.length; i++) {
+                                console.log('entrou em editar ', array[i].id);
+                                this._localStorage.editStorage(array[i].idCard, id_card);
                             }
                         }
                     }
@@ -115,8 +113,6 @@ System.register(["../services/localStorage", "../views/index", "../models/index"
                     let activity = document.querySelectorAll('.activity');
                     let card_body = document.querySelectorAll('.activities');
                     let draggedActivity = null;
-                    let draggedActivityId = null;
-                    let dropedCardId = null;
                     for (let i = 0; i < activity.length; i++) {
                         let a = activity[i];
                         a.addEventListener('dragstart', function () {
@@ -141,10 +137,8 @@ System.register(["../services/localStorage", "../views/index", "../models/index"
                             });
                             cb.addEventListener('drop', function (e) {
                                 this.append(draggedActivity);
-                                draggedActivityId = draggedActivity.id;
-                                dropedCardId = this.id;
                                 const controller = new AtividadeController();
-                                controller.edita(draggedActivityId, dropedCardId);
+                                controller.edita(draggedActivity.id, this.id);
                                 controller.lista();
                                 controller.badge();
                             });

@@ -50,7 +50,7 @@ export class AtividadeController {
             ); 
             
             this._atividades.adiciona(atividade);
-            this._localStorage.addStorage(this._atividades,'Atividades'); 
+            this._localStorage.addStorage('Atividades', this._atividades); 
             this._mensagemView.update('Atividade adicionada com sucesso!');  
             this.atualiza();          
             this.limpa();//limpar campos formulário do cadastro Atividade
@@ -58,18 +58,18 @@ export class AtividadeController {
 
         //edita as atividades
         edita(id: string, id_card: string): void{
-            console.log('entrou em editar');
+           
            //busca objeto
-            let array: any = this.buscaId(id); 
+            let array: any = this.buscaId(id);
+             
             console.log(array);
             for (let chave in array){
-                if (array.hasOwnProperty(chave)) {
+                if (array.hasOwnProperty(chave)) { 
                     array =  array[chave]; 
-                    for(let i=0; i <= array.length; i++){
-                        if(array[i].id == id){
-                            localStorage.setItem(array[i].idCard, id_card);
-                        } 
-                    }                                          
+                    for(let i=0; i < array.length; i++){   
+                        console.log('entrou em editar ', array[i].id);
+                        this._localStorage.editStorage(array[i].idCard, id_card);    
+                    }                      
                 } 
             }
 
@@ -129,9 +129,7 @@ export class AtividadeController {
             let activity = document.querySelectorAll('.activity');
             let card_body = document.querySelectorAll('.activities');
 
-            let draggedActivity: any = null;            
-            let draggedActivityId: string = null;
-            let dropedCardId: string = null;
+            let draggedActivity: any = null;           
     
             //Percorre / busca todas as divs com classes de ".activity"
             for(let i = 0; i < activity.length; i++){
@@ -170,10 +168,8 @@ export class AtividadeController {
                     cb.addEventListener('drop', function(e){
                         
                         this.append(draggedActivity); 
-                        draggedActivityId = draggedActivity.id;
-                        dropedCardId = this.id;
                         const controller = new AtividadeController();
-                        controller.edita(draggedActivityId, dropedCardId)
+                        controller.edita(draggedActivity.id, this.id);
                         controller.lista();
                         controller.badge(); 
 
