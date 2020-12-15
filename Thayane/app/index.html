@@ -92,15 +92,15 @@
                             </div>
 
                             <!-- Formulário para adicionar tarefa -->
-                            <form data-form class="col mb-3 mt-1 collapse navbar-collapse fundoAdd" id="Adicionar">
+                            <form data-form-formacao class="col mb-3 mt-1 collapse navbar-collapse fundoAdd" id="Adicionar">
                                 <div class="row p-1">
-                                    <input id="novaFormacaoTitulo" data-form-formacao type="text" name="novaFormacaoTitulo" class="form-control mt-2" placeholder="Título" required maxlength="40">
+                                    <input id="novaFormacaoTitulo" type="text" name="novaFormacaoTitulo" class="form-control mt-2" placeholder="Título" required maxlength="40">
                                 </div>
                                 <div class="row p-1">
-                                    <textarea id="novaFormacaoDescricao" data-form-formacao type="text" rows="2" name="novaFormacaoDescricao" class="form-control mt-2" placeholder="Descrição" required style="resize: none" maxlength="80"></textarea>
+                                    <textarea id="novaFormacaoDescricao" type="text" rows="2" name="novaFormacaoDescricao" class="form-control mt-2" placeholder="Descrição" required style="resize: none" maxlength="80"></textarea>
                                 </div>
                                 <div class="row p-1 direita">
-                                    <button aria-label="submit form" data-form-btn id="ConfirmarAdicionar" class="btn btn-primary mt-2" type="submit">Adicionar</button>
+                                    <button aria-label="submit form" id="ConfirmarAdicionar" class="btn btn-primary mt-2" type="submit">Adicionar</button>
                                 </div>
                             </form>
 
@@ -139,45 +139,37 @@
                         </button>
                     </div>
 
-                    <form data-form class="col mb-3 mt-1 collapse navbar-collapse fundoAdd" id="AdicionarSkill">
+                    <form data-form-skill class="col mb-3 mt-1 collapse navbar-collapse fundoAdd" id="AdicionarSkill">
                         <div class="input-group p-1">
-                            <input id="novaSkillTitulo" data-form-skill type="text" name="novaSkillTitulo" class="form-control mt-2" placeholder="Título" required maxlength="40">
+                            <input id="novaSkillTitulo" type="text" name="novaSkillTitulo" class="form-control mt-2" placeholder="Título" required maxlength="40">
                         </div>
                         <div class="input-group p-1 pb-3">
-                            <input id="novaSkillDescricao" data-form-skill type="text" name="novaSkillDescricao" class="form-control mt-2 mr-1" placeholder="%" required aria-valuemax="100" aria-valuemin="0" aria-valuenow="20">
-                            <button aria-label="submit form" data-form-skill-btn id="ConfirmarAdicionarSkill" class="btn btn-primary mt-2 ml-1" type="submit">Adicionar</button>
+                            <input id="novaSkillPorcentagem" type="number" name="novaSkillPorcentagem" class="form-control mt-2 mr-1" placeholder="%" required aria-valuemax="100" aria-valuemin="0" aria-valuenow="20">
+                            <button aria-label="submit form" id="ConfirmarAdicionarSkill" class="btn btn-primary mt-2 ml-1" type="submit">Adicionar</button>
                         </div>
                     </form>
 
                     <ul id="novaSkill" class="list-group">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">HTML
-                            <div class="progress">
-                                <div class="progress-bar bg-success" style="width: 100%"></div>
-                                <div class="progress-bar bg-danger" style="width:0%"></div>
-                            </div>
-                        </li>
-
-                        <li class="list-group-item d-flex justify-content-between align-items-center">CSS
-                            <div class="progress">
-                                <div class="progress-bar bg-success" style="width: 100%"></div>
-                                <div class="progress-bar bg-danger" style="width:0%"></div>
-                            </div>
-                        </li>
-
-                        <li class="list-group-item d-flex justify-content-between align-items-center">JS
-                            <div class="progress">
-                                <div class="progress-bar bg-success" style="width:90%"></div>
-                                <div class="progress-bar bg-danger" style="width:10%"></div>
-                            </div>
-                        </li>
-
-                        <li class="list-group-item d-flex justify-content-between align-items-center">TS
-                            <div class="progress">
-                                <div class="progress-bar bg-success" style="width:70%"></div>
-                                <div class="progress-bar bg-danger" style="width:30%"></div>
-                            </div>
-                        </li>
+                        
                     </ul>
+                    
+                    <!-- Modal -->
+                    <div class="modal" id="myModal" style="display: none;" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Valor inválido!</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    Insira um valor entre 0 e 100!
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="btn-modal" type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </section>
 
                 <!-- Atividades -->

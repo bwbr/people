@@ -8,7 +8,7 @@ export class AddFormacaoController{
     private _numA: number;
     private _numB: number;
     private _quant: JQuery;
-    private _addFormacoesView = new AddFormacoesView('#addAqui')
+    private _addFormacoesView = new AddFormacoesView('#addAqui');
     
     constructor(){
         this._inputFormacaoTitulo = $('#novaFormacaoTitulo');
