@@ -1,5 +1,9 @@
 # people
 
-## Josimar https://bwbr.github.io/people/Josimar/
+## Josimar 
 
-## Thayane https://bwbr.github.io/people/Thayane/
+- https://bwbr.github.io/people/Josimar/
+
+## Thayane 
+
+- https://bwbr.github.io/people/Thayane/
