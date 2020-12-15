@@ -1,6 +1,5 @@
-import { AddFormacoesView } from '../views/AddFormacoesView';
-import { AddFormacoes } from '../models/AddFormacoes';
-import { AddFormacao } from '../models/AddFormacao';
+import { AddFormacoesView } from '../views/index';
+import { AddFormacoes, AddFormacao } from '../models/index';
 
 export class AddFormacaoController{
     private _inputFormacaoTitulo: JQuery;
@@ -8,6 +7,7 @@ export class AddFormacaoController{
     private _formacoes = new AddFormacoes();
     private _numA: number;
     private _numB: number;
+    private _quant: JQuery;
     private _addFormacoesView = new AddFormacoesView('#addAqui')
     
     constructor(){
@@ -15,6 +15,8 @@ export class AddFormacaoController{
         this._inputFormacaoDescricao = $('#novaFormacaoDescricao');
         this._numA = 0;
         this._numB = 0;
+        //Olá! Precisa ser mudado!
+        //this._quant = $('#');
         this._addFormacoesView.update(this._formacoes);
     }
 

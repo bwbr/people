@@ -1,5 +1,4 @@
-import { AddFormacaoController } from './controllers/AddFormacaoController';
-import { MudarClasseResponsivo } from './controllers/MudarClasseResponsivo';
+import { AddFormacaoController, MudarClasseResponsivo, AddSkillController} from './controllers/index';
 
 const muda = new MudarClasseResponsivo();
 $.when(window).then(() => muda.tamanho());
