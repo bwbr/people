@@ -1,3 +1,29 @@
+/* Ícones */
+.iconeEditar{
+    content: url(./dist/images/pencil-square.svg);
+}
+
+.iconeExpandir{
+    content: url(./dist/images/arrows-angle-expand.svg);
+}
+
+.iconeCumprimir{
+    content: url(./dist/images/arrows-angle-contract.svg);
+}
+
+.iconeDeletar{
+    content: url(./dist/images/trash.svg);
+}
+
+.iconeMoverDireita{
+    content: url(./dist/images/box-arrow-right.svg);
+}
+
+.iconeMoverEsquerda{
+    content: url(./dist/images/box-arrow-left.svg);
+}
+
+/* Estilos */
 body {
     min-height: 75rem;
     position: relative;
@@ -107,10 +133,6 @@ h1{
     background-color: #FFFAFA;
     margin: .2rem 0;
     padding: 0 .2rem;
-}
-
-.card-header .card-link::before {
-    content: "\272F";
 }
 
 .movendo {
