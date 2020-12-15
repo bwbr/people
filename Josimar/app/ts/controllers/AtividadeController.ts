@@ -46,7 +46,7 @@ export class AtividadeController {
                 this.autoIncrement(),//define o autoincremente vindo da função
                 this._inputTitulo.value,
                 this._inputDescricao.value,
-                ('cardToDo')//define o card inicial da atividade
+                ('cardDone')//define o card inicial da atividade
             ); 
             
             this._atividades.adiciona(atividade);
@@ -62,8 +62,8 @@ export class AtividadeController {
 
         //edita as atividades
         edita(id: string, id_card: string): void{
-           
            //busca objeto
+<<<<<<< refs/remotes/origin/main
             let array: any = this.buscaId(id);
                 const atividade = new Atividade(
                     array.id,
@@ -76,6 +76,21 @@ export class AtividadeController {
                 this._localStorage.editStorage('_atividades', this._atividades); 
                 array = this.buscaId(id);
                 console.log('Card depois: ', array.idCard);
+=======
+            let array: any = this.buscaId(id); 
+            const atividade = new Atividade(
+                array.id,
+                array.titulo,
+                array.descricao,
+                id_card
+            ); 
+            console.log('Antes: ', array.idCard);
+            this._atividades.adiciona(atividade);
+            this._localStorage.addStorage('Atividades', this._atividades); 
+            array = this.buscaId(id); 
+            console.log('Depois: ', array.idCard);
+
+>>>>>>> Implementando transferência das atividades
         }
         
         //lista as atividades
@@ -132,7 +147,7 @@ export class AtividadeController {
             let activity = document.querySelectorAll('.activity');
             let card_body = document.querySelectorAll('.activities');
 
-            let draggedActivity: any = null;           
+            let draggedActivity: any = null;       
     
             //Percorre / busca todas as divs com classes de ".activity"
             for(let i = 0; i < activity.length; i++){
@@ -172,8 +187,14 @@ export class AtividadeController {
                         
                         this.append(draggedActivity); 
                         const controller = new AtividadeController();
+<<<<<<< refs/remotes/origin/main
                         controller.edita(draggedActivity.id, this.id);
                         controller.atualiza();
+=======
+                        controller.edita(draggedActivity.id, this.id)
+                        controller.lista();
+                        controller.badge(); 
+>>>>>>> Implementando transferência das atividades
 
                     });
                 }  

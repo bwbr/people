@@ -45,7 +45,7 @@ System.register(["../services/localStorage", "../views/index", "../models/index"
                 }
                 adiciona(event) {
                     event.preventDefault();
-                    const atividade = new index_2.Atividade(this.autoIncrement(), this._inputTitulo.value, this._inputDescricao.value, ('cardToDo'));
+                    const atividade = new index_2.Atividade(this.autoIncrement(), this._inputTitulo.value, this._inputDescricao.value, ('cardDone'));
                     this._atividades.adiciona(atividade);
                     for (let chave in this._atividades) {
                         if (this._atividades.hasOwnProperty(chave)) {
@@ -59,11 +59,19 @@ System.register(["../services/localStorage", "../views/index", "../models/index"
                 edita(id, id_card) {
                     let array = this.buscaId(id);
                     const atividade = new index_2.Atividade(array.id, array.titulo, array.descricao, id_card);
+<<<<<<< refs/remotes/origin/main
                     console.log('Card antes: ', atividade);
                     this._atividades.adiciona(atividade);
                     this._localStorage.editStorage('_atividades', this._atividades);
                     array = this.buscaId(id);
                     console.log('Card depois: ', array.idCard);
+=======
+                    console.log('Antes: ', array.idCard);
+                    this._atividades.adiciona(atividade);
+                    this._localStorage.addStorage('Atividades', this._atividades);
+                    array = this.buscaId(id);
+                    console.log('Depois: ', array.idCard);
+>>>>>>> Implementando transferência das atividades
                 }
                 lista() {
                     let array = this._localStorage.listStorage('_atividades');
