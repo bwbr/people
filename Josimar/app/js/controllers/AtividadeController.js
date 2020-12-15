@@ -30,7 +30,7 @@ System.register(["../services/localStorage", "../views/index", "../models/index"
                         this._inputDescricao.value = '';
                 }
                 autoIncrement() {
-                    let array = this._localStorage.listStorage('Atividades');
+                    let array = this._localStorage.listStorage('_atividades');
                     if (array != undefined) {
                         for (let chave in array) {
                             if (array.hasOwnProperty(chave)) {
@@ -47,33 +47,32 @@ System.register(["../services/localStorage", "../views/index", "../models/index"
                     event.preventDefault();
                     const atividade = new index_2.Atividade(this.autoIncrement(), this._inputTitulo.value, this._inputDescricao.value, ('cardToDo'));
                     this._atividades.adiciona(atividade);
-                    this._localStorage.addStorage('Atividades', this._atividades);
+                    for (let chave in this._atividades) {
+                        if (this._atividades.hasOwnProperty(chave)) {
+                            this._localStorage.addStorage(chave, this._atividades);
+                        }
+                    }
                     this._mensagemView.update('Atividade adicionada com sucesso!');
                     this.atualiza();
                     this.limpa();
                 }
                 edita(id, id_card) {
                     let array = this.buscaId(id);
-                    console.log(array);
-                    for (let chave in array) {
-                        if (array.hasOwnProperty(chave)) {
-                            array = array[chave];
-                            for (let i = 0; i < array.length; i++) {
-                                console.log('entrou em editar ', array[i].id);
-                                this._localStorage.editStorage(array[i].idCard, id_card);
-                            }
-                        }
-                    }
+                    const atividade = new index_2.Atividade(array.id, array.titulo, array.descricao, id_card);
+                    console.log('Card antes: ', atividade);
+                    this._atividades.adiciona(atividade);
+                    this._localStorage.editStorage('_atividades', this._atividades);
+                    array = this.buscaId(id);
+                    console.log('Card depois: ', array.idCard);
                 }
                 lista() {
-                    let array = this._localStorage.listStorage('Atividades');
+                    let array = this._localStorage.listStorage('_atividades');
                     for (let chave in array) {
                         if (array.hasOwnProperty(chave)) {
                             array = array[chave];
                             for (let i = 0; i < array.length; i++) {
                                 switch (array[i].idCard) {
                                     case 'cardToDo':
-                                        console.log(array[i].idCard);
                                         this._atividadesView = new index_1.AtividadesView('.to-do');
                                         this._atividades.adiciona(array[i]);
                                         this._atividadesView.update(this._atividades);
@@ -94,7 +93,7 @@ System.register(["../services/localStorage", "../views/index", "../models/index"
                     }
                 }
                 buscaId(id) {
-                    let array = this._localStorage.listStorage('Atividades');
+                    let array = this._localStorage.listStorage('_atividades');
                     for (let chave in array) {
                         if (array.hasOwnProperty(chave)) {
                             array = array[chave];
@@ -139,8 +138,7 @@ System.register(["../services/localStorage", "../views/index", "../models/index"
                                 this.append(draggedActivity);
                                 const controller = new AtividadeController();
                                 controller.edita(draggedActivity.id, this.id);
-                                controller.lista();
-                                controller.badge();
+                                controller.atualiza();
                             });
                         }
                     }
@@ -176,7 +174,13 @@ System.register(["../services/localStorage", "../views/index", "../models/index"
                     }
                 }
                 percent(n, total) {
-                    let p = (n / total) * 100;
+                    let p;
+                    if (p < 1) {
+                        p = 0;
+                    }
+                    else {
+                        p = (n / total) * 100;
+                    }
                     return p;
                 }
                 colorBgProgress(percent_name, progress_name) {

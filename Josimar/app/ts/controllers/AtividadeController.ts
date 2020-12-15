@@ -25,7 +25,7 @@ export class AtividadeController {
 
         //gerencia o autoincrement da id
         autoIncrement(): number{
-            let array: any = this._localStorage.listStorage('Atividades'); 
+            let array: any = this._localStorage.listStorage('_atividades'); 
             if (array != undefined) { 
                 for (let chave in array){
                     if (array.hasOwnProperty(chave)) {
@@ -50,7 +50,11 @@ export class AtividadeController {
             ); 
             
             this._atividades.adiciona(atividade);
-            this._localStorage.addStorage('Atividades', this._atividades); 
+            for (let chave in this._atividades){
+                if (this._atividades.hasOwnProperty(chave)) {  
+                    this._localStorage.addStorage(chave, this._atividades);
+                }
+            }
             this._mensagemView.update('Atividade adicionada com sucesso!');  
             this.atualiza();          
             this.limpa();//limpar campos formulário do cadastro Atividade
@@ -61,31 +65,30 @@ export class AtividadeController {
            
            //busca objeto
             let array: any = this.buscaId(id);
-             
-            console.log(array);
-            for (let chave in array){
-                if (array.hasOwnProperty(chave)) { 
-                    array =  array[chave]; 
-                    for(let i=0; i < array.length; i++){   
-                        console.log('entrou em editar ', array[i].id);
-                        this._localStorage.editStorage(array[i].idCard, id_card);    
-                    }                      
-                } 
-            }
-
+                const atividade = new Atividade(
+                    array.id,
+                    array.titulo,
+                    array.descricao,
+                    id_card //define o card que a atividade foi transferida
+                ); 
+                console.log('Card antes: ', atividade);
+                this._atividades.adiciona(atividade)
+                this._localStorage.editStorage('_atividades', this._atividades); 
+                array = this.buscaId(id);
+                console.log('Card depois: ', array.idCard);
         }
         
         //lista as atividades
         lista(): void{
 
-            let array: any = this._localStorage.listStorage('Atividades');     
+            let array: any = this._localStorage.listStorage('_atividades');     
                  
             for (let chave in array){
                 if (array.hasOwnProperty(chave)) {  
                     array =  array[chave];       
                     for(let i=0; i < array.length; i++){                        
                         switch(array[i].idCard){
-                            case 'cardToDo':console.log(array[i].idCard);
+                            case 'cardToDo':
                                 this._atividadesView = new AtividadesView('.to-do');
                                 this._atividades.adiciona(array[i]);             
                                 this._atividadesView.update(this._atividades); 
@@ -108,7 +111,7 @@ export class AtividadeController {
 
         //busca atividade
         buscaId(id: string): any{
-            let array: any = this._localStorage.listStorage('Atividades'); 
+            let array: any = this._localStorage.listStorage('_atividades'); 
             for (let chave in array){
                 if (array.hasOwnProperty(chave)) {
                     array =  array[chave]; 
@@ -170,8 +173,7 @@ export class AtividadeController {
                         this.append(draggedActivity); 
                         const controller = new AtividadeController();
                         controller.edita(draggedActivity.id, this.id);
-                        controller.lista();
-                        controller.badge(); 
+                        controller.atualiza();
 
                     });
                 }  
@@ -223,8 +225,15 @@ export class AtividadeController {
 
         //Retorna a percentagem
         percent(n: number, total: number){
-            let p = (n / total) * 100;
-            return p;
+            let p: any;
+
+            if(p < 1){
+                p = 0;
+            }else{
+                p = (n / total) * 100;
+            }
+
+            return p;            
         }
 
         //função alterna cor do progress-bar
