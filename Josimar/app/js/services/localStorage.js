@@ -6,7 +6,15 @@ System.register([], function (exports_1, context_1) {
         setters: [],
         execute: function () {
             LocalStorage = class LocalStorage {
-                addStorage(value, key) {
+                addStorage(key, value) {
+                    try {
+                        localStorage.setItem(key, JSON.stringify(value));
+                    }
+                    catch (error) {
+                        console.error(error);
+                    }
+                }
+                editStorage(key, value) {
                     try {
                         localStorage.setItem(key, JSON.stringify(value));
                     }
