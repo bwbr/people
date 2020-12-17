@@ -1,11 +1,11 @@
-System.register(["../services/localStorage", "../views/index", "../models/index"], function (exports_1, context_1) {
+System.register(["../services/DBStorage", "../views/index", "../models/index"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var localStorage_1, index_1, index_2, AtividadeController;
+    var DBStorage_1, index_1, index_2, AtividadeController;
     return {
         setters: [
-            function (localStorage_1_1) {
-                localStorage_1 = localStorage_1_1;
+            function (DBStorage_1_1) {
+                DBStorage_1 = DBStorage_1_1;
             },
             function (index_1_1) {
                 index_1 = index_1_1;
@@ -18,9 +18,9 @@ System.register(["../services/localStorage", "../views/index", "../models/index"
             AtividadeController = class AtividadeController {
                 constructor() {
                     this._atividades = new index_2.Atividades();
-                    this._atividadesView = new index_1.AtividadesView('[data-card]');
+                    this._atividadesView = new index_1.AtividadesView('[data-toDo]');
                     this._mensagemView = new index_1.MensagemView('#mensagemView');
-                    this._localStorage = new localStorage_1.LocalStorage();
+                    this._dbStorage = new DBStorage_1.DBStorage();
                     this._inputTitulo = document.querySelector('#titulo');
                     this._inputDescricao = document.querySelector('#descricao');
                     this._atividadesView.update(this._atividades);
@@ -29,47 +29,41 @@ System.register(["../services/localStorage", "../views/index", "../models/index"
                     this._inputTitulo.value = '',
                         this._inputDescricao.value = '';
                 }
-                autoIncrement() {
-                    let array = this._localStorage.listStorage('_atividades');
-                    if (array != undefined) {
-                        for (let chave in array) {
-                            if (array.hasOwnProperty(chave)) {
-                                array = array[chave];
-                                return parseInt(array[array.length - 1].id) + 1;
-                            }
-                        }
-                    }
-                    else {
-                        return 1;
-                    }
-                }
                 adiciona(event) {
                     event.preventDefault();
-                    const atividade = new index_2.Atividade(this.autoIncrement(), this._inputTitulo.value, this._inputDescricao.value, ('cardToDo'));
+                    let _id;
+                    const atividade = new index_2.Atividade(_id, this._inputTitulo.value, this._inputDescricao.value, ('cardToDo'));
+                    let table = 'Atividades';
+                    let columns = `titulo, descricao, idCard`;
+                    let values = `'${atividade.titulo}', '${atividade.descricao}', '${atividade.idCard}'`;
+                    this._dbStorage.insert(table, columns, values);
                     this._atividades.adiciona(atividade);
-                    for (let chave in this._atividades) {
-                        if (this._atividades.hasOwnProperty(chave)) {
-                            this._localStorage.addStorage(chave, this._atividades);
-                        }
-                    }
+                    this._atividadesView.update(this._atividades);
                     this._mensagemView.update('Atividade adicionada com sucesso!');
                     this.atualiza();
                     this.limpa();
                 }
-                edita(id, id_card) {
-                    let array = this.buscaId(id);
-                    const atividade = new index_2.Atividade(array.id, array.titulo, array.descricao, id_card);
-                    console.log('Card antes: ', atividade);
+                edita(id, arrayAfter) {
+                    let table = 'Atividades';
+                    let condition = `id = ${id}`;
+                    let arrayBefore = this._dbStorage.search(table, condition);
+                    const atividade = new index_2.Atividade(arrayBefore.id = arrayAfter.id, arrayBefore.titulo = arrayAfter.titulo, arrayBefore.descricao = arrayAfter.descricao, arrayBefore.idCard = arrayAfter.idCard);
+                    let values = `titulo = '${atividade.titulo}', 
+                     descricao = '${atividade.descricao}', 
+                     idCard = '${atividade.idCard}'`;
+                    this._dbStorage.update(table, values, condition);
                     this._atividades.adiciona(atividade);
-                    this._localStorage.editStorage('_atividades', this._atividades);
-                    array = this.buscaId(id);
-                    console.log('Card depois: ', array.idCard);
+                    this._atividadesView.update(this._atividades);
+                    this._mensagemView.update('Atividade alterada com sucesso!');
+                    this.atualiza();
+                    this.limpa();
                 }
                 lista() {
-                    let array = this._localStorage.listStorage('_atividades');
+                    let table = 'Atividades';
+                    let array = this._dbStorage.list(table);
                     for (let chave in array) {
                         if (array.hasOwnProperty(chave)) {
-                            array = array[chave];
+                            console.log(array.length);
                             for (let i = 0; i < array.length; i++) {
                                 switch (array[i].idCard) {
                                     case 'cardToDo':
@@ -87,22 +81,6 @@ System.register(["../services/localStorage", "../views/index", "../models/index"
                                         this._atividades.adiciona(array[i]);
                                         this._atividadesView.update(this._atividades);
                                         break;
-                                }
-                            }
-                        }
-                    }
-                }
-                buscaId(id) {
-                    let array = this._localStorage.listStorage('_atividades');
-                    for (let chave in array) {
-                        if (array.hasOwnProperty(chave)) {
-                            array = array[chave];
-                            if (id != null) {
-                                for (let i = 0; i <= array.length; i++) {
-                                    if (array[i].id == id) {
-                                        id = '';
-                                        return array[i];
-                                    }
                                 }
                             }
                         }
@@ -137,7 +115,11 @@ System.register(["../services/localStorage", "../views/index", "../models/index"
                             cb.addEventListener('drop', function (e) {
                                 this.append(draggedActivity);
                                 const controller = new AtividadeController();
-                                controller.edita(draggedActivity.id, this.id);
+                                let table = 'Atividades';
+                                let condition = `id = ${draggedActivity.id}`;
+                                let arrayBefore = this._dbStorage.search(table, condition);
+                                const atividade = new index_2.Atividade(arrayBefore.id, arrayBefore.titulo, arrayBefore.descricao, arrayBefore.idCard = this.id);
+                                controller.edita(draggedActivity.id, atividade);
                                 controller.atualiza();
                             });
                         }
