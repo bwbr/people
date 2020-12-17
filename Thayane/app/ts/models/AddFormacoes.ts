@@ -8,6 +8,6 @@ export class AddFormacoes{
     }
 
     paraArray(): AddFormacao[]{
-        return [].concat(this._formacoes);
+        return ([] as AddFormacao[]).concat(this._formacoes);
     }
 }

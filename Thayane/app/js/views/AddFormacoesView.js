@@ -15,17 +15,19 @@ System.register(["./View"], function (exports_1, context_1) {
             ${model.paraArray().map(formacao => `
                 <div class="card formacoes arrastar_js" draggable="true">
                     <div class="card-header">
-                        <a class="card-link d-flex justify-content-between" data-toggle="collapse" href="#collapse${formacao.numA}">
-                            ${formacao.formacaoTitulo}
+                        <a class="card-link d-flex justify-content-between">
+                            <div class="quebrarTexto">
+                                ${formacao.formacaoTitulo}
+                            </div>
+
                             <div>
-                                <div>
-                                    <i class="iconeDeletar"></i>
-                                    <i class="iconeExpandir"></i>
-                                </div>
-                                <div>
-                                    <i class="iconeEditar"></i>
-                                    <i class="iconeCumprimir"></i>
-                                </div>
+                                <button class="btnVazio btnDeletar deleto">
+                                    <i class="icones iconeDeletar"></i>
+                                </button>
+
+                                <button id="expandir${formacao.numC}" class="btnVazio btnExpandir collapsed" data-toggle="collapse" href="#collapse${formacao.numA}">
+                                    <i class="icones iconeExpandir"></i>
+                                </button>
                             </div>
                         </a>
                     </div>
@@ -36,8 +38,12 @@ System.register(["./View"], function (exports_1, context_1) {
                         </div>
                             
                         <div class="card-footer d-flex justify-content-between">
-                            <i class="iconeMoverEsquerda"></i>
-                            <i class="iconeMoverDireita"></i>
+                            <button class="btnVazio btnMoverEsquerda">
+                                <i class="icones iconeMoverEsquerda"></i>
+                            </button>
+                            <button class="btnVazio btnMoverDireita">
+                                <i class="icones iconeMoverDireita"></i>
+                            </button>
                         </div>
                     </div>
                 </div>

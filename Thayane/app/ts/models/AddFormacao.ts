@@ -1,5 +1,5 @@
 export class AddFormacao{
-    constructor(private _formacaoTitulo: string, private _formacaoDescricao: string, private a: number, private b: number){
+    constructor(private _formacaoTitulo: string, private _formacaoDescricao: string, private a: number, private b: number, private c: number){
     }
 
     get formacaoTitulo(){
@@ -16,5 +16,9 @@ export class AddFormacao{
 
     get numB(){
         return this.b++;
+    }
+
+    get numC(){
+        return this.c++;
     }
 }

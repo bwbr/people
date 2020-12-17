@@ -1,14 +1,17 @@
 /* Ícones */
+.btnVazio{
+    border-style: none;
+    padding: 2px 2px;
+}
+
+.icones{
+    display: flex;
+    position: inherit;
+    width: 20px;
+}
+
 .iconeEditar{
     content: url(./dist/images/pencil-square.svg);
-}
-
-.iconeExpandir{
-    content: url(./dist/images/arrows-angle-expand.svg);
-}
-
-.iconeCumprimir{
-    content: url(./dist/images/arrows-angle-contract.svg);
 }
 
 .iconeDeletar{
@@ -21,6 +24,14 @@
 
 .iconeMoverEsquerda{
     content: url(./dist/images/box-arrow-left.svg);
+}
+
+    /* Quando o botão expandir/cumprimir está no modo cumprimir e depois no modo expandir*/
+.collapsed > i{
+    content: url(./dist/images/arrows-angle-expand.svg);    
+}
+.iconeExpandir{
+    content: url(./dist/images/arrows-angle-contract.svg);
 }
 
 /* Estilos */
@@ -135,6 +146,43 @@ h1{
     padding: 0 .2rem;
 }
 
+    /* Formatar as quebras de linha */
+@media(max-width:1100px){
+    .quebrarTexto{
+        max-width: 140px; 
+        word-wrap: break-word;
+    }
+}
+
+@media(min-width:1100.1px){
+    .quebrarTexto{
+        max-width: 169px; 
+        word-wrap: break-word;
+    }
+}  
+
+@media(min-width:1200px){
+    .quebrarTexto{
+        max-width: 198px; 
+        word-wrap: break-word;
+    }
+}
+
+@media(min-width:1500px){
+    .quebrarTexto{
+        max-width: 289px; 
+        word-wrap: break-word;
+    }
+}
+
+@media(min-width:1800px){
+    .quebrarTexto{
+        max-width: 360px; 
+        word-wrap: break-word;
+    }
+}
+
+/*Voltando...*/
 .movendo {
 	background-color: #ADD8E6AA;
 }
