@@ -1,4 +1,4 @@
-import {LocalStorage} from '../services/localStorage';
+import {DBStorage} from '../services/DBStorage';
 import {AtividadesView, MensagemView} from '../views/index';
 import {Atividade, Atividades} from '../models/index';
 
@@ -7,9 +7,9 @@ export class AtividadeController {
         private _inputTitulo: HTMLInputElement;
         private _inputDescricao: HTMLInputElement;
         private _atividades = new Atividades();
-        private _atividadesView = new AtividadesView('[data-card]');
+        private _atividadesView = new AtividadesView('[data-toDo]');
         private _mensagemView = new MensagemView('#mensagemView');
-        private _localStorage = new LocalStorage();
+        private _dbStorage = new DBStorage();
 
         constructor(){
             this._inputTitulo = <HTMLInputElement>document.querySelector('#titulo');
@@ -23,70 +23,68 @@ export class AtividadeController {
             this._inputDescricao.value = ''
         }
 
-        //gerencia o autoincrement da id
-        autoIncrement(): number{
-            let array: any = this._localStorage.listStorage('_atividades'); 
-            if (array != undefined) { 
-                for (let chave in array){
-                    if (array.hasOwnProperty(chave)) {
-                        array =  array[chave];  
-                        return parseInt(array[array.length - 1].id) + 1;  
-                    }
-                }
-            }else{
-                return 1;
-            }
-        }
-
         //adiciona as atividades
         adiciona(event: Event): void{
             event.preventDefault();
-
+            let _id: string;
             const atividade = new Atividade(
-                this.autoIncrement(),//define o autoincremente vindo da função
+                _id,
                 this._inputTitulo.value,
                 this._inputDescricao.value,
                 ('cardToDo')//define o card inicial da atividade
             ); 
             
+            let table: string = 'Atividades';
+            let columns: string= `titulo, descricao, idCard`;
+            let values: any = `'${atividade.titulo}', '${atividade.descricao}', '${atividade.idCard}'`;
+
+            this._dbStorage.insert(table, columns, values);
             this._atividades.adiciona(atividade);
-            for (let chave in this._atividades){
-                if (this._atividades.hasOwnProperty(chave)) {  
-                    this._localStorage.addStorage(chave, this._atividades);
-                }
-            }
+            this._atividadesView.update(this._atividades); 
             this._mensagemView.update('Atividade adicionada com sucesso!');  
             this.atualiza();          
             this.limpa();//limpar campos formulário do cadastro Atividade
         }
 
         //edita as atividades
-        edita(id: string, id_card: string): void{
-           
+        edita(id: string, arrayAfter:any): void{
+
+           let table: string = 'Atividades'; //Idica qual tabela será alterada
+           let condition: string= `id = ${id}`;//Indica qual a condição de seleção de dados
+
            //busca objeto
-            let array: any = this.buscaId(id);
+            let arrayBefore: any = this._dbStorage.search(table, condition);
+
                 const atividade = new Atividade(
-                    array.id,
-                    array.titulo,
-                    array.descricao,
-                    id_card //define o card que a atividade foi transferida
+                    arrayBefore.id = arrayAfter.id,
+                    arrayBefore.titulo = arrayAfter.titulo,
+                    arrayBefore.descricao = arrayAfter.descricao,
+                    arrayBefore.idCard  = arrayAfter.idCard
                 ); 
-                console.log('Card antes: ', atividade);
-                this._atividades.adiciona(atividade)
-                this._localStorage.editStorage('_atividades', this._atividades); 
-                array = this.buscaId(id);
-                console.log('Card depois: ', array.idCard);
+
+            //Indica campos e seus respectivos valores para alteração
+            let values: any = 
+                    `titulo = '${atividade.titulo}', 
+                     descricao = '${atividade.descricao}', 
+                     idCard = '${atividade.idCard}'`;
+
+            this._dbStorage.update(table, values, condition)
+            this._atividades.adiciona(atividade);
+            this._atividadesView.update(this._atividades); 
+            this._mensagemView.update('Atividade alterada com sucesso!');  
+            this.atualiza();          
+            this.limpa();//limpar campos formulário do cadastro Atividade
         }
         
         //lista as atividades
         lista(): void{
-
-            let array: any = this._localStorage.listStorage('_atividades');     
-                 
+            let table: string = 'Atividades';
+            let array: any = this._dbStorage.list(table);  
             for (let chave in array){
                 if (array.hasOwnProperty(chave)) {  
-                    array =  array[chave];       
-                    for(let i=0; i < array.length; i++){                        
+                    console.log(array.length);
+                    for(let i=0; i < array.length; i++){  
+
                         switch(array[i].idCard){
                             case 'cardToDo':
                                 this._atividadesView = new AtividadesView('.to-do');
@@ -105,27 +103,10 @@ export class AtividadeController {
                                 break;
                         }                         
                     }
-                } 
+                }
             }            
         }
 
-        //busca atividade
-        buscaId(id: string): any{
-            let array: any = this._localStorage.listStorage('_atividades'); 
-            for (let chave in array){
-                if (array.hasOwnProperty(chave)) {
-                    array =  array[chave]; 
-                    if(id != null){     
-                        for(let i=0; i <= array.length; i++){
-                            if(array[i].id == id){
-                                id = '';
-                                return array[i];
-                            } 
-                        }
-                    }                                               
-                } 
-            }            
-        }
 
         dragDrop(){
 
@@ -172,7 +153,21 @@ export class AtividadeController {
                         
                         this.append(draggedActivity); 
                         const controller = new AtividadeController();
-                        controller.edita(draggedActivity.id, this.id);
+
+                        //busca objeto
+                        let table: string = 'Atividades';
+                        let condition: string= `id = ${draggedActivity.id}`;
+
+                        let arrayBefore: any = this._dbStorage.search(table, condition);
+
+                        const atividade = new Atividade(
+                            arrayBefore.id,
+                            arrayBefore.titulo,
+                            arrayBefore.descricao,
+                            arrayBefore.idCard  = this.id
+                        ); 
+
+                        controller.edita(draggedActivity.id, atividade);
                         controller.atualiza();
 
                     });

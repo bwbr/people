@@ -7,7 +7,7 @@ $('#form_activity_edit').submit(e => {
 function alerts(e) {
     e.preventDefault();
     $('[data-form]').removeClass('show');
-    $('[data-card]').addClass('show');
+    $('[data-toDo]').addClass('show');
     setTimeout(function () {
         $('#mensagemView .alert').removeClass('show');
         $('#mensagemView .alert').addClass('hide');
