@@ -1,16 +1,8 @@
 export class AddFormacao{
-    constructor(private _formacaoTitulo: string, private _formacaoDescricao: string, private a: number, private b: number, private c: number){
+    constructor(readonly formacaoTitulo: string, readonly formacaoDescricao: string, private a: number, private b: number, private c: number){
     }
 
-    get formacaoTitulo(){
-        return this._formacaoTitulo;
-    }
-
-    get formacaoDescricao(){
-        return this._formacaoDescricao;
-    }
-    
-    get numA (){
+    get numA(){
         return this.a++;
     }
 
@@ -20,5 +12,9 @@ export class AddFormacao{
 
     get numC(){
         return this.c++;
+    }
+
+    paraTexto(): void{
+        console.log($(this.c))
     }
 }

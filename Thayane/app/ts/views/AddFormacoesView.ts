@@ -19,7 +19,7 @@ export class AddFormacoesView extends View<AddFormacoes>{
                                     <i class="icones iconeDeletar"></i>
                                 </button>
 
-                                <button id="${formacao.numC}" class="btnVazio btnExpandir collapsed" data-toggle="collapse" href="#collapse${formacao.numA}">
+                                <button id="expandir${formacao.numC}" class="btnVazio btnExpandir collapsed" data-toggle="collapse" href="#collapse${formacao.numA}">
                                     <i class="icones iconeExpandir"></i>
                                 </button>
                             </div>

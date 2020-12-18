@@ -6,13 +6,21 @@ System.register([], function (exports_1, context_1) {
         setters: [],
         execute: function () {
             BotoesDeletarEditar = class BotoesDeletarEditar {
-                constructor() {
-                    this._btnDeletar = $('.iconeDeletar').parent();
-                    this._btnEditar = $('.iconeEditar').parent();
-                }
                 deletar() {
+                    console.log("Deletando...");
+                    this.eu = $(this);
+                    console.log(this.eu);
+                    this.pai = this.eu.parents('.formacoes');
+                    this.pai.remove();
+                    console.log(this.pai);
                 }
                 editar() {
+                    console.log("Editando...");
+                    this.eu = $(this);
+                    console.log(this.eu);
+                    this.pai = this.eu.parents('.formacoes');
+                    this.pai.remove();
+                    console.log(this.pai);
                 }
             };
             exports_1("BotoesDeletarEditar", BotoesDeletarEditar);

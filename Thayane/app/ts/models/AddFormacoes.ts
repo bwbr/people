@@ -10,4 +10,9 @@ export class AddFormacoes{
     paraArray(): AddFormacao[]{
         return ([] as AddFormacao[]).concat(this._formacoes);
     }
+
+    /*paraTexto(): void {
+        console.log('-- Impressão --');
+        console.log(JSON.stringify(this._formacoes));
+    }*/
 }

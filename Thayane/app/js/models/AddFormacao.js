@@ -6,18 +6,12 @@ System.register([], function (exports_1, context_1) {
         setters: [],
         execute: function () {
             AddFormacao = class AddFormacao {
-                constructor(_formacaoTitulo, _formacaoDescricao, a, b, c) {
-                    this._formacaoTitulo = _formacaoTitulo;
-                    this._formacaoDescricao = _formacaoDescricao;
+                constructor(formacaoTitulo, formacaoDescricao, a, b, c) {
+                    this.formacaoTitulo = formacaoTitulo;
+                    this.formacaoDescricao = formacaoDescricao;
                     this.a = a;
                     this.b = b;
                     this.c = c;
-                }
-                get formacaoTitulo() {
-                    return this._formacaoTitulo;
-                }
-                get formacaoDescricao() {
-                    return this._formacaoDescricao;
                 }
                 get numA() {
                     return this.a++;
@@ -27,6 +21,9 @@ System.register([], function (exports_1, context_1) {
                 }
                 get numC() {
                     return this.c++;
+                }
+                paraTexto() {
+                    console.log($(this.c));
                 }
             };
             exports_1("AddFormacao", AddFormacao);
