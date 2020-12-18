@@ -20,7 +20,7 @@ System.register(["./View"], function (exports_1, context_1) {
                                 ${formacao.formacaoTitulo}
                             </div>
 
-                            <div>
+                            <div class="botoes">
                                 <button class="btnVazio btnDeletar deleto">
                                     <i class="icones iconeDeletar"></i>
                                 </button>
