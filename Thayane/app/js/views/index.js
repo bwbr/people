@@ -1,4 +1,4 @@
-System.register(["./AddFormacoesView", "./AddSkillsView", "./View"], function (exports_1, context_1) {
+System.register(["./AddFormacoesView", "./AddSkillsView", "./AddAtividadesView", "./View"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     function exportStar_1(m) {
@@ -15,6 +15,9 @@ System.register(["./AddFormacoesView", "./AddSkillsView", "./View"], function (e
             },
             function (AddSkillsView_1_1) {
                 exportStar_1(AddSkillsView_1_1);
+            },
+            function (AddAtividadesView_1_1) {
+                exportStar_1(AddAtividadesView_1_1);
             },
             function (View_1_1) {
                 exportStar_1(View_1_1);

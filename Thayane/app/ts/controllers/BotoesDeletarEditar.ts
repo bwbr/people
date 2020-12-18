@@ -1,18 +1,22 @@
 export class BotoesDeletarEditar{
-    private _btnDeletar: JQuery;
-    private _btnEditar: JQuery;
-    public num: number;
-
-    constructor(){
-        this._btnDeletar = $('.iconeDeletar').parent();
-        this._btnEditar = $('.iconeEditar').parent();
-    }
-
+    private eu: JQuery;
+    private pai: JQuery;    
+    
     deletar(){
-        
+        console.log("Deletando...");
+        this.eu = $(this);
+        console.log(this.eu);
+        this.pai = this.eu.parents('.formacoes');
+        this.pai.remove();
+        console.log(this.pai);
     }
 
     editar(){
-
+        console.log("Editando...");
+        this.eu = $(this);
+        console.log(this.eu);
+        this.pai = this.eu.parents('.formacoes');
+        this.pai.remove();
+        console.log(this.pai);
     }
 }

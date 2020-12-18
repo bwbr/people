@@ -1,13 +1,5 @@
 export class AddSkill{
-    constructor(private _skillTitulo: string, private _skillPorcentagem: number){
-    }
-
-    get skillTitulo(){
-        return this._skillTitulo;
-    }
-
-    get skillPorcentagem(){
-        return this._skillPorcentagem;
+    constructor(readonly skillTitulo: string, readonly skillPorcentagem: number){
     }
 
     get skillFalta(){
