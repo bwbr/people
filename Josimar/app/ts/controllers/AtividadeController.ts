@@ -187,7 +187,7 @@ export class AtividadeController {
         }          
 
 
-
+        //DRAG AND DROP
         dragDrop(){
 
             let activity = document.querySelectorAll('.activity');
@@ -255,6 +255,7 @@ export class AtividadeController {
             }	    
         }
 
+        //BANGE 
         badge(): any{      
 
             let total_toDo: number = $('.to-do .activity').length;//recebe a quantidade das atividades no to-do
