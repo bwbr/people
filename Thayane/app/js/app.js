@@ -38,27 +38,16 @@ System.register(["./controllers/index"], function (exports_1, context_1) {
                     });
                     $("#addAqui").find(".btnDeletar").click(function () {
                         var eu = $(this);
-                        if (eu.hasClass('btnDeletar')) {
-                            var card = $(eu).siblings();
-                            card.remove();
-                        }
-                        else if (eu.hasClass('btnEditar')) {
-                            var voltando = $(eu).parents('.botoes');
-                            console.log(voltando);
-                            var titulo = $(voltando).children('.quebrarTexto');
-                            console.log(titulo);
-                            titulo.text('Oi');
-                        }
+                        if (eu.hasClass('btnDeletar'))
+                            editarDeletarKanban.deletar();
+                        else if (eu.hasClass('btnEditar'))
+                            editarDeletarKanban.editar();
                     });
                     $("#addAqui").find(".btnMoverDireita").click(function () {
                         var eu = $(this);
-                        var card = eu.parents('.card');
-                        console.log(card);
                     });
                     $("#addAqui").find(".btnMoverEsquerda").click(function () {
                         var eu = $(this);
-                        var card = eu.parents('.card');
-                        console.log(card);
                     });
                     contarFormacoes.update();
                 });
