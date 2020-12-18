@@ -61,8 +61,9 @@ export class AtividadeController {
             this.limpa();//limpar campos formulário do cadastro Atividade
         }
  
-        //EDITA ATIVIDADES
-        edita(id: string): void{
+        //EDITA ATIVIDADE
+        edita(id: string, obj_before: any): void{
+
             let table: string = 'Atividades'; //Idica qual tabela será alterada
             let condition: string = `id = ${id}`;//Indica qual a condição de seleção de dados
 
