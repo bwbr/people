@@ -62,8 +62,7 @@ export class AtividadeController {
         }
  
         //EDITA ATIVIDADE
-        edita(id: string, obj_before: any): void{
-
+        edita(id: string): void{
             let table: string = 'Atividades'; //Idica qual tabela será alterada
             let condition: string = `id = ${id}`;//Indica qual a condição de seleção de dados
 
