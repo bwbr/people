@@ -18,9 +18,10 @@
     "concurrently": "^3.4.0",
     "lite-server": "^2.3.0",
     "typescript": "^2.3.4"
-  },    
+  },
   "dependencies": {
     "@types/node": "^8.0.5",
+    "@types/websql": "0.0.27",
     "jquery": "^3.5.1",
     "moment": "^2.29.1"
   }

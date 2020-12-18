@@ -1,15 +1,15 @@
-import {LocalStorage} from '../services/localStorage';
-import {AtividadesView, MensagemView} from '../views/index';
+import {AtividadesView, MensagemView, View} from '../views/index';
 import {Atividade, Atividades} from '../models/index';
+
+const db: Database =  window.openDatabase('people', '1.0', 'bwbr', 2 * 1024 * 1024);
 
 export class AtividadeController {
 
         private _inputTitulo: HTMLInputElement;
         private _inputDescricao: HTMLInputElement;
         private _atividades = new Atividades();
-        private _atividadesView = new AtividadesView('[data-card]');
+        private _atividadesView = new AtividadesView('[data-toDo]');
         private _mensagemView = new MensagemView('#mensagemView');
-        private _localStorage = new LocalStorage();
 
         constructor(){
             this._inputTitulo = <HTMLInputElement>document.querySelector('#titulo');
@@ -17,115 +17,176 @@ export class AtividadeController {
             this._atividadesView.update(this._atividades);
         }
 
-        //limpa formulário
+        //LIMPA FORMULÁRIO
         limpa(): void{
             this._inputTitulo.value = '',
             this._inputDescricao.value = ''
         }
 
-        //gerencia o autoincrement da id
-        autoIncrement(): number{
-            let array: any = this._localStorage.listStorage('_atividades'); 
-            if (array != undefined) { 
-                for (let chave in array){
-                    if (array.hasOwnProperty(chave)) {
-                        array =  array[chave];  
-                        return parseInt(array[array.length - 1].id) + 1;  
-                    }
-                }
-            }else{
-                return 1;
-            }
-        }
-
-        //adiciona as atividades
+        //ADICIONA ATIVIDADES
         adiciona(event: Event): void{
             event.preventDefault();
 
+            //Determina referências de acesso
+            let table: string = 'Atividades';
+            let columns: string= `titulo, descricao, idCard`;
+
+            //Cria tabela caso não exista
+            db.transaction(function (tx) {             
+                tx.executeSql(`CREATE TABLE IF NOT EXISTS ${table} (id INTEGER PRIMARY KEY, ${columns})`);
+            });
+            
+            //cria objeto Atividade
+            let _id: string;
             const atividade = new Atividade(
-                this.autoIncrement(),//define o autoincremente vindo da função
+                _id,
                 this._inputTitulo.value,
                 this._inputDescricao.value,
                 ('cardToDo')//define o card inicial da atividade
             ); 
             
-            this._atividades.adiciona(atividade);
-            for (let chave in this._atividades){
-                if (this._atividades.hasOwnProperty(chave)) {  
-                    this._localStorage.addStorage(chave, this._atividades);
-                }
-            }
-            this._mensagemView.update('Atividade adicionada com sucesso!');  
-            this.atualiza();          
+            //Referencia os valores para envio ao db
+            let values: any = `'${atividade.titulo}', '${atividade.descricao}', '${atividade.idCard}'`;
+
+            //Insere dados no db
+            db.transaction(function (tx) {             
+                tx.executeSql(`INSERT INTO ${table} (${columns}) VALUES (${values})`);
+            });
+
+            //Finaliza para exibição
+            this._atividades.adiciona(atividade); 
+            this._atividadesView.update(this._atividades); //envia objeto para formatação
+            this._mensagemView.update('Atividade adicionada com sucesso!'); //exibe mensagem ao usuário
+            this.atualiza(); //atualiza card        
             this.limpa();//limpar campos formulário do cadastro Atividade
         }
+ 
+        //EDITA ATIVIDADES
+        edita(id: string, obj_before: any): void{
 
-        //edita as atividades
-        edita(id: string, id_card: string): void{
-           
-           //busca objeto
-            let array: any = this.buscaId(id);
-                const atividade = new Atividade(
-                    array.id,
-                    array.titulo,
-                    array.descricao,
-                    id_card //define o card que a atividade foi transferida
-                ); 
-                console.log('Card antes: ', atividade);
-                this._atividades.adiciona(atividade)
-                this._localStorage.editStorage('_atividades', this._atividades); 
-                array = this.buscaId(id);
-                console.log('Card depois: ', array.idCard);
+            let table: string = 'Atividades'; //Idica qual tabela será alterada
+            let condition: string = `id = ${id}`;//Indica qual a condição de seleção de dados
+
+            //busca objeto
+            db.transaction(function (tx) {             
+                tx.executeSql(`SELECT * FROM ${table} WHERE ${condition}`, 
+                [], 
+                function (tx, results: any) 
+                { 
+                        
+                    var len = results.rows.length, i; 
+
+                    const _atividades = new Atividades();
+                    
+                    for (i = 0; i < len; i++) 
+                    { 
+                        const atividade = new Atividade(
+                            results.rows.item(i).id,
+                            results.rows.item(i).titulo,
+                            results.rows.item(i).descricao,
+                            results.rows.item(i).idCard
+                        );
+                        
+                        if(atividade != obj_before){
+
+                            //Referencia os valores para envio ao db
+                            let values: any = `'${obj_before.titulo}', '${obj_before.descricao}', '${obj_before.idCard}'`;
+
+                            //Insere dados no db
+                            db.transaction(function (tx) {             
+                                tx.executeSql(`UPDATE INTO ${table} SET ${values} VALUES (${condition})`);
+                            });
+
+                            //Finaliza para exibição
+                            if(results.rows.item(i).idCard == 'cardToDo')
+                            {
+                                const _atividadesView = new AtividadesView('.to-do');
+                                _atividades.adiciona(atividade);            
+                                _atividadesView.update(_atividades);
+                            }
+                            if(results.rows.item(i).idCard == '.card-in-progress')
+                            {
+                                const _atividadesView = new AtividadesView('.card-in-progress');
+                                _atividades.adiciona(atividade);            
+                                _atividadesView.update(_atividades);
+                            }  
+                            if(results.rows.item(i).idCard == '.card-in-progress')
+                            {
+                                const _atividadesView = new AtividadesView('.card-done');
+                                _atividades.adiciona(atividade);            
+                                _atividadesView.update(_atividades);
+                            }  
+                        } 
+                    } 
+                }, null); 
+            }); 
+
+            //this.atualiza(); //atualiza card        
+            //this.limpa();//limpar campos formulário do cadastro Atividade
         }
-        
-        //lista as atividades
+
+        //LISTA ATIVIDADES
         lista(): void{
+            let table: string = 'Atividades'; //Idica qual tabela será alterada
+            let obj_before: any;
+            obj_before = new Atividade(
+                '1',
+                'HTML/CSS',
+                'Introdução ao curso.',
+                'cardInProgress'
+            );
 
-            let array: any = this._localStorage.listStorage('_atividades');     
-                 
-            for (let chave in array){
-                if (array.hasOwnProperty(chave)) {  
-                    array =  array[chave];       
-                    for(let i=0; i < array.length; i++){                        
-                        switch(array[i].idCard){
-                            case 'cardToDo':
-                                this._atividadesView = new AtividadesView('.to-do');
-                                this._atividades.adiciona(array[i]);             
-                                this._atividadesView.update(this._atividades); 
-                                break;
-                            case 'cardInProgress':
-                                this._atividadesView = new AtividadesView('.card-in-progress');
-                                this._atividades.adiciona(array[i]);             
-                                this._atividadesView.update(this._atividades);
-                                break;
-                            case 'cardDone':
-                                this._atividadesView = new AtividadesView('.card-done');
-                                this._atividades.adiciona(array[i]);             
-                                this._atividadesView.update(this._atividades);
-                                break;
-                        }                         
-                    }
-                } 
-            }            
-        }
+            this.edita('1', obj_before)
+            //busca objeto
+            db.transaction(function (tx) {             
+                tx.executeSql(`SELECT * FROM ${table}`, 
+             [], 
+             function (tx, results: any) 
+                { 
+                        
+                        var len = results.rows.length, i; 
 
-        //busca atividade
-        buscaId(id: string): any{
-            let array: any = this._localStorage.listStorage('_atividades'); 
-            for (let chave in array){
-                if (array.hasOwnProperty(chave)) {
-                    array =  array[chave]; 
-                    if(id != null){     
-                        for(let i=0; i <= array.length; i++){
-                            if(array[i].id == id){
-                                id = '';
-                                return array[i];
-                            } 
-                        }
-                    }                                               
-                } 
-            }            
-        }
+                        const _atividades = new Atividades();
+
+                        console.log(len)
+
+                        for (i = 0; i < len; i++) 
+                        { 
+                            
+                            const atividade = new Atividade(
+                                results.rows.item(i).id,
+                                results.rows.item(i).titulo,
+                                results.rows.item(i).descricao,
+                                results.rows.item(i).idCard
+                            );
+
+                            //Finaliza para exibição
+                            if(results.rows.item(i).idCard == 'cardToDo')
+                            {
+                                const _atividadesView = new AtividadesView('.to-do');
+                                _atividades.adiciona(atividade);            
+                                _atividadesView.update(_atividades);
+                            }
+                            if(results.rows.item(i).idCard == '.card-in-progress')
+                            {
+                                const _atividadesView = new AtividadesView('.card-in-progress');
+                                _atividades.adiciona(atividade);            
+                                _atividadesView.update(_atividades);
+                            }  
+                            if(results.rows.item(i).idCard == '.card-in-progress')
+                            {
+                                const _atividadesView = new AtividadesView('.card-done');
+                                _atividades.adiciona(atividade);            
+                                _atividadesView.update(_atividades);
+                            }  
+                        } 
+                }, null); 
+            }); 
+            //this.atualiza(); //atualiza card        
+            //this.limpa();//limpar campos formulário do cadastro Atividade
+        }          
+
+
 
         dragDrop(){
 
@@ -172,7 +233,21 @@ export class AtividadeController {
                         
                         this.append(draggedActivity); 
                         const controller = new AtividadeController();
-                        controller.edita(draggedActivity.id, this.id);
+
+                        //busca objeto
+                        let table: string = 'Atividades';
+                        let condition: string= `id = ${draggedActivity.id}`;
+/* 
+                        let obj_before: any = this._dbStorage.SQLexe(table, condition);
+
+                        const atividade = new Atividade(
+                            obj_before.id,
+                            obj_before.titulo,
+                            obj_before.descricao,
+                            obj_before.idCard  = this.id
+                        ); 
+
+                        controller.edita(draggedActivity.id, atividade); */
                         controller.atualiza();
 
                     });
