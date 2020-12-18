@@ -1,6 +1,10 @@
 import {AtividadesView, MensagemView, View} from '../views/index';
 import {Atividade, Atividades} from '../models/index';
 
+<<<<<<< HEAD
+=======
+//Abre requisição com db
+>>>>>>> Josimar
 const db: Database =  window.openDatabase('people', '1.0', 'bwbr', 2 * 1024 * 1024);
 
 export class AtividadeController {
@@ -88,10 +92,17 @@ export class AtividadeController {
                         );
                         
                         if(atividade != obj_before){
+<<<<<<< HEAD
 
                             //Referencia os valores para envio ao db
                             let values: any = `'${obj_before.titulo}', '${obj_before.descricao}', '${obj_before.idCard}'`;
 
+=======
+
+                            //Referencia os valores para envio ao db
+                            let values: any = `'${obj_before.titulo}', '${obj_before.descricao}', '${obj_before.idCard}'`;
+
+>>>>>>> Josimar
                             //Insere dados no db
                             db.transaction(function (tx) {             
                                 tx.executeSql(`UPDATE INTO ${table} SET ${values} VALUES (${condition})`);
@@ -135,6 +146,7 @@ export class AtividadeController {
                 'Introdução ao curso.',
                 'cardInProgress'
             );
+<<<<<<< HEAD
 
             this.edita('1', obj_before)
             //busca objeto
@@ -185,6 +197,60 @@ export class AtividadeController {
             //this.atualiza(); //atualiza card        
             //this.limpa();//limpar campos formulário do cadastro Atividade
         }          
+=======
+
+            this.edita('1', obj_before)
+            //busca objeto
+            db.transaction(function (tx) {             
+                tx.executeSql(`SELECT * FROM ${table}`, 
+             [], 
+             function (tx, results: any) 
+                { 
+                        
+                        var len = results.rows.length, i; 
+
+                        const _atividades = new Atividades();
+
+                        console.log(len)
+
+                        for (i = 0; i < len; i++) 
+                        { 
+                            
+                            const atividade = new Atividade(
+                                results.rows.item(i).id,
+                                results.rows.item(i).titulo,
+                                results.rows.item(i).descricao,
+                                results.rows.item(i).idCard
+                            );
+
+                            //Finaliza para exibição
+                            if(results.rows.item(i).idCard == 'cardToDo')
+                            {
+                                const _atividadesView = new AtividadesView('.to-do');
+                                _atividades.adiciona(atividade);            
+                                _atividadesView.update(_atividades);
+                            }
+                            if(results.rows.item(i).idCard == '.card-in-progress')
+                            {
+                                const _atividadesView = new AtividadesView('.card-in-progress');
+                                _atividades.adiciona(atividade);            
+                                _atividadesView.update(_atividades);
+                            }  
+                            if(results.rows.item(i).idCard == '.card-in-progress')
+                            {
+                                const _atividadesView = new AtividadesView('.card-done');
+                                _atividades.adiciona(atividade);            
+                                _atividadesView.update(_atividades);
+                            }  
+                        } 
+                }, null); 
+            }); 
+            //this.atualiza(); //atualiza card        
+            //this.limpa();//limpar campos formulário do cadastro Atividade
+        }          
+
+
+>>>>>>> Josimar
 
 
         //DRAG AND DROP
