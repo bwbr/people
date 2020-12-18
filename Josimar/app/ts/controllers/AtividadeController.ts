@@ -62,7 +62,7 @@ export class AtividadeController {
             this.limpa();//limpar campos formulário do cadastro Atividade
         }
  
-        //EDITA ATIVIDADES
+        //EDITA ATIVIDADE
         edita(id: string, obj_before: any): void{
 
             let table: string = 'Atividades'; //Idica qual tabela será alterada
