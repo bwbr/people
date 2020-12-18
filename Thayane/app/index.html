@@ -246,7 +246,21 @@
         </script>
 
         <script>
+            function expandir(){
+                    console.log("oi")
+                    console.log(this)
+                    if(!(Element).hasClass('collapesed')){
+                        var irmao = $('.btnExpandir .collapsed').siblings();
+                        console.log(irmao)
+                        var sobrinho = irmao.children();
+                        console.log(sobrinho)
             
+                        if(sobrinho.hasClass('iconeDeletar'))
+                            sobrinho.removeClass('iconeDeletar').addClass('iconeEditar');
+                        else if(sobrinho.hasClass('iconeEditar'))
+                            sobrinho.removeClass('iconeEditar').addClass('iconeDeletar');
+                    }
+            }
         </script>
     </body>
 
