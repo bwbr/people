@@ -38,10 +38,19 @@ var observer = new MutationObserver(function(mutations) {
         $("#addAqui").find(".btnDeletar").click(function(){
             var eu = $(this);
 
-            if(eu.hasClass('btnDeletar'))
-                editarDeletarKanban.deletar();
-            else if(eu.hasClass('btnEditar'))
-                editarDeletarKanban.editar();       
+            if(eu.hasClass('btnDeletar')){
+                var card = $(eu).parents('.card'); 
+                card.remove();
+                //editarDeletarKanban.deletar();
+            }
+            else if(eu.hasClass('btnEditar')){
+                var voltando = $(eu).parents('.botoes');
+                console.log(voltando)
+                var titulo = $(voltando).children('.quebrarTexto');
+                console.log(titulo)
+                titulo.text('Oi');
+                //editarDeletarKanban.editar();       
+            }
         });
 
         $("#addAqui").find(".btnMoverDireita").click(function(){
