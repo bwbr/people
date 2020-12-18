@@ -1,6 +1,7 @@
-import {DBStorage} from '../services/DBStorage';
-import {AtividadesView, MensagemView} from '../views/index';
+import {AtividadesView, MensagemView, View} from '../views/index';
 import {Atividade, Atividades} from '../models/index';
+
+const db: Database =  window.openDatabase('people', '1.0', 'bwbr', 2 * 1024 * 1024);
 
 export class AtividadeController {
 
@@ -9,7 +10,6 @@ export class AtividadeController {
         private _atividades = new Atividades();
         private _atividadesView = new AtividadesView('[data-toDo]');
         private _mensagemView = new MensagemView('#mensagemView');
-        private _dbStorage = new DBStorage();
 
         constructor(){
             this._inputTitulo = <HTMLInputElement>document.querySelector('#titulo');
@@ -17,15 +17,26 @@ export class AtividadeController {
             this._atividadesView.update(this._atividades);
         }
 
-        //limpa formulário
+        //LIMPA FORMULÁRIO
         limpa(): void{
             this._inputTitulo.value = '',
             this._inputDescricao.value = ''
         }
 
-        //adiciona as atividades
+        //ADICIONA ATIVIDADES
         adiciona(event: Event): void{
             event.preventDefault();
+
+            //Determina referências de acesso
+            let table: string = 'Atividades';
+            let columns: string= `titulo, descricao, idCard`;
+
+            //Cria tabela caso não exista
+            db.transaction(function (tx) {             
+                tx.executeSql(`CREATE TABLE IF NOT EXISTS ${table} (id INTEGER PRIMARY KEY, ${columns})`);
+            });
+            
+            //cria objeto Atividade
             let _id: string;
             const atividade = new Atividade(
                 _id,
@@ -34,78 +45,147 @@ export class AtividadeController {
                 ('cardToDo')//define o card inicial da atividade
             ); 
             
-            let table: string = 'Atividades';
-            let columns: string= `titulo, descricao, idCard`;
+            //Referencia os valores para envio ao db
             let values: any = `'${atividade.titulo}', '${atividade.descricao}', '${atividade.idCard}'`;
 
-            this._dbStorage.insert(table, columns, values);
-            this._atividades.adiciona(atividade);
-            this._atividadesView.update(this._atividades); 
-            this._mensagemView.update('Atividade adicionada com sucesso!');  
-            this.atualiza();          
+            //Insere dados no db
+            db.transaction(function (tx) {             
+                tx.executeSql(`INSERT INTO ${table} (${columns}) VALUES (${values})`);
+            });
+
+            //Finaliza para exibição
+            this._atividades.adiciona(atividade); 
+            this._atividadesView.update(this._atividades); //envia objeto para formatação
+            this._mensagemView.update('Atividade adicionada com sucesso!'); //exibe mensagem ao usuário
+            this.atualiza(); //atualiza card        
             this.limpa();//limpar campos formulário do cadastro Atividade
         }
+ 
+        //EDITA ATIVIDADES
+        edita(id: string, obj_before: any): void{
 
-        //edita as atividades
-        edita(id: string, arrayAfter:any): void{
+            let table: string = 'Atividades'; //Idica qual tabela será alterada
+            let condition: string = `id = ${id}`;//Indica qual a condição de seleção de dados
 
-           let table: string = 'Atividades'; //Idica qual tabela será alterada
-           let condition: string= `id = ${id}`;//Indica qual a condição de seleção de dados
+            //busca objeto
+            db.transaction(function (tx) {             
+                tx.executeSql(`SELECT * FROM ${table} WHERE ${condition}`, 
+                [], 
+                function (tx, results: any) 
+                { 
+                        
+                    var len = results.rows.length, i; 
 
-           //busca objeto
-            let arrayBefore: any = this._dbStorage.search(table, condition);
+                    const _atividades = new Atividades();
+                    
+                    for (i = 0; i < len; i++) 
+                    { 
+                        const atividade = new Atividade(
+                            results.rows.item(i).id,
+                            results.rows.item(i).titulo,
+                            results.rows.item(i).descricao,
+                            results.rows.item(i).idCard
+                        );
+                        
+                        if(atividade != obj_before){
 
-                const atividade = new Atividade(
-                    arrayBefore.id = arrayAfter.id,
-                    arrayBefore.titulo = arrayAfter.titulo,
-                    arrayBefore.descricao = arrayAfter.descricao,
-                    arrayBefore.idCard  = arrayAfter.idCard
-                ); 
+                            //Referencia os valores para envio ao db
+                            let values: any = `'${obj_before.titulo}', '${obj_before.descricao}', '${obj_before.idCard}'`;
 
-            //Indica campos e seus respectivos valores para alteração
-            let values: any = 
-                    `titulo = '${atividade.titulo}', 
-                     descricao = '${atividade.descricao}', 
-                     idCard = '${atividade.idCard}'`;
+                            //Insere dados no db
+                            db.transaction(function (tx) {             
+                                tx.executeSql(`UPDATE INTO ${table} SET ${values} VALUES (${condition})`);
+                            });
 
-            this._dbStorage.update(table, values, condition)
-            this._atividades.adiciona(atividade);
-            this._atividadesView.update(this._atividades); 
-            this._mensagemView.update('Atividade alterada com sucesso!');  
-            this.atualiza();          
-            this.limpa();//limpar campos formulário do cadastro Atividade
+                            //Finaliza para exibição
+                            if(results.rows.item(i).idCard == 'cardToDo')
+                            {
+                                const _atividadesView = new AtividadesView('.to-do');
+                                _atividades.adiciona(atividade);            
+                                _atividadesView.update(_atividades);
+                            }
+                            if(results.rows.item(i).idCard == '.card-in-progress')
+                            {
+                                const _atividadesView = new AtividadesView('.card-in-progress');
+                                _atividades.adiciona(atividade);            
+                                _atividadesView.update(_atividades);
+                            }  
+                            if(results.rows.item(i).idCard == '.card-in-progress')
+                            {
+                                const _atividadesView = new AtividadesView('.card-done');
+                                _atividades.adiciona(atividade);            
+                                _atividadesView.update(_atividades);
+                            }  
+                        } 
+                    } 
+                }, null); 
+            }); 
+
+            //this.atualiza(); //atualiza card        
+            //this.limpa();//limpar campos formulário do cadastro Atividade
         }
-        
-        //lista as atividades
+
+        //LISTA ATIVIDADES
         lista(): void{
-            let table: string = 'Atividades';
-            let array: any = this._dbStorage.list(table);  
-            for (let chave in array){
-                if (array.hasOwnProperty(chave)) {  
-                    console.log(array.length);
-                    for(let i=0; i < array.length; i++){  
+            let table: string = 'Atividades'; //Idica qual tabela será alterada
+            let obj_before: any;
+            obj_before = new Atividade(
+                '1',
+                'HTML/CSS',
+                'Introdução ao curso.',
+                'cardInProgress'
+            );
 
-                        switch(array[i].idCard){
-                            case 'cardToDo':
-                                this._atividadesView = new AtividadesView('.to-do');
-                                this._atividades.adiciona(array[i]);             
-                                this._atividadesView.update(this._atividades); 
-                                break;
-                            case 'cardInProgress':
-                                this._atividadesView = new AtividadesView('.card-in-progress');
-                                this._atividades.adiciona(array[i]);             
-                                this._atividadesView.update(this._atividades);
-                                break;
-                            case 'cardDone':
-                                this._atividadesView = new AtividadesView('.card-done');
-                                this._atividades.adiciona(array[i]);             
-                                this._atividadesView.update(this._atividades);
-                                break;
-                        }                         
-                    }
-                }
-            }            
-        }
+            this.edita('1', obj_before)
+            //busca objeto
+            db.transaction(function (tx) {             
+                tx.executeSql(`SELECT * FROM ${table}`, 
+             [], 
+             function (tx, results: any) 
+                { 
+                        
+                        var len = results.rows.length, i; 
+
+                        const _atividades = new Atividades();
+
+                        console.log(len)
+
+                        for (i = 0; i < len; i++) 
+                        { 
+                            
+                            const atividade = new Atividade(
+                                results.rows.item(i).id,
+                                results.rows.item(i).titulo,
+                                results.rows.item(i).descricao,
+                                results.rows.item(i).idCard
+                            );
+
+                            //Finaliza para exibição
+                            if(results.rows.item(i).idCard == 'cardToDo')
+                            {
+                                const _atividadesView = new AtividadesView('.to-do');
+                                _atividades.adiciona(atividade);            
+                                _atividadesView.update(_atividades);
+                            }
+                            if(results.rows.item(i).idCard == '.card-in-progress')
+                            {
+                                const _atividadesView = new AtividadesView('.card-in-progress');
+                                _atividades.adiciona(atividade);            
+                                _atividadesView.update(_atividades);
+                            }  
+                            if(results.rows.item(i).idCard == '.card-in-progress')
+                            {
+                                const _atividadesView = new AtividadesView('.card-done');
+                                _atividades.adiciona(atividade);            
+                                _atividadesView.update(_atividades);
+                            }  
+                        } 
+                }, null); 
+            }); 
+            //this.atualiza(); //atualiza card        
+            //this.limpa();//limpar campos formulário do cadastro Atividade
+        }          
+
 
 
         dragDrop(){
@@ -157,17 +237,17 @@ export class AtividadeController {
                         //busca objeto
                         let table: string = 'Atividades';
                         let condition: string= `id = ${draggedActivity.id}`;
-
-                        let arrayBefore: any = this._dbStorage.search(table, condition);
+/* 
+                        let obj_before: any = this._dbStorage.SQLexe(table, condition);
 
                         const atividade = new Atividade(
-                            arrayBefore.id,
-                            arrayBefore.titulo,
-                            arrayBefore.descricao,
-                            arrayBefore.idCard  = this.id
+                            obj_before.id,
+                            obj_before.titulo,
+                            obj_before.descricao,
+                            obj_before.idCard  = this.id
                         ); 
 
-                        controller.edita(draggedActivity.id, atividade);
+                        controller.edita(draggedActivity.id, atividade); */
                         controller.atualiza();
 
                     });
