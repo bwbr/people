@@ -125,7 +125,8 @@ h1{
 }
 
 .rolagem{
-    height: 15rem;
+    min-height: 2rem;
+    max-height: 15rem;
     overflow-y: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
