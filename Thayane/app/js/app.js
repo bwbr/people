@@ -21,6 +21,18 @@ System.register(["./controllers/index"], function (exports_1, context_1) {
             $('#btn-modal').click(() => modal.esconderModal());
             observer = new MutationObserver(function (mutations) {
                 mutations.forEach(function (mutation) {
+                    $("#addAqui").find(".btnExpandir").click(function () {
+                        var eu = $(this);
+                        console.log(eu);
+                        var irmao = $(eu).siblings();
+                        console.log(irmao);
+                        var sobrinho = $(irmao).children();
+                        console.log(sobrinho);
+                        if (sobrinho.hasClass('iconeDeletar'))
+                            sobrinho.removeClass('iconeDeletar').addClass('iconeEditar');
+                        else if (sobrinho.hasClass('iconeEditar'))
+                            sobrinho.removeClass('iconeEditar').addClass('iconeDeletar');
+                    });
                 });
             });
             observer.observe(document.querySelector("#addAqui"), { childList: true });
