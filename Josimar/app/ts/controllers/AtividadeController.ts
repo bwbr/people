@@ -63,7 +63,12 @@ export class AtividadeController {
         }
  
         //EDITA ATIVIDADE
-        edita(id: string, obj_before: any): void{
+        edita(event: Event): void{
+            event.preventDefault();
+
+            let id: string = this.callID();
+
+            console.log(id);
 
             let table: string = 'Atividades'; //Idica qual tabela será alterada
             let condition: string = `id = ${id}`;//Indica qual a condição de seleção de dados
@@ -74,126 +79,89 @@ export class AtividadeController {
                 [], 
                 function (tx, results: any) 
                 { 
-                        
                     var len = results.rows.length, i; 
-
-                    const _atividades = new Atividades();
                     
                     for (i = 0; i < len; i++) 
                     { 
+                        const atividade = new Atividade(
+                            results.rows.item(i).id,
+                            this._inputTitulo.value,
+                            this._inputDescricao.value,
+                            results.rows.item(i).idCard
+                        );
+                        console.log(this._inputTitulo.value);
+                                                    
+                        //Referencia os valores para envio ao db
+                        let values: any = `id = '${atividade.id}', titulo = '${atividade.titulo}', descricao = '${atividade.descricao}', idCard = '${atividade.idCard}'`;
+
+                        //Insere dados no db
+                        db.transaction(function (tx) {             
+                            tx.executeSql(`UPDATE INTO ${table} SET ${values} VALUES (${condition})`);
+                        });
+                    } 
+                }, null); 
+            }); 
+            this.atualiza();
+        }
+
+        //LISTA ATIVIDADES
+        lista(): void{
+
+            let table: string = 'Atividades'; //Idica qual tabela será alterada
+
+            //busca objeto
+            db.transaction(function (tx) {             
+                tx.executeSql(`SELECT * FROM ${table}`, 
+             [], 
+             function (tx, results: any) 
+                {        
+                    var len = results.rows.length, i; 
+
+                    const _atividades = new Atividades();
+
+                    console.log(len)
+
+                    for (i = 0; i < len; i++) 
+                    { 
+                        
                         const atividade = new Atividade(
                             results.rows.item(i).id,
                             results.rows.item(i).titulo,
                             results.rows.item(i).descricao,
                             results.rows.item(i).idCard
                         );
-                        
-                        if(atividade != obj_before){
 
-                            //Referencia os valores para envio ao db
-                            let values: any = `'${obj_before.titulo}', '${obj_before.descricao}', '${obj_before.idCard}'`;
-
-                            //Insere dados no db
-                            db.transaction(function (tx) {             
-                                tx.executeSql(`UPDATE INTO ${table} SET ${values} VALUES (${condition})`);
-                            });
-
-                            //Finaliza para exibição
-                            if(results.rows.item(i).idCard == 'cardToDo')
-                            {
-                                const _atividadesView = new AtividadesView('.to-do');
-                                _atividades.adiciona(atividade);            
-                                _atividadesView.update(_atividades);
-                            }
-                            if(results.rows.item(i).idCard == '.card-in-progress')
-                            {
-                                const _atividadesView = new AtividadesView('.card-in-progress');
-                                _atividades.adiciona(atividade);            
-                                _atividadesView.update(_atividades);
-                            }  
-                            if(results.rows.item(i).idCard == '.card-in-progress')
-                            {
-                                const _atividadesView = new AtividadesView('.card-done');
-                                _atividades.adiciona(atividade);            
-                                _atividadesView.update(_atividades);
-                            }  
-                        } 
+                        //Finaliza para exibição
+                        if(results.rows.item(i).idCard == 'cardToDo')
+                        {
+                            const _atividadesView = new AtividadesView('.to-do');
+                            _atividades.adiciona(atividade);            
+                            _atividadesView.update(_atividades);
+                        }
+                        if(results.rows.item(i).idCard == '.card-in-progress')
+                        {
+                            const _atividadesView = new AtividadesView('.card-in-progress');
+                            _atividades.adiciona(atividade);            
+                            _atividadesView.update(_atividades);
+                        }  
+                        if(results.rows.item(i).idCard == '.card-in-progress')
+                        {
+                            const _atividadesView = new AtividadesView('.card-done');
+                            _atividades.adiciona(atividade);            
+                            _atividadesView.update(_atividades);
+                        }  
                     } 
                 }, null); 
-            }); 
-
-            //this.atualiza(); //atualiza card        
-            //this.limpa();//limpar campos formulário do cadastro Atividade
-        }
-
-        //LISTA ATIVIDADES
-        lista(): void{
-            let table: string = 'Atividades'; //Idica qual tabela será alterada
-            let obj_before: any;
-            obj_before = new Atividade(
-                '1',
-                'HTML/CSS',
-                'Introdução ao curso.',
-                'cardInProgress'
-            );
-
-            this.edita('1', obj_before)
-            //busca objeto
-            db.transaction(function (tx) {             
-                tx.executeSql(`SELECT * FROM ${table}`, 
-             [], 
-             function (tx, results: any) 
-                { 
-                        
-                        var len = results.rows.length, i; 
-
-                        const _atividades = new Atividades();
-
-                        console.log(len)
-
-                        for (i = 0; i < len; i++) 
-                        { 
-                            
-                            const atividade = new Atividade(
-                                results.rows.item(i).id,
-                                results.rows.item(i).titulo,
-                                results.rows.item(i).descricao,
-                                results.rows.item(i).idCard
-                            );
-
-                            //Finaliza para exibição
-                            if(results.rows.item(i).idCard == 'cardToDo')
-                            {
-                                const _atividadesView = new AtividadesView('.to-do');
-                                _atividades.adiciona(atividade);            
-                                _atividadesView.update(_atividades);
-                            }
-                            if(results.rows.item(i).idCard == '.card-in-progress')
-                            {
-                                const _atividadesView = new AtividadesView('.card-in-progress');
-                                _atividades.adiciona(atividade);            
-                                _atividadesView.update(_atividades);
-                            }  
-                            if(results.rows.item(i).idCard == '.card-in-progress')
-                            {
-                                const _atividadesView = new AtividadesView('.card-done');
-                                _atividades.adiciona(atividade);            
-                                _atividadesView.update(_atividades);
-                            }  
-                        } 
-                }, null); 
-            }); 
-            //this.atualiza(); //atualiza card        
-            //this.limpa();//limpar campos formulário do cadastro Atividade
+            });
         }          
 
-
-
-        dragDrop(){
+        dragDrop(): any{
 
             let activity = document.querySelectorAll('.activity');
             let card_body = document.querySelectorAll('.activities');
 
+            const controller = new AtividadeController();
+            
             let draggedActivity: any = null;           
     
             //Percorre / busca todas as divs com classes de ".activity"
@@ -215,7 +183,6 @@ export class AtividadeController {
     
                 });
 
-
                 for(let j = 0; j < card_body.length; j++){
                     const cb = card_body[j];
                     
@@ -233,22 +200,6 @@ export class AtividadeController {
                     cb.addEventListener('drop', function(e){
                         
                         this.append(draggedActivity); 
-                        const controller = new AtividadeController();
-
-                        //busca objeto
-                        let table: string = 'Atividades';
-                        let condition: string= `id = ${draggedActivity.id}`;
-/* 
-                        let obj_before: any = this._dbStorage.SQLexe(table, condition);
-
-                        const atividade = new Atividade(
-                            obj_before.id,
-                            obj_before.titulo,
-                            obj_before.descricao,
-                            obj_before.idCard  = this.id
-                        ); 
-
-                        controller.edita(draggedActivity.id, atividade); */
                         controller.atualiza();
 
                     });
@@ -256,6 +207,7 @@ export class AtividadeController {
             }	    
         }
 
+        //BADGE
         badge(): any{      
 
             let total_toDo: number = $('.to-do .activity').length;//recebe a quantidade das atividades no to-do
@@ -263,10 +215,21 @@ export class AtividadeController {
             let total_done: number = $('.done .activity').length;//recebe a quantidade das atividades no done
             let total_activities: number = total_toDo + total_inProgress + total_done; 
 
+            //exibe a quantidade de atividades nos badgies
             $('.badge-to-do').text(this.limitBadge(total_toDo));
             $('.badge-in-progress').text(this.limitBadge(total_inProgress));
             $('.badge-done').text(`${this.limitBadge(total_done)} / ${total_activities}`);        
-            
+    
+        }
+
+        //PROGRESSBAR
+        progressbar(): any{
+
+            let total_toDo: number = $('.to-do .activity').length;//recebe a quantidade das atividades no to-do
+            let total_inProgress: number = $('.in-progress .activity').length;//recebe a quantidade das atividades no in-progress
+            let total_done: number = $('.done .activity').length;//recebe a quantidade das atividades no done
+            let total_activities: number = total_toDo + total_inProgress + total_done; 
+
             //calcula percentagem
             let percent_toDo = this.percent(total_toDo, total_activities);
             let percent_inProgress = this.percent(total_inProgress, total_activities);
@@ -282,14 +245,13 @@ export class AtividadeController {
             $(".percent-in-progress").text(`${(percent_inProgress).toFixed()}%`); //porcentagem progresso in-progress
             $(".percent-done").text(`${(percent_done).toFixed()}%`); //porcentagem progresso done
 
+            //alterna as cores das barras de progresso
             this.colorBgProgress(percent_toDo, document.querySelector("#progress-to-do"));//background de progresso to-do
             this.colorBgProgress(percent_inProgress, document.querySelector("#progress-in-progress"));//background  de progresso to-do
             this.colorBgProgress(percent_done, document.querySelector("#progress-done"));//background de progresso done
-                 
         }
         
-        
-        //Retorna a quantidade limite para o badge
+        //BADGE: Retorna a quantidade limite para o badge
         limitBadge (qtd: number){
             let limitQtd: string = "99+";
             if(qtd > 99){ 
@@ -299,7 +261,7 @@ export class AtividadeController {
             }
         }
 
-        //Retorna a percentagem
+        //PROGRESSBAR: Retorna a percentagem
         percent(n: number, total: number){
             let p: any;
 
@@ -312,7 +274,7 @@ export class AtividadeController {
             return p;            
         }
 
-        //função alterna cor do progress-bar
+        //PROGRESSBAR: função alterna cor do progress-bar
         colorBgProgress(percent_name:any, progress_name: Element){
             if(parseFloat(percent_name) == 100){
                 progress_name.classList.remove('progress-bar-blue'); //background progress
@@ -323,18 +285,24 @@ export class AtividadeController {
             }
         }
 
-        //função atualiza as ações da página
-        atualiza(){
+        //ATUALIZA: função atualiza as ações da página
+        atualiza(): void{
 
             setTimeout(function () { 
 
                 const controller = new AtividadeController();
                 controller.lista();
                 controller.dragDrop();
+                controller.progressbar();
                 controller.badge(); 
                 
             }, 1);
 
+        }       
+        
+        callID(): string{
+
+            return $('[data-activity]').attr('id');
         }
         
 }

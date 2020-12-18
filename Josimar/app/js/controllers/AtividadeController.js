@@ -45,45 +45,29 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                     this.atualiza();
                     this.limpa();
                 }
-                edita(id, obj_before) {
+                edita(event) {
+                    event.preventDefault();
+                    let id = this.callID();
+                    console.log(id);
                     let table = 'Atividades';
                     let condition = `id = ${id}`;
                     db.transaction(function (tx) {
                         tx.executeSql(`SELECT * FROM ${table} WHERE ${condition}`, [], function (tx, results) {
                             var len = results.rows.length, i;
-                            const _atividades = new index_2.Atividades();
                             for (i = 0; i < len; i++) {
-                                const atividade = new index_2.Atividade(results.rows.item(i).id, results.rows.item(i).titulo, results.rows.item(i).descricao, results.rows.item(i).idCard);
-                                if (atividade != obj_before) {
-                                    let values = `'${obj_before.titulo}', '${obj_before.descricao}', '${obj_before.idCard}'`;
-                                    db.transaction(function (tx) {
-                                        tx.executeSql(`UPDATE INTO ${table} SET ${values} VALUES (${condition})`);
-                                    });
-                                    if (results.rows.item(i).idCard == 'cardToDo') {
-                                        const _atividadesView = new index_1.AtividadesView('.to-do');
-                                        _atividades.adiciona(atividade);
-                                        _atividadesView.update(_atividades);
-                                    }
-                                    if (results.rows.item(i).idCard == '.card-in-progress') {
-                                        const _atividadesView = new index_1.AtividadesView('.card-in-progress');
-                                        _atividades.adiciona(atividade);
-                                        _atividadesView.update(_atividades);
-                                    }
-                                    if (results.rows.item(i).idCard == '.card-in-progress') {
-                                        const _atividadesView = new index_1.AtividadesView('.card-done');
-                                        _atividades.adiciona(atividade);
-                                        _atividadesView.update(_atividades);
-                                    }
-                                }
+                                const atividade = new index_2.Atividade(results.rows.item(i).id, this._inputTitulo.value, this._inputDescricao.value, results.rows.item(i).idCard);
+                                console.log(this._inputTitulo.value);
+                                let values = `id = '${atividade.id}', titulo = '${atividade.titulo}', descricao = '${atividade.descricao}', idCard = '${atividade.idCard}'`;
+                                db.transaction(function (tx) {
+                                    tx.executeSql(`UPDATE INTO ${table} SET ${values} VALUES (${condition})`);
+                                });
                             }
                         }, null);
                     });
+                    this.atualiza();
                 }
                 lista() {
                     let table = 'Atividades';
-                    let obj_before;
-                    obj_before = new index_2.Atividade('1', 'HTML/CSS', 'Introdução ao curso.', 'cardInProgress');
-                    this.edita('1', obj_before);
                     db.transaction(function (tx) {
                         tx.executeSql(`SELECT * FROM ${table}`, [], function (tx, results) {
                             var len = results.rows.length, i;
@@ -113,6 +97,7 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                 dragDrop() {
                     let activity = document.querySelectorAll('.activity');
                     let card_body = document.querySelectorAll('.activities');
+                    const controller = new AtividadeController();
                     let draggedActivity = null;
                     for (let i = 0; i < activity.length; i++) {
                         let a = activity[i];
@@ -138,9 +123,6 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                             });
                             cb.addEventListener('drop', function (e) {
                                 this.append(draggedActivity);
-                                const controller = new AtividadeController();
-                                let table = 'Atividades';
-                                let condition = `id = ${draggedActivity.id}`;
                                 controller.atualiza();
                             });
                         }
@@ -154,6 +136,12 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                     $('.badge-to-do').text(this.limitBadge(total_toDo));
                     $('.badge-in-progress').text(this.limitBadge(total_inProgress));
                     $('.badge-done').text(`${this.limitBadge(total_done)} / ${total_activities}`);
+                }
+                progressbar() {
+                    let total_toDo = $('.to-do .activity').length;
+                    let total_inProgress = $('.in-progress .activity').length;
+                    let total_done = $('.done .activity').length;
+                    let total_activities = total_toDo + total_inProgress + total_done;
                     let percent_toDo = this.percent(total_toDo, total_activities);
                     let percent_inProgress = this.percent(total_inProgress, total_activities);
                     let percent_done = this.percent(total_done, total_activities);
@@ -201,8 +189,12 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                         const controller = new AtividadeController();
                         controller.lista();
                         controller.dragDrop();
+                        controller.progressbar();
                         controller.badge();
                     }, 1);
+                }
+                callID() {
+                    return $('[data-activity]').attr('id');
                 }
             };
             exports_1("AtividadeController", AtividadeController);
