@@ -1,12 +1,6 @@
 import {AtividadesView, MensagemView, View} from '../views/index';
 import {Atividade, Atividades} from '../models/index';
 
-<<<<<<< HEAD
-=======
-//Abre requisição com db
->>>>>>> Josimar
-const db: Database =  window.openDatabase('people', '1.0', 'bwbr', 2 * 1024 * 1024);
-
 export class AtividadeController {
 
         private _inputTitulo: HTMLInputElement;
@@ -36,6 +30,8 @@ export class AtividadeController {
             let columns: string= `titulo, descricao, idCard`;
 
             //Cria tabela caso não exista
+
+            const db: Database =  window.openDatabase('people', '1.0', 'bwbr', 2 * 1024 * 1024);
             db.transaction(function (tx) {             
                 tx.executeSql(`CREATE TABLE IF NOT EXISTS ${table} (id INTEGER PRIMARY KEY, ${columns})`);
             });
@@ -66,90 +62,48 @@ export class AtividadeController {
         }
  
         //EDITA ATIVIDADES
-        edita(id: string, obj_before: any): void{
-
+        edita(id: string): void{
             let table: string = 'Atividades'; //Idica qual tabela será alterada
             let condition: string = `id = ${id}`;//Indica qual a condição de seleção de dados
 
             //busca objeto
+
+            const db: Database =  window.openDatabase('people', '1.0', 'bwbr', 2 * 1024 * 1024);
             db.transaction(function (tx) {             
                 tx.executeSql(`SELECT * FROM ${table} WHERE ${condition}`, 
                 [], 
                 function (tx, results: any) 
-                { 
-                        
+                {      
                     var len = results.rows.length, i; 
-
-                    const _atividades = new Atividades();
                     
                     for (i = 0; i < len; i++) 
                     { 
                         const atividade = new Atividade(
                             results.rows.item(i).id,
-                            results.rows.item(i).titulo,
-                            results.rows.item(i).descricao,
+                            this._inputTitulo,
+                            this._inputDescricao,
                             results.rows.item(i).idCard
                         );
-                        
-                        if(atividade != obj_before){
-<<<<<<< HEAD
 
-                            //Referencia os valores para envio ao db
-                            let values: any = `'${obj_before.titulo}', '${obj_before.descricao}', '${obj_before.idCard}'`;
+                        //Referencia os valores para envio ao db
+                        let values: any = `'${atividade.titulo}', '${atividade.descricao}', '${atividade.idCard}'`;
 
-=======
-
-                            //Referencia os valores para envio ao db
-                            let values: any = `'${obj_before.titulo}', '${obj_before.descricao}', '${obj_before.idCard}'`;
-
->>>>>>> Josimar
-                            //Insere dados no db
-                            db.transaction(function (tx) {             
-                                tx.executeSql(`UPDATE INTO ${table} SET ${values} VALUES (${condition})`);
-                            });
-
-                            //Finaliza para exibição
-                            if(results.rows.item(i).idCard == 'cardToDo')
-                            {
-                                const _atividadesView = new AtividadesView('.to-do');
-                                _atividades.adiciona(atividade);            
-                                _atividadesView.update(_atividades);
-                            }
-                            if(results.rows.item(i).idCard == '.card-in-progress')
-                            {
-                                const _atividadesView = new AtividadesView('.card-in-progress');
-                                _atividades.adiciona(atividade);            
-                                _atividadesView.update(_atividades);
-                            }  
-                            if(results.rows.item(i).idCard == '.card-in-progress')
-                            {
-                                const _atividadesView = new AtividadesView('.card-done');
-                                _atividades.adiciona(atividade);            
-                                _atividadesView.update(_atividades);
-                            }  
-                        } 
+                        //Insere dados no db
+                        db.transaction(function (tx) {             
+                            tx.executeSql(`UPDATE INTO ${table} SET ${values} VALUES (${condition})`);
+                        });  
                     } 
                 }, null); 
-            }); 
-
-            //this.atualiza(); //atualiza card        
-            //this.limpa();//limpar campos formulário do cadastro Atividade
+            });    
         }
 
         //LISTA ATIVIDADES
         lista(): void{
             let table: string = 'Atividades'; //Idica qual tabela será alterada
-            let obj_before: any;
-            obj_before = new Atividade(
-                '1',
-                'HTML/CSS',
-                'Introdução ao curso.',
-                'cardInProgress'
-            );
-<<<<<<< HEAD
 
-            this.edita('1', obj_before)
             //busca objeto
+
+            const db: Database =  window.openDatabase('people', '1.0', 'bwbr', 2 * 1024 * 1024);
             db.transaction(function (tx) {             
                 tx.executeSql(`SELECT * FROM ${table}`, 
              [], 
@@ -159,8 +113,6 @@ export class AtividadeController {
                         var len = results.rows.length, i; 
 
                         const _atividades = new Atividades();
-
-                        console.log(len)
 
                         for (i = 0; i < len; i++) 
                         { 
@@ -194,63 +146,7 @@ export class AtividadeController {
                         } 
                 }, null); 
             }); 
-            //this.atualiza(); //atualiza card        
-            //this.limpa();//limpar campos formulário do cadastro Atividade
         }          
-=======
-
-            this.edita('1', obj_before)
-            //busca objeto
-            db.transaction(function (tx) {             
-                tx.executeSql(`SELECT * FROM ${table}`, 
-             [], 
-             function (tx, results: any) 
-                { 
-                        
-                        var len = results.rows.length, i; 
-
-                        const _atividades = new Atividades();
-
-                        console.log(len)
-
-                        for (i = 0; i < len; i++) 
-                        { 
-                            
-                            const atividade = new Atividade(
-                                results.rows.item(i).id,
-                                results.rows.item(i).titulo,
-                                results.rows.item(i).descricao,
-                                results.rows.item(i).idCard
-                            );
-
-                            //Finaliza para exibição
-                            if(results.rows.item(i).idCard == 'cardToDo')
-                            {
-                                const _atividadesView = new AtividadesView('.to-do');
-                                _atividades.adiciona(atividade);            
-                                _atividadesView.update(_atividades);
-                            }
-                            if(results.rows.item(i).idCard == '.card-in-progress')
-                            {
-                                const _atividadesView = new AtividadesView('.card-in-progress');
-                                _atividades.adiciona(atividade);            
-                                _atividadesView.update(_atividades);
-                            }  
-                            if(results.rows.item(i).idCard == '.card-in-progress')
-                            {
-                                const _atividadesView = new AtividadesView('.card-done');
-                                _atividades.adiciona(atividade);            
-                                _atividadesView.update(_atividades);
-                            }  
-                        } 
-                }, null); 
-            }); 
-            //this.atualiza(); //atualiza card        
-            //this.limpa();//limpar campos formulário do cadastro Atividade
-        }          
-
-
->>>>>>> Josimar
 
 
         //DRAG AND DROP
@@ -258,15 +154,15 @@ export class AtividadeController {
 
             let activity = document.querySelectorAll('.activity');
             let card_body = document.querySelectorAll('.activities');
-
+            
             let draggedActivity: any = null;           
     
+            console.log(activity.length);
             //Percorre / busca todas as divs com classes de ".activity"
             for(let i = 0; i < activity.length; i++){
                 let a = activity[i];	
     
                 a.addEventListener('dragstart', function (){
-    
                         draggedActivity = this;	
                         this.classList.remove("show");			
                         this.classList.add("hide");	
@@ -298,30 +194,14 @@ export class AtividadeController {
                     cb.addEventListener('drop', function(e){
                         
                         this.append(draggedActivity); 
-                        const controller = new AtividadeController();
-
-                        //busca objeto
-                        let table: string = 'Atividades';
-                        let condition: string= `id = ${draggedActivity.id}`;
-/* 
-                        let obj_before: any = this._dbStorage.SQLexe(table, condition);
-
-                        const atividade = new Atividade(
-                            obj_before.id,
-                            obj_before.titulo,
-                            obj_before.descricao,
-                            obj_before.idCard  = this.id
-                        ); 
-
-                        controller.edita(draggedActivity.id, atividade); */
-                        controller.atualiza();
+                        console.log(this.id);
 
                     });
                 }  
             }	    
         }
 
-        //BANGE 
+        //BADGE
         badge(): any{      
 
             let total_toDo: number = $('.to-do .activity').length;//recebe a quantidade das atividades no to-do
@@ -402,5 +282,4 @@ export class AtividadeController {
             }, 1);
 
         }
-        
 }

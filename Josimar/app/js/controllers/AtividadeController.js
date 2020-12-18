@@ -1,7 +1,7 @@
 System.register(["../views/index", "../models/index"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var index_1, index_2, db, AtividadeController;
+    var index_1, index_2, AtividadeController;
     return {
         setters: [
             function (index_1_1) {
@@ -12,7 +12,6 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
             }
         ],
         execute: function () {
-            db = window.openDatabase('people', '1.0', 'bwbr', 2 * 1024 * 1024);
             AtividadeController = class AtividadeController {
                 constructor() {
                     this._atividades = new index_2.Atividades();
@@ -30,6 +29,7 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                     event.preventDefault();
                     let table = 'Atividades';
                     let columns = `titulo, descricao, idCard`;
+                    const db = window.openDatabase('people', '1.0', 'bwbr', 2 * 1024 * 1024);
                     db.transaction(function (tx) {
                         tx.executeSql(`CREATE TABLE IF NOT EXISTS ${table} (id INTEGER PRIMARY KEY, ${columns})`);
                     });
@@ -45,50 +45,30 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                     this.atualiza();
                     this.limpa();
                 }
-                edita(id, obj_before) {
+                edita(id) {
                     let table = 'Atividades';
                     let condition = `id = ${id}`;
+                    const db = window.openDatabase('people', '1.0', 'bwbr', 2 * 1024 * 1024);
                     db.transaction(function (tx) {
                         tx.executeSql(`SELECT * FROM ${table} WHERE ${condition}`, [], function (tx, results) {
                             var len = results.rows.length, i;
-                            const _atividades = new index_2.Atividades();
                             for (i = 0; i < len; i++) {
-                                const atividade = new index_2.Atividade(results.rows.item(i).id, results.rows.item(i).titulo, results.rows.item(i).descricao, results.rows.item(i).idCard);
-                                if (atividade != obj_before) {
-                                    let values = `'${obj_before.titulo}', '${obj_before.descricao}', '${obj_before.idCard}'`;
-                                    db.transaction(function (tx) {
-                                        tx.executeSql(`UPDATE INTO ${table} SET ${values} VALUES (${condition})`);
-                                    });
-                                    if (results.rows.item(i).idCard == 'cardToDo') {
-                                        const _atividadesView = new index_1.AtividadesView('.to-do');
-                                        _atividades.adiciona(atividade);
-                                        _atividadesView.update(_atividades);
-                                    }
-                                    if (results.rows.item(i).idCard == '.card-in-progress') {
-                                        const _atividadesView = new index_1.AtividadesView('.card-in-progress');
-                                        _atividades.adiciona(atividade);
-                                        _atividadesView.update(_atividades);
-                                    }
-                                    if (results.rows.item(i).idCard == '.card-in-progress') {
-                                        const _atividadesView = new index_1.AtividadesView('.card-done');
-                                        _atividades.adiciona(atividade);
-                                        _atividadesView.update(_atividades);
-                                    }
-                                }
+                                const atividade = new index_2.Atividade(results.rows.item(i).id, this._inputTitulo, this._inputDescricao, results.rows.item(i).idCard);
+                                let values = `'${atividade.titulo}', '${atividade.descricao}', '${atividade.idCard}'`;
+                                db.transaction(function (tx) {
+                                    tx.executeSql(`UPDATE INTO ${table} SET ${values} VALUES (${condition})`);
+                                });
                             }
                         }, null);
                     });
                 }
                 lista() {
                     let table = 'Atividades';
-                    let obj_before;
-                    obj_before = new index_2.Atividade('1', 'HTML/CSS', 'Introdução ao curso.', 'cardInProgress');
-                    this.edita('1', obj_before);
+                    const db = window.openDatabase('people', '1.0', 'bwbr', 2 * 1024 * 1024);
                     db.transaction(function (tx) {
                         tx.executeSql(`SELECT * FROM ${table}`, [], function (tx, results) {
                             var len = results.rows.length, i;
                             const _atividades = new index_2.Atividades();
-                            console.log(len);
                             for (i = 0; i < len; i++) {
                                 const atividade = new index_2.Atividade(results.rows.item(i).id, results.rows.item(i).titulo, results.rows.item(i).descricao, results.rows.item(i).idCard);
                                 if (results.rows.item(i).idCard == 'cardToDo') {
@@ -114,6 +94,7 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                     let activity = document.querySelectorAll('.activity');
                     let card_body = document.querySelectorAll('.activities');
                     let draggedActivity = null;
+                    console.log(activity.length);
                     for (let i = 0; i < activity.length; i++) {
                         let a = activity[i];
                         a.addEventListener('dragstart', function () {
@@ -138,10 +119,7 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                             });
                             cb.addEventListener('drop', function (e) {
                                 this.append(draggedActivity);
-                                const controller = new AtividadeController();
-                                let table = 'Atividades';
-                                let condition = `id = ${draggedActivity.id}`;
-                                controller.atualiza();
+                                console.log(this.id);
                             });
                         }
                     }
