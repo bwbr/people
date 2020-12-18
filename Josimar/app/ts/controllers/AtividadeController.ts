@@ -1,6 +1,7 @@
 import {AtividadesView, MensagemView, View} from '../views/index';
 import {Atividade, Atividades} from '../models/index';
 
+//Abre requisição com db
 const db: Database =  window.openDatabase('people', '1.0', 'bwbr', 2 * 1024 * 1024);
 
 export class AtividadeController {
