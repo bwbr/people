@@ -13,6 +13,15 @@ System.register([], function (exports_1, context_1) {
                     this.b = b;
                     this.c = c;
                 }
+                get numA() {
+                    return this.a++;
+                }
+                get numB() {
+                    return this.b++;
+                }
+                get numC() {
+                    return this.c++;
+                }
                 paraTexto() {
                     console.log($(this.c));
                 }
