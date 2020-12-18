@@ -14,3 +14,11 @@ $('[data-form-skill]').submit(controllerSkills.adiciona.bind(controllerSkills));
 
 const modal = new ModalController();
 $('#btn-modal').click(() => modal.esconderModal());
+
+
+var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+        
+        
+    })
+});observer.observe(document.querySelector("#addAqui"), { childList: true });

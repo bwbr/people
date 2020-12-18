@@ -1,7 +1,7 @@
 System.register(["./controllers/index"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var index_1, index_2, muda, controllerFormacoes, controllerSkills, modal;
+    var index_1, index_2, muda, controllerFormacoes, controllerSkills, modal, observer;
     return {
         setters: [
             function (index_1_1) {
@@ -19,6 +19,11 @@ System.register(["./controllers/index"], function (exports_1, context_1) {
             $('[data-form-skill]').submit(controllerSkills.adiciona.bind(controllerSkills));
             modal = new index_2.ModalController();
             $('#btn-modal').click(() => modal.esconderModal());
+            observer = new MutationObserver(function (mutations) {
+                mutations.forEach(function (mutation) {
+                });
+            });
+            observer.observe(document.querySelector("#addAqui"), { childList: true });
         }
     };
 });

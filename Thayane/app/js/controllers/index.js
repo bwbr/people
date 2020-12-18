@@ -1,4 +1,4 @@
-System.register(["./AddFormacaoController", "./AddSkillController", "./MudarClasseResponsivo", "./ModalController"], function (exports_1, context_1) {
+System.register(["./AddFormacaoController", "./AddSkillController", "./MudarClasseResponsivo", "./ModalController", "./BotoesDeletarEditar", "./BotoesMoverKanban"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     function exportStar_1(m) {
@@ -21,6 +21,12 @@ System.register(["./AddFormacaoController", "./AddSkillController", "./MudarClas
             },
             function (ModalController_1_1) {
                 exportStar_1(ModalController_1_1);
+            },
+            function (BotoesDeletarEditar_1_1) {
+                exportStar_1(BotoesDeletarEditar_1_1);
+            },
+            function (BotoesMoverKanban_1_1) {
+                exportStar_1(BotoesMoverKanban_1_1);
             }
         ],
         execute: function () {

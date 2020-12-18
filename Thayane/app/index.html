@@ -6,6 +6,7 @@
         <title> Thayane </title>
 
         <!-- Estilos -->
+        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
         <link href="dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="Style.css" rel="stylesheet">
 	</head>
@@ -144,7 +145,7 @@
                             <input id="novaSkillTitulo" type="text" name="novaSkillTitulo" class="form-control mt-2" placeholder="Título" required maxlength="40">
                         </div>
                         <div class="input-group p-1 pb-3">
-                            <input id="novaSkillPorcentagem" type="number" name="novaSkillPorcentagem" class="form-control mt-2 mr-1" placeholder="%" required aria-valuemax="100" aria-valuemin="0" aria-valuenow="20">
+                            <input id="novaSkillPorcentagem" type="number" name="novaSkillPorcentagem" class="form-control mt-2 mr-1" placeholder="% Feita" required aria-valuemax="100" aria-valuemin="0" aria-valuenow="20">
                             <button aria-label="submit form" id="ConfirmarAdicionarSkill" class="btn btn-primary mt-2 ml-1" type="submit">Adicionar</button>
                         </div>
                     </form>
@@ -242,6 +243,24 @@
         <script>
             System.defaultJSExtensions = true;
             System.import('js/app.js').catch(err => console.error(err));
+        </script>
+
+        <script>
+            function expandir(){
+                    console.log("oi")
+                    console.log(this)
+                    if(!(Element).hasClass('collapesed')){
+                        var irmao = $('.btnExpandir .collapsed').siblings();
+                        console.log(irmao)
+                        var sobrinho = irmao.children();
+                        console.log(sobrinho)
+            
+                        if(sobrinho.hasClass('iconeDeletar'))
+                            sobrinho.removeClass('iconeDeletar').addClass('iconeEditar');
+                        else if(sobrinho.hasClass('iconeEditar'))
+                            sobrinho.removeClass('iconeEditar').addClass('iconeDeletar');
+                    }
+            }
         </script>
     </body>
 
