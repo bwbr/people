@@ -1,7 +1,7 @@
 System.register(["../views/index", "../models/index"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var index_1, index_2, AtividadeController;
+    var index_1, index_2, db, AtividadeController;
     return {
         setters: [
             function (index_1_1) {
@@ -12,6 +12,7 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
             }
         ],
         execute: function () {
+            db = window.openDatabase('people', '1.0', 'bwbr', 2 * 1024 * 1024);
             AtividadeController = class AtividadeController {
                 constructor() {
                     this._atividades = new index_2.Atividades();
@@ -29,7 +30,6 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                     event.preventDefault();
                     let table = 'Atividades';
                     let columns = `titulo, descricao, idCard`;
-                    const db = window.openDatabase('people', '1.0', 'bwbr', 2 * 1024 * 1024);
                     db.transaction(function (tx) {
                         tx.executeSql(`CREATE TABLE IF NOT EXISTS ${table} (id INTEGER PRIMARY KEY, ${columns})`);
                     });
@@ -39,8 +39,6 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                     db.transaction(function (tx) {
                         tx.executeSql(`INSERT INTO ${table} (${columns}) VALUES (${values})`);
                     });
-                    this._atividades.adiciona(atividade);
-                    this._atividadesView.update(this._atividades);
                     this._mensagemView.update('Atividade adicionada com sucesso!');
                     this.atualiza();
                     this.limpa();
@@ -48,7 +46,6 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                 edita(id) {
                     let table = 'Atividades';
                     let condition = `id = ${id}`;
-                    const db = window.openDatabase('people', '1.0', 'bwbr', 2 * 1024 * 1024);
                     db.transaction(function (tx) {
                         tx.executeSql(`SELECT * FROM ${table} WHERE ${condition}`, [], function (tx, results) {
                             var len = results.rows.length, i;
@@ -64,7 +61,6 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                 }
                 lista() {
                     let table = 'Atividades';
-                    const db = window.openDatabase('people', '1.0', 'bwbr', 2 * 1024 * 1024);
                     db.transaction(function (tx) {
                         tx.executeSql(`SELECT * FROM ${table}`, [], function (tx, results) {
                             var len = results.rows.length, i;

@@ -1,6 +1,9 @@
 import {AtividadesView, MensagemView, View} from '../views/index';
 import {Atividade, Atividades} from '../models/index';
 
+//Requisita conexão com db
+const db: Database =  window.openDatabase('people', '1.0', 'bwbr', 2 * 1024 * 1024);
+
 export class AtividadeController {
 
         private _inputTitulo: HTMLInputElement;
@@ -27,11 +30,10 @@ export class AtividadeController {
 
             //Determina referências de acesso
             let table: string = 'Atividades';
-            let columns: string= `titulo, descricao, idCard`;
+            let columns: string = `titulo, descricao, idCard`;
 
             //Cria tabela caso não exista
 
-            const db: Database =  window.openDatabase('people', '1.0', 'bwbr', 2 * 1024 * 1024);
             db.transaction(function (tx) {             
                 tx.executeSql(`CREATE TABLE IF NOT EXISTS ${table} (id INTEGER PRIMARY KEY, ${columns})`);
             });
@@ -54,10 +56,8 @@ export class AtividadeController {
             });
 
             //Finaliza para exibição
-            this._atividades.adiciona(atividade); 
-            this._atividadesView.update(this._atividades); //envia objeto para formatação
             this._mensagemView.update('Atividade adicionada com sucesso!'); //exibe mensagem ao usuário
-            this.atualiza(); //atualiza card        
+            this.atualiza(); //lista 
             this.limpa();//limpar campos formulário do cadastro Atividade
         }
  
@@ -68,7 +68,6 @@ export class AtividadeController {
 
             //busca objeto
 
-            const db: Database =  window.openDatabase('people', '1.0', 'bwbr', 2 * 1024 * 1024);
             db.transaction(function (tx) {             
                 tx.executeSql(`SELECT * FROM ${table} WHERE ${condition}`, 
                 [], 
@@ -103,13 +102,13 @@ export class AtividadeController {
 
             //busca objeto
 
-            const db: Database =  window.openDatabase('people', '1.0', 'bwbr', 2 * 1024 * 1024);
             db.transaction(function (tx) {             
                 tx.executeSql(`SELECT * FROM ${table}`, 
              [], 
              function (tx, results: any) 
                 { 
                         
+            
                         var len = results.rows.length, i; 
 
                         const _atividades = new Atividades();
@@ -275,6 +274,7 @@ export class AtividadeController {
             setTimeout(function () { 
 
                 const controller = new AtividadeController();
+
                 controller.lista();
                 controller.dragDrop();
                 controller.badge(); 
