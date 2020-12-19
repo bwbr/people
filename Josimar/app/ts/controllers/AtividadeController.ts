@@ -1,7 +1,7 @@
 import {AtividadesView, MensagemView, View} from '../views/index';
 import {Atividade, Atividades} from '../models/index';
 
-//Abre requisição com db
+//Requisita conexão com db
 const db: Database =  window.openDatabase('people', '1.0', 'bwbr', 2 * 1024 * 1024);
 
 export class AtividadeController {
@@ -30,9 +30,10 @@ export class AtividadeController {
 
             //Determina referências de acesso
             let table: string = 'Atividades';
-            let columns: string= `titulo, descricao, idCard`;
+            let columns: string = `titulo, descricao, idCard`;
 
             //Cria tabela caso não exista
+
             db.transaction(function (tx) {             
                 tx.executeSql(`CREATE TABLE IF NOT EXISTS ${table} (id INTEGER PRIMARY KEY, ${columns})`);
             });
@@ -55,14 +56,13 @@ export class AtividadeController {
             });
 
             //Finaliza para exibição
-            this._atividades.adiciona(atividade); 
-            this._atividadesView.update(this._atividades); //envia objeto para formatação
             this._mensagemView.update('Atividade adicionada com sucesso!'); //exibe mensagem ao usuário
-            this.atualiza(); //atualiza card        
+            this.atualiza(); //lista 
             this.limpa();//limpar campos formulário do cadastro Atividade
         }
  
         //EDITA ATIVIDADE
+<<<<<<< HEAD
         edita(event: Event): void{
             event.preventDefault();
 
@@ -70,21 +70,30 @@ export class AtividadeController {
 
             console.log(id);
 
+=======
+        edita(id: string): void{
+>>>>>>> main
             let table: string = 'Atividades'; //Idica qual tabela será alterada
             let condition: string = `id = ${id}`;//Indica qual a condição de seleção de dados
 
             //busca objeto
+
             db.transaction(function (tx) {             
                 tx.executeSql(`SELECT * FROM ${table} WHERE ${condition}`, 
                 [], 
                 function (tx, results: any) 
+<<<<<<< HEAD
                 { 
+=======
+                {      
+>>>>>>> main
                     var len = results.rows.length, i; 
                     
                     for (i = 0; i < len; i++) 
                     { 
                         const atividade = new Atividade(
                             results.rows.item(i).id,
+<<<<<<< HEAD
                             this._inputTitulo.value,
                             this._inputDescricao.value,
                             results.rows.item(i).idCard
@@ -93,15 +102,31 @@ export class AtividadeController {
                                                     
                         //Referencia os valores para envio ao db
                         let values: any = `id = '${atividade.id}', titulo = '${atividade.titulo}', descricao = '${atividade.descricao}', idCard = '${atividade.idCard}'`;
+=======
+                            this._inputTitulo,
+                            this._inputDescricao,
+                            results.rows.item(i).idCard
+                        );
+
+                        //Referencia os valores para envio ao db
+                        let values: any = `'${atividade.titulo}', '${atividade.descricao}', '${atividade.idCard}'`;
+>>>>>>> main
 
                         //Insere dados no db
                         db.transaction(function (tx) {             
                             tx.executeSql(`UPDATE INTO ${table} SET ${values} VALUES (${condition})`);
+<<<<<<< HEAD
                         });
                     } 
                 }, null); 
             }); 
             this.atualiza();
+=======
+                        });  
+                    } 
+                }, null); 
+            });    
+>>>>>>> main
         }
 
         //LISTA ATIVIDADES
@@ -110,6 +135,7 @@ export class AtividadeController {
             let table: string = 'Atividades'; //Idica qual tabela será alterada
 
             //busca objeto
+
             db.transaction(function (tx) {             
                 tx.executeSql(`SELECT * FROM ${table}`, 
              [], 
@@ -124,6 +150,7 @@ export class AtividadeController {
                     for (i = 0; i < len; i++) 
                     { 
                         
+<<<<<<< HEAD
                         const atividade = new Atividade(
                             results.rows.item(i).id,
                             results.rows.item(i).titulo,
@@ -161,15 +188,62 @@ export class AtividadeController {
             let card_body = document.querySelectorAll('.activities');
 
             const controller = new AtividadeController();
+=======
+            
+                        var len = results.rows.length, i; 
+
+                        const _atividades = new Atividades();
+
+                        for (i = 0; i < len; i++) 
+                        { 
+                            
+                            const atividade = new Atividade(
+                                results.rows.item(i).id,
+                                results.rows.item(i).titulo,
+                                results.rows.item(i).descricao,
+                                results.rows.item(i).idCard
+                            );
+
+                            //Finaliza para exibição
+                            if(results.rows.item(i).idCard == 'cardToDo')
+                            {
+                                const _atividadesView = new AtividadesView('.to-do');
+                                _atividades.adiciona(atividade);            
+                                _atividadesView.update(_atividades);
+                            }
+                            if(results.rows.item(i).idCard == '.card-in-progress')
+                            {
+                                const _atividadesView = new AtividadesView('.card-in-progress');
+                                _atividades.adiciona(atividade);            
+                                _atividadesView.update(_atividades);
+                            }  
+                            if(results.rows.item(i).idCard == '.card-in-progress')
+                            {
+                                const _atividadesView = new AtividadesView('.card-done');
+                                _atividades.adiciona(atividade);            
+                                _atividadesView.update(_atividades);
+                            }  
+                        } 
+                }, null); 
+            }); 
+        }          
+
+
+        //DRAG AND DROP
+        dragDrop(){
+
+            let activity = document.querySelectorAll('.activity');
+            let card_body = document.querySelectorAll('.activities');
+>>>>>>> main
             
             let draggedActivity: any = null;           
     
+            console.log(activity.length);
             //Percorre / busca todas as divs com classes de ".activity"
             for(let i = 0; i < activity.length; i++){
                 let a = activity[i];	
     
                 a.addEventListener('dragstart', function (){
-    
                         draggedActivity = this;	
                         this.classList.remove("show");			
                         this.classList.add("hide");	
@@ -200,7 +274,11 @@ export class AtividadeController {
                     cb.addEventListener('drop', function(e){
                         
                         this.append(draggedActivity); 
+<<<<<<< HEAD
                         controller.atualiza();
+=======
+                        console.log(this.id);
+>>>>>>> main
 
                     });
                 }  
@@ -291,6 +369,7 @@ export class AtividadeController {
             setTimeout(function () { 
 
                 const controller = new AtividadeController();
+
                 controller.lista();
                 controller.dragDrop();
                 controller.progressbar();
@@ -304,5 +383,4 @@ export class AtividadeController {
 
             return $('[data-activity]').attr('id');
         }
-        
 }

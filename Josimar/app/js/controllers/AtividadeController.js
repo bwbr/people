@@ -39,25 +39,32 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                     db.transaction(function (tx) {
                         tx.executeSql(`INSERT INTO ${table} (${columns}) VALUES (${values})`);
                     });
-                    this._atividades.adiciona(atividade);
-                    this._atividadesView.update(this._atividades);
                     this._mensagemView.update('Atividade adicionada com sucesso!');
                     this.atualiza();
                     this.limpa();
                 }
+<<<<<<< HEAD
                 edita(event) {
                     event.preventDefault();
                     let id = this.callID();
                     console.log(id);
+=======
+                edita(id) {
+>>>>>>> main
                     let table = 'Atividades';
                     let condition = `id = ${id}`;
                     db.transaction(function (tx) {
                         tx.executeSql(`SELECT * FROM ${table} WHERE ${condition}`, [], function (tx, results) {
                             var len = results.rows.length, i;
                             for (i = 0; i < len; i++) {
+<<<<<<< HEAD
                                 const atividade = new index_2.Atividade(results.rows.item(i).id, this._inputTitulo.value, this._inputDescricao.value, results.rows.item(i).idCard);
                                 console.log(this._inputTitulo.value);
                                 let values = `id = '${atividade.id}', titulo = '${atividade.titulo}', descricao = '${atividade.descricao}', idCard = '${atividade.idCard}'`;
+=======
+                                const atividade = new index_2.Atividade(results.rows.item(i).id, this._inputTitulo, this._inputDescricao, results.rows.item(i).idCard);
+                                let values = `'${atividade.titulo}', '${atividade.descricao}', '${atividade.idCard}'`;
+>>>>>>> main
                                 db.transaction(function (tx) {
                                     tx.executeSql(`UPDATE INTO ${table} SET ${values} VALUES (${condition})`);
                                 });
@@ -72,7 +79,6 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                         tx.executeSql(`SELECT * FROM ${table}`, [], function (tx, results) {
                             var len = results.rows.length, i;
                             const _atividades = new index_2.Atividades();
-                            console.log(len);
                             for (i = 0; i < len; i++) {
                                 const atividade = new index_2.Atividade(results.rows.item(i).id, results.rows.item(i).titulo, results.rows.item(i).descricao, results.rows.item(i).idCard);
                                 if (results.rows.item(i).idCard == 'cardToDo') {
@@ -99,6 +105,7 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                     let card_body = document.querySelectorAll('.activities');
                     const controller = new AtividadeController();
                     let draggedActivity = null;
+                    console.log(activity.length);
                     for (let i = 0; i < activity.length; i++) {
                         let a = activity[i];
                         a.addEventListener('dragstart', function () {
@@ -123,7 +130,11 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                             });
                             cb.addEventListener('drop', function (e) {
                                 this.append(draggedActivity);
+<<<<<<< HEAD
                                 controller.atualiza();
+=======
+                                console.log(this.id);
+>>>>>>> main
                             });
                         }
                     }
