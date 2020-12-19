@@ -62,7 +62,6 @@ export class AtividadeController {
         }
  
         //EDITA ATIVIDADE
-<<<<<<< HEAD
         edita(event: Event): void{
             event.preventDefault();
 
@@ -70,9 +69,6 @@ export class AtividadeController {
 
             console.log(id);
 
-=======
-        edita(id: string): void{
->>>>>>> main
             let table: string = 'Atividades'; //Idica qual tabela será alterada
             let condition: string = `id = ${id}`;//Indica qual a condição de seleção de dados
 
@@ -84,16 +80,14 @@ export class AtividadeController {
                 function (tx, results: any) 
 <<<<<<< HEAD
                 { 
-=======
-                {      
->>>>>>> main
                     var len = results.rows.length, i; 
+
+                    const _atividades = new Atividades();
                     
                     for (i = 0; i < len; i++) 
                     { 
                         const atividade = new Atividade(
                             results.rows.item(i).id,
-<<<<<<< HEAD
                             this._inputTitulo.value,
                             this._inputDescricao.value,
                             results.rows.item(i).idCard
@@ -102,107 +96,52 @@ export class AtividadeController {
                                                     
                         //Referencia os valores para envio ao db
                         let values: any = `id = '${atividade.id}', titulo = '${atividade.titulo}', descricao = '${atividade.descricao}', idCard = '${atividade.idCard}'`;
-=======
-                            this._inputTitulo,
-                            this._inputDescricao,
-                            results.rows.item(i).idCard
-                        );
-
-                        //Referencia os valores para envio ao db
-                        let values: any = `'${atividade.titulo}', '${atividade.descricao}', '${atividade.idCard}'`;
->>>>>>> main
 
                         //Insere dados no db
                         db.transaction(function (tx) {             
                             tx.executeSql(`UPDATE INTO ${table} SET ${values} VALUES (${condition})`);
-<<<<<<< HEAD
                         });
                     } 
                 }, null); 
             }); 
             this.atualiza();
-=======
-                        });  
-                    } 
-                }, null); 
-            });    
->>>>>>> main
         }
 
         //LISTA ATIVIDADES
         lista(): void{
-
             let table: string = 'Atividades'; //Idica qual tabela será alterada
+            let obj_before: any;
+            obj_before = new Atividade(
+                '1',
+                'HTML/CSS',
+                'Introdução ao curso.',
+                'cardInProgress'
+            );
 
+            this.edita('1', obj_before)
             //busca objeto
 
             db.transaction(function (tx) {             
                 tx.executeSql(`SELECT * FROM ${table}`, 
              [], 
              function (tx, results: any) 
-                {        
-                    var len = results.rows.length, i; 
+                { 
+                        
+                        var len = results.rows.length, i; 
 
-                    const _atividades = new Atividades();
+                        const _atividades = new Atividades();
 
-                    console.log(len)
+                        console.log(len)
 
                     for (i = 0; i < len; i++) 
                     { 
                         
-<<<<<<< HEAD
                         const atividade = new Atividade(
                             results.rows.item(i).id,
                             results.rows.item(i).titulo,
                             results.rows.item(i).descricao,
                             results.rows.item(i).idCard
                         );
-
-                        //Finaliza para exibição
-                        if(results.rows.item(i).idCard == 'cardToDo')
-                        {
-                            const _atividadesView = new AtividadesView('.to-do');
-                            _atividades.adiciona(atividade);            
-                            _atividadesView.update(_atividades);
-                        }
-                        if(results.rows.item(i).idCard == '.card-in-progress')
-                        {
-                            const _atividadesView = new AtividadesView('.card-in-progress');
-                            _atividades.adiciona(atividade);            
-                            _atividadesView.update(_atividades);
-                        }  
-                        if(results.rows.item(i).idCard == '.card-in-progress')
-                        {
-                            const _atividadesView = new AtividadesView('.card-done');
-                            _atividades.adiciona(atividade);            
-                            _atividadesView.update(_atividades);
-                        }  
-                    } 
-                }, null); 
-            });
-        }          
-
-        dragDrop(): any{
-
-            let activity = document.querySelectorAll('.activity');
-            let card_body = document.querySelectorAll('.activities');
-
-            const controller = new AtividadeController();
-=======
-            
-                        var len = results.rows.length, i; 
-
-                        const _atividades = new Atividades();
-
-                        for (i = 0; i < len; i++) 
-                        { 
-                            
-                            const atividade = new Atividade(
-                                results.rows.item(i).id,
-                                results.rows.item(i).titulo,
-                                results.rows.item(i).descricao,
-                                results.rows.item(i).idCard
-                            );
 
                             //Finaliza para exibição
                             if(results.rows.item(i).idCard == 'cardToDo')
@@ -226,15 +165,18 @@ export class AtividadeController {
                         } 
                 }, null); 
             }); 
+            //this.atualiza(); //atualiza card        
+            //this.limpa();//limpar campos formulário do cadastro Atividade
         }          
 
 
-        //DRAG AND DROP
+
         dragDrop(){
 
             let activity = document.querySelectorAll('.activity');
             let card_body = document.querySelectorAll('.activities');
->>>>>>> main
+
+            const controller = new AtividadeController();
             
             let draggedActivity: any = null;           
     
@@ -257,6 +199,7 @@ export class AtividadeController {
     
                 });
 
+
                 for(let j = 0; j < card_body.length; j++){
                     const cb = card_body[j];
                     
@@ -274,7 +217,6 @@ export class AtividadeController {
                     cb.addEventListener('drop', function(e){
                         
                         this.append(draggedActivity); 
-<<<<<<< HEAD
                         controller.atualiza();
 =======
                         console.log(this.id);
@@ -285,7 +227,6 @@ export class AtividadeController {
             }	    
         }
 
-        //BADGE
         badge(): any{      
 
             let total_toDo: number = $('.to-do .activity').length;//recebe a quantidade das atividades no to-do
@@ -293,21 +234,10 @@ export class AtividadeController {
             let total_done: number = $('.done .activity').length;//recebe a quantidade das atividades no done
             let total_activities: number = total_toDo + total_inProgress + total_done; 
 
-            //exibe a quantidade de atividades nos badgies
             $('.badge-to-do').text(this.limitBadge(total_toDo));
             $('.badge-in-progress').text(this.limitBadge(total_inProgress));
             $('.badge-done').text(`${this.limitBadge(total_done)} / ${total_activities}`);        
-    
-        }
-
-        //PROGRESSBAR
-        progressbar(): any{
-
-            let total_toDo: number = $('.to-do .activity').length;//recebe a quantidade das atividades no to-do
-            let total_inProgress: number = $('.in-progress .activity').length;//recebe a quantidade das atividades no in-progress
-            let total_done: number = $('.done .activity').length;//recebe a quantidade das atividades no done
-            let total_activities: number = total_toDo + total_inProgress + total_done; 
-
+            
             //calcula percentagem
             let percent_toDo = this.percent(total_toDo, total_activities);
             let percent_inProgress = this.percent(total_inProgress, total_activities);
@@ -323,13 +253,14 @@ export class AtividadeController {
             $(".percent-in-progress").text(`${(percent_inProgress).toFixed()}%`); //porcentagem progresso in-progress
             $(".percent-done").text(`${(percent_done).toFixed()}%`); //porcentagem progresso done
 
-            //alterna as cores das barras de progresso
             this.colorBgProgress(percent_toDo, document.querySelector("#progress-to-do"));//background de progresso to-do
             this.colorBgProgress(percent_inProgress, document.querySelector("#progress-in-progress"));//background  de progresso to-do
             this.colorBgProgress(percent_done, document.querySelector("#progress-done"));//background de progresso done
+                 
         }
         
-        //BADGE: Retorna a quantidade limite para o badge
+        
+        //Retorna a quantidade limite para o badge
         limitBadge (qtd: number){
             let limitQtd: string = "99+";
             if(qtd > 99){ 
@@ -339,7 +270,7 @@ export class AtividadeController {
             }
         }
 
-        //PROGRESSBAR: Retorna a percentagem
+        //Retorna a percentagem
         percent(n: number, total: number){
             let p: any;
 
@@ -352,7 +283,7 @@ export class AtividadeController {
             return p;            
         }
 
-        //PROGRESSBAR: função alterna cor do progress-bar
+        //função alterna cor do progress-bar
         colorBgProgress(percent_name:any, progress_name: Element){
             if(parseFloat(percent_name) == 100){
                 progress_name.classList.remove('progress-bar-blue'); //background progress
@@ -363,8 +294,8 @@ export class AtividadeController {
             }
         }
 
-        //ATUALIZA: função atualiza as ações da página
-        atualiza(): void{
+        //função atualiza as ações da página
+        atualiza(){
 
             setTimeout(function () { 
 
@@ -372,15 +303,9 @@ export class AtividadeController {
 
                 controller.lista();
                 controller.dragDrop();
-                controller.progressbar();
                 controller.badge(); 
                 
             }, 1);
 
-        }       
-        
-        callID(): string{
-
-            return $('[data-activity]').attr('id');
         }
 }
