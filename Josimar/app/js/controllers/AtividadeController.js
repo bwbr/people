@@ -43,15 +43,20 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                     this.atualiza();
                     this.limpa();
                 }
-                edita(id) {
+                edita(event) {
+                    event.preventDefault();
+                    let id = this.callID();
+                    console.log(id);
                     let table = 'Atividades';
                     let condition = `id = ${id}`;
                     db.transaction(function (tx) {
                         tx.executeSql(`SELECT * FROM ${table} WHERE ${condition}`, [], function (tx, results) {
                             var len = results.rows.length, i;
+                            const _atividades = new index_2.Atividades();
                             for (i = 0; i < len; i++) {
-                                const atividade = new index_2.Atividade(results.rows.item(i).id, this._inputTitulo, this._inputDescricao, results.rows.item(i).idCard);
-                                let values = `'${atividade.titulo}', '${atividade.descricao}', '${atividade.idCard}'`;
+                                const atividade = new index_2.Atividade(results.rows.item(i).id, this._inputTitulo.value, this._inputDescricao.value, results.rows.item(i).idCard);
+                                console.log(this._inputTitulo.value);
+                                let values = `id = '${atividade.id}', titulo = '${atividade.titulo}', descricao = '${atividade.descricao}', idCard = '${atividade.idCard}'`;
                                 db.transaction(function (tx) {
                                     tx.executeSql(`UPDATE INTO ${table} SET ${values} VALUES (${condition})`);
                                 });
@@ -61,6 +66,9 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                 }
                 lista() {
                     let table = 'Atividades';
+                    let obj_before;
+                    obj_before = new index_2.Atividade('1', 'HTML/CSS', 'Introdução ao curso.', 'cardInProgress');
+                    this.edita('1', obj_before);
                     db.transaction(function (tx) {
                         tx.executeSql(`SELECT * FROM ${table}`, [], function (tx, results) {
                             var len = results.rows.length, i;
@@ -115,7 +123,10 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                             });
                             cb.addEventListener('drop', function (e) {
                                 this.append(draggedActivity);
+                                controller.atualiza();
+=======
                                 console.log(this.id);
+>>>>>>> main
                             });
                         }
                     }

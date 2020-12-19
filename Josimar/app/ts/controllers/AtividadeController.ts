@@ -62,7 +62,13 @@ export class AtividadeController {
         }
  
         //EDITA ATIVIDADE
-        edita(id: string): void{
+        edita(event: Event): void{
+            event.preventDefault();
+
+            let id: string = this.callID();
+
+            console.log(id);
+
             let table: string = 'Atividades'; //Idica qual tabela será alterada
             let condition: string = `id = ${id}`;//Indica qual a condição de seleção de dados
 
@@ -72,34 +78,47 @@ export class AtividadeController {
                 tx.executeSql(`SELECT * FROM ${table} WHERE ${condition}`, 
                 [], 
                 function (tx, results: any) 
-                {      
+<<<<<<< HEAD
+                { 
                     var len = results.rows.length, i; 
+
+                    const _atividades = new Atividades();
                     
                     for (i = 0; i < len; i++) 
                     { 
                         const atividade = new Atividade(
                             results.rows.item(i).id,
-                            this._inputTitulo,
-                            this._inputDescricao,
+                            this._inputTitulo.value,
+                            this._inputDescricao.value,
                             results.rows.item(i).idCard
                         );
-
+                        console.log(this._inputTitulo.value);
+                                                    
                         //Referencia os valores para envio ao db
-                        let values: any = `'${atividade.titulo}', '${atividade.descricao}', '${atividade.idCard}'`;
+                        let values: any = `id = '${atividade.id}', titulo = '${atividade.titulo}', descricao = '${atividade.descricao}', idCard = '${atividade.idCard}'`;
 
                         //Insere dados no db
                         db.transaction(function (tx) {             
                             tx.executeSql(`UPDATE INTO ${table} SET ${values} VALUES (${condition})`);
-                        });  
+                        });
                     } 
                 }, null); 
-            });    
+            }); 
+            this.atualiza();
         }
 
         //LISTA ATIVIDADES
         lista(): void{
             let table: string = 'Atividades'; //Idica qual tabela será alterada
+            let obj_before: any;
+            obj_before = new Atividade(
+                '1',
+                'HTML/CSS',
+                'Introdução ao curso.',
+                'cardInProgress'
+            );
 
+            this.edita('1', obj_before)
             //busca objeto
 
             db.transaction(function (tx) {             
@@ -108,20 +127,21 @@ export class AtividadeController {
              function (tx, results: any) 
                 { 
                         
-            
                         var len = results.rows.length, i; 
 
                         const _atividades = new Atividades();
 
-                        for (i = 0; i < len; i++) 
-                        { 
-                            
-                            const atividade = new Atividade(
-                                results.rows.item(i).id,
-                                results.rows.item(i).titulo,
-                                results.rows.item(i).descricao,
-                                results.rows.item(i).idCard
-                            );
+                        console.log(len)
+
+                    for (i = 0; i < len; i++) 
+                    { 
+                        
+                        const atividade = new Atividade(
+                            results.rows.item(i).id,
+                            results.rows.item(i).titulo,
+                            results.rows.item(i).descricao,
+                            results.rows.item(i).idCard
+                        );
 
                             //Finaliza para exibição
                             if(results.rows.item(i).idCard == 'cardToDo')
@@ -145,14 +165,18 @@ export class AtividadeController {
                         } 
                 }, null); 
             }); 
+            //this.atualiza(); //atualiza card        
+            //this.limpa();//limpar campos formulário do cadastro Atividade
         }          
 
 
-        //DRAG AND DROP
+
         dragDrop(){
 
             let activity = document.querySelectorAll('.activity');
             let card_body = document.querySelectorAll('.activities');
+
+            const controller = new AtividadeController();
             
             let draggedActivity: any = null;           
     
@@ -193,14 +217,16 @@ export class AtividadeController {
                     cb.addEventListener('drop', function(e){
                         
                         this.append(draggedActivity); 
+                        controller.atualiza();
+=======
                         console.log(this.id);
+>>>>>>> main
 
                     });
                 }  
             }	    
         }
 
-        //BADGE
         badge(): any{      
 
             let total_toDo: number = $('.to-do .activity').length;//recebe a quantidade das atividades no to-do
