@@ -13,7 +13,7 @@ System.register(["./View"], function (exports_1, context_1) {
                 template(model) {
                     return `
         
-            ${model.paraArray().map(atividade => `<div id="${atividade.id}" class="card activity mb-1 show" draggable="true" data-activity="${atividade.id}">
+            ${model.paraArray().map(atividade => `<div id="${atividade.id}" class="card activity mb-1 show" draggable="true" data-activity>
                     <div class="card-header" id="heading-${atividade.id}">
                         <div class="btn btn-link mb-0 d-flex justify-content-between collapsed" data-toggle="collapse" data-target="#collapse-${atividade.id}" aria-expanded="false" aria-controls="collapse-${atividade.id}">
                             ${atividade.titulo}

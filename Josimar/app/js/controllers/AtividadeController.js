@@ -75,7 +75,6 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                 }
                 lista() {
                     let table = 'Atividades';
-                    alert($('[data-activity]').attr('data-activity'));
                     db.transaction(function (tx) {
                         tx.executeSql(`SELECT * FROM ${table}`, [], function (tx, results) {
                             var len = results.rows.length, i;
@@ -206,7 +205,6 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                     }, 1);
                 }
                 callID() {
-                    alert($('[data-activity]').attr('id'));
                     return $('[data-activity]').attr('id');
                 }
             };
