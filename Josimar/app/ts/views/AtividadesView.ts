@@ -8,7 +8,7 @@ export class AtividadesView extends View<Atividades> {
         return `
         
             ${model.paraArray().map(atividade =>
-                `<div id="${atividade.id}" class="card activity mb-1 show" draggable="true" data-activity>
+                `<div id="${atividade.id}" class="card activity mb-1 show" draggable="true" data-activity="${atividade.id}">
                     <div class="card-header" id="heading-${atividade.id}">
                         <div class="btn btn-link mb-0 d-flex justify-content-between collapsed" data-toggle="collapse" data-target="#collapse-${atividade.id}" aria-expanded="false" aria-controls="collapse-${atividade.id}">
                             ${atividade.titulo}

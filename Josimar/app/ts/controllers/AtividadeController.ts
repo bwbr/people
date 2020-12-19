@@ -133,7 +133,7 @@ export class AtividadeController {
         lista(): void{
 
             let table: string = 'Atividades'; //Idica qual tabela será alterada
-
+            alert($('[data-activity]').attr('data-activity'));
             //busca objeto
 
             db.transaction(function (tx) {             
@@ -380,7 +380,8 @@ export class AtividadeController {
         }       
         
         callID(): string{
-
+            alert($('[data-activity]').attr('id'));
+            
             return $('[data-activity]').attr('id');
         }
 }
