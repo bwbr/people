@@ -50,17 +50,8 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                     db.transaction(function (tx) {
                         tx.executeSql(`SELECT * FROM ${table} WHERE ${condition}`, [], function (tx, results) {
                             var len = results.rows.length, i;
-<<<<<<< Updated upstream
-<<<<<<< HEAD
                             this._inputTitulo = document.querySelector('#titulo');
                             this._inputDescricao = document.querySelector('#descricao');
-=======
-                            const _atividades = new index_2.Atividades();
->>>>>>> Josimar
-=======
-                            this._inputTitulo = document.querySelector('#titulo');
-                            this._inputDescricao = document.querySelector('#descricao');
->>>>>>> Stashed changes
                             for (i = 0; i < len; i++) {
                                 const atividade = new index_2.Atividade(results.rows.item(i).id, this._inputTitulo.value, this._inputDescricao.value, results.rows.item(i).idCard);
                                 console.log(this._inputTitulo.value);
@@ -69,16 +60,8 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                             }
                         }, null);
                     });
-<<<<<<< Updated upstream
-<<<<<<< HEAD
                     this._mensagemView.update('Atividade alterada com sucesso!');
                     this.atualiza();
-=======
->>>>>>> Josimar
-=======
-                    this._mensagemView.update('Atividade alterada com sucesso!');
-                    this.atualiza();
->>>>>>> Stashed changes
                 }
                 lista() {
                     let table = 'Atividades';
