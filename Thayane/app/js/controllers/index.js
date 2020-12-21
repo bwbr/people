@@ -1,4 +1,4 @@
-System.register(["./AddAtividadesController", "./AddFormacaoController", "./AddSkillController", "./BotoesDeletarEditar", "./BotoesMoverKanban", "./ContarFormacoes", "./ModalController", "./MudarClasseResponsivo"], function (exports_1, context_1) {
+System.register(["./AddAtividadesController", "./AddFormacaoController", "./AddSkillController", "./BotoesDeletarEditar", "./ContarFormacoes", "./Expandir", "./ModalController", "./MoverKanban", "./MudarClasseResponsivo"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     function exportStar_1(m) {
@@ -22,14 +22,17 @@ System.register(["./AddAtividadesController", "./AddFormacaoController", "./AddS
             function (BotoesDeletarEditar_1_1) {
                 exportStar_1(BotoesDeletarEditar_1_1);
             },
-            function (BotoesMoverKanban_1_1) {
-                exportStar_1(BotoesMoverKanban_1_1);
-            },
             function (ContarFormacoes_1_1) {
                 exportStar_1(ContarFormacoes_1_1);
             },
+            function (Expandir_1_1) {
+                exportStar_1(Expandir_1_1);
+            },
             function (ModalController_1_1) {
                 exportStar_1(ModalController_1_1);
+            },
+            function (MoverKanban_1_1) {
+                exportStar_1(MoverKanban_1_1);
             },
             function (MudarClasseResponsivo_1_1) {
                 exportStar_1(MudarClasseResponsivo_1_1);
