@@ -81,6 +81,14 @@
             border-radius: 0px !important;
             border:0;
             border-left:5px solid $color-rgb !important;
+            .card-header{ 
+                cursor: pointer;
+                #titulo-activity{
+                    width: 100%;
+                    word-wrap: break-word;
+                    overflow: hidden;
+                }
+            }
         }
     }
 }

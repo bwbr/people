@@ -1,4 +1,9 @@
 .skills{
+    .bg-skill{
+        @include bg-kanban;
+        color: $title-kanban;
+    }
+
     @include format-bg-gray-radial; 
     color: $title-skills;
     .progress{

@@ -19,13 +19,13 @@ export class AtividadeController {
         }
 
         //LIMPA FORMULÁRIO
-        limpa(): void{
+        limpa(){
             this._inputTitulo.value = '',
             this._inputDescricao.value = ''
         }
 
         //ADICIONA ATIVIDADES
-        adiciona(event: Event): void{
+        adiciona(event: Event){
             event.preventDefault();
 
             //Determina referências de acesso
@@ -34,7 +34,7 @@ export class AtividadeController {
 
             //Cria tabela caso não exista
             db.transaction(function (tx) {             
-                tx.executeSql(`CREATE TABLE IF NOT EXISTS ${table} (id INTEGER PRIMARY KEY, ${columns})`);
+                tx.executeSql(`CREATE TABLE IF NOT EXISTS ${table} (id INTEGER PRIMARY KEY AUTOINCREMENT, ${columns})`);
             });
             
             //cria objeto Atividade
@@ -48,39 +48,31 @@ export class AtividadeController {
             
             //Referencia os valores para envio ao db
             let values: any = `'${atividade.titulo}', '${atividade.descricao}', '${atividade.idCard}'`;
-
             //Insere dados no db
             db.transaction(function (tx) {             
-                tx.executeSql(`INSERT INTO ${table} (${columns}) VALUES (${values})`);
+                tx.executeSql(`INSERT INTO ${table}(${columns}) VALUES (${values})`, []);
             });
 
             //Finaliza para exibição
-            this._atividades.adiciona(atividade); 
-            this._atividadesView.update(this._atividades); //envia objeto para formatação
             this._mensagemView.update('Atividade adicionada com sucesso!'); //exibe mensagem ao usuário
             this.atualiza(); //atualiza card        
             this.limpa();//limpar campos formulário do cadastro Atividade
         }
  
         //EDITA ATIVIDADE
-        edita(event: Event): void{
-            event.preventDefault();
-
-            let id: string = this.callID();
-
-            console.log(id);
+        edita(id: string){
+            alert('chamou edite');
 
             let table: string = 'Atividades'; //Idica qual tabela será alterada
             let condition: string = `id = ${id}`;//Indica qual a condição de seleção de dados
 
             //busca objeto
             db.transaction(function (tx) {             
-                tx.executeSql(`SELECT * FROM ${table} WHERE ${condition}`, 
-                [], 
-                function (tx, results: any) 
+                tx.executeSql(`SELECT * FROM ${table} WHERE ${condition}`, [], function (tx, results: any) 
                 { 
                     var len = results.rows.length, i; 
-                    
+                    this._inputTitulo = <HTMLInputElement>document.querySelector('#titulo');
+                    this._inputDescricao = <HTMLInputElement>document.querySelector('#descricao');
                     for (i = 0; i < len; i++) 
                     { 
                         const atividade = new Atividade(
@@ -92,28 +84,26 @@ export class AtividadeController {
                         console.log(this._inputTitulo.value);
                                                     
                         //Referencia os valores para envio ao db
-                        let values: any = `id = '${atividade.id}', titulo = '${atividade.titulo}', descricao = '${atividade.descricao}', idCard = '${atividade.idCard}'`;
+                        let values: any = `titulo = '${atividade.titulo}', descricao = '${atividade.descricao}', idCard = '${atividade.idCard}'`;
 
-                        //Insere dados no db
-                        db.transaction(function (tx) {             
-                            tx.executeSql(`UPDATE INTO ${table} SET ${values} VALUES (${condition})`);
-                        });
+                        //Insere dados no db          
+                        tx.executeSql(`UPDATE INTO ${table} SET ${values} WHERE (${condition})`);
                     } 
                 }, null); 
             }); 
+            //Finaliza para exibição
+            this._mensagemView.update('Atividade alterada com sucesso!'); //exibe mensagem ao usuário
             this.atualiza();
         }
 
         //LISTA ATIVIDADES
-        lista(): void{
+        lista(){
 
             let table: string = 'Atividades'; //Idica qual tabela será alterada
 
             //busca objeto
             db.transaction(function (tx) {             
-                tx.executeSql(`SELECT * FROM ${table}`, 
-             [], 
-             function (tx, results: any) 
+                tx.executeSql(`SELECT * FROM ${table} ORDER BY id DESC`, [], function (tx, results: any) 
                 {        
                     var len = results.rows.length, i; 
 
@@ -138,13 +128,13 @@ export class AtividadeController {
                             _atividades.adiciona(atividade);            
                             _atividadesView.update(_atividades);
                         }
-                        if(results.rows.item(i).idCard == '.card-in-progress')
+                        if(results.rows.item(i).idCard == 'cardInprogress')
                         {
                             const _atividadesView = new AtividadesView('.card-in-progress');
                             _atividades.adiciona(atividade);            
                             _atividadesView.update(_atividades);
                         }  
-                        if(results.rows.item(i).idCard == '.card-in-progress')
+                        if(results.rows.item(i).idCard == 'cardDone')
                         {
                             const _atividadesView = new AtividadesView('.card-done');
                             _atividades.adiciona(atividade);            
@@ -155,7 +145,8 @@ export class AtividadeController {
             });
         }          
 
-        dragDrop(): any{
+        //DRAG AND DROP
+        dragDrop(){
 
             let activity = document.querySelectorAll('.activity');
             let card_body = document.querySelectorAll('.activities');
@@ -208,7 +199,7 @@ export class AtividadeController {
         }
 
         //BADGE
-        badge(): any{      
+        badge(){      
 
             let total_toDo: number = $('.to-do .activity').length;//recebe a quantidade das atividades no to-do
             let total_inProgress: number = $('.in-progress .activity').length;//recebe a quantidade das atividades no in-progress
@@ -223,7 +214,7 @@ export class AtividadeController {
         }
 
         //PROGRESSBAR
-        progressbar(): any{
+        progressbar(){
 
             let total_toDo: number = $('.to-do .activity').length;//recebe a quantidade das atividades no to-do
             let total_inProgress: number = $('.in-progress .activity').length;//recebe a quantidade das atividades no in-progress
@@ -271,7 +262,7 @@ export class AtividadeController {
                 p = (n / total) * 100;
             }
 
-            return p;            
+            return p;           
         }
 
         //PROGRESSBAR: função alterna cor do progress-bar
@@ -286,23 +277,18 @@ export class AtividadeController {
         }
 
         //ATUALIZA: função atualiza as ações da página
-        atualiza(): void{
+        atualiza(){
 
             setTimeout(function () { 
-
+                
                 const controller = new AtividadeController();
                 controller.lista();
                 controller.dragDrop();
                 controller.progressbar();
                 controller.badge(); 
-                
+
             }, 1);
 
-        }       
-        
-        callID(): string{
+        }  
 
-            return $('[data-activity]').attr('id');
-        }
-        
 }
