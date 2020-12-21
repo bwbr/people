@@ -1,19 +1,19 @@
-$('#form_activity_add').submit(e => {
+
+
+
+$('#cards').submit(e => {
   alerts(e);
 });
-
-$('#form_activity_edit').submit(e => {
-  alerts(e);
-});
-
-
-function alerts(e: any){
+                                  
+function alerts(e: Event){
   e.preventDefault();
   $('[data-form]').removeClass('show');
-  $('[data-toDo]').addClass('show');
+  $('[data-cards]').addClass('show');
   setTimeout(function () {
       $('#mensagemView .alert').removeClass('show');
       $('#mensagemView .alert').addClass('hide');
       $('#mensagemView').html('');
   }, 4000);
 }
+
+
