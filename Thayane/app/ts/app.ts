@@ -1,4 +1,4 @@
-import { AddFormacaoController, MudarClasseResponsivo, AddSkillController, BotoesDeletarEditar, ContarFormacoes} from './controllers/index';
+import { AddFormacaoController, MudarClasseResponsivo, AddSkillController, BotoesDeletarEditar, ContarFormacoes, MoverKanban} from './controllers/index';
 import { ModalController } from './controllers/index';
 import { AddSkillsView } from './views/index';
 
@@ -17,6 +17,7 @@ $('#btn-modal').click(() => modal.esconderModal());
 
 const contarFormacoes = new ContarFormacoes();
 const editarDeletarKanban = new BotoesDeletarEditar();
+const mover = new MoverKanban();
 var observer = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {        
         $("#addAqui").find(".btnExpandir").click(function(){
@@ -47,11 +48,13 @@ var observer = new MutationObserver(function(mutations) {
         });
 
         $("#addAqui").find(".btnMoverDireita").click(function(){
-            var eu = $(this);     
+            mover.eu = $(this);
+            mover.moverFazendo();     
         });
 
         $("#addAqui").find(".btnMoverEsquerda").click(function(){
-            var eu = $(this);     
+            mover.eu = $(this);
+            mover.moverFeitas();     
         });
 
         contarFormacoes.update();

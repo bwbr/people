@@ -1,7 +1,7 @@
 System.register(["./controllers/index"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var index_1, index_2, muda, controllerFormacoes, controllerSkills, modal, contarFormacoes, editarDeletarKanban, observer, observador;
+    var index_1, index_2, muda, controllerFormacoes, controllerSkills, modal, contarFormacoes, editarDeletarKanban, mover, observer, observador;
     return {
         setters: [
             function (index_1_1) {
@@ -21,6 +21,7 @@ System.register(["./controllers/index"], function (exports_1, context_1) {
             $('#btn-modal').click(() => modal.esconderModal());
             contarFormacoes = new index_1.ContarFormacoes();
             editarDeletarKanban = new index_1.BotoesDeletarEditar();
+            mover = new index_1.MoverKanban();
             observer = new MutationObserver(function (mutations) {
                 mutations.forEach(function (mutation) {
                     $("#addAqui").find(".btnExpandir").click(function () {
@@ -46,10 +47,12 @@ System.register(["./controllers/index"], function (exports_1, context_1) {
                         }
                     });
                     $("#addAqui").find(".btnMoverDireita").click(function () {
-                        var eu = $(this);
+                        mover.eu = $(this);
+                        mover.moverFazendo();
                     });
                     $("#addAqui").find(".btnMoverEsquerda").click(function () {
-                        var eu = $(this);
+                        mover.eu = $(this);
+                        mover.moverFeitas();
                     });
                     contarFormacoes.update();
                 });
