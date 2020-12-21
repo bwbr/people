@@ -10,19 +10,22 @@ System.register([], function (exports_1, context_1) {
                     console.log("Movendo...");
                     this.biso = this.eu.parents('.formacoes');
                     this.novoBiso = $('#addAqui');
-                    this.novoBiso.append(this.eu);
+                    this.novoBiso.append(this.biso);
+                    this.biso = this.novoBiso;
                 }
                 moverFazendo() {
                     console.log("Movendo...");
                     this.biso = this.eu.parents('.formacoes');
                     this.novoBiso = $('#nav-link-kanban_fazendo');
                     this.novoBiso.append(this.biso);
+                    this.biso = this.novoBiso;
                 }
                 moverFeitas() {
                     console.log("Movendo...");
                     this.biso = this.eu.parents('.formacoes');
                     this.novoBiso = $('#nav-link-kanban_feitas');
                     this.novoBiso.append(this.biso);
+                    this.biso = this.novoBiso;
                 }
             };
             exports_1("MoverKanban", MoverKanban);

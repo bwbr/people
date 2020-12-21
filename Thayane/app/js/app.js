@@ -1,7 +1,7 @@
 System.register(["./controllers/index"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var index_1, index_2, muda, controllerFormacoes, controllerSkills, modal, contarFormacoes, editarDeletarKanban, mover, observer, observador;
+    var index_1, index_2, muda, controllerFormacoes, controllerSkills, modal, contarFormacoes, editarDeletarKanban, mover, observaAFazer, observaFazendo, observaFeitas, observador;
     return {
         setters: [
             function (index_1_1) {
@@ -22,7 +22,7 @@ System.register(["./controllers/index"], function (exports_1, context_1) {
             contarFormacoes = new index_1.ContarFormacoes();
             editarDeletarKanban = new index_1.BotoesDeletarEditar();
             mover = new index_1.MoverKanban();
-            observer = new MutationObserver(function (mutations) {
+            observaAFazer = new MutationObserver(function (mutations) {
                 mutations.forEach(function (mutation) {
                     $("#addAqui").find(".btnExpandir").click(function () {
                         var eu = $(this);
@@ -57,7 +57,79 @@ System.register(["./controllers/index"], function (exports_1, context_1) {
                     contarFormacoes.update();
                 });
             });
-            observer.observe(document.querySelector("#addAqui"), { childList: true });
+            observaAFazer.observe(document.querySelector("#addAqui"), { childList: true });
+            observaFazendo = new MutationObserver(function (mutations) {
+                mutations.forEach(function (mutation) {
+                    $("#nav-link-kanban_fazendo").find(".btnExpandir").click(function () {
+                        var eu = $(this);
+                        var irmao = $(eu).siblings();
+                        var sobrinho = $(irmao).children();
+                        if (sobrinho.hasClass('iconeDeletar')) {
+                            sobrinho.removeClass('iconeDeletar').addClass('iconeEditar');
+                            irmao.removeClass('btnDeletar').addClass('btnEditar');
+                        }
+                        else if (sobrinho.hasClass('iconeEditar')) {
+                            sobrinho.removeClass('iconeEditar').addClass('iconeDeletar');
+                            irmao.removeClass('btnEditar').addClass('btnDeletar');
+                        }
+                    });
+                    $("#nav-link-kanban_fazendo").find(".btnDeletar").click(function () {
+                        editarDeletarKanban.eu = $(this);
+                        if (editarDeletarKanban.eu.hasClass('btnDeletar')) {
+                            editarDeletarKanban.deletar();
+                        }
+                        else if (editarDeletarKanban.eu.hasClass('btnEditar')) {
+                            editarDeletarKanban.editar();
+                        }
+                    });
+                    $("#nav-link-kanban_fazendo").find(".btnMoverDireita").click(function () {
+                        mover.eu = $(this);
+                        mover.moverFeitas();
+                    });
+                    $("#nav-link-kanban_fazendo").find(".btnMoverEsquerda").click(function () {
+                        mover.eu = $(this);
+                        mover.moverAFazer();
+                    });
+                    contarFormacoes.update();
+                });
+            });
+            observaFazendo.observe(document.querySelector("#nav-link-kanban_fazendo"), { childList: true });
+            observaFeitas = new MutationObserver(function (mutations) {
+                mutations.forEach(function (mutation) {
+                    $("#nav-link-kanban_feitas").find(".btnExpandir").click(function () {
+                        var eu = $(this);
+                        var irmao = $(eu).siblings();
+                        var sobrinho = $(irmao).children();
+                        if (sobrinho.hasClass('iconeDeletar')) {
+                            sobrinho.removeClass('iconeDeletar').addClass('iconeEditar');
+                            irmao.removeClass('btnDeletar').addClass('btnEditar');
+                        }
+                        else if (sobrinho.hasClass('iconeEditar')) {
+                            sobrinho.removeClass('iconeEditar').addClass('iconeDeletar');
+                            irmao.removeClass('btnEditar').addClass('btnDeletar');
+                        }
+                    });
+                    $("#nav-link-kanban_feitas").find(".btnDeletar").click(function () {
+                        editarDeletarKanban.eu = $(this);
+                        if (editarDeletarKanban.eu.hasClass('btnDeletar')) {
+                            editarDeletarKanban.deletar();
+                        }
+                        else if (editarDeletarKanban.eu.hasClass('btnEditar')) {
+                            editarDeletarKanban.editar();
+                        }
+                    });
+                    $("#nav-link-kanban_feitas").find(".btnMoverDireita").click(function () {
+                        mover.eu = $(this);
+                        mover.moverAFazer();
+                    });
+                    $("#nav-link-kanban_feitas").find(".btnMoverEsquerda").click(function () {
+                        mover.eu = $(this);
+                        mover.moverFazendo();
+                    });
+                    contarFormacoes.update();
+                });
+            });
+            observaFeitas.observe(document.querySelector("#nav-link-kanban_feitas"), { childList: true });
             observador = new MutationObserver(function (mutations) {
                 mutations.forEach(function (mutation) {
                     $("#novaSkill").find(".btnDeletar").click(function () {
