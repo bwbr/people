@@ -1,5 +1,17 @@
 /*--KANBAN--*/
-
+.kanban{
+    .form{
+        border:0;
+        padding-top:20px;
+        color: $text-color-global !important;  
+        @include format-contato-form($bg-contato-form, $bg-aux-gradient-hex);
+        @extend %shadow-box;
+        background-color: $bg-contato-form;
+        input, textarea{
+            @extend %shadow-box-inset;
+        }
+    }
+}
 @media screen and (max-width: 768px) {
     .kanban{
         .card-to-do, .card-in-progress, .card-done{
@@ -19,7 +31,12 @@
         }
     }
   }
-
+.add-btn{
+    @extend %shadow-box;
+    background-color: $title-atividades;
+    color: $link-color !important; 
+    font-size: 0.8rem !important; 
+}
 .bg-to-do{background:lighten($color: $bg-to-do-hex, $amount: 20);}
 
 .bg-in-progress{background:lighten($color: $bg-in-progress-hex, $amount: 20);}
@@ -75,11 +92,6 @@
 .card-to-do{
     @include format-card($bg-to-do-rgb,$bg-to-do-hex);
     .card-header{
-        .btn-sm{
-            background:lighten($color: $bg-to-do-hex, $amount: 30);
-            color: $text-color-global !important; 
-            font-size: 10px !important; 
-        }
         .badge{
             background:darken($color: $bg-to-do-hex, $amount: 20);
             @extend %shadow-box-inset;

@@ -1,13 +1,10 @@
-$('#form_activity_add').submit(e => {
-    alerts(e);
-});
-$('#form_activity_edit').submit(e => {
+$('#cards').submit(e => {
     alerts(e);
 });
 function alerts(e) {
     e.preventDefault();
     $('[data-form]').removeClass('show');
-    $('[data-toDo]').addClass('show');
+    $('[data-cards]').addClass('show');
     setTimeout(function () {
         $('#mensagemView .alert').removeClass('show');
         $('#mensagemView .alert').addClass('hide');

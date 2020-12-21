@@ -87,33 +87,76 @@
       
       <section id="Kanban" class="kanban p-3">
         <div class="container p-0">
-          <header>
+          <header class="d-flex justify-content-between">
             <h3>Kanban</h3>
+            <a href="" id="add_btn" class="btn add-btn border-0 mt-3 ml-3 mb-3 mr-1" data-toggle="collapse" data-target="#cards" aria-expanded="false" aria-controls="cards">
+              <i class="fas fa-plus"></i>
+            </a>
           </header>
+          <main>
 
-          <!--Nav-tabs cards mobile-->
-
-          <nav>
-            <div class="nav nav-tabs nav-justified ml-1 mr-1" id="nav-tab" role="tablist">
-              <a class="nav-item nav-link-to-do" id="nav-to-do-tab" data-toggle="tab" href="#nav-to-do" role="tab" aria-controls="nav-to-do" aria-selected="true">
-                <h6><i class="fas fa-list"></i> Fazer </h6>
-              </a>
-              <a class="nav-item nav-link-in-progress" id="nav-in-progress-tab" data-toggle="tab" href="#nav-in-progress" role="tab" aria-controls="nav-in-progress" aria-selected="false">
-                <h6><i class="fas fa-tasks"></i> Fazendo </h6>
-              </a>
-              <a class="nav-item nav-link-done" id="nav-done-tab" data-toggle="tab" href="#nav-done" role="tab" aria-controls="nav-done" aria-selected="false">
-                <h6><i class="fas fa-calendar-check"></i> Feito </h6>
-              </a>
+            <!--Add Activities Form-->    
+            <div id="mensagemView"></div>   
+            <div id="cards" class="card collapse fade" data-form>
+              <div class="card-body p-0">
+                <form id="form" class="form pb-3 pl-3 pr-3 pt-0" >                    
+                  <div class="form-group row">
+                    <label for="titulo" class="col-sm-12 col-form-label">Título</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="titulo" skip="1" required>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="descricao" class="col-sm-12 col-form-label">Descrição</label>
+                    <div class="col-sm-12">
+                      <textarea  type="text" class="form-control" id="descricao" placeholder="" aria-valuemax="200" skip="1" required></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-12 d-flax d-flex justify-content-end pt-3">
+                      <button type="button" class="btn btn-danger mr-3" id="cancel_btn" data-toggle="collapse" data-target="#cards" aria-expanded="false" aria-controls="cards">Cancelar</button>
+                      <button type="button" class="btn btn-secondary mr-3" id="clear_btn">Limpar</button>
+                      <button type="submit" class="btn btn-success">Enviar</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
-          </nav> 
+            <!--End Add Activities Form-->
 
-          <!--Cards tabs-->
-        
-          <main class="d-flex justify-content-center">
-              <!--Tab-content cards-->
+            <div id='cards' class="collapse show fade" data-cards>
 
-              <div class="row d-flex justify-content-between w-100" id="nav-tabContent">
+                <!--Nav-tabs cards mobile-->
 
+                <nav>
+                  <div class="nav nav-tabs nav-justified ml-3 mr-3" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link-to-do" id="nav-to-do-tab" data-toggle="tab" href="#nav-to-do" role="tab" aria-controls="nav-to-do" aria-selected="true">
+                      <h6><i class="fas fa-list d-none d-sm-none d-md-block"></i> Fazer </h6>
+                    </a>
+                    <a class="nav-item nav-link-in-progress" id="nav-in-progress-tab" data-toggle="tab" href="#nav-in-progress" role="tab" aria-controls="nav-in-progress" aria-selected="false">
+                      <h6><i class="fas fa-tasks d-none d-sm-block"></i> Fazendo </h6>
+                    </a>
+                    <a class="nav-item nav-link-done" id="nav-done-tab" data-toggle="tab" href="#nav-done" role="tab" aria-controls="nav-done" aria-selected="false">
+                      <h6><i class="fas fa-calendar-check d-none d-sm-block"></i> Feito </h6>
+                    </a>
+                  </div>
+                </nav> 
+
+                <!--Tab-content cards-->
+
+                <div class="row d-flex justify-content-center" id="nav-tabContent">
+
+<<<<<<< HEAD
+                  <div class="col-sm-12 col-md-4 p-0 show active" id="nav-to-do" role="tabpanel" aria-labelledby="nav-to-do-tab">
+                    
+                      <!--To-Do-->
+
+                      <div class="card card-to-do sm-12 text-dark bg-danger ml-3 mr-3">
+                        <div class="card-header d-flex justify-content-between">
+                          <h5><i class="fas fa-list"></i> Fazer </h5>
+                          <div class="d-flex justify-content-end align-items-end">
+                            <span class="badge badge-pill badge-to-do p-1">0</span>
+=======
                 <div class="col-sm-12 col-md-4 p-0 show active" id="nav-to-do" role="tabpanel" aria-labelledby="nav-to-do-tab">
                   
                     <!--To-Do-->
@@ -155,85 +198,89 @@
                                 </div>
                               </div>
                             </form>
+>>>>>>> Josimar
                           </div>
-                           <!--End Add Activities Form-->
+                        </div>
+                        <div class="card-body">
+                          <div class="no-expand">     
 
-                          <!--Begin Activities-->                          
-                          
-                          <div id="cardToDo" class="activities collapse show fade to-do" data-toDo>                
+                            <!--Begin Activities-->                          
+                            
+                            <div id="cardToDo" class="activities to-do" data-toDo>                
 
+                              <!--Activities-->
+
+                            </div>
+
+                            <!--End Activities--> 
+                                            
+                          </div>     
+                        </div>
+                      </div>
+                      
+                  </div>
+
+                  <div class="col-sm-12 col-md-4 p-0" id="nav-in-progress" role="tabpanel" aria-labelledby="nav-in-progress-tab">
+                    
+                      <!--In-Progress-->
+                    
+                      <div class="card card-in-progress sm-12 text-dark bg-warning ml-3 mr-3">
+                        <div class="card-header d-flex justify-content-between">
+                          <h5><i class="fas fa-tasks"></i> Fazendo </h5>
+                          <div class="d-flex justify-content-end align-items-end">
+                            <span class="badge badge-pill badge-in-progress p-1">0</span>
+                          </div>
+                        </div>
+                        <div class="card-body">
+                    
+                          <!--Begin Activities--> 
+                    
+                          <div id="cardInProgress" class="activities in-progress" data-inProgress>
+                    
                             <!--Activities-->
-
+                  
                           </div>
 
                           <!--End Activities--> 
-                                          
-                        </div>     
-                      </div>
-                    </div>
-
-                </div>
-
-                <div class="col-sm-12 col-md-4 p-0" id="nav-in-progress" role="tabpanel" aria-labelledby="nav-in-progress-tab">
-                  
-                    <!--In-Progress-->
-                  
-                    <div class="card card-in-progress sm-12 text-dark bg-warning mb-1 ml-1 mr-1">
-                      <div class="card-header d-flex justify-content-between">
-                        <h5><i class="fas fa-tasks"></i> Fazendo </h5>
-                        <div class="d-flex justify-content-end align-items-end">
-                          <span class="badge badge-pill badge-in-progress p-1">0</span>
-                        </div>
-                      </div>
-                      <div class="card-body">
-                  
-                        <!--Begin Activities--> 
-                  
-                        <div id="cardInProgress" class="activities in-progress" data-inProgress>
-                  
-                          <!--Activities-->
-                
-                        </div>
-
-                        <!--End Activities--> 
-                          
-                      </div>
-                    </div>
-
-                </div>
-
-                <div class="col-sm-12 col-md-4 p-0" id="nav-done" role="tabpanel" aria-labelledby="nav-done-tab">
                             
-                    <!--Done-->
-
-                    <div class="card card-done sm-12 text-dark bg-success mb-1 ml-1 mr-1">
-                      <div class="card-header d-flex justify-content-between">
-                        <h5><i class="far fa-calendar-check"></i> Feito </h5>
-                        <div class="d-flex justify-content-end align-items-end">
-                          <span class="badge badge-pill badge-done p-1">0</span>
                         </div>
                       </div>
-                      <div class="card-body">
-                  
-                        <!--Begin Activities--> 
-                  
-                        <div id="cardDone" class="activities done" data-done>
 
-                            <!--Activities-->
+                  </div>
 
+                  <div class="col-sm-12 col-md-4 p-0" id="nav-done" role="tabpanel" aria-labelledby="nav-done-tab">
+                              
+                      <!--Done-->
+
+                      <div class="card card-done sm-12 text-dark bg-success ml-3 mr-3">
+                        <div class="card-header d-flex justify-content-between">
+                          <h5><i class="far fa-calendar-check"></i> Feito </h5>
+                          <div class="d-flex justify-content-end align-items-end">
+                            <span class="badge badge-pill badge-done p-1">0</span>
+                          </div>
                         </div>
-                  
-                        <!--End Activities--> 
-                  
+                        <div class="card-body">
+                    
+                          <!--Begin Activities--> 
+                    
+                          <div id="cardDone" class="activities done" data-done>
+
+                              <!--Activities-->
+
+                          </div>
+                    
+                          <!--End Activities--> 
+                    
+                        </div>
                       </div>
-                    </div>
+
+                  </div>
 
                 </div>
-
-              </div>
             </div>
-          </main>
 
+          </main>
+        </div>
       </section>
 
       <!--Skills-->
@@ -245,7 +292,7 @@
           </header>
           <main>
 
-            <div class="row p-2 m-1 border align-items-center rounded kanban">
+            <div class="row p-2 m-1 border align-items-center rounded bg-skill">
               <div class="col-md-2"><h6><i class="fas fa-list"></i> Fazer </h6></div>
               <div class="col-md-4">
                 <div class="progress">
@@ -255,7 +302,7 @@
               <div class="col-md-6 col-sm-12 text-right"><h6 class="percent-to-do"> 0 </h6></div>
             </div>
 
-            <div class="row p-2 m-1 border align-items-center rounded kanban">
+            <div class="row p-2 m-1 border align-items-center rounded bg-skill">
               <div class="col-md-2"><h6><i class="fas fa-tasks"></i> Fazendo </h6></div>
               <div class="col-md-4">
                 <div class="progress">
@@ -265,7 +312,7 @@
               <div class="col-md-6 col-sm-12 text-right"><h6 class="percent-in-progress"> 0 </h6></div>
             </div>
 
-            <div class="row p-2 m-1 border align-items-center rounded kanban">
+            <div class="row p-2 m-1 border align-items-center rounded bg-skill">
               <div class="col-md-2"><h6><i class="fas fa-calendar-check"></i> Feito </h6></div>
               <div class="col-md-4">
                 <div class="progress">
@@ -369,6 +416,17 @@
         System.defaultJSExtensions = true;
         System.import('js/app.js').catch(err => console.error(err));
     </script>
+ 
+    <!-- helpers -->
 
+<<<<<<< HEAD
+    <script src="js/helpers/media.js"></script>
+    <script src="js/helpers/hide_nav.js"></script>
+    <script src="js/helpers/form_alert.js"></script>
+    <script src="js/helpers/scroll_smooth.js"></script>
+    <script src="js/helpers/api_github.js"></script>
+
+=======
+>>>>>>> Josimar
   </body>
 </html>

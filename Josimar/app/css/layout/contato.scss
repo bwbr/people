@@ -7,6 +7,9 @@
         padding-top:20px;
         @include format-contato-form($bg-contato-form, $bg-aux-gradient-hex);
         background-color: $bg-contato-form;
+        input, textarea{
+            @extend %shadow-box-inset;
+        }
     }
 }
 

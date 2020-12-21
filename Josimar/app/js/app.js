@@ -11,9 +11,9 @@ System.register(["./controllers/AtividadeController"], function (exports_1, cont
         execute: function () {
             controller = new AtividadeController_1.AtividadeController();
             controller.atualiza();
-            $('#form_activity_add').submit(controller.adiciona.bind(controller));
-            $('#form_activity_edit').click(controller.edita.bind(controller));
+            $('#cards').submit(controller.adiciona.bind(controller));
             $('#clear_btn').click(controller.limpa.bind(controller));
+            $('#cancel_btn').click(controller.limpa.bind(controller));
         }
     };
 });

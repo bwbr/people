@@ -31,38 +31,44 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                     let table = 'Atividades';
                     let columns = `titulo, descricao, idCard`;
                     db.transaction(function (tx) {
-                        tx.executeSql(`CREATE TABLE IF NOT EXISTS ${table} (id INTEGER PRIMARY KEY, ${columns})`);
+                        tx.executeSql(`CREATE TABLE IF NOT EXISTS ${table} (id INTEGER PRIMARY KEY AUTOINCREMENT, ${columns})`);
                     });
                     let _id;
                     const atividade = new index_2.Atividade(_id, this._inputTitulo.value, this._inputDescricao.value, ('cardToDo'));
                     let values = `'${atividade.titulo}', '${atividade.descricao}', '${atividade.idCard}'`;
                     db.transaction(function (tx) {
-                        tx.executeSql(`INSERT INTO ${table} (${columns}) VALUES (${values})`);
+                        tx.executeSql(`INSERT INTO ${table}(${columns}) VALUES (${values})`, []);
                     });
                     this._mensagemView.update('Atividade adicionada com sucesso!');
                     this.atualiza();
                     this.limpa();
                 }
-                edita(event) {
-                    event.preventDefault();
-                    let id = this.callID();
-                    console.log(id);
+                edita(id) {
+                    alert('chamou edite');
                     let table = 'Atividades';
                     let condition = `id = ${id}`;
                     db.transaction(function (tx) {
                         tx.executeSql(`SELECT * FROM ${table} WHERE ${condition}`, [], function (tx, results) {
                             var len = results.rows.length, i;
+<<<<<<< HEAD
+                            this._inputTitulo = document.querySelector('#titulo');
+                            this._inputDescricao = document.querySelector('#descricao');
+=======
                             const _atividades = new index_2.Atividades();
+>>>>>>> Josimar
                             for (i = 0; i < len; i++) {
                                 const atividade = new index_2.Atividade(results.rows.item(i).id, this._inputTitulo.value, this._inputDescricao.value, results.rows.item(i).idCard);
                                 console.log(this._inputTitulo.value);
-                                let values = `id = '${atividade.id}', titulo = '${atividade.titulo}', descricao = '${atividade.descricao}', idCard = '${atividade.idCard}'`;
-                                db.transaction(function (tx) {
-                                    tx.executeSql(`UPDATE INTO ${table} SET ${values} VALUES (${condition})`);
-                                });
+                                let values = `titulo = '${atividade.titulo}', descricao = '${atividade.descricao}', idCard = '${atividade.idCard}'`;
+                                tx.executeSql(`UPDATE INTO ${table} SET ${values} WHERE (${condition})`);
                             }
                         }, null);
                     });
+<<<<<<< HEAD
+                    this._mensagemView.update('Atividade alterada com sucesso!');
+                    this.atualiza();
+=======
+>>>>>>> Josimar
                 }
                 lista() {
                     let table = 'Atividades';
@@ -70,7 +76,7 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                     obj_before = new index_2.Atividade('1', 'HTML/CSS', 'Introdução ao curso.', 'cardInProgress');
                     this.edita('1', obj_before);
                     db.transaction(function (tx) {
-                        tx.executeSql(`SELECT * FROM ${table}`, [], function (tx, results) {
+                        tx.executeSql(`SELECT * FROM ${table} ORDER BY id DESC`, [], function (tx, results) {
                             var len = results.rows.length, i;
                             const _atividades = new index_2.Atividades();
                             for (i = 0; i < len; i++) {
@@ -80,12 +86,12 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                                     _atividades.adiciona(atividade);
                                     _atividadesView.update(_atividades);
                                 }
-                                if (results.rows.item(i).idCard == '.card-in-progress') {
+                                if (results.rows.item(i).idCard == 'cardInprogress') {
                                     const _atividadesView = new index_1.AtividadesView('.card-in-progress');
                                     _atividades.adiciona(atividade);
                                     _atividadesView.update(_atividades);
                                 }
-                                if (results.rows.item(i).idCard == '.card-in-progress') {
+                                if (results.rows.item(i).idCard == 'cardDone') {
                                     const _atividadesView = new index_1.AtividadesView('.card-done');
                                     _atividades.adiciona(atividade);
                                     _atividadesView.update(_atividades);
