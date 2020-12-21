@@ -57,3 +57,17 @@ var observer = new MutationObserver(function(mutations) {
         contarFormacoes.update();
     })
 });observer.observe(document.querySelector("#addAqui"), { childList: true });
+
+var observador = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+        $("#novaSkill").find(".btnDeletar").click(function(){
+            editarDeletarKanban.eu = $(this);
+            editarDeletarKanban.deletarSkill();
+        });
+
+        $("#novaSkill").find(".btnEditar").click(function(){
+            editarDeletarKanban.eu = $(this); 
+            editarDeletarKanban.editarSkill();
+        });
+    })
+});observador.observe(document.querySelector("#novaSkill"), { childList: true });

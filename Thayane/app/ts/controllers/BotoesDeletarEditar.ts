@@ -1,6 +1,8 @@
 export class BotoesDeletarEditar{
     public eu: JQuery;
     private pai: JQuery;
+    private irmao: JQuery;
+    private sobrinho: JQuery;
     private tio: JQuery;
     private biso: JQuery;
     private tioBiso: JQuery;
@@ -21,5 +23,20 @@ export class BotoesDeletarEditar{
         this.tioBiso = this.biso.siblings();
         this.primo2 = this.tioBiso.children('.card-body');
         this.primo2.text('Olá');
+    }
+
+    deletarSkill(){
+        console.log("Deletando...");
+        this.pai = this.eu.parent();
+        this.pai.remove();
+    }
+
+    editarSkill(){
+        console.log("Editando...");
+        this.pai = this.eu.parent();
+        this.pai.text('TS');
+        this.irmao = this.eu.siblings('.progress');
+        this.sobrinho = this.irmao.children('.bg-success');
+        this.sobrinho.css('width:50%');
     }
 }

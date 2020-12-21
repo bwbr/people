@@ -1,7 +1,7 @@
 System.register(["./controllers/index"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var index_1, index_2, muda, controllerFormacoes, controllerSkills, modal, contarFormacoes, editarDeletarKanban, observer;
+    var index_1, index_2, muda, controllerFormacoes, controllerSkills, modal, contarFormacoes, editarDeletarKanban, observer, observador;
     return {
         setters: [
             function (index_1_1) {
@@ -55,6 +55,19 @@ System.register(["./controllers/index"], function (exports_1, context_1) {
                 });
             });
             observer.observe(document.querySelector("#addAqui"), { childList: true });
+            observador = new MutationObserver(function (mutations) {
+                mutations.forEach(function (mutation) {
+                    $("#novaSkill").find(".btnDeletar").click(function () {
+                        editarDeletarKanban.eu = $(this);
+                        editarDeletarKanban.deletarSkill();
+                    });
+                    $("#novaSkill").find(".btnEditar").click(function () {
+                        editarDeletarKanban.eu = $(this);
+                        editarDeletarKanban.editarSkill();
+                    });
+                });
+            });
+            observador.observe(document.querySelector("#novaSkill"), { childList: true });
         }
     };
 });

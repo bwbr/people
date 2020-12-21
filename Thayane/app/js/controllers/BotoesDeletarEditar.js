@@ -21,6 +21,19 @@ System.register([], function (exports_1, context_1) {
                     this.primo2 = this.tioBiso.children('.card-body');
                     this.primo2.text('Olá');
                 }
+                deletarSkill() {
+                    console.log("Deletando...");
+                    this.pai = this.eu.parent();
+                    this.pai.remove();
+                }
+                editarSkill() {
+                    console.log("Editando...");
+                    this.pai = this.eu.parent();
+                    this.pai.text('TS');
+                    this.irmao = this.eu.siblings('.progress');
+                    this.sobrinho = this.irmao.children('.bg-success');
+                    this.sobrinho.css('width:50%');
+                }
             };
             exports_1("BotoesDeletarEditar", BotoesDeletarEditar);
         }
