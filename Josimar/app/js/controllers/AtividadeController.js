@@ -50,12 +50,17 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                     db.transaction(function (tx) {
                         tx.executeSql(`SELECT * FROM ${table} WHERE ${condition}`, [], function (tx, results) {
                             var len = results.rows.length, i;
+<<<<<<< Updated upstream
 <<<<<<< HEAD
                             this._inputTitulo = document.querySelector('#titulo');
                             this._inputDescricao = document.querySelector('#descricao');
 =======
                             const _atividades = new index_2.Atividades();
 >>>>>>> Josimar
+=======
+                            this._inputTitulo = document.querySelector('#titulo');
+                            this._inputDescricao = document.querySelector('#descricao');
+>>>>>>> Stashed changes
                             for (i = 0; i < len; i++) {
                                 const atividade = new index_2.Atividade(results.rows.item(i).id, this._inputTitulo.value, this._inputDescricao.value, results.rows.item(i).idCard);
                                 console.log(this._inputTitulo.value);
@@ -64,21 +69,24 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                             }
                         }, null);
                     });
+<<<<<<< Updated upstream
 <<<<<<< HEAD
                     this._mensagemView.update('Atividade alterada com sucesso!');
                     this.atualiza();
 =======
 >>>>>>> Josimar
+=======
+                    this._mensagemView.update('Atividade alterada com sucesso!');
+                    this.atualiza();
+>>>>>>> Stashed changes
                 }
                 lista() {
                     let table = 'Atividades';
-                    let obj_before;
-                    obj_before = new index_2.Atividade('1', 'HTML/CSS', 'Introdução ao curso.', 'cardInProgress');
-                    this.edita('1', obj_before);
                     db.transaction(function (tx) {
                         tx.executeSql(`SELECT * FROM ${table} ORDER BY id DESC`, [], function (tx, results) {
                             var len = results.rows.length, i;
                             const _atividades = new index_2.Atividades();
+                            console.log(len);
                             for (i = 0; i < len; i++) {
                                 const atividade = new index_2.Atividade(results.rows.item(i).id, results.rows.item(i).titulo, results.rows.item(i).descricao, results.rows.item(i).idCard);
                                 if (results.rows.item(i).idCard == 'cardToDo') {
@@ -103,8 +111,8 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                 dragDrop() {
                     let activity = document.querySelectorAll('.activity');
                     let card_body = document.querySelectorAll('.activities');
+                    const controller = new AtividadeController();
                     let draggedActivity = null;
-                    console.log(activity.length);
                     for (let i = 0; i < activity.length; i++) {
                         let a = activity[i];
                         a.addEventListener('dragstart', function () {
@@ -130,9 +138,6 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                             cb.addEventListener('drop', function (e) {
                                 this.append(draggedActivity);
                                 controller.atualiza();
-=======
-                                console.log(this.id);
->>>>>>> main
                             });
                         }
                     }
@@ -145,6 +150,12 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                     $('.badge-to-do').text(this.limitBadge(total_toDo));
                     $('.badge-in-progress').text(this.limitBadge(total_inProgress));
                     $('.badge-done').text(`${this.limitBadge(total_done)} / ${total_activities}`);
+                }
+                progressbar() {
+                    let total_toDo = $('.to-do .activity').length;
+                    let total_inProgress = $('.in-progress .activity').length;
+                    let total_done = $('.done .activity').length;
+                    let total_activities = total_toDo + total_inProgress + total_done;
                     let percent_toDo = this.percent(total_toDo, total_activities);
                     let percent_inProgress = this.percent(total_inProgress, total_activities);
                     let percent_done = this.percent(total_done, total_activities);
@@ -192,6 +203,7 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                         const controller = new AtividadeController();
                         controller.lista();
                         controller.dragDrop();
+                        controller.progressbar();
                         controller.badge();
                     }, 1);
                 }
