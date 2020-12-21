@@ -16,6 +16,13 @@ System.register([], function (exports_1, context_1) {
                             .transaction([this._store], 'readwrite')
                             .objectStore(this._store)
                             .add(formacao);
+                        request.onsuccess = (e) => {
+                            resolve(e);
+                        };
+                        request.onerror = (e) => {
+                            console.log(e.target.error);
+                            reject('Não foi possível adicionar a formação!');
+                        };
                     });
                 }
             };

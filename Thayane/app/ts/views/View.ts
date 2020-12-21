@@ -6,7 +6,11 @@ export abstract class View<T>{
     }    
 
     update(model: T){
-        this._elemento.html(this.template(model));
+        console.log('update');
+        console.log(this._elemento);
+        let content = this.template(model);
+        console.log(content)
+        this._elemento.html(content);
     }
 
     abstract template(model: T): string;

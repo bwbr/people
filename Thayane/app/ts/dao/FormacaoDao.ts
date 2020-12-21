@@ -16,13 +16,14 @@ export class FormacaoDao{
                 .objectStore(this._store)
                 .add(formacao);
 
-            request.onsuccess = e => {
-                resolve();
-            }
+            request.onsuccess = (e:any) => {
+                resolve(e);
+            };
 
-            request.onerror = e => {
-                
-            }
+            request.onerror = (e: any) => {
+                console.log(e.target.error);
+                reject('Não foi possível adicionar a formação!');
+            };
         });
     }
 }

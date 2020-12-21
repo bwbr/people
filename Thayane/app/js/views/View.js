@@ -10,7 +10,11 @@ System.register([], function (exports_1, context_1) {
                     this._elemento = $(seletor);
                 }
                 update(model) {
-                    this._elemento.html(this.template(model));
+                    console.log('update');
+                    console.log(this._elemento);
+                    let content = this.template(model);
+                    console.log(content);
+                    this._elemento.html(content);
                 }
             };
             exports_1("View", View);

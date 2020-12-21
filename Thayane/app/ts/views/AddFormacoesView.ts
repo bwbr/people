@@ -4,6 +4,8 @@ import { BotoesDeletarEditar } from '../controllers/index';
 
 export class AddFormacoesView extends View<AddFormacoes>{
     template(model: AddFormacoes): string{
+        console.log('renderizando');
+        console.log(model);
         return `
             ${model.paraArray().map(formacao =>
             `
@@ -32,7 +34,7 @@ export class AddFormacoesView extends View<AddFormacoes>{
                         </div>
                             
                         <div class="card-footer d-flex justify-content-between">
-                            <button class="btnVazio btnMoverEsquerda">
+                            <button class="btnVazio btnMoverEsquerda" data-title="${formacao.formacaoTitulo}" >
                                 <i class="icones iconeMoverEsquerda"></i>
                             </button>
                             <button class="btnVazio btnMoverDireita">

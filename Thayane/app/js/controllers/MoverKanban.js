@@ -1,17 +1,27 @@
-System.register([], function (exports_1, context_1) {
+System.register(["../views/KanbanView"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var MoverKanban;
+    var KanbanView_1, MoverKanban;
     return {
-        setters: [],
+        setters: [
+            function (KanbanView_1_1) {
+                KanbanView_1 = KanbanView_1_1;
+            }
+        ],
         execute: function () {
             MoverKanban = class MoverKanban {
+                constructor(kanban) {
+                    this.kanban = kanban;
+                    this._addKanbanView = new KanbanView_1.KanbanView('');
+                }
                 moverAFazer() {
-                    console.log("Movendo...");
-                    this.biso = this.eu.parents('.formacoes');
-                    this.novoBiso = $('#addAqui');
-                    this.novoBiso.append(this.biso);
-                    this.biso = this.novoBiso;
+                    let title = this.eu.data('title');
+                    let card = this.kanban.pop(title);
+                    if (card == undefined) {
+                        return;
+                    }
+                    this.kanban.afazer.adiciona(card);
+                    this._addKanbanView.update(this.kanban);
                 }
                 moverFazendo() {
                     console.log("Movendo...");

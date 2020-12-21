@@ -4,7 +4,7 @@ export class ContarFormacoes{
     private _quantFeitas: number;
 
     update(){
-        var filhosAFazer = $('#addAqui').children().length;
+        var filhosAFazer = $('#nav-link-kanban_afazer').children().length;
         this._quantAFazer = filhosAFazer;
         $('#quantAFazer').text(this._quantAFazer);
         $('#span_aFazer').text(this._quantAFazer);

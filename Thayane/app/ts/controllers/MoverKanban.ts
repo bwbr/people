@@ -1,14 +1,30 @@
+import { Kanban } from '../models/Kanban';
+import { KanbanView } from '../views/KanbanView';
+
 export class MoverKanban{
     public eu: JQuery;
     private biso: JQuery;
     private novoBiso: JQuery;
+    
+    private _addKanbanView = new KanbanView('');
+
+
+    constructor(
+        readonly kanban: Kanban
+    )  {
+
+    }
 
     moverAFazer(){
-        console.log("Movendo...");
-        this.biso = this.eu.parents('.formacoes');
-        this.novoBiso = $('#addAqui');
-        this.novoBiso.append(this.biso);
-        this.biso = this.novoBiso;
+        let title = this.eu.data('title'); 
+        let card = this.kanban.pop(title);
+        if (card == undefined) {
+            return;
+        }
+        this.kanban.afazer.adiciona(card);
+
+        this._addKanbanView.update(this.kanban);
+       
     }
 
     moverFazendo(){

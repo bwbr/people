@@ -15,6 +15,10 @@ System.register([], function (exports_1, context_1) {
                 paraArray() {
                     return [].concat(this._formacoes);
                 }
+                pop(title) {
+                    let card = this._formacoes.find(card => card.formacaoTitulo === title);
+                    return card;
+                }
             };
             exports_1("AddFormacoes", AddFormacoes);
         }
