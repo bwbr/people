@@ -25,6 +25,7 @@ System.register(["./controllers/index"], function (exports_1, context_1) {
             mover = new index_1.MoverKanban();
             observaAFazer = new MutationObserver(function (mutations) {
                 mutations.forEach(function (mutation) {
+                    console.log("A fazer...");
                     $("#addAqui").find(".btnExpandir").click(function () {
                         expandir.eu = $(this);
                         expandir.expandir();
@@ -52,6 +53,7 @@ System.register(["./controllers/index"], function (exports_1, context_1) {
             observaAFazer.observe(document.querySelector("#addAqui"), { childList: true });
             observaFazendo = new MutationObserver(function (mutations) {
                 mutations.forEach(function (mutation) {
+                    console.log("Fazendo...");
                     $("#nav-link-kanban_fazendo").find(".btnExpandir").click(function () {
                         var eu = $(this);
                         var irmao = $(eu).siblings();
@@ -88,6 +90,7 @@ System.register(["./controllers/index"], function (exports_1, context_1) {
             observaFazendo.observe(document.querySelector("#nav-link-kanban_fazendo"), { childList: true });
             observaFeitas = new MutationObserver(function (mutations) {
                 mutations.forEach(function (mutation) {
+                    console.log("Feitas...");
                     $("#nav-link-kanban_feitas").find(".btnExpandir").click(function () {
                         var eu = $(this);
                         var irmao = $(eu).siblings();

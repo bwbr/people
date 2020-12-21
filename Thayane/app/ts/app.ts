@@ -20,7 +20,8 @@ const editarDeletarKanban = new BotoesDeletarEditar();
 const expandir = new Expandir();
 const mover = new MoverKanban();
 var observaAFazer = new MutationObserver(function(mutations) {
-    mutations.forEach(function(mutation) {        
+    mutations.forEach(function(mutation) { 
+        console.log("A fazer...")         
         $("#addAqui").find(".btnExpandir").click(function(){
             expandir.eu = $(this);
             expandir.expandir();        
@@ -52,7 +53,8 @@ var observaAFazer = new MutationObserver(function(mutations) {
 });observaAFazer.observe(document.querySelector("#addAqui"), { childList: true });
 
 var observaFazendo = new MutationObserver(function(mutations) {
-    mutations.forEach(function(mutation) {        
+    mutations.forEach(function(mutation) {     
+        console.log("Fazendo...")   
         $("#nav-link-kanban_fazendo").find(".btnExpandir").click(function(){
             var eu = $(this);        
             var irmao = $(eu).siblings();        
@@ -95,7 +97,8 @@ var observaFazendo = new MutationObserver(function(mutations) {
 });observaFazendo.observe(document.querySelector("#nav-link-kanban_fazendo"), { childList: true });
 
 var observaFeitas = new MutationObserver(function(mutations) {
-    mutations.forEach(function(mutation) {        
+    mutations.forEach(function(mutation) {     
+        console.log("Feitas...")     
         $("#nav-link-kanban_feitas").find(".btnExpandir").click(function(){
             var eu = $(this);        
             var irmao = $(eu).siblings();        
