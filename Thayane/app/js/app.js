@@ -1,7 +1,7 @@
 System.register(["./controllers/index"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var index_1, index_2, muda, controllerFormacoes, controllerSkills, modal, contarFormacoes, editarDeletarKanban, mover, observaAFazer, observaFazendo, observaFeitas, observador;
+    var index_1, index_2, muda, controllerFormacoes, controllerSkills, modal, contarFormacoes, editarDeletarKanban, expandir, mover, observaAFazer, observaFazendo, observaFeitas, observador;
     return {
         setters: [
             function (index_1_1) {
@@ -21,21 +21,13 @@ System.register(["./controllers/index"], function (exports_1, context_1) {
             $('#btn-modal').click(() => modal.esconderModal());
             contarFormacoes = new index_1.ContarFormacoes();
             editarDeletarKanban = new index_1.BotoesDeletarEditar();
+            expandir = new index_1.Expandir();
             mover = new index_1.MoverKanban();
             observaAFazer = new MutationObserver(function (mutations) {
                 mutations.forEach(function (mutation) {
                     $("#addAqui").find(".btnExpandir").click(function () {
-                        var eu = $(this);
-                        var irmao = $(eu).siblings();
-                        var sobrinho = $(irmao).children();
-                        if (sobrinho.hasClass('iconeDeletar')) {
-                            sobrinho.removeClass('iconeDeletar').addClass('iconeEditar');
-                            irmao.removeClass('btnDeletar').addClass('btnEditar');
-                        }
-                        else if (sobrinho.hasClass('iconeEditar')) {
-                            sobrinho.removeClass('iconeEditar').addClass('iconeDeletar');
-                            irmao.removeClass('btnEditar').addClass('btnDeletar');
-                        }
+                        expandir.eu = $(this);
+                        expandir.expandir();
                     });
                     $("#addAqui").find(".btnDeletar").click(function () {
                         editarDeletarKanban.eu = $(this);

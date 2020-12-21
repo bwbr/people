@@ -3,6 +3,7 @@ export * from './AddFormacaoController';
 export * from './AddSkillController';
 export * from './BotoesDeletarEditar';
 export * from './ContarFormacoes';
+export * from './Expandir';
 export * from './ModalController';
 export * from './MoverKanban';
 export * from './MudarClasseResponsivo';
