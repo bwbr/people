@@ -13,8 +13,4 @@ export class AddFormacao{
     get numC(){
         return this.c++;
     }
-
-    paraTexto(): void{
-        console.log($(this.c))
-    }
 }

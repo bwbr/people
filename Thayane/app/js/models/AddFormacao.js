@@ -22,9 +22,6 @@ System.register([], function (exports_1, context_1) {
                 get numC() {
                     return this.c++;
                 }
-                paraTexto() {
-                    console.log($(this.c));
-                }
             };
             exports_1("AddFormacao", AddFormacao);
         }

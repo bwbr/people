@@ -1,22 +1,25 @@
 export class BotoesDeletarEditar{
-    private eu: JQuery;
-    private pai: JQuery;    
+    public eu: JQuery;
+    private pai: JQuery;
+    private tio: JQuery;
+    private biso: JQuery;
+    private tioBiso: JQuery;
+    private primo2: JQuery;    
     
     deletar(){
         console.log("Deletando...");
-        this.eu = $(this);
-        console.log(this.eu);
         this.pai = this.eu.parents('.formacoes');
         this.pai.remove();
-        console.log(this.pai);
     }
 
     editar(){
         console.log("Editando...");
-        this.eu = $(this);
-        console.log(this.eu);
-        this.pai = this.eu.parents('.formacoes');
-        this.pai.remove();
-        console.log(this.pai);
+        this.pai = this.eu.parent();
+        this.tio = this.pai.siblings('.quebrarTexto');
+        this.tio.text('Oi');
+        this.biso = this.pai.parents('.card-header');
+        this.tioBiso = this.biso.siblings();
+        this.primo2 = this.tioBiso.children('.card-body');
+        this.primo2.text('Olá');
     }
 }
