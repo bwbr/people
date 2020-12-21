@@ -20,12 +20,11 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                     this._inputFormacaoDescricao = $('#novaFormacaoDescricao');
                     this._numA = 0;
                     this._numB = 0;
-                    this._numC = 0;
                     this._addFormacoesView.update(this._formacoes);
                 }
                 adiciona(event) {
                     event.preventDefault();
-                    const addFormacao = new index_2.AddFormacao(this._inputFormacaoTitulo.val(), this._inputFormacaoDescricao.val(), this._numA, this._numB, this._numC);
+                    const addFormacao = new index_2.AddFormacao(this._inputFormacaoTitulo.val(), this._inputFormacaoDescricao.val(), this._numA, this._numB);
                     this._formacoes.adiciona(addFormacao);
                     this._addFormacoesView.update(this._formacoes);
                     this._limparFormulario();
