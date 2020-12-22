@@ -1,3 +1,6 @@
+import { Kanban } from '../models/Kanban';
+import { KanbanView } from '../views/KanbanView';
+
 export class BotoesDeletarEditar{
     public eu: JQuery;
     private pai: JQuery;
@@ -6,14 +9,45 @@ export class BotoesDeletarEditar{
     private tio: JQuery;
     private biso: JQuery;
     private tioBiso: JQuery;
-    private primo2: JQuery;    
+    private primo2: JQuery;  
+    private _addKanbanView = new KanbanView('');
     
-    deletar(){
-        console.log("Deletando...");
-        this.pai = this.eu.parents('.formacoes');
-        this.pai.remove();
+    constructor(readonly kanban: Kanban){
+    }
+    
+    //Deletar Kanban
+    deletarAFazer(){
+        console.log("Removendo...");
+        
+        let title = this.eu.data('title'); 
+        let card = this.kanban.pop(title);
+        if (card == undefined)  return console.log("Não encontrado");
+        
+        this.kanban.aFazer.removeAFazer(card);
+        this._addKanbanView.update(this.kanban);
+    }
+    deletarFazendo(){
+        console.log("Removendo...");
+        
+        let title = this.eu.data('title'); 
+        let card = this.kanban.pop(title);
+        if (card == undefined)  return console.log("Não encontrado");
+        
+        this.kanban.fazendo.removeFazendo(card);
+        this._addKanbanView.update(this.kanban);
+    }
+    deletarFeitas(){
+        console.log("Removendo...");
+        
+        let title = this.eu.data('title'); 
+        let card = this.kanban.pop(title);
+        if (card == undefined)  return console.log("Não encontrado");
+        
+        this.kanban.feitas.removeFeitas(card);
+        this._addKanbanView.update(this.kanban);
     }
 
+    //Editar Kanban
     editar(){
         console.log("Editando...");
         this.pai = this.eu.parent();
@@ -25,6 +59,7 @@ export class BotoesDeletarEditar{
         this.primo2.text('Olá');
     }
 
+    //Skills
     deletarSkill(){
         console.log("Deletando...");
         this.pai = this.eu.parent();

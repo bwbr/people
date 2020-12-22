@@ -21,11 +21,11 @@ System.register(["./View"], function (exports_1, context_1) {
                             </div>
 
                             <div class="botoes">
-                                <button class="btnVazio btnDeletar deleto">
+                                <button class="btnVazio btnDeletar deleto" data-title="${formacao.numC}">
                                     <i class="icones iconeDeletar"></i>
                                 </button>
 
-                                <button id="expandir${formacao.numA}" class="btnVazio btnExpandir collapsed" data-toggle="collapse" href="#collapse${formacao.numA}">
+                                <button id="expandir${formacao.numA}" class="btnVazio btnExpandir collapsed" data-toggle="collapse" href="#collapse${formacao.numA}" data-title="${formacao.numC}">
                                     <i class="icones iconeExpandir"></i>
                                 </button>
                             </div>
@@ -38,10 +38,10 @@ System.register(["./View"], function (exports_1, context_1) {
                         </div>
                             
                         <div class="card-footer d-flex justify-content-between">
-                            <button class="btnVazio btnMoverEsquerda" data-title="${formacao.formacaoTitulo}" >
+                            <button class="btnVazio btnMoverEsquerda" data-title="${formacao.numD}">
                                 <i class="icones iconeMoverEsquerda"></i>
                             </button>
-                            <button class="btnVazio btnMoverDireita">
+                            <button class="btnVazio btnMoverDireita" data-title="${formacao.numD}">
                                 <i class="icones iconeMoverDireita"></i>
                             </button>
                         </div>

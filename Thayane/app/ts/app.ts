@@ -1,8 +1,9 @@
 import { AddFormacaoController, MudarClasseResponsivo, AddSkillController, BotoesDeletarEditar, ContarFormacoes, MoverKanban, Expandir} from './controllers/index';
 import { ModalController } from './controllers/index';
 import { FormacaoDao } from './dao/index';
-import { AddSkillsView } from './views/index';
+import { AddSkillsView, KanbanView } from './views/index';
 import { Kanban } from './models/index'
+
 const muda = new MudarClasseResponsivo();
 $.when(window).then(() => muda.tamanho());
 $(window).resize(() => muda.tamanho());
@@ -18,18 +19,18 @@ const modal = new ModalController();
 $('#btn-modal').click(() => modal.esconderModal());
 
 //Deletar os cartões
-const editarDeletarKanban = new BotoesDeletarEditar();
+const editarDeletarKanban = new BotoesDeletarEditar(kabanboard);
 $("#nav-link-kanban_aFazer").on('click', '.btnDeletar', function() {
     editarDeletarKanban.eu = $(this);
-    editarDeletarKanban.deletar();
+    editarDeletarKanban.deletarAFazer();
 });
 $("#nav-link-kanban_fazendo").on('click', '.btnDeletar', function() {
     editarDeletarKanban.eu = $(this);
-    editarDeletarKanban.deletar();
+    editarDeletarKanban.deletarFazendo();
 });
 $("#nav-link-kanban_feitas").on('click', '.btnDeletar', function() {
     editarDeletarKanban.eu = $(this);
-    editarDeletarKanban.deletar();
+    editarDeletarKanban.deletarFeitas();
 });
 
 //Editar os cartões
@@ -62,34 +63,35 @@ $("#nav-link-kanban_feitas").on('click', '.btnExpandir', function() {
 });
 
 //Mover os cartões entre os quadros
-const mover = new MoverKanban();
+const mover = new MoverKanban(kabanboard);
 $("#nav-link-kanban_aFazer").on('click', '.btnMoverDireita', function() {
     mover.eu = $(this);
-    mover.moverFazendo();
+    mover.moverAFazerFazendo();
 });
 $("#nav-link-kanban_aFazer").on('click', '.btnMoverEsquerda', function() {
     mover.eu = $(this);
-    mover.moverFeitas();
+    mover.moverAFazerFeitas();
 });
 $("#nav-link-kanban_fazendo").on('click', '.btnMoverDireita', function() {
     mover.eu = $(this);
-    mover.moverFeitas();
+    mover.moverFazendoFeitas();
 });
 $("#nav-link-kanban_fazendo").on('click', '.btnMoverEsquerda', function() {
     mover.eu = $(this);
-    mover.moverAFazer();
+    mover.moverFazendoAFazer();
 });
 $("#nav-link-kanban_feitas").on('click', '.btnMoverDireita', function() {
     mover.eu = $(this);
-    mover.moverAFazer();
+    mover.moverFeitasAFazer();
 });
 $("#nav-link-kanban_feitas").on('click', '.btnMoverEsquerda', function() {
     mover.eu = $(this);
-    mover.moverFazendo();
+    mover.moverFeitasFazendo();
 });
 
 //Contar a quantidade de cartões em cada lista
 const contarFormacoes = new ContarFormacoes();
+const _addKanbanView = new KanbanView('');
 var observaAFazer = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) { 
         contarFormacoes.update();

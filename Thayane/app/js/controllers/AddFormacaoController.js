@@ -20,11 +20,13 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                     this._inputFormacaoDescricao = $('#novaFormacaoDescricao');
                     this._numA = 0;
                     this._numB = 0;
+                    this._numC = 'expandir0';
+                    this._numD = 'expandir0';
                     this._addKanbanView.update(this._kanban);
                 }
                 adiciona(event) {
                     event.preventDefault();
-                    const addFormacao = new index_2.AddFormacao(this._inputFormacaoTitulo.val(), this._inputFormacaoDescricao.val(), this._numA, this._numB);
+                    const addFormacao = new index_2.AddFormacao(this._inputFormacaoTitulo.val(), this._inputFormacaoDescricao.val(), this._numA, this._numB, this._numC, this._numD);
                     this._kanban.adiciona(addFormacao);
                     this._addKanbanView.update(this._kanban);
                     this._limparFormulario();

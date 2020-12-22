@@ -6,6 +6,8 @@ export class AddFormacaoController{
     private _inputFormacaoDescricao: JQuery;
     private _numA: number;
     private _numB: number;
+    private _numC: string;
+    private _numD: string;
     private _addKanbanView = new KanbanView('#nav-link-kanban_afazer');
     
     constructor(readonly _kanban: Kanban){
@@ -13,6 +15,8 @@ export class AddFormacaoController{
         this._inputFormacaoDescricao = $('#novaFormacaoDescricao');
         this._numA = 0;
         this._numB = 0;
+        this._numC = 'expandir0';
+        this._numD = 'expandir0';
         this._addKanbanView.update(this._kanban);
     }
 
@@ -23,7 +27,9 @@ export class AddFormacaoController{
             this._inputFormacaoTitulo.val(),
             this._inputFormacaoDescricao.val(),
             this._numA,
-            this._numB
+            this._numB,
+            this._numC,
+            this._numD
         );
 
         this._kanban.adiciona(addFormacao);
