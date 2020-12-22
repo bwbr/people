@@ -15,14 +15,14 @@ System.register(["./View", "./AddFormacoesView"], function (exports_1, context_1
             KanbanView = class KanbanView extends View_1.View {
                 constructor() {
                     super(...arguments);
-                    this._formacaoAFazerView = new AddFormacoesView_1.AddFormacoesView('#nav-link-kanban_afazer');
+                    this._formacaoAFazerView = new AddFormacoesView_1.AddFormacoesView('#nav-link-kanban_aFazer');
                     this._formacaoFazendoView = new AddFormacoesView_1.AddFormacoesView('#nav-link-kanban_fazendo');
                     this._formacaoFeitoView = new AddFormacoesView_1.AddFormacoesView('#nav-link-kanban_feitas');
                 }
                 update(model) {
-                    this._formacaoAFazerView.update(model.afazer);
+                    this._formacaoAFazerView.update(model.aFazer);
                     this._formacaoFazendoView.update(model.fazendo);
-                    this._formacaoFeitoView.update(model.feito);
+                    this._formacaoFeitoView.update(model.feitas);
                 }
                 template(model) {
                     return '';

@@ -4,8 +4,6 @@ import { BotoesDeletarEditar } from '../controllers/index';
 
 export class AddFormacoesView extends View<AddFormacoes>{
     template(model: AddFormacoes): string{
-        console.log('renderizando');
-        console.log(model);
         return `
             ${model.paraArray().map(formacao =>
             `

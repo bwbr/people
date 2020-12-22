@@ -1,10 +1,5 @@
 export class AddFormacao{
-    constructor(
-        readonly formacaoTitulo: string, 
-        readonly formacaoDescricao: string, 
-        private a: number, 
-        private b: number
-        ){
+    constructor (readonly formacaoTitulo: string, readonly formacaoDescricao: string, private a: number, private b: number){
     }
 
     get numA(){

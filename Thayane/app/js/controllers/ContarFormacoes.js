@@ -7,7 +7,7 @@ System.register([], function (exports_1, context_1) {
         execute: function () {
             ContarFormacoes = class ContarFormacoes {
                 update() {
-                    var filhosAFazer = $('#nav-link-kanban_afazer').children().length;
+                    var filhosAFazer = $('#nav-link-kanban_aFazer').children().length;
                     this._quantAFazer = filhosAFazer;
                     $('#quantAFazer').text(this._quantAFazer);
                     $('#span_aFazer').text(this._quantAFazer);

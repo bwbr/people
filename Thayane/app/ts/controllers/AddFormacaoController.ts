@@ -8,9 +8,7 @@ export class AddFormacaoController{
     private _numB: number;
     private _addKanbanView = new KanbanView('#nav-link-kanban_afazer');
     
-    constructor(
-        readonly _kanban: Kanban
-    ){
+    constructor(readonly _kanban: Kanban){
         this._inputFormacaoTitulo = $('#novaFormacaoTitulo');
         this._inputFormacaoDescricao = $('#novaFormacaoDescricao');
         this._numA = 0;
@@ -19,7 +17,6 @@ export class AddFormacaoController{
     }
 
     adiciona(event: Event){
-        console.log('teste');
         event.preventDefault();
 
         const addFormacao = new AddFormacao(
@@ -31,7 +28,6 @@ export class AddFormacaoController{
 
         this._kanban.adiciona(addFormacao);
         this._addKanbanView.update(this._kanban);
-        console.log(this._kanban);
         this._limparFormulario();
     }
 

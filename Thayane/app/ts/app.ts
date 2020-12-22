@@ -17,13 +17,91 @@ $('[data-form-skill]').submit(controllerSkills.adiciona.bind(controllerSkills));
 const modal = new ModalController();
 $('#btn-modal').click(() => modal.esconderModal());
 
-const contarFormacoes = new ContarFormacoes();
+//Deletar os cartões
 const editarDeletarKanban = new BotoesDeletarEditar();
-const expandir = new Expandir();
-const mover = new MoverKanban(kabanboard);
+$("#nav-link-kanban_aFazer").on('click', '.btnDeletar', function() {
+    editarDeletarKanban.eu = $(this);
+    editarDeletarKanban.deletar();
+});
+$("#nav-link-kanban_fazendo").on('click', '.btnDeletar', function() {
+    editarDeletarKanban.eu = $(this);
+    editarDeletarKanban.deletar();
+});
+$("#nav-link-kanban_feitas").on('click', '.btnDeletar', function() {
+    editarDeletarKanban.eu = $(this);
+    editarDeletarKanban.deletar();
+});
 
-$("#nav-link-kanban_afazer").on('click', '.btnMoverDireita', function() {
+//Editar os cartões
+$("#nav-link-kanban_aFazer").on('click', '.btnEditar', function() {
+    editarDeletarKanban.eu = $(this);
+    editarDeletarKanban.editar();
+});
+$("#nav-link-kanban_fazendo").on('click', '.btnEditar', function() {
+    editarDeletarKanban.eu = $(this);
+    editarDeletarKanban.editar();
+});
+$("#nav-link-kanban_feitas").on('click', '.btnEditar', function() {
+    editarDeletarKanban.eu = $(this);
+    editarDeletarKanban.editar();
+});
+
+//Expandir os cartões
+const expandir = new Expandir();
+$("#nav-link-kanban_aFazer").on('click', '.btnExpandir', function() {
+    expandir.eu = $(this);
+    expandir.expandir();
+});
+$("#nav-link-kanban_fazendo").on('click', '.btnExpandir', function() {
+    expandir.eu = $(this);
+    expandir.expandir();
+});
+$("#nav-link-kanban_feitas").on('click', '.btnExpandir', function() {
+    expandir.eu = $(this);
+    expandir.expandir();
+});
+
+//Mover os cartões entre os quadros
+const mover = new MoverKanban();
+$("#nav-link-kanban_aFazer").on('click', '.btnMoverDireita', function() {
     mover.eu = $(this);
-    console.log('teste somente botao btnMoverDireita');
+    mover.moverFazendo();
+});
+$("#nav-link-kanban_aFazer").on('click', '.btnMoverEsquerda', function() {
+    mover.eu = $(this);
+    mover.moverFeitas();
+});
+$("#nav-link-kanban_fazendo").on('click', '.btnMoverDireita', function() {
+    mover.eu = $(this);
+    mover.moverFeitas();
+});
+$("#nav-link-kanban_fazendo").on('click', '.btnMoverEsquerda', function() {
+    mover.eu = $(this);
     mover.moverAFazer();
 });
+$("#nav-link-kanban_feitas").on('click', '.btnMoverDireita', function() {
+    mover.eu = $(this);
+    mover.moverAFazer();
+});
+$("#nav-link-kanban_feitas").on('click', '.btnMoverEsquerda', function() {
+    mover.eu = $(this);
+    mover.moverFazendo();
+});
+
+//Contar a quantidade de cartões em cada lista
+const contarFormacoes = new ContarFormacoes();
+var observaAFazer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) { 
+        contarFormacoes.update();
+    })
+});observaAFazer.observe(document.querySelector("#nav-link-kanban_aFazer"), { childList: true });
+var observaFazendo = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {     
+        contarFormacoes.update();
+    })
+});observaFazendo.observe(document.querySelector("#nav-link-kanban_fazendo"), { childList: true });
+var observaFeitas = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {       
+        contarFormacoes.update();
+    })
+});observaFeitas.observe(document.querySelector("#nav-link-kanban_feitas"), { childList: true });

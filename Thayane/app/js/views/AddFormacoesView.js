@@ -11,8 +11,6 @@ System.register(["./View"], function (exports_1, context_1) {
         execute: function () {
             AddFormacoesView = class AddFormacoesView extends View_1.View {
                 template(model) {
-                    console.log('renderizando');
-                    console.log(model);
                     return `
             ${model.paraArray().map(formacao => `
                 <div class="card formacoes arrastar_js" draggable="true">

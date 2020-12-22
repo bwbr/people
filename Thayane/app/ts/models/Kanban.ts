@@ -2,27 +2,25 @@ import { AddFormacao } from './AddFormacao';
 import { AddFormacoes } from './AddFormacoes';
 export class Kanban {
 
-    afazer: AddFormacoes = new AddFormacoes();
-    feito: AddFormacoes = new AddFormacoes();
+    aFazer: AddFormacoes = new AddFormacoes();
     fazendo: AddFormacoes = new AddFormacoes();
+    feitas: AddFormacoes = new AddFormacoes();
     
     adiciona(formacao: AddFormacao){
-        this.afazer.adiciona(formacao);
+        this.aFazer.adiciona(formacao);
     }
 
     pop(title: string): AddFormacao {
-        let card = this.afazer.pop(title);
-        if (card != undefined) {
-            return card;
-        }
+        let card = this.aFazer.pop(title);
+
+        if (card != undefined)  return card;
         card = this.fazendo.pop(title);
-        if (card != undefined) {
-            return card;
-        }
-        card = this.feito.pop(title);
-        if (card != undefined) {
-            return card;
-        }
+
+        if (card != undefined)  return card;
+        card = this.feitas.pop(title);
+
+        if (card != undefined)  return card;
+        
         return undefined
     }
 }

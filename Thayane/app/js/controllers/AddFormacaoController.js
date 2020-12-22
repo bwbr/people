@@ -23,12 +23,10 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                     this._addKanbanView.update(this._kanban);
                 }
                 adiciona(event) {
-                    console.log('teste');
                     event.preventDefault();
                     const addFormacao = new index_2.AddFormacao(this._inputFormacaoTitulo.val(), this._inputFormacaoDescricao.val(), this._numA, this._numB);
                     this._kanban.adiciona(addFormacao);
                     this._addKanbanView.update(this._kanban);
-                    console.log(this._kanban);
                     this._limparFormulario();
                 }
                 _limparFormulario() {

@@ -11,26 +11,23 @@ System.register(["./AddFormacoes"], function (exports_1, context_1) {
         execute: function () {
             Kanban = class Kanban {
                 constructor() {
-                    this.afazer = new AddFormacoes_1.AddFormacoes();
-                    this.feito = new AddFormacoes_1.AddFormacoes();
+                    this.aFazer = new AddFormacoes_1.AddFormacoes();
                     this.fazendo = new AddFormacoes_1.AddFormacoes();
+                    this.feitas = new AddFormacoes_1.AddFormacoes();
                 }
                 adiciona(formacao) {
-                    this.afazer.adiciona(formacao);
+                    this.aFazer.adiciona(formacao);
                 }
                 pop(title) {
-                    let card = this.afazer.pop(title);
-                    if (card != undefined) {
+                    let card = this.aFazer.pop(title);
+                    if (card != undefined)
                         return card;
-                    }
                     card = this.fazendo.pop(title);
-                    if (card != undefined) {
+                    if (card != undefined)
                         return card;
-                    }
-                    card = this.feito.pop(title);
-                    if (card != undefined) {
+                    card = this.feitas.pop(title);
+                    if (card != undefined)
                         return card;
-                    }
                     return undefined;
                 }
             };
