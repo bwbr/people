@@ -2,8 +2,6 @@ import {AtividadeController} from './controllers/AtividadeController';
 
 const controller = new AtividadeController();
 
-controller.atualiza();
-
 // submete o form que adiciona atividades
 $('#cards').submit(controller.adiciona.bind(controller));
 
