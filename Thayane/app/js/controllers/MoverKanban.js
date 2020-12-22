@@ -1,31 +1,78 @@
-System.register([], function (exports_1, context_1) {
+System.register(["../views/KanbanView"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var MoverKanban;
+    var KanbanView_1, MoverKanban;
     return {
-        setters: [],
+        setters: [
+            function (KanbanView_1_1) {
+                KanbanView_1 = KanbanView_1_1;
+            }
+        ],
         execute: function () {
             MoverKanban = class MoverKanban {
-                moverAFazer() {
-                    console.log("Movendo...");
-                    this.biso = this.eu.parents('.formacoes');
-                    this.novoBiso = $('#nav-link-kanban_aFazer');
-                    this.novoBiso.append(this.biso);
-                    this.biso = this.novoBiso;
+                constructor(kanban) {
+                    this.kanban = kanban;
+                    this._addKanbanView = new KanbanView_1.KanbanView('');
                 }
-                moverFazendo() {
+                moverAFazerFazendo() {
                     console.log("Movendo...");
-                    this.biso = this.eu.parents('.formacoes');
-                    this.novoBiso = $('#nav-link-kanban_fazendo');
-                    this.novoBiso.append(this.biso);
-                    this.biso = this.novoBiso;
+                    let title = this.eu.data('title');
+                    let card = this.kanban.pop(title);
+                    if (card == undefined)
+                        return;
+                    this.kanban.fazendo.adiciona(card);
+                    this.kanban.aFazer.removeAFazer(card);
+                    this._addKanbanView.update(this.kanban);
                 }
-                moverFeitas() {
+                moverAFazerFeitas() {
                     console.log("Movendo...");
-                    this.biso = this.eu.parents('.formacoes');
-                    this.novoBiso = $('#nav-link-kanban_feitas');
-                    this.novoBiso.append(this.biso);
-                    this.biso = this.novoBiso;
+                    let title = this.eu.data('title');
+                    let card = this.kanban.pop(title);
+                    if (card == undefined)
+                        return;
+                    this.kanban.feitas.adiciona(card);
+                    this.kanban.aFazer.removeAFazer(card);
+                    this._addKanbanView.update(this.kanban);
+                }
+                moverFazendoFeitas() {
+                    console.log("Movendo...");
+                    let title = this.eu.data('title');
+                    let card = this.kanban.pop(title);
+                    if (card == undefined)
+                        return;
+                    this.kanban.feitas.adiciona(card);
+                    this.kanban.fazendo.removeAFazer(card);
+                    this._addKanbanView.update(this.kanban);
+                }
+                moverFazendoAFazer() {
+                    console.log("Movendo...");
+                    let title = this.eu.data('title');
+                    let card = this.kanban.pop(title);
+                    if (card == undefined)
+                        return;
+                    this.kanban.aFazer.adiciona(card);
+                    this.kanban.fazendo.removeAFazer(card);
+                    this._addKanbanView.update(this.kanban);
+                }
+                moverFeitasFazendo() {
+                    console.log("Movendo...");
+                    let title = this.eu.data('title');
+                    let card = this.kanban.pop(title);
+                    if (card == undefined)
+                        return;
+                    this.kanban.fazendo.adiciona(card);
+                    this.kanban.feitas.removeAFazer(card);
+                    this._addKanbanView.update(this.kanban);
+                }
+                moverFeitasAFazer() {
+                    console.log("Movendo...");
+                    let title = this.eu.data('title');
+                    let card = this.kanban.pop(title);
+                    if (card == undefined)
+                        return;
+                    this.kanban.aFazer.adiciona(card);
+                    this.kanban.feitas.removeAFazer(card);
+                    this._addKanbanView.update(this.kanban);
                 }
             };
             exports_1("MoverKanban", MoverKanban);

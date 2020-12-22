@@ -1,7 +1,7 @@
-System.register(["./controllers/index", "./models/index"], function (exports_1, context_1) {
+System.register(["./controllers/index", "./views/index", "./models/index"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var index_1, index_2, index_3, muda, kabanboard, controllerFormacoes, controllerSkills, modal, editarDeletarKanban, expandir, mover, contarFormacoes, observaAFazer, observaFazendo, observaFeitas;
+    var index_1, index_2, index_3, index_4, muda, kabanboard, controllerFormacoes, controllerSkills, modal, editarDeletarKanban, expandir, mover, contarFormacoes, _addKanbanView, observaAFazer, observaFazendo, observaFeitas;
     return {
         setters: [
             function (index_1_1) {
@@ -10,31 +10,34 @@ System.register(["./controllers/index", "./models/index"], function (exports_1, 
             },
             function (index_3_1) {
                 index_3 = index_3_1;
+            },
+            function (index_4_1) {
+                index_4 = index_4_1;
             }
         ],
         execute: function () {
             muda = new index_1.MudarClasseResponsivo();
             $.when(window).then(() => muda.tamanho());
             $(window).resize(() => muda.tamanho());
-            kabanboard = new index_3.Kanban();
+            kabanboard = new index_4.Kanban();
             controllerFormacoes = new index_1.AddFormacaoController(kabanboard);
             $('[data-form-formacao]').submit(controllerFormacoes.adiciona.bind(controllerFormacoes));
             controllerSkills = new index_1.AddSkillController();
             $('[data-form-skill]').submit(controllerSkills.adiciona.bind(controllerSkills));
             modal = new index_2.ModalController();
             $('#btn-modal').click(() => modal.esconderModal());
-            editarDeletarKanban = new index_1.BotoesDeletarEditar();
+            editarDeletarKanban = new index_1.BotoesDeletarEditar(kabanboard);
             $("#nav-link-kanban_aFazer").on('click', '.btnDeletar', function () {
                 editarDeletarKanban.eu = $(this);
-                editarDeletarKanban.deletar();
+                editarDeletarKanban.deletarAFazer();
             });
             $("#nav-link-kanban_fazendo").on('click', '.btnDeletar', function () {
                 editarDeletarKanban.eu = $(this);
-                editarDeletarKanban.deletar();
+                editarDeletarKanban.deletarFazendo();
             });
             $("#nav-link-kanban_feitas").on('click', '.btnDeletar', function () {
                 editarDeletarKanban.eu = $(this);
-                editarDeletarKanban.deletar();
+                editarDeletarKanban.deletarFeitas();
             });
             $("#nav-link-kanban_aFazer").on('click', '.btnEditar', function () {
                 editarDeletarKanban.eu = $(this);
@@ -61,32 +64,33 @@ System.register(["./controllers/index", "./models/index"], function (exports_1, 
                 expandir.eu = $(this);
                 expandir.expandir();
             });
-            mover = new index_1.MoverKanban();
+            mover = new index_1.MoverKanban(kabanboard);
             $("#nav-link-kanban_aFazer").on('click', '.btnMoverDireita', function () {
                 mover.eu = $(this);
-                mover.moverFazendo();
+                mover.moverAFazerFazendo();
             });
             $("#nav-link-kanban_aFazer").on('click', '.btnMoverEsquerda', function () {
                 mover.eu = $(this);
-                mover.moverFeitas();
+                mover.moverAFazerFeitas();
             });
             $("#nav-link-kanban_fazendo").on('click', '.btnMoverDireita', function () {
                 mover.eu = $(this);
-                mover.moverFeitas();
+                mover.moverFazendoFeitas();
             });
             $("#nav-link-kanban_fazendo").on('click', '.btnMoverEsquerda', function () {
                 mover.eu = $(this);
-                mover.moverAFazer();
+                mover.moverFazendoAFazer();
             });
             $("#nav-link-kanban_feitas").on('click', '.btnMoverDireita', function () {
                 mover.eu = $(this);
-                mover.moverAFazer();
+                mover.moverFeitasAFazer();
             });
             $("#nav-link-kanban_feitas").on('click', '.btnMoverEsquerda', function () {
                 mover.eu = $(this);
-                mover.moverFazendo();
+                mover.moverFeitasFazendo();
             });
             contarFormacoes = new index_1.ContarFormacoes();
+            _addKanbanView = new index_3.KanbanView('');
             observaAFazer = new MutationObserver(function (mutations) {
                 mutations.forEach(function (mutation) {
                     contarFormacoes.update();

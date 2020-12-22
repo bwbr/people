@@ -18,6 +18,15 @@ System.register(["./AddFormacoes"], function (exports_1, context_1) {
                 adiciona(formacao) {
                     this.aFazer.adiciona(formacao);
                 }
+                removeAFazer(formacao) {
+                    this.aFazer.removeAFazer(formacao);
+                }
+                removeFazendo(formacao) {
+                    this.fazendo.removeFazendo(formacao);
+                }
+                removeFeitas(formacao) {
+                    this.feitas.removeFeitas(formacao);
+                }
                 pop(title) {
                     let card = this.aFazer.pop(title);
                     if (card != undefined)

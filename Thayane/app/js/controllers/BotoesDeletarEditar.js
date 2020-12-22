@@ -1,15 +1,45 @@
-System.register([], function (exports_1, context_1) {
+System.register(["../views/KanbanView"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var BotoesDeletarEditar;
+    var KanbanView_1, BotoesDeletarEditar;
     return {
-        setters: [],
+        setters: [
+            function (KanbanView_1_1) {
+                KanbanView_1 = KanbanView_1_1;
+            }
+        ],
         execute: function () {
             BotoesDeletarEditar = class BotoesDeletarEditar {
-                deletar() {
-                    console.log("Deletando...");
-                    this.pai = this.eu.parents('.formacoes');
-                    this.pai.remove();
+                constructor(kanban) {
+                    this.kanban = kanban;
+                    this._addKanbanView = new KanbanView_1.KanbanView('');
+                }
+                deletarAFazer() {
+                    console.log("Removendo...");
+                    let title = this.eu.data('title');
+                    let card = this.kanban.pop(title);
+                    if (card == undefined)
+                        return console.log("Não encontrado");
+                    this.kanban.aFazer.removeAFazer(card);
+                    this._addKanbanView.update(this.kanban);
+                }
+                deletarFazendo() {
+                    console.log("Removendo...");
+                    let title = this.eu.data('title');
+                    let card = this.kanban.pop(title);
+                    if (card == undefined)
+                        return console.log("Não encontrado");
+                    this.kanban.fazendo.removeFazendo(card);
+                    this._addKanbanView.update(this.kanban);
+                }
+                deletarFeitas() {
+                    console.log("Removendo...");
+                    let title = this.eu.data('title');
+                    let card = this.kanban.pop(title);
+                    if (card == undefined)
+                        return console.log("Não encontrado");
+                    this.kanban.feitas.removeFeitas(card);
+                    this._addKanbanView.update(this.kanban);
                 }
                 editar() {
                     console.log("Editando...");
