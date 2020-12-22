@@ -38,7 +38,7 @@ System.register(["./View"], function (exports_1, context_1) {
                         </div>
                             
                         <div class="card-footer d-flex justify-content-between">
-                            <button class="btnVazio btnMoverEsquerda">
+                            <button class="btnVazio btnMoverEsquerda" data-title="${formacao.formacaoTitulo}" >
                                 <i class="icones iconeMoverEsquerda"></i>
                             </button>
                             <button class="btnVazio btnMoverDireita">

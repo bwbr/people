@@ -1,140 +1,110 @@
-System.register(["./controllers/index"], function (exports_1, context_1) {
+System.register(["./controllers/index", "./models/index"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var index_1, index_2, muda, controllerFormacoes, controllerSkills, modal, contarFormacoes, editarDeletarKanban, expandir, mover, observaAFazer, observaFazendo, observaFeitas, observador;
+    var index_1, index_2, index_3, muda, kabanboard, controllerFormacoes, controllerSkills, modal, editarDeletarKanban, expandir, mover, contarFormacoes, observaAFazer, observaFazendo, observaFeitas;
     return {
         setters: [
             function (index_1_1) {
                 index_1 = index_1_1;
                 index_2 = index_1_1;
+            },
+            function (index_3_1) {
+                index_3 = index_3_1;
             }
         ],
         execute: function () {
             muda = new index_1.MudarClasseResponsivo();
             $.when(window).then(() => muda.tamanho());
             $(window).resize(() => muda.tamanho());
-            controllerFormacoes = new index_1.AddFormacaoController();
+            kabanboard = new index_3.Kanban();
+            controllerFormacoes = new index_1.AddFormacaoController(kabanboard);
             $('[data-form-formacao]').submit(controllerFormacoes.adiciona.bind(controllerFormacoes));
             controllerSkills = new index_1.AddSkillController();
             $('[data-form-skill]').submit(controllerSkills.adiciona.bind(controllerSkills));
             modal = new index_2.ModalController();
             $('#btn-modal').click(() => modal.esconderModal());
-            contarFormacoes = new index_1.ContarFormacoes();
             editarDeletarKanban = new index_1.BotoesDeletarEditar();
+            $("#nav-link-kanban_aFazer").on('click', '.btnDeletar', function () {
+                editarDeletarKanban.eu = $(this);
+                editarDeletarKanban.deletar();
+            });
+            $("#nav-link-kanban_fazendo").on('click', '.btnDeletar', function () {
+                editarDeletarKanban.eu = $(this);
+                editarDeletarKanban.deletar();
+            });
+            $("#nav-link-kanban_feitas").on('click', '.btnDeletar', function () {
+                editarDeletarKanban.eu = $(this);
+                editarDeletarKanban.deletar();
+            });
+            $("#nav-link-kanban_aFazer").on('click', '.btnEditar', function () {
+                editarDeletarKanban.eu = $(this);
+                editarDeletarKanban.editar();
+            });
+            $("#nav-link-kanban_fazendo").on('click', '.btnEditar', function () {
+                editarDeletarKanban.eu = $(this);
+                editarDeletarKanban.editar();
+            });
+            $("#nav-link-kanban_feitas").on('click', '.btnEditar', function () {
+                editarDeletarKanban.eu = $(this);
+                editarDeletarKanban.editar();
+            });
             expandir = new index_1.Expandir();
+            $("#nav-link-kanban_aFazer").on('click', '.btnExpandir', function () {
+                expandir.eu = $(this);
+                expandir.expandir();
+            });
+            $("#nav-link-kanban_fazendo").on('click', '.btnExpandir', function () {
+                expandir.eu = $(this);
+                expandir.expandir();
+            });
+            $("#nav-link-kanban_feitas").on('click', '.btnExpandir', function () {
+                expandir.eu = $(this);
+                expandir.expandir();
+            });
             mover = new index_1.MoverKanban();
+            $("#nav-link-kanban_aFazer").on('click', '.btnMoverDireita', function () {
+                mover.eu = $(this);
+                mover.moverFazendo();
+            });
+            $("#nav-link-kanban_aFazer").on('click', '.btnMoverEsquerda', function () {
+                mover.eu = $(this);
+                mover.moverFeitas();
+            });
+            $("#nav-link-kanban_fazendo").on('click', '.btnMoverDireita', function () {
+                mover.eu = $(this);
+                mover.moverFeitas();
+            });
+            $("#nav-link-kanban_fazendo").on('click', '.btnMoverEsquerda', function () {
+                mover.eu = $(this);
+                mover.moverAFazer();
+            });
+            $("#nav-link-kanban_feitas").on('click', '.btnMoverDireita', function () {
+                mover.eu = $(this);
+                mover.moverAFazer();
+            });
+            $("#nav-link-kanban_feitas").on('click', '.btnMoverEsquerda', function () {
+                mover.eu = $(this);
+                mover.moverFazendo();
+            });
+            contarFormacoes = new index_1.ContarFormacoes();
             observaAFazer = new MutationObserver(function (mutations) {
                 mutations.forEach(function (mutation) {
-                    $("#addAqui").find(".btnExpandir").click(function () {
-                        expandir.eu = $(this);
-                        expandir.expandir();
-                    });
-                    $("#addAqui").find(".btnDeletar").click(function () {
-                        editarDeletarKanban.eu = $(this);
-                        if (editarDeletarKanban.eu.hasClass('btnDeletar')) {
-                            editarDeletarKanban.deletar();
-                        }
-                        else if (editarDeletarKanban.eu.hasClass('btnEditar')) {
-                            editarDeletarKanban.editar();
-                        }
-                    });
-                    $("#addAqui").find(".btnMoverDireita").click(function () {
-                        mover.eu = $(this);
-                        mover.moverFazendo();
-                    });
-                    $("#addAqui").find(".btnMoverEsquerda").click(function () {
-                        mover.eu = $(this);
-                        mover.moverFeitas();
-                    });
                     contarFormacoes.update();
                 });
             });
-            observaAFazer.observe(document.querySelector("#addAqui"), { childList: true });
+            observaAFazer.observe(document.querySelector("#nav-link-kanban_aFazer"), { childList: true });
             observaFazendo = new MutationObserver(function (mutations) {
                 mutations.forEach(function (mutation) {
-                    $("#nav-link-kanban_fazendo").find(".btnExpandir").click(function () {
-                        var eu = $(this);
-                        var irmao = $(eu).siblings();
-                        var sobrinho = $(irmao).children();
-                        if (sobrinho.hasClass('iconeDeletar')) {
-                            sobrinho.removeClass('iconeDeletar').addClass('iconeEditar');
-                            irmao.removeClass('btnDeletar').addClass('btnEditar');
-                        }
-                        else if (sobrinho.hasClass('iconeEditar')) {
-                            sobrinho.removeClass('iconeEditar').addClass('iconeDeletar');
-                            irmao.removeClass('btnEditar').addClass('btnDeletar');
-                        }
-                    });
-                    $("#nav-link-kanban_fazendo").find(".btnDeletar").click(function () {
-                        editarDeletarKanban.eu = $(this);
-                        if (editarDeletarKanban.eu.hasClass('btnDeletar')) {
-                            editarDeletarKanban.deletar();
-                        }
-                        else if (editarDeletarKanban.eu.hasClass('btnEditar')) {
-                            editarDeletarKanban.editar();
-                        }
-                    });
-                    $("#nav-link-kanban_fazendo").find(".btnMoverDireita").click(function () {
-                        mover.eu = $(this);
-                        mover.moverFeitas();
-                    });
-                    $("#nav-link-kanban_fazendo").find(".btnMoverEsquerda").click(function () {
-                        mover.eu = $(this);
-                        mover.moverAFazer();
-                    });
                     contarFormacoes.update();
                 });
             });
             observaFazendo.observe(document.querySelector("#nav-link-kanban_fazendo"), { childList: true });
             observaFeitas = new MutationObserver(function (mutations) {
                 mutations.forEach(function (mutation) {
-                    $("#nav-link-kanban_feitas").find(".btnExpandir").click(function () {
-                        var eu = $(this);
-                        var irmao = $(eu).siblings();
-                        var sobrinho = $(irmao).children();
-                        if (sobrinho.hasClass('iconeDeletar')) {
-                            sobrinho.removeClass('iconeDeletar').addClass('iconeEditar');
-                            irmao.removeClass('btnDeletar').addClass('btnEditar');
-                        }
-                        else if (sobrinho.hasClass('iconeEditar')) {
-                            sobrinho.removeClass('iconeEditar').addClass('iconeDeletar');
-                            irmao.removeClass('btnEditar').addClass('btnDeletar');
-                        }
-                    });
-                    $("#nav-link-kanban_feitas").find(".btnDeletar").click(function () {
-                        editarDeletarKanban.eu = $(this);
-                        if (editarDeletarKanban.eu.hasClass('btnDeletar')) {
-                            editarDeletarKanban.deletar();
-                        }
-                        else if (editarDeletarKanban.eu.hasClass('btnEditar')) {
-                            editarDeletarKanban.editar();
-                        }
-                    });
-                    $("#nav-link-kanban_feitas").find(".btnMoverDireita").click(function () {
-                        mover.eu = $(this);
-                        mover.moverAFazer();
-                    });
-                    $("#nav-link-kanban_feitas").find(".btnMoverEsquerda").click(function () {
-                        mover.eu = $(this);
-                        mover.moverFazendo();
-                    });
                     contarFormacoes.update();
                 });
             });
             observaFeitas.observe(document.querySelector("#nav-link-kanban_feitas"), { childList: true });
-            observador = new MutationObserver(function (mutations) {
-                mutations.forEach(function (mutation) {
-                    $("#novaSkill").find(".btnDeletar").click(function () {
-                        editarDeletarKanban.eu = $(this);
-                        editarDeletarKanban.deletarSkill();
-                    });
-                    $("#novaSkill").find(".btnEditar").click(function () {
-                        editarDeletarKanban.eu = $(this);
-                        editarDeletarKanban.editarSkill();
-                    });
-                });
-            });
-            observador.observe(document.querySelector("#novaSkill"), { childList: true });
         }
     };
 });

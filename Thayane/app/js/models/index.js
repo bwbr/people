@@ -1,4 +1,4 @@
-System.register(["./AddAtividade", "./AddAtividades", "./AddFormacao", "./AddFormacoes", "./AddSkill", "./AddSkills"], function (exports_1, context_1) {
+System.register(["./AddAtividade", "./AddAtividades", "./AddFormacao", "./AddFormacoes", "./AddSkill", "./AddSkills", "./Kanban"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     function exportStar_1(m) {
@@ -27,6 +27,9 @@ System.register(["./AddAtividade", "./AddAtividades", "./AddFormacao", "./AddFor
             },
             function (AddSkills_1_1) {
                 exportStar_1(AddSkills_1_1);
+            },
+            function (Kanban_1_1) {
+                exportStar_1(Kanban_1_1);
             }
         ],
         execute: function () {

@@ -9,7 +9,7 @@ System.register([], function (exports_1, context_1) {
                 moverAFazer() {
                     console.log("Movendo...");
                     this.biso = this.eu.parents('.formacoes');
-                    this.novoBiso = $('#addAqui');
+                    this.novoBiso = $('#nav-link-kanban_aFazer');
                     this.novoBiso.append(this.biso);
                     this.biso = this.novoBiso;
                 }

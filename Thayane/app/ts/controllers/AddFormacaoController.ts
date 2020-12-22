@@ -1,20 +1,19 @@
-import { AddFormacoesView } from '../views/index';
-import { AddFormacoes, AddFormacao } from '../models/index';
+import { KanbanView } from '../views/index';
+import { AddFormacoes, AddFormacao, Kanban } from '../models/index';
 
 export class AddFormacaoController{
     private _inputFormacaoTitulo: JQuery;
     private _inputFormacaoDescricao: JQuery;
-    private _formacoes = new AddFormacoes();
     private _numA: number;
     private _numB: number;
-    private _addFormacoesView = new AddFormacoesView('#addAqui');
+    private _addKanbanView = new KanbanView('#nav-link-kanban_afazer');
     
-    constructor(){
+    constructor(readonly _kanban: Kanban){
         this._inputFormacaoTitulo = $('#novaFormacaoTitulo');
         this._inputFormacaoDescricao = $('#novaFormacaoDescricao');
         this._numA = 0;
         this._numB = 0;
-        this._addFormacoesView.update(this._formacoes);
+        this._addKanbanView.update(this._kanban);
     }
 
     adiciona(event: Event){
@@ -27,8 +26,8 @@ export class AddFormacaoController{
             this._numB
         );
 
-        this._formacoes.adiciona(addFormacao);
-        this._addFormacoesView.update(this._formacoes);
+        this._kanban.adiciona(addFormacao);
+        this._addKanbanView.update(this._kanban);
         this._limparFormulario();
     }
 

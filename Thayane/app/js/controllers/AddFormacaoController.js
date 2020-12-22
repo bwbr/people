@@ -13,20 +13,20 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
         ],
         execute: function () {
             AddFormacaoController = class AddFormacaoController {
-                constructor() {
-                    this._formacoes = new index_2.AddFormacoes();
-                    this._addFormacoesView = new index_1.AddFormacoesView('#addAqui');
+                constructor(_kanban) {
+                    this._kanban = _kanban;
+                    this._addKanbanView = new index_1.KanbanView('#nav-link-kanban_afazer');
                     this._inputFormacaoTitulo = $('#novaFormacaoTitulo');
                     this._inputFormacaoDescricao = $('#novaFormacaoDescricao');
                     this._numA = 0;
                     this._numB = 0;
-                    this._addFormacoesView.update(this._formacoes);
+                    this._addKanbanView.update(this._kanban);
                 }
                 adiciona(event) {
                     event.preventDefault();
                     const addFormacao = new index_2.AddFormacao(this._inputFormacaoTitulo.val(), this._inputFormacaoDescricao.val(), this._numA, this._numB);
-                    this._formacoes.adiciona(addFormacao);
-                    this._addFormacoesView.update(this._formacoes);
+                    this._kanban.adiciona(addFormacao);
+                    this._addKanbanView.update(this._kanban);
                     this._limparFormulario();
                 }
                 _limparFormulario() {

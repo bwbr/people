@@ -6,9 +6,9 @@ export class MoverKanban{
     moverAFazer(){
         console.log("Movendo...");
         this.biso = this.eu.parents('.formacoes');
-        this.novoBiso = $('#addAqui');
+        this.novoBiso = $('#nav-link-kanban_aFazer');
         this.novoBiso.append(this.biso);
-        this.biso = this.novoBiso;
+        this.biso = this.novoBiso;              
     }
 
     moverFazendo(){
@@ -16,7 +16,7 @@ export class MoverKanban{
         this.biso = this.eu.parents('.formacoes');
         this.novoBiso = $('#nav-link-kanban_fazendo');
         this.novoBiso.append(this.biso);
-        this.biso = this.novoBiso;
+        this.biso = this.novoBiso;        
     }
 
     moverFeitas(){
@@ -24,6 +24,6 @@ export class MoverKanban{
         this.biso = this.eu.parents('.formacoes');
         this.novoBiso = $('#nav-link-kanban_feitas');
         this.novoBiso.append(this.biso);
-        this.biso = this.novoBiso;
+        this.biso = this.novoBiso;        
     }
 }
