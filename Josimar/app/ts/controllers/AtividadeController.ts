@@ -46,4 +46,8 @@ export class AtividadeController {
             this.limpa();//limpar campos formulário do cadastro Atividade
         } 
 
+        lista(){
+            
+        }
+
 }

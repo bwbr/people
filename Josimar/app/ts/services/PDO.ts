@@ -1,6 +1,4 @@
-import { table } from "console";
-
-export class Connection{
+export class PDO{
 
     private _db: Database;
     private _name: string;
@@ -19,37 +17,35 @@ export class Connection{
     //CRIAR A TABELA CASO NÃO EXISTA
     createTable(table: string, columns: string): void{
         this._db.transaction(function (tx) {  
-            tx.executeSql(`'CREATE TABLE IF NOT EXISTS ${table} (${columns})'`);
+            tx.executeSql(`CREATE TABLE IF NOT EXISTS ${table} (${columns})`);
          });
     }
 
     //DELETAR A TABELA
     dropTable(table: string): void{
         this._db.transaction(function (tx) {  
-            tx.executeSql(`'DROP TABLE ${table}'`);
+            tx.executeSql(`DROP TABLE ${table}`);
          });
     }
 
     //SALVAR DADO(S)
     insert(table: string, columns: string, values: string): void{
         this._db.transaction(function (tx) {  
-            tx.executeSql(`'INSERT INTO ${table} (${columns}) VALUES (${values})'`);
+            tx.executeSql(`INSERT INTO ${table} (${columns}) VALUES (${values})`);
           });
     }
 
     //ATUALIZAR DADO(S)
     update(table: string, values: string, condition: string): void{
         this._db.transaction(function (tx) {  
-            tx.executeSql(`
-                'UPDATE ${table} SET ${values} WHERE ${condition}'`);
+            tx.executeSql(`UPDATE ${table} SET ${values} WHERE ${condition}`);
             });
     }
     
     //DELETAR DADO(S)
     delete(table: string, condition: string): void{
         this._db.transaction(function (tx) {  
-            tx.executeSql(`
-                'DELETE from ${table} WHERE ${condition}'`);
+            tx.executeSql(`DELETE FROM ${table} WHERE ${condition}`);
             });
     }
 
@@ -61,7 +57,7 @@ export class Connection{
         
         this._db.transaction(function (tx) {
 
-            tx.executeSql(`'SELECT ${columns} FROM ${table} WHERE ${condition}'`, [], 
+            tx.executeSql(`SELECT ${columns} FROM ${table} ${condition}`, [], 
             function (tx, results) {
                 
                 var len = results.rows.length, i;
@@ -71,7 +67,8 @@ export class Connection{
                   allItems.push(item); 
                 }
             }, null);            
-         });         
+         });       
+         console.log(allItems);  
          return allItems
     }
     

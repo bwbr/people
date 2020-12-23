@@ -37,6 +37,8 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
                     this._mensagemView.update('Atividade adicionada com sucesso!');
                     this.limpa();
                 }
+                lista() {
+                }
             };
             exports_1("AtividadeController", AtividadeController);
         }
