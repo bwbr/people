@@ -10,9 +10,9 @@ System.register([], function (exports_1, context_1) {
                     this._elemento = document.querySelector(seletor);
                     this._escapar = escapar;
                 }
-                update(model) {
-                    this._elemento.innerHTML = this.template(model);
-                    let template = this.template(model);
+                update(model, alertType) {
+                    this._elemento.innerHTML = this.template(model, alertType);
+                    let template = this.template(model, alertType);
                     if (this._escapar)
                         template = template.replace(/<script>[\s\S]*?<\/script>/, '');
                 }

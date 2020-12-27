@@ -1,4 +1,4 @@
-export class PDO{
+export class DB{
 
     private _db: Database;
     private _name: string;
@@ -12,6 +12,12 @@ export class PDO{
          this._description = 'bwbr';
          this._size = 2 * 1024 * 1024;
          this._db =  window.openDatabase(this._name, this._version, this._description, this._size);
+    }
+
+    //REQUISITA CONEXÃO
+    conn(){
+        this._db =  window.openDatabase(this._name, this._version, this._description, this._size);
+        return this._db;
     }
 
     //CRIAR A TABELA CASO NÃO EXISTA
@@ -47,29 +53,6 @@ export class PDO{
         this._db.transaction(function (tx) {  
             tx.executeSql(`DELETE FROM ${table} WHERE ${condition}`);
             });
-    }
-
-    //LISTAR DADO(S)
-    list(columns: string, table: string, condition: string): any{
-        
-        var allItems:any = [];
-        var item = {}
-        
-        this._db.transaction(function (tx) {
-
-            tx.executeSql(`SELECT ${columns} FROM ${table} ${condition}`, [], 
-            function (tx, results) {
-                
-                var len = results.rows.length, i;
-
-                for (i = 0; i < len; i++){
-                  item = results.rows.item(i);
-                  allItems.push(item); 
-                }
-            }, null);            
-         });       
-         console.log(allItems);  
-         return allItems
     }
     
 }
