@@ -19,6 +19,9 @@ export class AtividadesView extends View<Atividades> {
                               <div id="collapse-${atividade.id}" class="collapse mr-3 fade">
                                 <a href="" id="edit_btn" class="btn pt-0 pb-0 pl-2 pr-1 text-dark border-0" data-toggle="collapse" data-target="#cards" aria-expanded="false" aria-controls="cards">
                                     <i class="fas fa-edit"></i>
+                                </a>                                
+                                <a href="" id="trash_btn" class="btn pt-0 pb-0 pl-2 pr-1 text-dark border-0">
+                                    <i class="fas fa-trash"></i>
                                 </a>
                               </div>
                               <div id="collapse-${atividade.id}" class="collapse fade"> 

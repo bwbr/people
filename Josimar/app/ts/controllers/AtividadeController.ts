@@ -71,7 +71,7 @@ export class AtividadeController {
         lista(){
             let table = 'Atividades';
             let columns = '*';
-            let condition = `ORDER BY to DESC`;
+            let condition = `ORDER BY id DESC`;
 
             this._db.conn().transaction(function (tx) {
                 tx.executeSql(`SELECT ${columns} FROM ${table} ${condition}`, [], function (tx, results) {

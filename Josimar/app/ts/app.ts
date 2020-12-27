@@ -15,5 +15,4 @@ $('#clear_btn').click(controller.limpa.bind(controller));
 $('#cancel_btn').click(controller.limpa.bind(controller));
 
 // apaga todas as atividades (Apaga a tabela)
-$('#trash_btn').click(controller.clear_all.bind(controller));
-
+$('#trash_all_btn').click(controller.clear_all.bind(controller));
