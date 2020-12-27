@@ -39,7 +39,7 @@ System.register(["../views/index", "../models/index", "../services/DB"], functio
                     this._atividades.salva(atividade);
                     this._atividades.adiciona(atividade);
                     this._atividadesView.update(this._atividades, '');
-                    this._mensagemView.update('Atividade adicionada com sucesso!', 'alert-wh');
+                    this._mensagemView.update('Atividade adicionada com sucesso!', 'alert-success');
                     this.limpa();
                 }
                 edita(event) {

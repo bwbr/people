@@ -17,7 +17,7 @@ export class AtividadesView extends View<Atividades> {
                           ${atividade.titulo}
                           <div class="d-flex justify-content-end">
                               <div id="collapse-${atividade.id}" class="collapse mr-3 fade">
-                                <a href="" id="edit_btn" class="btn pt-0 pb-0 pl-2 pr-1 text-dark border-0" data-toggle="collapse" data-target="#editActivity${atividade.id}" aria-expanded="true" aria-controls="editActivity${atividade.id}">
+                                <a href="" id="edit_btn" class="btn pt-0 pb-0 pl-2 pr-1 text-dark border-0" data-toggle="collapse" data-target="#cards" aria-expanded="false" aria-controls="cards">
                                     <i class="fas fa-edit"></i>
                                 </a>
                               </div>

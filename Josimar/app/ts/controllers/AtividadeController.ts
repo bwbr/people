@@ -45,7 +45,7 @@ export class AtividadeController {
             this._atividades.salva(atividade);
             this._atividades.adiciona(atividade);
             this._atividadesView.update(this._atividades, '');
-            this._mensagemView.update('Atividade adicionada com sucesso!', 'alert-wh'); //exibe mensagem ao usuário    
+            this._mensagemView.update('Atividade adicionada com sucesso!', 'alert-success'); //exibe mensagem ao usuário    
             this.limpa();//limpar campos formulário do cadastro Atividade
         } 
 
