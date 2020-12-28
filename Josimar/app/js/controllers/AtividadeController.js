@@ -39,6 +39,7 @@ System.register(["../views/index", "../models/index", "../services/DB"], functio
                     this._atividades.salva(atividade);
                     this._atividades.adiciona(atividade);
                     this._mensagemView.update('Atividade adicionada com sucesso!', 'alert-success');
+                    this.atualiza();
                     this.limpa();
                 }
                 lista() {
@@ -60,21 +61,23 @@ System.register(["../views/index", "../models/index", "../services/DB"], functio
                                 switch (atividade.idCard) {
                                     case 'cardToDo':
                                         _atividadesViewToDo.update(_atividades, '');
-                                        total_toDo = len;
+                                        total_toDo = total_toDo + 1;
+                                        console.log('Total toDo: ', total_toDo);
                                         break;
                                     case 'cardInProgress':
                                         _atividadesViewInProgress.update(_atividades, '');
-                                        total_inProgress = len;
+                                        total_inProgress = total_inProgress + 1;
+                                        console.log('Total inProgress: ', total_inProgress);
                                         break;
                                     case 'cardDone':
                                         _atividadesViewDone.update(_atividades, '');
-                                        total_done = len;
+                                        total_done = total_done + 1;
+                                        console.log('Total Done: ', total_done);
                                         break;
                                 }
                             }
-                            controller.drag_and_drop();
                             controller.badge(total_toDo, total_inProgress, total_done);
-                            controller.progressbar(total_toDo, total_inProgress, total_done);
+                            controller.drag_and_drop();
                         }, null);
                     });
                 }
@@ -83,6 +86,7 @@ System.register(["../views/index", "../models/index", "../services/DB"], functio
                     $('.badge-to-do').text(this.limitBadge(total_toDo));
                     $('.badge-in-progress').text(this.limitBadge(total_inProgress));
                     $('.badge-done').text(`${this.limitBadge(total_done)} / ${total_activities}`);
+                    this.progressbar(total_toDo, total_inProgress, total_done);
                 }
                 limitBadge(qtd) {
                     let limitQtd = "99+";

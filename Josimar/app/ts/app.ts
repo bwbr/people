@@ -4,7 +4,6 @@ const controller = new AtividadeController();
 
 // atualiza cards
 controller.atualiza();
-controller.drag_and_drop();
 
 // submete o form que adiciona atividades
 $('#cards').submit(controller.adiciona.bind(controller));

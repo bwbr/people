@@ -45,7 +45,8 @@ export class AtividadeController {
             //Finaliza para exibição
             this._atividades.salva(atividade);
             this._atividades.adiciona(atividade);
-            this._mensagemView.update('Atividade adicionada com sucesso!', 'alert-success'); //exibe mensagem ao usuário    
+            this._mensagemView.update('Atividade adicionada com sucesso!', 'alert-success'); //exibe mensagem ao usuário 
+            this.atualiza();   
             this.limpa();//limpar campos formulário do cadastro Atividade   
         } 
 
@@ -82,22 +83,24 @@ export class AtividadeController {
                         switch(atividade.idCard){
                             case 'cardToDo':
                                 _atividadesViewToDo.update(_atividades, '');
-                                total_toDo = len;
+                                total_toDo = total_toDo + 1;
+                                console.log('Total toDo: ', total_toDo);
                                 break;
                             case 'cardInProgress': 
                                 _atividadesViewInProgress.update(_atividades, '');
-                                total_inProgress = len;
+                                total_inProgress = total_inProgress + 1;
+                                console.log('Total inProgress: ', total_inProgress);
                                 break;
                             case 'cardDone':
                                 _atividadesViewDone.update(_atividades, '');
-                                total_done = len;
+                                total_done = total_done + 1;
+                                console.log('Total Done: ', total_done);
                                 break;
                         }
                     }
 
+                    controller.badge(total_toDo, total_inProgress, total_done); //BADGE 
                     controller.drag_and_drop(); //DRAG AND DROP
-                    controller.badge(total_toDo, total_inProgress, total_done); //BADGE
-                    controller.progressbar(total_toDo, total_inProgress, total_done); //PROGRESSBAR
                     
                 }, null);        
             });
@@ -110,7 +113,9 @@ export class AtividadeController {
 
             $('.badge-to-do').text(this.limitBadge(total_toDo));
             $('.badge-in-progress').text(this.limitBadge(total_inProgress));
-            $('.badge-done').text(`${this.limitBadge(total_done)} / ${total_activities}`);        
+            $('.badge-done').text(`${this.limitBadge(total_done)} / ${total_activities}`);   
+            
+            this.progressbar(total_toDo, total_inProgress, total_done); //PROGRESSBAR     
         }
 
         //BADGE: Retorna a quantidade limite para o badge
