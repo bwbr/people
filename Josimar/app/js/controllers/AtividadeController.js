@@ -18,14 +18,12 @@ System.register(["../views/index", "../models/index", "../services/DB"], functio
             AtividadeController = class AtividadeController {
                 constructor() {
                     this._atividades = new index_2.Atividades();
-                    this._atividadesView = new index_1.AtividadesView('[data-toDo]');
                     this._mensagemView = new index_1.MensagemView('#mensagemView');
                     this._db = new DB_1.DB();
                     this._inputId = $('#id');
                     this._inputTitulo = $('#titulo');
                     this._inputDescricao = $('#descricao');
                     this._inputIdCard = $('#idCard');
-                    this._atividadesView.update(this._atividades, '');
                 }
                 limpa() {
                     this._inputId.val(''),
@@ -76,8 +74,8 @@ System.register(["../views/index", "../models/index", "../services/DB"], functio
                                         break;
                                 }
                             }
-                            controller.badge(total_toDo, total_inProgress, total_done);
                             controller.drag_and_drop();
+                            controller.badge(total_toDo, total_inProgress, total_done);
                         }, null);
                     });
                 }

@@ -9,7 +9,6 @@ export class AtividadeController {
         private _inputDescricao: JQuery;        
         private _inputIdCard: JQuery;
         private _atividades = new Atividades();
-        private _atividadesView = new AtividadesView('[data-toDo]');
         private _mensagemView = new MensagemView('#mensagemView');
         private _db = new DB();
 
@@ -19,7 +18,6 @@ export class AtividadeController {
             this._inputTitulo = <JQuery>$('#titulo');
             this._inputDescricao = <JQuery>$('#descricao');
             this._inputIdCard = <JQuery>$('#idCard');
-            this._atividadesView.update(this._atividades, '');
 
         }
 
@@ -99,8 +97,8 @@ export class AtividadeController {
                         }
                     }
 
-                    controller.badge(total_toDo, total_inProgress, total_done); //BADGE 
                     controller.drag_and_drop(); //DRAG AND DROP
+                    controller.badge(total_toDo, total_inProgress, total_done); //BADGE 
                     
                 }, null);        
             });
@@ -108,7 +106,6 @@ export class AtividadeController {
 
         //BADGE
         badge(total_toDo: number, total_inProgress: number, total_done: number): void{     
-
             let total_activities: number = total_toDo + total_inProgress + total_done; 
 
             $('.badge-to-do').text(this.limitBadge(total_toDo));
@@ -178,7 +175,7 @@ export class AtividadeController {
             }
         }
 
-        drag_and_drop(){
+        drag_and_drop(): void{
 
             var activity = <JQuery> $('.activity');
             var card_body = <JQuery> $('.activities');
@@ -233,7 +230,7 @@ export class AtividadeController {
 
                     });
                 }  
-            }	    
+            } 
         }
 
         deleta(event: Event): void{
@@ -244,14 +241,14 @@ export class AtividadeController {
             this._atividades.deleta(id);
         }
 
-        atualiza(){     
+        atualiza(): void{     
             const controller = new AtividadeController();
             window.setTimeout(function(){ 
                 controller.lista(); 
             }, 1);
         }
         
-        clear_all(){
+        clear_all(): void{
             let table = 'Atividades';
             this._db.dropTable(table);
         }
