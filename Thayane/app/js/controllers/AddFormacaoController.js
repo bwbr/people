@@ -21,11 +21,9 @@ System.register(["../views/index", "../models/index", "../dao/index"], function 
                     this._add = _add;
                     this._inputFormacaoTitulo = $('#novaFormacaoTitulo');
                     this._inputFormacaoDescricao = $('#novaFormacaoDescricao');
-                    this._numA = this._add.numA;
-                    this._numB = this._add.numA;
-                    this._numC = 'expandir' + 0;
-                    this._numD = 'expandir' + 0;
+                    this._numA = 0;
                     this._addKanbanView = new index_1.KanbanView('#nav-link-kanban_afazer');
+                    this._numB = 'expandir' + this._numA;
                     ConnectionFactory
                         .getConnection()
                         .then((connection) => {
@@ -33,9 +31,15 @@ System.register(["../views/index", "../models/index", "../dao/index"], function 
                     })
                         .then(dao => dao.listaTodos())
                         .then((formacoes) => {
-                        formacoes.forEach((formacao) => this._kanban.aFazer.adiciona(formacao));
+                        formacoes.forEach((formacao) => {
+                            this._kanban.aFazer.adiciona(formacao);
+                            this._numA++;
+                            this._numB = 'expandir' + this._numA;
+                            console.log(this._numA);
+                        });
                         this._addKanbanView.update(this._kanban);
-                    });
+                    })
+                        .catch(erro => console.log(erro));
                 }
                 adiciona(event) {
                     event.preventDefault();
@@ -47,13 +51,16 @@ System.register(["../views/index", "../models/index", "../dao/index"], function 
                             .adiciona(formacao)
                             .then(() => {
                             this._kanban.adiciona(this._addFormacao());
+                            this._numA++;
+                            this._numB = 'expandir' + this._numA;
+                            console.log(this._numA);
                             this._addKanbanView.update(this._kanban);
                             this._limparFormulario();
                         });
                     }).catch(erro => console.log(erro));
                 }
                 _addFormacao() {
-                    return new index_2.AddFormacao(this._inputFormacaoTitulo.val(), this._inputFormacaoDescricao.val(), this._numA, this._numB, this._numC, this._numD);
+                    return new index_2.AddFormacao(this._inputFormacaoTitulo.val(), this._inputFormacaoDescricao.val(), this._numA, this._numB);
                 }
                 _limparFormulario() {
                     this._inputFormacaoTitulo = $('#novaFormacaoTitulo').val("");

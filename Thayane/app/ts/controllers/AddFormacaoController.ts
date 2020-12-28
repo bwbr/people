@@ -5,13 +5,12 @@ import { FormacaoDaoAFazer } from '../dao/index';
 export class AddFormacaoController{
     private _inputFormacaoTitulo: JQuery = $('#novaFormacaoTitulo');
     private _inputFormacaoDescricao: JQuery = $('#novaFormacaoDescricao');
-    private _numA: number = this._add.numA;
-    private _numB: number = this._add.numA;
-    private _numC: string = 'expandir' + 0;
-    private _numD: string = 'expandir' + 0;
+    private _numA: number = 0;
+    private _numB: string;
     private _addKanbanView = new KanbanView('#nav-link-kanban_afazer');
     
     constructor(readonly _kanban: Kanban, readonly _add: AddFormacao){
+        this._numB = 'expandir' + this._numA;
         ConnectionFactory
             .getConnection()
             .then((connection:any) => {
@@ -19,10 +18,15 @@ export class AddFormacaoController{
             })
             .then(dao => dao.listaTodos())
             .then((formacoes: any) => {
-                formacoes.forEach((formacao:any) =>
-                    this._kanban.aFazer.adiciona(formacao))
-                    this._addKanbanView.update(this._kanban);
-            });
+                formacoes.forEach((formacao:any) => {
+                    this._kanban.aFazer.adiciona(formacao)
+                    this._numA++;
+                    this._numB = 'expandir' + this._numA;
+                    console.log(this._numA);
+                })
+                this._addKanbanView.update(this._kanban);
+            })
+            .catch(erro => console.log(erro));
     }
     
     adiciona(event: Event){
@@ -36,6 +40,9 @@ export class AddFormacaoController{
             .adiciona(formacao)
             .then(() => {
                 this._kanban.adiciona(this._addFormacao());
+                this._numA++;
+                this._numB = 'expandir' + this._numA;
+                console.log(this._numA)
                 this._addKanbanView.update(this._kanban);
                 this._limparFormulario();
             })
@@ -47,9 +54,7 @@ export class AddFormacaoController{
             this._inputFormacaoTitulo.val(),
             this._inputFormacaoDescricao.val(),
             this._numA,
-            this._numB,
-            this._numC,
-            this._numD
+            this._numB
         );
     }
 
