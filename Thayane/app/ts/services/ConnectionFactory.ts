@@ -1,7 +1,6 @@
 var ConnectionFactory = (function(){
-    //const stores = ['formacoes', 'skills']
-    const stores = ['formacoes'];
-    const version = 2;
+    const stores = ['formacoesAFazer', 'formacoesFazendo', 'formacoesFeitas', 'skills'];
+    const version = 1;
     const dbName = 'Thayane';
 
     var connection:any = null;
@@ -32,7 +31,6 @@ var ConnectionFactory = (function(){
                         close = connection.close.bind(connection);
                         connection.close = function (){
                             throw new Error("Você não pode fechar a conexão diretamente!");
-                            
                         }
                     }
                 
