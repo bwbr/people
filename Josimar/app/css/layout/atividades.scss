@@ -1,0 +1,14 @@
+/*--ATIVIDADE--*/
+.atividades{
+    background: $bg-atividades;    
+    color: $title-atividades; 
+}
+.list-group{
+    @include scrollbar-oculto;
+}   
+.icon-org{
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+}
+
