@@ -20,7 +20,7 @@ System.register(["./controllers/index", "./views/index", "./models/index"], func
             $.when(window).then(() => muda.tamanho());
             $(window).resize(() => muda.tamanho());
             kabanboard = new index_4.Kanban();
-            add = new index_4.AddFormacao('', '', 0, 0, 'expandir0', 'expandir0');
+            add = new index_4.AddFormacao('', '', 0, 'expandir0');
             controllerFormacoes = new index_1.AddFormacaoController(kabanboard, add);
             $('[data-form-formacao]').submit(controllerFormacoes.adiciona.bind(controllerFormacoes));
             controllerSkills = new index_1.AddSkillController();

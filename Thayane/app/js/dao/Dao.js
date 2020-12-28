@@ -40,7 +40,7 @@ System.register(["../models/index"], function (exports_1, context_1) {
                             let atual = e.target.result;
                             if (atual) {
                                 let dado = atual.value;
-                                formacoes.push(new index_1.AddFormacao(dado.formacaoTitulo, dado.formacaoDescricao, dado.numA, dado.numB, dado.numC, dado.numD));
+                                formacoes.push(new index_1.AddFormacao(dado.formacaoTitulo, dado.formacaoDescricao, dado.a, dado.b));
                                 atual.continue();
                             }
                             else

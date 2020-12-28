@@ -20,7 +20,7 @@ export class AddFormacoes{
     }
 
     pop(title: string): AddFormacao {
-        let card = this._formacoes.find(card => card.numD === title);
+        let card = this._formacoes.find(card => card.b === title);
         return card;
     }
 }

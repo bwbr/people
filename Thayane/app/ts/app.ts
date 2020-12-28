@@ -9,7 +9,7 @@ $.when(window).then(() => muda.tamanho());
 $(window).resize(() => muda.tamanho());
 
 const kabanboard = new Kanban();
-const add = new AddFormacao('', '', 0, 0, 'expandir0', 'expandir0');
+const add = new AddFormacao('', '', 0, 'expandir0');
 const controllerFormacoes = new AddFormacaoController(kabanboard, add);
 $('[data-form-formacao]').submit(controllerFormacoes.adiciona.bind(controllerFormacoes));
 

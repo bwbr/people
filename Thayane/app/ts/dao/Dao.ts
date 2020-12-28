@@ -42,7 +42,7 @@ export abstract class Dao{
                 if(atual){
                     let dado:AddFormacao = atual.value;
                     formacoes.push(new AddFormacao(dado.formacaoTitulo, dado.formacaoDescricao,
-                                                    dado.numA, dado.numB, dado.numC, dado.numD));
+                                                    dado.a, dado.b));
                     atual.continue();
                 }else
                     resolve(formacoes);
