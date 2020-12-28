@@ -8,7 +8,7 @@ System.register([], function (exports_1, context_1) {
             FormacaoDao = class FormacaoDao {
                 constructor(connection) {
                     this._connection = connection;
-                    this._store = 'formacoes';
+                    this._store = 'formacoesAFazer';
                 }
                 adiciona(formacao) {
                     return new Promise((resolve, reject) => {

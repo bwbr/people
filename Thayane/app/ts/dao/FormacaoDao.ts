@@ -6,7 +6,7 @@ export class FormacaoDao{
 
     constructor(connection: any){
         this._connection = connection;
-        this._store = 'formacoes';
+        this._store = 'formacoesAFazer';
     }
 
     adiciona(formacao: any){

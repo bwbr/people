@@ -23,7 +23,7 @@ export class BotoesDeletarEditar{
         let card = this.kanban.pop(title);
         if (card == undefined)  return console.log("Não encontrado");
         
-        this.kanban.aFazer.removeAFazer(card);
+        this.kanban.aFazer.remover(card);
         this._addKanbanView.update(this.kanban);
     }
     deletarFazendo(){
@@ -33,7 +33,7 @@ export class BotoesDeletarEditar{
         let card = this.kanban.pop(title);
         if (card == undefined)  return console.log("Não encontrado");
         
-        this.kanban.fazendo.removeFazendo(card);
+        this.kanban.fazendo.remover(card);
         this._addKanbanView.update(this.kanban);
     }
     deletarFeitas(){
@@ -43,7 +43,7 @@ export class BotoesDeletarEditar{
         let card = this.kanban.pop(title);
         if (card == undefined)  return console.log("Não encontrado");
         
-        this.kanban.feitas.removeFeitas(card);
+        this.kanban.feitas.remover(card);
         this._addKanbanView.update(this.kanban);
     }
 

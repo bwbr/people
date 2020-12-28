@@ -1,6 +1,6 @@
 var ConnectionFactory = (function () {
-    const stores = ['formacoes'];
-    const version = 2;
+    const stores = ['formacoesAFazer', 'formacoesFazendo', 'formacoesFeitas', 'skills'];
+    const version = 1;
     const dbName = 'Thayane';
     var connection = null;
     var close = null;

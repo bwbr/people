@@ -17,7 +17,7 @@ export class MoverKanban{
         if (card == undefined)  return;
         
         this.kanban.fazendo.adiciona(card);
-        this.kanban.aFazer.removeAFazer(card);
+        this.kanban.aFazer.remover(card);
         this._addKanbanView.update(this.kanban);
     }
     moverAFazerFeitas(){
@@ -28,7 +28,7 @@ export class MoverKanban{
         if (card == undefined)  return;
         
         this.kanban.feitas.adiciona(card);
-        this.kanban.aFazer.removeAFazer(card);
+        this.kanban.aFazer.remover(card);
         this._addKanbanView.update(this.kanban);
     }
     
@@ -41,7 +41,7 @@ export class MoverKanban{
         if (card == undefined)  return;
         
         this.kanban.feitas.adiciona(card);
-        this.kanban.fazendo.removeAFazer(card);
+        this.kanban.fazendo.remover(card);
         this._addKanbanView.update(this.kanban);
     }
     moverFazendoAFazer(){
@@ -52,7 +52,7 @@ export class MoverKanban{
         if (card == undefined)  return;
         
         this.kanban.aFazer.adiciona(card);
-        this.kanban.fazendo.removeAFazer(card);
+        this.kanban.fazendo.remover(card);
         this._addKanbanView.update(this.kanban);
     }
 
@@ -65,7 +65,7 @@ export class MoverKanban{
         if (card == undefined)  return;
         
         this.kanban.fazendo.adiciona(card);
-        this.kanban.feitas.removeAFazer(card);
+        this.kanban.feitas.remover(card);
         this._addKanbanView.update(this.kanban);
     }
     moverFeitasAFazer(){
@@ -76,7 +76,7 @@ export class MoverKanban{
         if (card == undefined)  return;
         
         this.kanban.aFazer.adiciona(card);
-        this.kanban.feitas.removeAFazer(card);
+        this.kanban.feitas.remover(card);
         this._addKanbanView.update(this.kanban);
     }
 }

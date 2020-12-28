@@ -19,13 +19,13 @@ System.register(["./AddFormacoes"], function (exports_1, context_1) {
                     this.aFazer.adiciona(formacao);
                 }
                 removeAFazer(formacao) {
-                    this.aFazer.removeAFazer(formacao);
+                    this.aFazer.remover(formacao);
                 }
                 removeFazendo(formacao) {
-                    this.fazendo.removeFazendo(formacao);
+                    this.fazendo.remover(formacao);
                 }
                 removeFeitas(formacao) {
-                    this.feitas.removeFeitas(formacao);
+                    this.feitas.remover(formacao);
                 }
                 pop(title) {
                     let card = this.aFazer.pop(title);
