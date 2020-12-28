@@ -22,7 +22,7 @@ System.register([], function (exports_1, context_1) {
                     return [].concat(this._formacoes);
                 }
                 pop(title) {
-                    let card = this._formacoes.find(card => card.numD === title);
+                    let card = this._formacoes.find(card => card.b === title);
                     return card;
                 }
             };
