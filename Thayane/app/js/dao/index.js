@@ -1,4 +1,4 @@
-System.register(["./FormacaoDao"], function (exports_1, context_1) {
+System.register(["./Dao", "./FormacaoDaoAFazer", "./FormacaoDaoFazendo", "./FormacaoDaoFeitas", "./SkillDao"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     function exportStar_1(m) {
@@ -10,8 +10,20 @@ System.register(["./FormacaoDao"], function (exports_1, context_1) {
     }
     return {
         setters: [
-            function (FormacaoDao_1_1) {
-                exportStar_1(FormacaoDao_1_1);
+            function (Dao_1_1) {
+                exportStar_1(Dao_1_1);
+            },
+            function (FormacaoDaoAFazer_1_1) {
+                exportStar_1(FormacaoDaoAFazer_1_1);
+            },
+            function (FormacaoDaoFazendo_1_1) {
+                exportStar_1(FormacaoDaoFazendo_1_1);
+            },
+            function (FormacaoDaoFeitas_1_1) {
+                exportStar_1(FormacaoDaoFeitas_1_1);
+            },
+            function (SkillDao_1_1) {
+                exportStar_1(SkillDao_1_1);
             }
         ],
         execute: function () {

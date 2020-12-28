@@ -26,7 +26,16 @@ System.register(["../views/index", "../models/index", "../dao/index"], function 
                     this._numC = 'expandir' + 0;
                     this._numD = 'expandir' + 0;
                     this._addKanbanView = new index_1.KanbanView('#nav-link-kanban_afazer');
-                    this._addKanbanView.update(this._kanban);
+                    ConnectionFactory
+                        .getConnection()
+                        .then((connection) => {
+                        return new index_3.FormacaoDaoAFazer(connection);
+                    })
+                        .then(dao => dao.listaTodos())
+                        .then((formacoes) => {
+                        formacoes.forEach((formacao) => this._kanban.aFazer.adiciona(formacao));
+                        this._addKanbanView.update(this._kanban);
+                    });
                 }
                 adiciona(event) {
                     event.preventDefault();
@@ -34,7 +43,7 @@ System.register(["../views/index", "../models/index", "../dao/index"], function 
                         .getConnection()
                         .then(connection => {
                         let formacao = this._addFormacao();
-                        new index_3.FormacaoDao(connection)
+                        new index_3.FormacaoDaoAFazer(connection)
                             .adiciona(formacao)
                             .then(() => {
                             this._kanban.adiciona(this._addFormacao());
