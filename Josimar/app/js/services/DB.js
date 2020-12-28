@@ -18,8 +18,10 @@ System.register([], function (exports_1, context_1) {
                     return this._db;
                 }
                 createTable(table, columns) {
-                    this._db.transaction(function (tx) {
-                        tx.executeSql(`CREATE TABLE IF NOT EXISTS ${table} (${columns})`);
+                    return new Promise((resolve, reject) => {
+                        this._db.transaction(function (tx) {
+                            tx.executeSql(`CREATE TABLE IF NOT EXISTS ${table} (${columns})`, [], (tx, results) => { resolve({}); }, (tx, err) => { reject(err); return false; });
+                        });
                     });
                 }
                 dropTable(table) {
@@ -28,8 +30,10 @@ System.register([], function (exports_1, context_1) {
                     });
                 }
                 insert(table, columns, values) {
-                    this._db.transaction(function (tx) {
-                        tx.executeSql(`INSERT INTO ${table} (${columns}) VALUES (${values})`);
+                    return new Promise((resolve, reject) => {
+                        this._db.transaction(function (tx) {
+                            tx.executeSql(`INSERT INTO ${table} (${columns}) VALUES (${values})`, [], (tx, result) => { resolve({}); }, (tx, err) => { reject(err); return false; });
+                        });
                     });
                 }
                 update(table, values, condition) {

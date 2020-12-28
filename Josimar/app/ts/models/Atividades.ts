@@ -10,13 +10,15 @@ export class Atividades{
         this._atividades.push(atividade);
     }
 
-    salva(atividade: Atividade): void {        
+    salva(atividade: Atividade): Promise<Atividade> {        
         let table = 'Atividades';
         let columns = 'titulo, descricao, idCard';
         let createColumns = `id INTEGER PRIMARY KEY, ${columns}`;
         let values = `'${atividade.titulo}', '${atividade.descricao}', 'cardToDo'`;
         this._db.createTable(table, createColumns);//criar tabela caso não exista     
-        this._db.insert(table, columns, values);//salva
+        return this._db.createTable(table, createColumns)
+            .then(() =>  this._db.insert(table, columns, values))
+            .then(() => atividade );//salva
     }
 
     mover(id: any, idCard: string): void{
