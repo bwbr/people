@@ -35,7 +35,6 @@ System.register(["../views/index", "../models/index", "../dao/index"], function 
                             this._kanban.aFazer.adiciona(formacao);
                             this._numA++;
                             this._numB = 'expandir' + this._numA;
-                            console.log(this._numA);
                         });
                         this._addKanbanView.update(this._kanban);
                     })
@@ -53,7 +52,6 @@ System.register(["../views/index", "../models/index", "../dao/index"], function 
                             this._kanban.adiciona(this._addFormacao());
                             this._numA++;
                             this._numB = 'expandir' + this._numA;
-                            console.log(this._numA);
                             this._addKanbanView.update(this._kanban);
                             this._limparFormulario();
                         });
