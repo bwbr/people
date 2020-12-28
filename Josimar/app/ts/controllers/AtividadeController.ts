@@ -9,8 +9,10 @@ export class AtividadeController {
         private _inputDescricao: JQuery;        
         private _inputIdCard: JQuery;
         private _atividades = new Atividades();
-        private _atividadesView = new AtividadesView('[data-toDo]');
         private _mensagemView = new MensagemView('#mensagemView');
+        private _todoColumnView = new AtividadesView('[data-ToDo]');
+        private _doingColumnView = new AtividadesView('[data-InProgress]');
+        private _doneColumnView = new AtividadesView('[data-Done]');
         private _db = new DB();
 
         constructor(){
@@ -19,7 +21,6 @@ export class AtividadeController {
             this._inputTitulo = <JQuery>$('#titulo');
             this._inputDescricao = <JQuery>$('#descricao');
             this._inputIdCard = <JQuery>$('#idCard');
-            this._atividadesView.update(this._atividades, '');
 
         }
 
@@ -43,12 +44,16 @@ export class AtividadeController {
             );         
 
             //Finaliza para exibição
-            this._atividades.salva(atividade);
-            this._atividades.adiciona(atividade);
-            this._atividadesView.update(this._atividades, '');
-            this._mensagemView.update('Atividade adicionada com sucesso!', 'alert-success'); //mensagem de cadastro 
-            this.atualiza();//atualiza a lista
-            this.limpa();//limpar campos formulário do cadastro Atividade   
+            this._atividades.salva(atividade)
+                .then( atvidade => {
+
+                    this.lista();
+                })
+                .then(() => {
+                    this._mensagemView.update('Atividade adicionada com sucesso!', 'alert-success'); //mensagem de cadastro 
+                });
+            
+            
         } 
 
         //LISTAR DADO(S)
@@ -58,60 +63,59 @@ export class AtividadeController {
             let condition = `ORDER BY id DESC`;
 
             var atividades = this._atividades;
-            var atividadesView = this._atividadesView;
+            
 
-            this._db.conn().transaction(function (tx) {      
-                tx.executeSql(`SELECT ${columns} FROM ${table} ${condition}`, [], function (tx, results) {
+            let conn: Promise<SQLTransaction> = new Promise((resolve, reject) => {
+                
+                this._db.conn().transaction((tx) => { console.log(tx); resolve(tx); }, (err) => {
+                    console.log(err);
+                    reject('failed to get transaction');
+                });
+            })
 
-                    var len = results.rows.length, i,
-                        total_toDo = 0, total_inProgress = 0, total_done = 0;    
-
-                    const controller = new AtividadeController();
-
-                    const _atividadesToDo = new Atividades();
-                    const _atividadesInProgress = new Atividades();
-                    const _atividadesDone = new Atividades();
-
-                    const _atividadesViewToDo = new AtividadesView('[data-toDo]');
-                    const _atividadesViewInProgress = new AtividadesView('[data-InProgress]');
-                    const _atividadesViewDone = new AtividadesView('[data-Done]');
-
-                    for (i = 0; i < len; i++){   
-
-                        const atividade = new Atividade(
-                            results.rows.item(i).id,
-                            results.rows.item(i).titulo,
-                            results.rows.item(i).descricao,
-                            results.rows.item(i).idCard
-                        )    
-                       
-
-                        switch(atividade.idCard){
-                            case 'cardToDo': 
-                                _atividadesToDo.adiciona(atividade);
-                                _atividadesViewToDo.update(_atividadesToDo, '');
-                                total_toDo = total_toDo + 1;
-                                console.log('Total toDo: ', total_toDo);
-                                break;
-                            case 'cardInProgress': 
-                                _atividadesInProgress.adiciona(atividade);
-                                _atividadesViewInProgress.update(_atividadesInProgress, '');
-                                total_inProgress = total_inProgress + 1;
-                                console.log('Total inProgress: ', total_inProgress);
-                                break;
-                            case 'cardDone':
-                                _atividadesDone.adiciona(atividade);
-                                _atividadesViewDone.update(_atividadesDone, '');
-                                total_done = total_done + 1;
-                                console.log('Total Done: ', total_done);
-                                break;
-                        }
-                    }
-
-                    controller.drag_and_drop(); //DRAG AND DROP
-                    controller.badge(total_toDo, total_inProgress, total_done); //BADGE 
-                    
-                }, null);        
+            conn.then( tx => {
+                return new Promise<SQLResultSet>((resolve, reject) => {
+                    tx.executeSql(`SELECT ${columns} FROM ${table} ${condition}`, [], (tx, results) => {
+                        console.log(results);
+                        resolve(results);
+                    }, (tx, err) => {
+                        console.log(err);
+                        reject(err);
+                        return false;
+                    })
+                })
+            }).then( results => {
+                let atividades: Array<Atividade> = []
+                console.log(`results.rows ${results.rows.length}`)
+                for(let i = 0; i < results.rows.length; i++ ) {
+                    console.log(`i = ${i} l=${results.rows.length} ${results.rows.item(i)}`)
+                    let v = results.rows.item(i);
+                    console.log(v);
+                    atividades.push(new Atividade(
+                        v.id, v.titulo, v.descricao, v.idCard
+                    ));
+                }
+                return atividades;
+            })
+            .then( atividades => {
+                console.log(atividades);
+                let todo = atividades.filter( a => a.idCard === 'cardToDo').reduce((a, i) => {
+                    a.adiciona(i);
+                    return a;
+                }, new Atividades());
+                let cardInProgres = atividades.filter( a => a.idCard === 'cardInProgres').reduce((a, i) => {
+                    a.adiciona(i);
+                    return a;
+                }, new Atividades());
+                let cardDone = atividades.filter( a => a.idCard === 'cardDone').reduce((a, i) => {
+                    a.adiciona(i);
+                    return a;
+                }, new Atividades());
+                this._todoColumnView.update(todo, '');
+                this._doingColumnView.update(cardInProgres, '');
+                this._doneColumnView.update( cardDone, '');
+                
+                // this._boardView.update(atividades);
             });
         }
 
@@ -254,13 +258,6 @@ export class AtividadeController {
         }
 
         atualiza(): void{   
-
-            const controller = new AtividadeController();
-
-            window.setTimeout(function(){ 
-                controller.lista(); 
-            }, 1);
-
         }
         
         clear_all(): void{

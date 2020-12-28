@@ -23,7 +23,9 @@ System.register(["../services/DB"], function (exports_1, context_1) {
                     let createColumns = `id INTEGER PRIMARY KEY, ${columns}`;
                     let values = `'${atividade.titulo}', '${atividade.descricao}', 'cardToDo'`;
                     this._db.createTable(table, createColumns);
-                    this._db.insert(table, columns, values);
+                    return this._db.createTable(table, createColumns)
+                        .then(() => this._db.insert(table, columns, values))
+                        .then(() => atividade);
                 }
                 mover(id, idCard) {
                     let table = 'Atividades';

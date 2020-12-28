@@ -21,10 +21,13 @@ export class DB{
     }
 
     //CRIAR A TABELA CASO NÃO EXISTA
-    createTable(table: string, columns: string): void{
-        this._db.transaction(function (tx) {  
-            tx.executeSql(`CREATE TABLE IF NOT EXISTS ${table} (${columns})`);
-         });
+    createTable(table: string, columns: string): Promise<any> {
+       
+         return new Promise((resolve, reject) => {
+            this._db.transaction(function (tx) {  
+                tx.executeSql(`CREATE TABLE IF NOT EXISTS ${table} (${columns})`, [], (tx, results) => { resolve({}); }, (tx, err) => { reject(err); return false; });
+             });
+         })
     }
 
     //DELETAR A TABELA
@@ -35,10 +38,15 @@ export class DB{
     }
 
     //SALVAR DADO(S)
-    insert(table: string, columns: string, values: string): void{
+    insert(table: string, columns: string, values: string): Promise<any> {
+       return new Promise((resolve, reject) => {
         this._db.transaction(function (tx) {  
-            tx.executeSql(`INSERT INTO ${table} (${columns}) VALUES (${values})`);
+            tx.executeSql(`INSERT INTO ${table} (${columns}) VALUES (${values})`, 
+            [], 
+            (tx, result) => { resolve({}); }, 
+            (tx, err) => { reject(err); return false; });
           });
+       })
     }
 
     //ATUALIZAR DADO(S)
