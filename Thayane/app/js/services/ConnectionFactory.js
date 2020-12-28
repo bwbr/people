@@ -1,0 +1,55 @@
+var ConnectionFactory = (function () {
+    const stores = ['formacoes'];
+    const version = 2;
+    const dbName = 'Thayane';
+    var connection = null;
+    var close = null;
+    return class ConnectionFactory {
+        constructor() {
+            throw new Error("Não é possível criar instâncias de ConnectionFactory!");
+        }
+        static getConnection() {
+            return new Promise((resolve, reject) => {
+                if (!window.indexedDB)
+                    window.alert("Seu navegador não suporta uma versão estável do IndexedDB. Alguns recursos não estarão disponíveis.");
+                let openRequest = window.indexedDB.open(dbName, version);
+                openRequest.onupgradeneeded = e => {
+                    let target = e.target;
+                    ConnectionFactory._criarStores(target.result);
+                };
+                openRequest.onsuccess = e => {
+                    let target = e.target;
+                    if (!connection) {
+                        connection = target.result;
+                        close = connection.close.bind(connection);
+                        connection.close = function () {
+                            throw new Error("Você não pode fechar a conexão diretamente!");
+                        };
+                    }
+                    resolve(connection);
+                };
+                openRequest.onerror = e => {
+                    let target = e.target;
+                    alert("Não usa IndexedDB?!");
+                    console.log(target.error);
+                    reject(target.error.name);
+                };
+            });
+        }
+        static _criarStores(connection) {
+            stores.forEach(store => {
+                if (connection.objectStoreNames.contains(store)) {
+                    connection.deleteObjectStore(store);
+                    console.log("Apagando pois já existe...");
+                }
+                connection.createObjectStore(store, { autoIncrement: true });
+            });
+        }
+        static closeConnection() {
+            if (connection) {
+                close();
+                connection = null;
+            }
+        }
+    };
+})();

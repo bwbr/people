@@ -1,29 +1,82 @@
+import { Kanban } from '../models/Kanban';
+import { KanbanView } from '../views/KanbanView';
+
 export class MoverKanban{
-    public eu: JQuery;
-    private biso: JQuery;
-    private novoBiso: JQuery;
-
-    moverAFazer(){
+    public eu: JQuery; 
+    private _addKanbanView = new KanbanView('');
+    
+    constructor(readonly kanban: Kanban){
+    }
+    
+    //A fazer
+    moverAFazerFazendo(){
         console.log("Movendo...");
-        this.biso = this.eu.parents('.formacoes');
-        this.novoBiso = $('#addAqui');
-        this.novoBiso.append(this.biso);
-        this.biso = this.novoBiso;
+        
+        let title = this.eu.data('title'); 
+        let card = this.kanban.pop(title);
+        if (card == undefined)  return;
+        
+        this.kanban.fazendo.adiciona(card);
+        this.kanban.aFazer.removeAFazer(card);
+        this._addKanbanView.update(this.kanban);
+    }
+    moverAFazerFeitas(){
+        console.log("Movendo...");
+        
+        let title = this.eu.data('title'); 
+        let card = this.kanban.pop(title);
+        if (card == undefined)  return;
+        
+        this.kanban.feitas.adiciona(card);
+        this.kanban.aFazer.removeAFazer(card);
+        this._addKanbanView.update(this.kanban);
+    }
+    
+    //Fazendo
+    moverFazendoFeitas(){
+        console.log("Movendo...");
+        
+        let title = this.eu.data('title'); 
+        let card = this.kanban.pop(title);
+        if (card == undefined)  return;
+        
+        this.kanban.feitas.adiciona(card);
+        this.kanban.fazendo.removeAFazer(card);
+        this._addKanbanView.update(this.kanban);
+    }
+    moverFazendoAFazer(){
+        console.log("Movendo...");
+        
+        let title = this.eu.data('title'); 
+        let card = this.kanban.pop(title);
+        if (card == undefined)  return;
+        
+        this.kanban.aFazer.adiciona(card);
+        this.kanban.fazendo.removeAFazer(card);
+        this._addKanbanView.update(this.kanban);
     }
 
-    moverFazendo(){
+    //Feitas
+    moverFeitasFazendo(){
         console.log("Movendo...");
-        this.biso = this.eu.parents('.formacoes');
-        this.novoBiso = $('#nav-link-kanban_fazendo');
-        this.novoBiso.append(this.biso);
-        this.biso = this.novoBiso;
+        
+        let title = this.eu.data('title'); 
+        let card = this.kanban.pop(title);
+        if (card == undefined)  return;
+        
+        this.kanban.fazendo.adiciona(card);
+        this.kanban.feitas.removeAFazer(card);
+        this._addKanbanView.update(this.kanban);
     }
-
-    moverFeitas(){
+    moverFeitasAFazer(){
         console.log("Movendo...");
-        this.biso = this.eu.parents('.formacoes');
-        this.novoBiso = $('#nav-link-kanban_feitas');
-        this.novoBiso.append(this.biso);
-        this.biso = this.novoBiso;
+        
+        let title = this.eu.data('title'); 
+        let card = this.kanban.pop(title);
+        if (card == undefined)  return;
+        
+        this.kanban.aFazer.adiciona(card);
+        this.kanban.feitas.removeAFazer(card);
+        this._addKanbanView.update(this.kanban);
     }
 }
