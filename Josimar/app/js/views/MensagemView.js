@@ -10,9 +10,9 @@ System.register(["./View"], function (exports_1, context_1) {
         ],
         execute: function () {
             MensagemView = class MensagemView extends View_1.View {
-                template(model) {
+                template(model, alertType) {
                     return `
-        <div class="alert alert-info text-center alert-dismissible fade show" role="alert">
+        <div class="alert ${alertType} text-center alert-dismissible fade show" role="alert">
             ${model}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>

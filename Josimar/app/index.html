@@ -89,9 +89,14 @@
         <div class="container p-0">
           <header class="d-flex justify-content-between">
             <h3>Kanban</h3>
-            <a href="" id="add_btn" class="btn add-btn border-0 mt-3 ml-3 mb-3 mr-1" data-toggle="collapse" data-target="#cards" aria-expanded="false" aria-controls="cards">
-              <i class="fas fa-plus"></i>
-            </a>
+            <div>              
+              <a href="" id="add_btn" class="btn add-btn border-0 mt-3 ml-3 mb-3 mr-1" data-toggle="collapse" data-target="#cards" aria-expanded="false" aria-controls="cards">
+                <i class="fas fa-plus"></i>
+              </a>
+              <a href="" id="trash_all_btn" class="btn add-btn border-0 mt-3 ml-3 mb-3 mr-1">
+                <i class="fas fa-trash"></i>
+              </a>
+            </div>
           </header>
           <main>
 
@@ -130,14 +135,23 @@
 
                 <nav>
                   <div class="nav nav-tabs nav-justified ml-3 mr-3" id="nav-tab" role="tablist">
-                    <a class="nav-item nav-link-to-do" id="nav-to-do-tab" data-toggle="tab" href="#nav-to-do" role="tab" aria-controls="nav-to-do" aria-selected="true">
-                      <h6><i class="fas fa-list d-none d-sm-none d-md-block"></i> Fazer </h6>
+                    <a class="nav-item nav-link-to-do" id="nav-to-do-tab" data-toggle="tab" href="#nav-to-do" role="tab" aria-controls="nav-to-do" aria-selected="true">                     
+                      <div class="d-flex justify-content-around align-items-around">
+                        <h6><i class="fas fa-list d-none d-sm-none d-md-block"></i> Fazer </h6> 
+                        <span class="badge badge-pill badge-to-do p-1"></span>
+                      </div>
                     </a>
-                    <a class="nav-item nav-link-in-progress" id="nav-in-progress-tab" data-toggle="tab" href="#nav-in-progress" role="tab" aria-controls="nav-in-progress" aria-selected="false">
-                      <h6><i class="fas fa-tasks d-none d-sm-block"></i> Fazendo </h6>
+                    <a class="nav-item nav-link-in-progress" id="nav-in-progress-tab" data-toggle="tab" href="#nav-in-progress" role="tab" aria-controls="nav-in-progress" aria-selected="false">      
+                      <div class="d-flex justify-content-around align-items-around">
+                        <h6><i class="fas fa-tasks d-none d-sm-block"></i> Fazendo </h6>  
+                        <span class="badge badge-pill badge-in-progress p-1"></span>
+                      </div>
                     </a>
-                    <a class="nav-item nav-link-done" id="nav-done-tab" data-toggle="tab" href="#nav-done" role="tab" aria-controls="nav-done" aria-selected="false">
-                      <h6><i class="fas fa-calendar-check d-none d-sm-block"></i> Feito </h6>
+                    <a class="nav-item nav-link-done" id="nav-done-tab" data-toggle="tab" href="#nav-done" role="tab" aria-controls="nav-done" aria-selected="false">                      
+                      <div class="d-flex justify-content-around align-items-around">
+                        <h6><i class="fas fa-calendar-check d-none d-sm-block"></i> Feito </h6>
+                        <span class="badge badge-pill badge-done p-1"></span>
+                      </div>
                     </a>
                   </div>
                 </nav> 
@@ -354,7 +368,15 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>    
+ 
+    <!-- helpers -->
 
+    <script src="js/helpers/media.js"></script>
+    <script src="js/helpers/hide_nav.js"></script>
+    <script src="js/helpers/form_alert.js"></script>
+    <script src="js/helpers/scroll_smooth.js"></script>
+    <script src="js/helpers/api_github.js"></script>
+    
     <!-- scripts -->
 
     <script src="lib/jquery.min.js"></script>
@@ -364,14 +386,7 @@
         System.defaultJSExtensions = true;
         System.import('js/app.js').catch(err => console.error(err));
     </script>
- 
-    <!-- helpers -->
 
-    <script src="js/helpers/media.js"></script>
-    <script src="js/helpers/hide_nav.js"></script>
-    <script src="js/helpers/form_alert.js"></script>
-    <script src="js/helpers/scroll_smooth.js"></script>
-    <script src="js/helpers/api_github.js"></script>
 
   </body>
 </html>
