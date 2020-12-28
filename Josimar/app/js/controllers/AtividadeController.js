@@ -38,15 +38,7 @@ System.register(["../views/index", "../models/index", "../services/DB"], functio
                     const atividade = new index_2.Atividade(this._inputId.val(), this._inputTitulo.val(), this._inputDescricao.val(), this._inputIdCard.val());
                     this._atividades.salva(atividade);
                     this._atividades.adiciona(atividade);
-                    this._atividadesView.update(this._atividades, '');
                     this._mensagemView.update('Atividade adicionada com sucesso!', 'alert-success');
-                    this.limpa();
-                }
-                edita(event) {
-                    event.preventDefault();
-                    const atividade = new index_2.Atividade(this._inputId.val(), this._inputTitulo.val(), this._inputDescricao.val(), this._inputIdCard.val());
-                    this._atividades.edita(atividade);
-                    this._mensagemView.update('Atividade alterada com sucesso!', 'alert-success');
                     this.limpa();
                 }
                 lista() {
@@ -55,8 +47,9 @@ System.register(["../views/index", "../models/index", "../services/DB"], functio
                     let condition = `ORDER BY id DESC`;
                     this._db.conn().transaction(function (tx) {
                         tx.executeSql(`SELECT ${columns} FROM ${table} ${condition}`, [], function (tx, results) {
-                            var len = results.rows.length, i;
+                            var len = results.rows.length, i, total_toDo = 0, total_inProgress = 0, total_done = 0;
                             const _atividades = new index_2.Atividades();
+                            const controller = new AtividadeController();
                             const _atividadesViewToDo = new index_1.AtividadesView('[data-toDo]');
                             const _atividadesViewInProgress = new index_1.AtividadesView('[data-InProgress]');
                             const _atividadesViewDone = new index_1.AtividadesView('[data-Done]');
@@ -67,21 +60,120 @@ System.register(["../views/index", "../models/index", "../services/DB"], functio
                                 switch (atividade.idCard) {
                                     case 'cardToDo':
                                         _atividadesViewToDo.update(_atividades, '');
+                                        total_toDo = len;
                                         break;
                                     case 'cardInProgress':
                                         _atividadesViewInProgress.update(_atividades, '');
+                                        total_inProgress = len;
                                         break;
                                     case 'cardDone':
                                         _atividadesViewDone.update(_atividades, '');
+                                        total_done = len;
                                         break;
                                 }
                             }
+                            controller.drag_and_drop();
+                            controller.badge(total_toDo, total_inProgress, total_done);
+                            controller.progressbar(total_toDo, total_inProgress, total_done);
                         }, null);
                     });
                 }
+                badge(total_toDo, total_inProgress, total_done) {
+                    let total_activities = total_toDo + total_inProgress + total_done;
+                    $('.badge-to-do').text(this.limitBadge(total_toDo));
+                    $('.badge-in-progress').text(this.limitBadge(total_inProgress));
+                    $('.badge-done').text(`${this.limitBadge(total_done)} / ${total_activities}`);
+                }
+                limitBadge(qtd) {
+                    let limitQtd = "99+";
+                    if (qtd > 99) {
+                        return limitQtd;
+                    }
+                    else {
+                        return qtd;
+                    }
+                }
+                progressbar(total_toDo, total_inProgress, total_done) {
+                    let total_activities = total_toDo + total_inProgress + total_done;
+                    let percent_toDo = this.percent(total_toDo, total_activities);
+                    let percent_inProgress = this.percent(total_inProgress, total_activities);
+                    let percent_done = this.percent(total_done, total_activities);
+                    $("#progress-to-do").css("width", `${(percent_toDo)}%`);
+                    $("#progress-in-progress").css("width", `${(percent_inProgress)}%`);
+                    $("#progress-done").css("width", `${(percent_done)}%`);
+                    $(".percent-to-do").text(`${(percent_toDo).toFixed()}%`);
+                    $(".percent-in-progress").text(`${(percent_inProgress).toFixed()}%`);
+                    $(".percent-done").text(`${(percent_done).toFixed()}%`);
+                    this.colorBgProgress(percent_toDo, document.querySelector("#progress-to-do"));
+                    this.colorBgProgress(percent_inProgress, document.querySelector("#progress-in-progress"));
+                    this.colorBgProgress(percent_done, document.querySelector("#progress-done"));
+                }
+                percent(n, total) {
+                    let p;
+                    if (p < 1) {
+                        p = 0;
+                    }
+                    else {
+                        p = (n / total) * 100;
+                    }
+                    return p;
+                }
+                colorBgProgress(percent_name, progress_name) {
+                    if (parseFloat(percent_name) == 100) {
+                        progress_name.classList.remove('progress-bar-blue');
+                        progress_name.classList.add('progress-bar-success');
+                    }
+                    else {
+                        progress_name.classList.remove('progress-bar-success');
+                        progress_name.classList.add('progress-bar-blue');
+                    }
+                }
+                drag_and_drop() {
+                    var activity = $('.activity');
+                    var card_body = $('.activities');
+                    var draggedActivity = null;
+                    for (let i = 0; i < activity.length; i++) {
+                        let a = activity[i];
+                        a.addEventListener('dragstart', function () {
+                            draggedActivity = this;
+                            this.classList.remove("show");
+                            this.classList.add("hide");
+                        });
+                        a.addEventListener('dragend', function () {
+                            draggedActivity.classList.remove("hide");
+                            draggedActivity.classList.add("show");
+                            draggedActivity = null;
+                        });
+                        for (let j = 0; j < card_body.length; j++) {
+                            const cb = card_body[j];
+                            cb.addEventListener('dragstart', function () {
+                            });
+                            cb.addEventListener('dragover', function (e) {
+                                e.preventDefault();
+                            });
+                            cb.addEventListener('dragenter', function (e) {
+                                e.preventDefault();
+                            });
+                            cb.addEventListener('drop', function (e) {
+                                this.appendChild(draggedActivity);
+                                const _atividades = new index_2.Atividades();
+                                const controller = new AtividadeController();
+                                controller.atualiza();
+                                console.log(draggedActivity.id);
+                                _atividades.mover(draggedActivity.id, this.id);
+                            });
+                        }
+                    }
+                }
+                deleta(event) {
+                    event.preventDefault();
+                    var id = $(".activity").closest("div").prop("id");
+                    console.log('aqui', id);
+                    this._atividades.deleta(id);
+                }
                 atualiza() {
                     const controller = new AtividadeController();
-                    setTimeout(function () {
+                    window.setTimeout(function () {
                         controller.lista();
                     }, 1);
                 }

@@ -18,7 +18,7 @@ System.register(["./View"], function (exports_1, context_1) {
 
                 <div id="${atividade.id}" class="card activity mb-1 show" draggable="true" data-activity>
                     <div class="card-header" id="heading-${atividade.id}">
-                        <div id="titulo-activity" class="mb-0 d-flex justify-content-between collapsed" data-toggle="collapse" data-target="#collapse-${atividade.id}" aria-expanded="false" aria-controls="collapse-${atividade.id}">
+                        <div id="titulo-activity" class="mb-0 d-flex justify-content-between collapsed">
                           ${atividade.titulo}
                           <div class="d-flex justify-content-end">
                               <div id="collapse-${atividade.id}" class="collapse mr-3 fade">
@@ -29,10 +29,10 @@ System.register(["./View"], function (exports_1, context_1) {
                                     <i class="fas fa-trash"></i>
                                 </a>
                               </div>
-                              <div id="collapse-${atividade.id}" class="collapse fade"> 
+                              <div id="collapse-${atividade.id}" class="collapse fade"  data-toggle="collapse" data-target="#collapse-${atividade.id}" aria-expanded="false" aria-controls="collapse-${atividade.id}"> 
                               <i class="fas fa-compress-alt"></i>
                               </div>
-                              <div id="collapse-${atividade.id}" class="collapse fede show">
+                              <div id="collapse-${atividade.id}" class="collapse fede show"  data-toggle="collapse" data-target="#collapse-${atividade.id}" aria-expanded="false" aria-controls="collapse-${atividade.id}">
                               <i class="fas fa-expand-alt"></i>
                               </div>
                           </div>                                

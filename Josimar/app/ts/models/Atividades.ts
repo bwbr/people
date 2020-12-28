@@ -19,11 +19,17 @@ export class Atividades{
         this._db.insert(table, columns, values);//salva
     }
 
-    edita(atividade: Atividade): void{
+    mover(id: any, idCard: string): void{
         let table = 'Atividades';
-        let condition = `id =${atividade.id}`;
-        let values = `titulo = '${atividade.titulo}', descricao = '${atividade.descricao}', idCard = '${atividade.descricao}'`;
+        let condition = `id =${id}`;
+        let values = `idCard = '${idCard}'`;
         this._db.update(table, values, condition);//atualiza
+    }
+
+    deleta(id: any): void{
+            let table = 'Atividades';
+            let condition = `id =${id}`;
+            this._db.delete(table, condition);//deleta
     }
 
     paraArray(){

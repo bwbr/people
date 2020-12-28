@@ -11,9 +11,11 @@ System.register(["./controllers/AtividadeController"], function (exports_1, cont
         execute: function () {
             controller = new AtividadeController_1.AtividadeController();
             controller.atualiza();
+            controller.drag_and_drop();
             $('#cards').submit(controller.adiciona.bind(controller));
             $('#clear_btn').click(controller.limpa.bind(controller));
             $('#cancel_btn').click(controller.limpa.bind(controller));
+            $('#trash_btn').click(function (e) { e.preventDefault(); console.log(this.id); });
             $('#trash_all_btn').click(controller.clear_all.bind(controller));
         }
     };

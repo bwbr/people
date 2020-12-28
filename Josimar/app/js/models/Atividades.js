@@ -25,11 +25,16 @@ System.register(["../services/DB"], function (exports_1, context_1) {
                     this._db.createTable(table, createColumns);
                     this._db.insert(table, columns, values);
                 }
-                edita(atividade) {
+                mover(id, idCard) {
                     let table = 'Atividades';
-                    let condition = `id =${atividade.id}`;
-                    let values = `titulo = '${atividade.titulo}', descricao = '${atividade.descricao}', idCard = '${atividade.descricao}'`;
+                    let condition = `id =${id}`;
+                    let values = `idCard = '${idCard}'`;
                     this._db.update(table, values, condition);
+                }
+                deleta(id) {
+                    let table = 'Atividades';
+                    let condition = `id =${id}`;
+                    this._db.delete(table, condition);
                 }
                 paraArray() {
                     return [].concat(this._atividades);
