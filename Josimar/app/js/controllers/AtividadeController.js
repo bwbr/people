@@ -97,12 +97,9 @@ System.register(["../views/index", "../models/index", "../services/DB"], functio
                         this._doneColumnView.update(cardDone, '');
                     });
                 }
-                badge(total_toDo, total_inProgress, total_done) {
+                badge(target, total_toDo, total_inProgress, total_done, textStrategy) {
                     let total_activities = total_toDo + total_inProgress + total_done;
-                    $('.badge-to-do').text(this.limitBadge(total_toDo));
-                    $('.badge-in-progress').text(this.limitBadge(total_inProgress));
-                    $('.badge-done').text(`${this.limitBadge(total_done)} / ${total_activities}`);
-                    this.progressbar(total_toDo, total_inProgress, total_done);
+                    $(target).text(textStrategy(target));
                 }
                 limitBadge(qtd) {
                     let limitQtd = "99+";
