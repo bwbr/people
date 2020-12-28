@@ -1,6 +1,6 @@
 import { AddFormacaoController, MudarClasseResponsivo, AddSkillController, BotoesDeletarEditar, ContarFormacoes, MoverKanban, Expandir} from './controllers/index';
 import { ModalController } from './controllers/index';
-import { FormacaoDao } from './dao/index';
+import { FormacaoDaoAFazer, FormacaoDaoFazendo, FormacaoDaoFeitas } from './dao/index';
 import { AddFormacoesView, AddSkillsView, KanbanView } from './views/index';
 import { AddFormacao, Kanban } from './models/index'
 
