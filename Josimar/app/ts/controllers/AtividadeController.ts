@@ -120,14 +120,11 @@ export class AtividadeController {
         }
 
         //BADGE
-        badge(total_toDo: number, total_inProgress: number, total_done: number): void{     
+        badge(target: string, total_toDo: number, total_inProgress: number, total_done: number, textStrategy: (d: string) => string): void{     
             let total_activities: number = total_toDo + total_inProgress + total_done; 
 
-            $('.badge-to-do').text(this.limitBadge(total_toDo));
-            $('.badge-in-progress').text(this.limitBadge(total_inProgress));
-            $('.badge-done').text(`${this.limitBadge(total_done)} / ${total_activities}`);   
+            $(target).text(textStrategy(target));
             
-            this.progressbar(total_toDo, total_inProgress, total_done); //PROGRESSBAR     
         }
 
         //BADGE: Retorna a quantidade limite para o badge
