@@ -11,15 +11,15 @@ export class Kanban {
     }
 
     removeAFazer(formacao: AddFormacao){
-        this.aFazer.removeAFazer(formacao);
+        this.aFazer.remover(formacao);
     }
 
     removeFazendo(formacao: AddFormacao){
-        this.fazendo.removeFazendo(formacao);
+        this.fazendo.remover(formacao);
     }
 
     removeFeitas(formacao: AddFormacao){
-        this.feitas.removeFeitas(formacao);
+        this.feitas.remover(formacao);
     }
 
     pop(title: string): AddFormacao {

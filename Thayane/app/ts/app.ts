@@ -1,15 +1,16 @@
 import { AddFormacaoController, MudarClasseResponsivo, AddSkillController, BotoesDeletarEditar, ContarFormacoes, MoverKanban, Expandir} from './controllers/index';
 import { ModalController } from './controllers/index';
-import { FormacaoDao } from './dao/index';
-import { AddSkillsView, KanbanView } from './views/index';
-import { Kanban } from './models/index'
+import { FormacaoDaoAFazer, FormacaoDaoFazendo, FormacaoDaoFeitas } from './dao/index';
+import { AddFormacoesView, AddSkillsView, KanbanView } from './views/index';
+import { AddFormacao, Kanban } from './models/index'
 
 const muda = new MudarClasseResponsivo();
 $.when(window).then(() => muda.tamanho());
 $(window).resize(() => muda.tamanho());
 
 const kabanboard = new Kanban();
-const controllerFormacoes = new AddFormacaoController(kabanboard);
+const add = new AddFormacao('', '', 0, 0, 'expandir0', 'expandir0');
+const controllerFormacoes = new AddFormacaoController(kabanboard, add);
 $('[data-form-formacao]').submit(controllerFormacoes.adiciona.bind(controllerFormacoes));
 
 const controllerSkills = new AddSkillController();

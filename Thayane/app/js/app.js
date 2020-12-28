@@ -1,7 +1,7 @@
 System.register(["./controllers/index", "./views/index", "./models/index"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var index_1, index_2, index_3, index_4, muda, kabanboard, controllerFormacoes, controllerSkills, modal, editarDeletarKanban, expandir, mover, contarFormacoes, _addKanbanView, observaAFazer, observaFazendo, observaFeitas;
+    var index_1, index_2, index_3, index_4, muda, kabanboard, add, controllerFormacoes, controllerSkills, modal, editarDeletarKanban, expandir, mover, contarFormacoes, _addKanbanView, observaAFazer, observaFazendo, observaFeitas;
     return {
         setters: [
             function (index_1_1) {
@@ -20,7 +20,8 @@ System.register(["./controllers/index", "./views/index", "./models/index"], func
             $.when(window).then(() => muda.tamanho());
             $(window).resize(() => muda.tamanho());
             kabanboard = new index_4.Kanban();
-            controllerFormacoes = new index_1.AddFormacaoController(kabanboard);
+            add = new index_4.AddFormacao('', '', 0, 0, 'expandir0', 'expandir0');
+            controllerFormacoes = new index_1.AddFormacaoController(kabanboard, add);
             $('[data-form-formacao]').submit(controllerFormacoes.adiciona.bind(controllerFormacoes));
             controllerSkills = new index_1.AddSkillController();
             $('[data-form-skill]').submit(controllerSkills.adiciona.bind(controllerSkills));

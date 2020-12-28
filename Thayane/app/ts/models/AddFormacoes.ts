@@ -7,23 +7,7 @@ export class AddFormacoes{
         this._formacoes.push(formacao);
     }
 
-    removeAFazer(formacao: AddFormacao){
-        console.log("Removendo...")
-
-        const index = this._formacoes.indexOf(formacao, 0);
-        if (index > -1)
-            this._formacoes.splice(index, 1);
-    }
-
-    removeFazendo(formacao: AddFormacao){
-        console.log("Removendo...")
-
-        const index = this._formacoes.indexOf(formacao, 0);
-        if (index > -1)
-            this._formacoes.splice(index, 1);
-    }
-
-    removeFeitas(formacao: AddFormacao){
+    remover(formacao: AddFormacao){
         console.log("Removendo...")
 
         const index = this._formacoes.indexOf(formacao, 0);
