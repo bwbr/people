@@ -15,7 +15,7 @@ System.register(["./controllers/AtividadeController"], function (exports_1, cont
             $('#cards').submit(controller.adiciona.bind(controller));
             $('#clear_btn').click(controller.limpa.bind(controller));
             $('#cancel_btn').click(controller.limpa.bind(controller));
-            $('#trash_btn').click(function (e) { e.preventDefault(); console.log(this.id); });
+            $('#trash_btn').click(controller.deleta.bind(controller));
             $('#trash_all_btn').click(controller.clear_all.bind(controller));
         }
     };

@@ -2,7 +2,6 @@ import {AtividadeController} from './controllers/AtividadeController';
 
 const controller = new AtividadeController();
 
-// atualiza cards
 controller.atualiza();
 
 controller.drag_and_drop(); //DRAG AND DROP
@@ -16,7 +15,7 @@ $('#clear_btn').click(controller.limpa.bind(controller));
 $('#cancel_btn').click(controller.limpa.bind(controller));
 
 // apaga todas as atividades (Apaga a tabela)
-$('#trash_btn').click(function(e: Event){e.preventDefault(); console.log(this.id)});
+$('#trash_btn').click(controller.deleta.bind(controller));
 
 // apaga todas as atividades (Apaga a tabela)
 $('#trash_all_btn').click(controller.clear_all.bind(controller));
