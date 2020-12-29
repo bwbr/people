@@ -1,6 +1,6 @@
 import { AddFormacaoController, MudarClasseResponsivo, AddSkillController, BotoesDeletarEditar, ContarFormacoes, MoverKanban, Expandir} from './controllers/index';
 import { ModalController } from './controllers/index';
-import { FormacaoDaoAFazer, FormacaoDaoFazendo, FormacaoDaoFeitas } from './dao/index';
+import { FormacaoDaoAFazer, FormacaoDaoFazendo, FormacaoDaoFeitas, SkillDao } from './dao/index';
 import { AddFormacoesView, AddSkillsView, KanbanView } from './views/index';
 import { AddFormacao, Kanban } from './models/index'
 
@@ -108,3 +108,14 @@ var observaFeitas = new MutationObserver(function(mutations) {
         contarFormacoes.update();
     })
 });observaFeitas.observe(document.querySelector("#nav-link-kanban_feitas"), { childList: true });
+
+
+//Skills
+$("#novaSkill").on('click', '.btnDeletar', function() {
+    editarDeletarKanban.eu = $(this);
+    editarDeletarKanban.deletarSkill('skills')
+});
+$("#novaSkill").on('click', '.btnEditar', function() {
+    editarDeletarKanban.eu = $(this);
+    //editarDeletarKanban.editarSkill();
+});

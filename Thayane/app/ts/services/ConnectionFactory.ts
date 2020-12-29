@@ -53,7 +53,7 @@ var ConnectionFactory = (function(){
                     console.log("Apagando pois já existe...");
                 }
     
-                connection.createObjectStore(store, {autoIncrement: true});
+                connection.createObjectStore(store, { keyPath: 'id', autoIncrement: true});
             })        
         }
 

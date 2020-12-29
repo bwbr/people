@@ -1,4 +1,8 @@
+import { Dao } from '../dao/Dao';
+import { SkillDao } from '../dao/index';
+import { AddSkills } from '../models/index';
 import { Kanban } from '../models/Kanban';
+import { AddSkillsView } from '../views/index';
 import { KanbanView } from '../views/KanbanView';
 
 export class BotoesDeletarEditar{
@@ -11,8 +15,10 @@ export class BotoesDeletarEditar{
     private tioBiso: JQuery;
     private primo2: JQuery;  
     private _addKanbanView = new KanbanView('');
-    
-    constructor(readonly kanban: Kanban){
+    public dao: any;
+    private key:number;
+
+    constructor(readonly kanban: Kanban){   
     }
     
     //Deletar Kanban
@@ -60,9 +66,20 @@ export class BotoesDeletarEditar{
     }
 
     //Skills
-    deletarSkill(){
-        console.log("Deletando...");
+    deletarSkill(tabela:string){  
         this.pai = this.eu.parent();
+        let index = this.pai.index();
+        this.key = index.valueOf();
+        this.key++;
+        
+        this.dao = ConnectionFactory
+            .getConnection()
+            .then((conection: any) => {
+                conection.transaction([tabela], 'readwrite')
+                    .objectStore(tabela)
+                    .delete(this.key);                
+            }).catch(erro => erro);                            
+
         this.pai.remove();
     }
 
