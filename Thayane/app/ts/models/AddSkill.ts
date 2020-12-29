@@ -1,4 +1,6 @@
 export class AddSkill{
+    public id : number;
+
     constructor(readonly skillTitulo: string, readonly skillPorcentagem: number){
     }
 

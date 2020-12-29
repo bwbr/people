@@ -22,7 +22,9 @@ export class SkillDao extends Dao{
 
                 if(atual){
                     let dado:AddSkill = atual.value;
-                    formacoes.push(new AddSkill(dado.skillTitulo, dado.skillPorcentagem));
+                    let skill = new AddSkill(dado.skillTitulo, dado.skillPorcentagem);
+                    skill.id = dado.id;
+                    formacoes.push(skill);
                     atual.continue();
                 }else
                     resolve(formacoes);

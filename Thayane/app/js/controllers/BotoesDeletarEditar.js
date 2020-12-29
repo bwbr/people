@@ -53,15 +53,14 @@ System.register(["../views/KanbanView"], function (exports_1, context_1) {
                 }
                 deletarSkill(tabela) {
                     this.pai = this.eu.parent();
-                    let index = this.pai.index();
-                    this.key = index.valueOf();
-                    this.key++;
+                    let skillID = $(this.eu).data('key');
                     this.dao = ConnectionFactory
                         .getConnection()
                         .then((conection) => {
-                        conection.transaction([tabela], 'readwrite')
-                            .objectStore(tabela)
-                            .delete(this.key);
+                        var a = conection.transaction([tabela], 'readwrite');
+                        var b = a.objectStore(tabela);
+                        console.log(b);
+                        var c = b.delete(skillID);
                     }).catch(erro => erro);
                     this.pai.remove();
                 }

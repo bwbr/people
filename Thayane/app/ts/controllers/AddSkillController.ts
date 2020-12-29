@@ -3,25 +3,32 @@ import { AddSkills, AddSkill } from '../models/index';
 import { ModalController } from './ModalController';
 import { SkillDao } from '../dao/index';
 
+var skillIdInc = 1;
+var podeAdd = true;
+
 export class AddSkillController{
     private _inputSkillTitulo: JQuery = $('#novaSkillTitulo');
     private _inputSkillPorcentagem: JQuery = $('#novaSkillPorcentagem');
     private _modal = new ModalController();
-    private _skills = new AddSkills();
     private _addSkillsView = new AddSkillsView('#novaSkill');
     
     constructor(){      
-        ConnectionFactory
-            .getConnection()
-            .then((connection:any) => {
-                return new SkillDao(connection)
-            })
-            .then(dao => dao.listaTodos())
-            .then((skills: any) => {
-                skills.forEach((skill:any) => this._skills.adiciona(skill));
-                this._addSkillsView.update(this._skills);
-            })
-            .catch(erro => console.log(erro));
+        this.listarTodos();
+    }
+
+    listarTodos(): Promise<any> {
+        return ConnectionFactory
+        .getConnection()
+        .then((connection:any) => {
+            return new SkillDao(connection)
+        })
+        .then(dao => dao.listaTodos())
+        .then((skills: any) => {
+            let skilllist = new AddSkills();
+            skills.forEach((skill:any) => skilllist.adiciona(skill));
+            this._addSkillsView.update(skilllist);
+        })
+        .catch(erro => console.log(erro));
     }
 
     adiciona(event: Event){
@@ -31,28 +38,33 @@ export class AddSkillController{
         .getConnection()
         .then(connection => {
             let skill = this._addSkill();
-            new SkillDao(connection)
-            .adiciona(skill)
-            .then(() => {
-                if(this._inputSkillPorcentagem.val() < 0 || this._inputSkillPorcentagem.val() > 100){
-                    this._modal.mostrarModal();
-                    this._inputSkillPorcentagem = $('#novaSkillPorcentagem').val("");
-                }
-                else{
-                    this._skills.adiciona(this._addSkill());
-                    this._addSkillsView.update(this._skills);
-                    this._limparFormulario();
-                };
-                this._limparFormulario();
-            })
+            if(podeAdd){
+                new SkillDao(connection)
+                .adiciona(skill)
+                .then( skillID =>  {
+                    skill.id = skillID;
+                    return skill;
+                })
+                .then(() => this._limparFormulario())
+                .then(() => this.listarTodos())                
+            }
         }).catch(erro => console.log(erro));
     }
 
     _addSkill(){
-        return new AddSkill(
-            this._inputSkillTitulo.val(),
-            this._inputSkillPorcentagem.val()
-        );
+        if(this._inputSkillPorcentagem.val() < 0 || this._inputSkillPorcentagem.val() > 100){
+            this._modal.mostrarModal();
+            this._inputSkillPorcentagem = $('#novaSkillPorcentagem').val("");
+            podeAdd = false;
+            return;
+        }
+        else{
+            podeAdd = true;
+            return new AddSkill(
+                this._inputSkillTitulo.val(),
+                this._inputSkillPorcentagem.val()
+            );
+        }
     }
 
     _limparFormulario(){
