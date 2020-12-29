@@ -1,5 +1,5 @@
 import { KanbanView } from '../views/index';
-import { AddFormacoes, AddFormacao, Kanban } from '../models/index';
+import { AddFormacao, Kanban } from '../models/index';
 import { FormacaoDaoAFazer } from '../dao/index';
 
 export class AddFormacaoController{
@@ -11,6 +11,7 @@ export class AddFormacaoController{
     
     constructor(readonly _kanban: Kanban, readonly _add: AddFormacao){
         this._numB = 'expandir' + this._numA;
+        
         ConnectionFactory
             .getConnection()
             .then((connection:any) => {
@@ -22,7 +23,6 @@ export class AddFormacaoController{
                     this._kanban.aFazer.adiciona(formacao)
                     this._numA++;
                     this._numB = 'expandir' + this._numA;
-                    console.log(this._numA);
                 })
                 this._addKanbanView.update(this._kanban);
             })
@@ -42,7 +42,6 @@ export class AddFormacaoController{
                 this._kanban.adiciona(this._addFormacao());
                 this._numA++;
                 this._numB = 'expandir' + this._numA;
-                console.log(this._numA)
                 this._addKanbanView.update(this._kanban);
                 this._limparFormulario();
             })

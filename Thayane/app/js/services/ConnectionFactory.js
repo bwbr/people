@@ -42,7 +42,7 @@ var ConnectionFactory = (function () {
                     connection.deleteObjectStore(store);
                     console.log("Apagando pois já existe...");
                 }
-                connection.createObjectStore(store, { autoIncrement: true });
+                connection.createObjectStore(store, { keyPath: 'id', autoIncrement: true });
             });
         }
         static closeConnection() {

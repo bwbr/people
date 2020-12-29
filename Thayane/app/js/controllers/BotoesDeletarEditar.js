@@ -51,9 +51,18 @@ System.register(["../views/KanbanView"], function (exports_1, context_1) {
                     this.primo2 = this.tioBiso.children('.card-body');
                     this.primo2.text('Olá');
                 }
-                deletarSkill() {
-                    console.log("Deletando...");
+                deletarSkill(tabela) {
                     this.pai = this.eu.parent();
+                    let index = this.pai.index();
+                    this.key = index.valueOf();
+                    this.key++;
+                    this.dao = ConnectionFactory
+                        .getConnection()
+                        .then((conection) => {
+                        conection.transaction([tabela], 'readwrite')
+                            .objectStore(tabela)
+                            .delete(this.key);
+                    }).catch(erro => erro);
                     this.pai.remove();
                 }
                 editarSkill() {
