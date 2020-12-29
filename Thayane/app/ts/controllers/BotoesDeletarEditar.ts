@@ -67,18 +67,16 @@ export class BotoesDeletarEditar{
 
     //Skills
     deletarSkill(tabela:string){  
-        this.pai = this.eu.parent();
-
         let skillID: string = $(this.eu).data('key')
         this.dao = ConnectionFactory
             .getConnection()
             .then((conection: any) => {
-                var a= conection.transaction([tabela], 'readwrite')
-                    var b = a.objectStore(tabela);
-                    console.log(b)
-                    var c = b.delete(skillID);                
+                conection.transaction([tabela], 'readwrite')
+                    .objectStore(tabela)
+                    .delete(skillID);                
             }).catch(erro => erro);                            
 
+        this.pai = this.eu.parent();
         this.pai.remove();
     }
 

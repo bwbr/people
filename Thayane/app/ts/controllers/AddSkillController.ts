@@ -35,20 +35,20 @@ export class AddSkillController{
         event.preventDefault();
 
         ConnectionFactory
-        .getConnection()
-        .then(connection => {
-            let skill = this._addSkill();
-            if(podeAdd){
-                new SkillDao(connection)
-                .adiciona(skill)
-                .then( skillID =>  {
-                    skill.id = skillID;
-                    return skill;
-                })
-                .then(() => this._limparFormulario())
-                .then(() => this.listarTodos())                
-            }
-        }).catch(erro => console.log(erro));
+            .getConnection()
+            .then(connection => {
+                let skill = this._addSkill();
+                if(podeAdd){
+                    new SkillDao(connection)
+                    .adiciona(skill)
+                    .then( skillID =>  {
+                        skill.id = skillID;
+                        return skill;
+                    })
+                    .then(() => this._limparFormulario())
+                    .then(() => this.listarTodos())                
+                }
+            }).catch(erro => console.log(erro));
     }
 
     _addSkill(){

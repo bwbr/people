@@ -35,21 +35,5 @@ export class SkillDao extends Dao{
                 reject('Não foi possível listar as skills!');
             }
         })
-    }
-
-    apagarRegistro(tabela:any, key:any){
-        console.log(this._connection)
-        console.log(this._store)
-        this._connection
-            .then((conection:any) => {    
-                let transaction = conection.transaction([tabela], 'readwrite');
-                let store = transaction.objectStore(tabela);
-                let request = store.delete(key);
-    
-                request.onsuccess = (e:any) => console.log(`Registro ${key} excluído com sucesso de ${tabela}`);
-    
-                request.onerror = (e:any) => console.log(`Não foi excluir o registro de ${tabela}`); 
-
-            }).catch((erro:any) => erro);    
-    }    
+    }  
 }
