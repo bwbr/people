@@ -11,7 +11,7 @@ export class AtividadeController {
         private _atividades = new Atividades();
         private _mensagemView = new MensagemView('#mensagemView');
         private _todoColumnView = new AtividadesView('[data-ToDo]');
-        private _doingColumnView = new AtividadesView('[data-InProgress]');
+        private _inProgressColumnView = new AtividadesView('[data-InProgress]');
         private _doneColumnView = new AtividadesView('[data-Done]');
         private _db = new DB();
 
@@ -45,15 +45,12 @@ export class AtividadeController {
 
             //Finaliza para exibição
             this._atividades.salva(atividade)
-                .then( atvidade => {
-
-                    this.lista();
+                .then(atividade => {
+                   this.lista();
                 })
                 .then(() => {
                     this._mensagemView.update('Atividade adicionada com sucesso!', 'alert-success'); //mensagem de cadastro 
                 });
-            
-            
         } 
 
         //LISTAR DADO(S)
@@ -61,9 +58,6 @@ export class AtividadeController {
             let table = 'Atividades';
             let columns = '*';
             let condition = `ORDER BY id DESC`;
-
-            var atividades = this._atividades;
-            
 
             let conn: Promise<SQLTransaction> = new Promise((resolve, reject) => {
                 
@@ -76,7 +70,7 @@ export class AtividadeController {
             conn.then( tx => {
                 return new Promise<SQLResultSet>((resolve, reject) => {
                     tx.executeSql(`SELECT ${columns} FROM ${table} ${condition}`, [], (tx, results) => {
-                        console.log(results);
+                        //console.log(results);
                         resolve(results);
                     }, (tx, err) => {
                         console.log(err);
@@ -86,11 +80,11 @@ export class AtividadeController {
                 })
             }).then( results => {
                 let atividades: Array<Atividade> = []
-                console.log(`results.rows ${results.rows.length}`)
+                //console.log(`results.rows ${results.rows.length}`)
                 for(let i = 0; i < results.rows.length; i++ ) {
-                    console.log(`i = ${i} l=${results.rows.length} ${results.rows.item(i)}`)
+                    //console.log(`i = ${i} l=${results.rows.length} ${results.rows.item(i)}`)
                     let v = results.rows.item(i);
-                    console.log(v);
+                    //console.log(v);
                     atividades.push(new Atividade(
                         v.id, v.titulo, v.descricao, v.idCard
                     ));
@@ -98,33 +92,40 @@ export class AtividadeController {
                 return atividades;
             })
             .then( atividades => {
-                console.log(atividades);
-                let todo = atividades.filter( a => a.idCard === 'cardToDo').reduce((a, i) => {
+                //console.log(atividades);
+                var total_toDo = 0, total_inProgress = 0, total_done = 0;
+                let cardTodo = atividades.filter( a => a.idCard === 'cardToDo').reduce((a, i) => {
                     a.adiciona(i);
+                    total_toDo = total_toDo + 1;
                     return a;
                 }, new Atividades());
-                let cardInProgres = atividades.filter( a => a.idCard === 'cardInProgres').reduce((a, i) => {
+                let cardInProgres = atividades.filter( a => a.idCard === 'cardInProgress').reduce((a, i) => {
                     a.adiciona(i);
+                    total_inProgress = total_inProgress + 1;
                     return a;
                 }, new Atividades());
                 let cardDone = atividades.filter( a => a.idCard === 'cardDone').reduce((a, i) => {
                     a.adiciona(i);
+                    total_done = total_done + 1;
                     return a;
                 }, new Atividades());
-                this._todoColumnView.update(todo, '');
-                this._doingColumnView.update(cardInProgres, '');
+                this._todoColumnView.update(cardTodo, '');
+                this._inProgressColumnView.update(cardInProgres, '');
                 this._doneColumnView.update( cardDone, '');
-                
-                // this._boardView.update(atividades);
+                this.badge(total_toDo, total_inProgress, total_done);
+                this.drag_and_drop(); //DRAG AND DROP
             });
         }
 
         //BADGE
-        badge(target: string, total_toDo: number, total_inProgress: number, total_done: number, textStrategy: (d: string) => string): void{     
+        badge(total_toDo: number, total_inProgress: number, total_done: number): void{     
             let total_activities: number = total_toDo + total_inProgress + total_done; 
 
-            $(target).text(textStrategy(target));
+            $('.badge-to-do').text(this.limitBadge(total_toDo));
+            $('.badge-in-progress').text(this.limitBadge(total_inProgress));
+            $('.badge-done').text(`${this.limitBadge(total_done)} / ${total_activities}`);   
             
+            this.progressbar(total_toDo, total_inProgress, total_done); //PROGRESSBAR     
         }
 
         //BADGE: Retorna a quantidade limite para o badge
@@ -252,9 +253,6 @@ export class AtividadeController {
 
             this._atividades.deleta(id);
 
-        }
-
-        atualiza(): void{   
         }
         
         clear_all(): void{

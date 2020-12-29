@@ -2,9 +2,8 @@ import {AtividadeController} from './controllers/AtividadeController';
 
 const controller = new AtividadeController();
 
-controller.atualiza();
+controller.lista();
 
-controller.drag_and_drop(); //DRAG AND DROP
 // submete o form que adiciona atividades
 $('#cards').submit(controller.adiciona.bind(controller));
 
