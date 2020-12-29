@@ -20,7 +20,7 @@ System.register(["../views/index", "../models/index", "../services/DB"], functio
                     this._atividades = new index_2.Atividades();
                     this._mensagemView = new index_1.MensagemView('#mensagemView');
                     this._todoColumnView = new index_1.AtividadesView('[data-ToDo]');
-                    this._doingColumnView = new index_1.AtividadesView('[data-InProgress]');
+                    this._inProgressColumnView = new index_1.AtividadesView('[data-InProgress]');
                     this._doneColumnView = new index_1.AtividadesView('[data-Done]');
                     this._db = new DB_1.DB();
                     this._inputId = $('#id');
@@ -38,7 +38,7 @@ System.register(["../views/index", "../models/index", "../services/DB"], functio
                     event.preventDefault();
                     const atividade = new index_2.Atividade(this._inputId.val(), this._inputTitulo.val(), this._inputDescricao.val(), this._inputIdCard.val());
                     this._atividades.salva(atividade)
-                        .then(atvidade => {
+                        .then(atividade => {
                         this.lista();
                     })
                         .then(() => {
@@ -49,7 +49,6 @@ System.register(["../views/index", "../models/index", "../services/DB"], functio
                     let table = 'Atividades';
                     let columns = '*';
                     let condition = `ORDER BY id DESC`;
-                    var atividades = this._atividades;
                     let conn = new Promise((resolve, reject) => {
                         this._db.conn().transaction((tx) => { console.log(tx); resolve(tx); }, (err) => {
                             console.log(err);
@@ -59,7 +58,6 @@ System.register(["../views/index", "../models/index", "../services/DB"], functio
                     conn.then(tx => {
                         return new Promise((resolve, reject) => {
                             tx.executeSql(`SELECT ${columns} FROM ${table} ${condition}`, [], (tx, results) => {
-                                console.log(results);
                                 resolve(results);
                             }, (tx, err) => {
                                 console.log(err);
@@ -69,37 +67,42 @@ System.register(["../views/index", "../models/index", "../services/DB"], functio
                         });
                     }).then(results => {
                         let atividades = [];
-                        console.log(`results.rows ${results.rows.length}`);
                         for (let i = 0; i < results.rows.length; i++) {
-                            console.log(`i = ${i} l=${results.rows.length} ${results.rows.item(i)}`);
                             let v = results.rows.item(i);
-                            console.log(v);
                             atividades.push(new index_2.Atividade(v.id, v.titulo, v.descricao, v.idCard));
                         }
                         return atividades;
                     })
                         .then(atividades => {
-                        console.log(atividades);
-                        let todo = atividades.filter(a => a.idCard === 'cardToDo').reduce((a, i) => {
+                        var total_toDo = 0, total_inProgress = 0, total_done = 0;
+                        let cardTodo = atividades.filter(a => a.idCard === 'cardToDo').reduce((a, i) => {
                             a.adiciona(i);
+                            total_toDo = total_toDo + 1;
                             return a;
                         }, new index_2.Atividades());
-                        let cardInProgres = atividades.filter(a => a.idCard === 'cardInProgres').reduce((a, i) => {
+                        let cardInProgres = atividades.filter(a => a.idCard === 'cardInProgress').reduce((a, i) => {
                             a.adiciona(i);
+                            total_inProgress = total_inProgress + 1;
                             return a;
                         }, new index_2.Atividades());
                         let cardDone = atividades.filter(a => a.idCard === 'cardDone').reduce((a, i) => {
                             a.adiciona(i);
+                            total_done = total_done + 1;
                             return a;
                         }, new index_2.Atividades());
-                        this._todoColumnView.update(todo, '');
-                        this._doingColumnView.update(cardInProgres, '');
+                        this._todoColumnView.update(cardTodo, '');
+                        this._inProgressColumnView.update(cardInProgres, '');
                         this._doneColumnView.update(cardDone, '');
+                        this.badge(total_toDo, total_inProgress, total_done);
+                        this.drag_and_drop();
                     });
                 }
-                badge(target, total_toDo, total_inProgress, total_done, textStrategy) {
+                badge(total_toDo, total_inProgress, total_done) {
                     let total_activities = total_toDo + total_inProgress + total_done;
-                    $(target).text(textStrategy(target));
+                    $('.badge-to-do').text(this.limitBadge(total_toDo));
+                    $('.badge-in-progress').text(this.limitBadge(total_inProgress));
+                    $('.badge-done').text(`${this.limitBadge(total_done)} / ${total_activities}`);
+                    this.progressbar(total_toDo, total_inProgress, total_done);
                 }
                 limitBadge(qtd) {
                     let limitQtd = "99+";
@@ -181,8 +184,6 @@ System.register(["../views/index", "../models/index", "../services/DB"], functio
                 }
                 deleta(id) {
                     this._atividades.deleta(id);
-                }
-                atualiza() {
                 }
                 clear_all() {
                     let table = 'Atividades';
