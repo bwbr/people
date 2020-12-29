@@ -113,7 +113,9 @@ var observaFeitas = new MutationObserver(function(mutations) {
 //Skills
 $("#novaSkill").on('click', '.btnDeletar', function() {
     editarDeletarKanban.eu = $(this);
-    editarDeletarKanban.deletarSkill('skills')
+    console.log(editarDeletarKanban.eu);
+    console.log($(this).data('key'));
+    editarDeletarKanban.deletarSkill('skills');
 });
 $("#novaSkill").on('click', '.btnEditar', function() {
     editarDeletarKanban.eu = $(this);

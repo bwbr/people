@@ -1,7 +1,7 @@
 System.register(["../views/index", "../models/index", "./ModalController", "../dao/index"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var index_1, index_2, ModalController_1, index_3, AddSkillController;
+    var index_1, index_2, ModalController_1, index_3, skillIdInc, podeAdd, AddSkillController;
     return {
         setters: [
             function (index_1_1) {
@@ -18,22 +18,27 @@ System.register(["../views/index", "../models/index", "./ModalController", "../d
             }
         ],
         execute: function () {
+            skillIdInc = 1;
+            podeAdd = true;
             AddSkillController = class AddSkillController {
                 constructor() {
                     this._inputSkillTitulo = $('#novaSkillTitulo');
                     this._inputSkillPorcentagem = $('#novaSkillPorcentagem');
                     this._modal = new ModalController_1.ModalController();
-                    this._skills = new index_2.AddSkills();
                     this._addSkillsView = new index_1.AddSkillsView('#novaSkill');
-                    ConnectionFactory
+                    this.listarTodos();
+                }
+                listarTodos() {
+                    return ConnectionFactory
                         .getConnection()
                         .then((connection) => {
                         return new index_3.SkillDao(connection);
                     })
                         .then(dao => dao.listaTodos())
                         .then((skills) => {
-                        skills.forEach((skill) => this._skills.adiciona(skill));
-                        this._addSkillsView.update(this._skills);
+                        let skilllist = new index_2.AddSkills();
+                        skills.forEach((skill) => skilllist.adiciona(skill));
+                        this._addSkillsView.update(skilllist);
                     })
                         .catch(erro => console.log(erro));
                 }
@@ -43,25 +48,29 @@ System.register(["../views/index", "../models/index", "./ModalController", "../d
                         .getConnection()
                         .then(connection => {
                         let skill = this._addSkill();
-                        new index_3.SkillDao(connection)
-                            .adiciona(skill)
-                            .then(() => {
-                            if (this._inputSkillPorcentagem.val() < 0 || this._inputSkillPorcentagem.val() > 100) {
-                                this._modal.mostrarModal();
-                                this._inputSkillPorcentagem = $('#novaSkillPorcentagem').val("");
-                            }
-                            else {
-                                this._skills.adiciona(this._addSkill());
-                                this._addSkillsView.update(this._skills);
-                                this._limparFormulario();
-                            }
-                            ;
-                            this._limparFormulario();
-                        });
+                        if (podeAdd) {
+                            new index_3.SkillDao(connection)
+                                .adiciona(skill)
+                                .then(skillID => {
+                                skill.id = skillID;
+                                return skill;
+                            })
+                                .then(() => this._limparFormulario())
+                                .then(() => this.listarTodos());
+                        }
                     }).catch(erro => console.log(erro));
                 }
                 _addSkill() {
-                    return new index_2.AddSkill(this._inputSkillTitulo.val(), this._inputSkillPorcentagem.val());
+                    if (this._inputSkillPorcentagem.val() < 0 || this._inputSkillPorcentagem.val() > 100) {
+                        this._modal.mostrarModal();
+                        this._inputSkillPorcentagem = $('#novaSkillPorcentagem').val("");
+                        podeAdd = false;
+                        return;
+                    }
+                    else {
+                        podeAdd = true;
+                        return new index_2.AddSkill(this._inputSkillTitulo.val(), this._inputSkillPorcentagem.val());
+                    }
                 }
                 _limparFormulario() {
                     this._inputSkillTitulo = $('#novaSkillTitulo').val("");

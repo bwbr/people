@@ -10,7 +10,7 @@ export class AddSkillsView extends View<AddSkills>{
                     <button class="btnVazio btnEditar">
                         <i class="icones iconeEditar"></i> 
                     </button>
-                    <button class="btnVazio btnDeletar">   
+                    <button class="btnVazio btnDeletar" data-key="${skill.id}">   
                         <i class="icones iconeDeletar"></i>
                     </button>
 

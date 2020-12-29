@@ -29,7 +29,9 @@ System.register(["../models/index", "./Dao"], function (exports_1, context_1) {
                             let atual = e.target.result;
                             if (atual) {
                                 let dado = atual.value;
-                                formacoes.push(new index_1.AddSkill(dado.skillTitulo, dado.skillPorcentagem));
+                                let skill = new index_1.AddSkill(dado.skillTitulo, dado.skillPorcentagem);
+                                skill.id = dado.id;
+                                formacoes.push(skill);
                                 atual.continue();
                             }
                             else
