@@ -23,6 +23,17 @@ System.register([], function (exports_1, context_1) {
                         };
                     });
                 }
+                apagarRegistro(tabela, key) {
+                    this._connection
+                        .then((conection) => {
+                        let request = conection
+                            .transaction([tabela], 'readwrite')
+                            .objectStore(tabela)
+                            .delete(key);
+                        request.onsuccess = (e) => console.log(`Registro ${key} excluído com sucesso de ${tabela}`);
+                        request.onerror = (e) => console.log(`Não foi excluir o registro de ${tabela}`);
+                    }).catch((erro) => erro);
+                }
             };
             exports_1("Dao", Dao);
         }

@@ -32,8 +32,7 @@ var ConnectionFactory = (function(){
                         connection.close = function (){
                             throw new Error("Você não pode fechar a conexão diretamente!");
                         }
-                    }
-                
+                    }                
                     resolve(connection);
                 };
             
@@ -53,7 +52,7 @@ var ConnectionFactory = (function(){
                     console.log("Apagando pois já existe...");
                 }
     
-                connection.createObjectStore(store, { keyPath: 'id', autoIncrement: true});
+                connection.createObjectStore(store, {keyPath: 'id', autoIncrement: true});
             })        
         }
 

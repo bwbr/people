@@ -43,18 +43,6 @@ System.register(["../models/index", "./Dao"], function (exports_1, context_1) {
                         };
                     });
                 }
-                apagarRegistro(tabela, key) {
-                    console.log(this._connection);
-                    console.log(this._store);
-                    this._connection
-                        .then((conection) => {
-                        let transaction = conection.transaction([tabela], 'readwrite');
-                        let store = transaction.objectStore(tabela);
-                        let request = store.delete(key);
-                        request.onsuccess = (e) => console.log(`Registro ${key} excluído com sucesso de ${tabela}`);
-                        request.onerror = (e) => console.log(`Não foi excluir o registro de ${tabela}`);
-                    }).catch((erro) => erro);
-                }
             };
             exports_1("SkillDao", SkillDao);
         }

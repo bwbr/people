@@ -1,5 +1,3 @@
-import { AddFormacao } from "../models/index";
-
 export abstract class Dao{
     protected _connection: any;
     protected _store: any;
@@ -24,4 +22,19 @@ export abstract class Dao{
             };
         });
     }
+
+    apagarRegistro(tabela:any, key:any){
+        this._connection
+            .then((conection:any) => {    
+                let request = conection
+                    .transaction([tabela], 'readwrite')
+                    .objectStore(tabela)
+                    .delete(key);
+    
+                request.onsuccess = (e:any) => console.log(`Registro ${key} excluído com sucesso de ${tabela}`);
+    
+                request.onerror = (e:any) => console.log(`Não foi excluir o registro de ${tabela}`); 
+
+            }).catch((erro:any) => erro);    
+    }  
 }
