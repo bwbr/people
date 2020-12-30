@@ -7,12 +7,12 @@ export abstract class Dao{
         this._store = '';
     }
 
-    adiciona(formacao: any): Promise<number> {
+    adiciona(algo: any): Promise<number> {
         return new Promise((resolve, reject) => {
             let request = this._connection
                 .transaction([this._store], 'readwrite')
                 .objectStore(this._store)
-                .add(formacao);
+                .add(algo);
 
             request.onsuccess = (e:any) => resolve(e.target.result);
 

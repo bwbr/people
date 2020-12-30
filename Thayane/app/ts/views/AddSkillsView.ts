@@ -7,7 +7,7 @@ export class AddSkillsView extends View<AddSkills>{
             ${model.paraArray().map(skill =>
             `
                 <li class="list-group-item d-flex justify-content-between align-items-center">${skill.skillTitulo}
-                    <button class="btnVazio btnEditar">
+                    <button class="btnVazio btnEditar" data-key="${skill.id}" data-titulo="${skill.skillTitulo}" data-sucesso="${skill.skillPorcentagem}">
                         <i class="icones iconeEditar"></i> 
                     </button>
                     <button class="btnVazio btnDeletar" data-key="${skill.id}">   

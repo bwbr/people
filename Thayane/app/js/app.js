@@ -1,7 +1,7 @@
 System.register(["./controllers/index", "./views/index", "./models/index"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var index_1, index_2, index_3, index_4, muda, kabanboard, add, controllerFormacoes, controllerSkills, modal, deletar, editar, expandir, mover, contarFormacoes, _addKanbanView, observaAFazer, observaFazendo, observaFeitas;
+    var index_1, index_2, index_3, index_4, muda, kabanboard, skillboard, add, controllerFormacoes, controllerSkills, modal, deletar, editar, expandir, mover, contarFormacoes, _addKanbanView, observaAFazer, observaFazendo, observaFeitas;
     return {
         setters: [
             function (index_1_1) {
@@ -20,6 +20,7 @@ System.register(["./controllers/index", "./views/index", "./models/index"], func
             $.when(window).then(() => muda.tamanho());
             $(window).resize(() => muda.tamanho());
             kabanboard = new index_4.Kanban();
+            skillboard = new index_4.AddSkills();
             add = new index_4.AddFormacao('', '', 0, 'expandir0');
             controllerFormacoes = new index_1.AddFormacaoController(kabanboard, add);
             $('[data-form-formacao]').submit(controllerFormacoes.adiciona.bind(controllerFormacoes));
@@ -40,18 +41,18 @@ System.register(["./controllers/index", "./views/index", "./models/index"], func
                 deletar.eu = $(this);
                 deletar.deletarFeitas('formacoesFeitas');
             });
-            editar = new index_1.Editar(kabanboard);
+            editar = new index_1.Editar(kabanboard, skillboard);
             $("#nav-link-kanban_aFazer").on('click', '.btnEditar', function () {
                 editar.eu = $(this);
-                editar.editar();
+                editar.editarAFazer('formacoesAFazer');
             });
             $("#nav-link-kanban_fazendo").on('click', '.btnEditar', function () {
                 editar.eu = $(this);
-                editar.editar();
+                editar.editarFazendo('formacoesFazendo');
             });
             $("#nav-link-kanban_feitas").on('click', '.btnEditar', function () {
                 editar.eu = $(this);
-                editar.editar();
+                editar.editarFeitas('formacoesFeitas');
             });
             expandir = new index_1.Expandir();
             $("#nav-link-kanban_aFazer").on('click', '.btnExpandir', function () {
@@ -117,6 +118,7 @@ System.register(["./controllers/index", "./views/index", "./models/index"], func
             });
             $("#novaSkill").on('click', '.btnEditar', function () {
                 editar.eu = $(this);
+                editar.editarSkill('skills');
             });
         }
     };

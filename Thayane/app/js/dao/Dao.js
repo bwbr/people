@@ -10,12 +10,12 @@ System.register([], function (exports_1, context_1) {
                     this._connection = connection;
                     this._store = '';
                 }
-                adiciona(formacao) {
+                adiciona(algo) {
                     return new Promise((resolve, reject) => {
                         let request = this._connection
                             .transaction([this._store], 'readwrite')
                             .objectStore(this._store)
-                            .add(formacao);
+                            .add(algo);
                         request.onsuccess = (e) => resolve(e.target.result);
                         request.onerror = (e) => {
                             console.log(e.target.error);
