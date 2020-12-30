@@ -8,6 +8,8 @@ export class Editar{
     private _addKanbanView = new KanbanView('');
     private _addSkillView = new AddSkillsView('');
     private _skillController = new AddSkillController();
+    private _inputAlgoTitulo: JQuery;
+    private _inputFormacaoDescricao: JQuery;
     public dao: any;
 
     private algoID: string;
@@ -44,9 +46,16 @@ export class Editar{
         if (this.card == undefined)  return;
     }
     addFormacao(){
+        this._inputAlgoTitulo = $(`#formacaoTitulo${this.formacaoA}`);
+        this._inputFormacaoDescricao = $(`#formacaoDescricao${this.formacaoA}`);
+        if(this._inputAlgoTitulo.val() == '')
+            this._inputAlgoTitulo.val(this.algoTitulo);
+        if(this._inputFormacaoDescricao.val() == '')
+            this._inputFormacaoDescricao.val(this.formacaoDescricao);
+        
         return new AddFormacao(
-            "this.algoTitulo",
-            "this.formacaoDescricao",
+            this._inputAlgoTitulo.val(),
+            this._inputFormacaoDescricao.val(),
             parseInt(this.formacaoA),
             this.formacaoB
         )

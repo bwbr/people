@@ -42,15 +42,15 @@ System.register(["./controllers/index", "./views/index", "./models/index"], func
                 deletar.deletarFeitas('formacoesFeitas');
             });
             editar = new index_1.Editar(kabanboard, skillboard);
-            $("#nav-link-kanban_aFazer").on('click', '.btnEditar', function () {
+            $("#nav-link-kanban_aFazer").on('click', '.salvarEditou', function () {
                 editar.eu = $(this);
                 editar.editarAFazer('formacoesAFazer');
             });
-            $("#nav-link-kanban_fazendo").on('click', '.btnEditar', function () {
+            $("#nav-link-kanban_fazendo").on('click', '.salvarEditou', function () {
                 editar.eu = $(this);
                 editar.editarFazendo('formacoesFazendo');
             });
-            $("#nav-link-kanban_feitas").on('click', '.btnEditar', function () {
+            $("#nav-link-kanban_feitas").on('click', '.salvarEditou', function () {
                 editar.eu = $(this);
                 editar.editarFeitas('formacoesFeitas');
             });

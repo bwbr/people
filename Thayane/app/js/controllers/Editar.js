@@ -46,7 +46,13 @@ System.register(["../dao/index", "../models/index", "../views/index", "./AddSkil
                         return;
                 }
                 addFormacao() {
-                    return new index_2.AddFormacao("this.algoTitulo", "this.formacaoDescricao", parseInt(this.formacaoA), this.formacaoB);
+                    this._inputAlgoTitulo = $(`#formacaoTitulo${this.formacaoA}`);
+                    this._inputFormacaoDescricao = $(`#formacaoDescricao${this.formacaoA}`);
+                    if (this._inputAlgoTitulo.val() == '')
+                        this._inputAlgoTitulo.val(this.algoTitulo);
+                    if (this._inputFormacaoDescricao.val() == '')
+                        this._inputFormacaoDescricao.val(this.formacaoDescricao);
+                    return new index_2.AddFormacao(this._inputAlgoTitulo.val(), this._inputFormacaoDescricao.val(), parseInt(this.formacaoA), this.formacaoB);
                 }
                 editarAFazer(tabela) {
                     this.pegarInformacoesKanban();
