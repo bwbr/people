@@ -1,7 +1,7 @@
 System.register(["../views/index", "../models/index", "../dao/index"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var index_1, index_2, index_3, AddFormacaoController;
+    var index_1, index_2, index_3, formacaoID, AddFormacaoController;
     return {
         setters: [
             function (index_1_1) {
@@ -15,6 +15,7 @@ System.register(["../views/index", "../models/index", "../dao/index"], function 
             }
         ],
         execute: function () {
+            formacaoID = 1;
             AddFormacaoController = class AddFormacaoController {
                 constructor(_kanban, _add) {
                     this._kanban = _kanban;
@@ -24,7 +25,10 @@ System.register(["../views/index", "../models/index", "../dao/index"], function 
                     this._numA = 0;
                     this._addKanbanView = new index_1.KanbanView('#nav-link-kanban_afazer');
                     this._numB = 'expandir' + this._numA;
-                    ConnectionFactory
+                    this.listarTodos();
+                }
+                listarTodos() {
+                    return ConnectionFactory
                         .getConnection()
                         .then((connection) => {
                         return new index_3.FormacaoDaoAFazer(connection);
@@ -48,13 +52,17 @@ System.register(["../views/index", "../models/index", "../dao/index"], function 
                         let formacao = this._addFormacao();
                         new index_3.FormacaoDaoAFazer(connection)
                             .adiciona(formacao)
+                            .then(formacaoID => {
+                            formacao.id = formacaoID;
+                            return formacao;
+                        })
                             .then(() => {
-                            this._kanban.adiciona(this._addFormacao());
+                            this._kanban.adiciona(formacao);
                             this._numA++;
                             this._numB = 'expandir' + this._numA;
-                            this._addKanbanView.update(this._kanban);
-                            this._limparFormulario();
-                        });
+                        })
+                            .then(() => this._addKanbanView.update(this._kanban))
+                            .then(() => this._limparFormulario());
                     }).catch(erro => console.log(erro));
                 }
                 _addFormacao() {

@@ -2,6 +2,8 @@ import { KanbanView } from '../views/index';
 import { AddFormacao, Kanban } from '../models/index';
 import { FormacaoDaoAFazer } from '../dao/index';
 
+var formacaoID = 1;
+
 export class AddFormacaoController{
     private _inputFormacaoTitulo: JQuery = $('#novaFormacaoTitulo');
     private _inputFormacaoDescricao: JQuery = $('#novaFormacaoDescricao');
@@ -11,22 +13,25 @@ export class AddFormacaoController{
     
     constructor(readonly _kanban: Kanban, readonly _add: AddFormacao){
         this._numB = 'expandir' + this._numA;
-        
-        ConnectionFactory
-            .getConnection()
-            .then((connection:any) => {
-                return new FormacaoDaoAFazer(connection)
+        this.listarTodos();        
+    }
+
+    listarTodos(): Promise<any> {
+        return ConnectionFactory
+        .getConnection()
+        .then((connection:any) => {
+            return new FormacaoDaoAFazer(connection)
+        })
+        .then(dao => dao.listaTodos())
+        .then((formacoes: any) => {
+            formacoes.forEach((formacao:any) => {
+                this._kanban.aFazer.adiciona(formacao)
+                this._numA++;
+                this._numB = 'expandir' + this._numA;
             })
-            .then(dao => dao.listaTodos())
-            .then((formacoes: any) => {
-                formacoes.forEach((formacao:any) => {
-                    this._kanban.aFazer.adiciona(formacao)
-                    this._numA++;
-                    this._numB = 'expandir' + this._numA;
-                })
-                this._addKanbanView.update(this._kanban);
-            })
-            .catch(erro => console.log(erro));
+            this._addKanbanView.update(this._kanban);
+        })
+        .catch(erro => console.log(erro));
     }
     
     adiciona(event: Event){
@@ -38,13 +43,17 @@ export class AddFormacaoController{
             let formacao = this._addFormacao();
             new FormacaoDaoAFazer(connection)
             .adiciona(formacao)
-            .then(() => {
-                this._kanban.adiciona(this._addFormacao());
-                this._numA++;
-                this._numB = 'expandir' + this._numA;
-                this._addKanbanView.update(this._kanban);
-                this._limparFormulario();
+            .then(formacaoID => {
+                formacao.id = formacaoID;
+                return formacao;
             })
+            .then(() => {
+                this._kanban.adiciona(formacao);
+                this._numA++;
+                this._numB = 'expandir' + this._numA;                
+            })
+            .then(()=> this._addKanbanView.update(this._kanban))
+            .then(()=> this._limparFormulario())
         }).catch(erro => console.log(erro));
     }
     

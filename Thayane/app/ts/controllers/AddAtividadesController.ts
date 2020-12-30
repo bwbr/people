@@ -2,14 +2,12 @@ import { AddAtividadesView } from '../views/index';
 import { AddAtividades, AddAtividade } from '../models/index';
 
 export class AddAtividadesController{
-    private _inputAtividadeNome: JQuery;
-    private _inputAtividadeData: JQuery;
+    private _inputAtividadeNome: JQuery = $('#novaAtividadeNome');
+    private _inputAtividadeData: JQuery = $('#novaAtividadeData');
     private _atividades = new AddAtividades();
     private _addAtividadesView = new AddAtividadesView('#novaAtividade');
     
     constructor(){
-        this._inputAtividadeNome = $('#novaAtividadeNome');
-        this._inputAtividadeData = $('#novaAtividadeData');
         this._addAtividadesView.update(this._atividades);
     }
 

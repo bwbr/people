@@ -15,7 +15,7 @@ export class AddFormacoesView extends View<AddFormacoes>{
                             </div>
 
                             <div class="botoes">
-                                <button class="btnVazio btnDeletar deleto" data-title="${formacao.b}">
+                                <button class="btnVazio btnDeletar deleto" data-title="${formacao.b}" data-key="${formacao.id}">
                                     <i class="icones iconeDeletar"></i>
                                 </button>
 

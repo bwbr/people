@@ -14,10 +14,10 @@ System.register(["../views/index", "../models/index"], function (exports_1, cont
         execute: function () {
             AddAtividadesController = class AddAtividadesController {
                 constructor() {
-                    this._atividades = new index_2.AddAtividades();
-                    this._addAtividadesView = new index_1.AddAtividadesView('#novaAtividade');
                     this._inputAtividadeNome = $('#novaAtividadeNome');
                     this._inputAtividadeData = $('#novaAtividadeData');
+                    this._atividades = new index_2.AddAtividades();
+                    this._addAtividadesView = new index_1.AddAtividadesView('#novaAtividade');
                     this._addAtividadesView.update(this._atividades);
                 }
                 adiciona(event) {

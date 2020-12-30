@@ -29,7 +29,9 @@ System.register(["../models/index", "./Dao"], function (exports_1, context_1) {
                             let atual = e.target.result;
                             if (atual) {
                                 let dado = atual.value;
-                                formacoes.push(new index_1.AddFormacao(dado.formacaoTitulo, dado.formacaoDescricao, dado.a, dado.b));
+                                let formacao = new index_1.AddFormacao(dado.formacaoTitulo, dado.formacaoDescricao, dado.a, dado.b);
+                                formacao.id = dado.id;
+                                formacoes.push(formacao);
                                 atual.continue();
                             }
                             else
