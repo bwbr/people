@@ -6,12 +6,14 @@ export class Deletar{
     private pai: JQuery; 
     private _addKanbanView = new KanbanView('');
     public dao: any;
+    private title: string;
+    private card: any;
 
     constructor(readonly kanban: Kanban){   
     }
-    
+
     //Deletar Kanban
-    deletarAFazer(tabela:string){
+    deletarKanban(tabela:string){
         let formacaoID: string = $(this.eu).data('key')
         this.dao = ConnectionFactory
             .getConnection()
@@ -21,32 +23,24 @@ export class Deletar{
                     .delete(formacaoID);                
             })
             .catch(erro => erro); 
-        
-        let title = this.eu.data('title'); 
-        let card = this.kanban.pop(title);
-        if (card == undefined)  return console.log("Não encontrado");
-        
-        this.kanban.aFazer.remover(card);
+
+        this.title = this.eu.data('title'); 
+        this.card = this.kanban.pop(this.title);
+        if (this.card == undefined)  return console.log("Não encontrado");
+    }    
+    deletarAFazer(tabela:string){
+        this.deletarKanban(tabela);        
+        this.kanban.aFazer.remover(this.card);
         this._addKanbanView.update(this.kanban);
     }
-    deletarFazendo(){
-        console.log("Removendo...");
-        
-        let title = this.eu.data('title'); 
-        let card = this.kanban.pop(title);
-        if (card == undefined)  return console.log("Não encontrado");
-        
-        this.kanban.fazendo.remover(card);
+    deletarFazendo(tabela:string){
+        this.deletarKanban(tabela);        
+        this.kanban.fazendo.remover(this.card);
         this._addKanbanView.update(this.kanban);
     }
-    deletarFeitas(){
-        console.log("Removendo...");
-        
-        let title = this.eu.data('title'); 
-        let card = this.kanban.pop(title);
-        if (card == undefined)  return console.log("Não encontrado");
-        
-        this.kanban.feitas.remover(card);
+    deletarFeitas(tabela:string){
+        this.deletarKanban(tabela);        
+        this.kanban.feitas.remover(this.card);
         this._addKanbanView.update(this.kanban);
     }
 

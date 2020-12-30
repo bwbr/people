@@ -34,11 +34,11 @@ System.register(["./controllers/index", "./views/index", "./models/index"], func
             });
             $("#nav-link-kanban_fazendo").on('click', '.btnDeletar', function () {
                 deletar.eu = $(this);
-                deletar.deletarFazendo();
+                deletar.deletarFazendo('formacoesFazendo');
             });
             $("#nav-link-kanban_feitas").on('click', '.btnDeletar', function () {
                 deletar.eu = $(this);
-                deletar.deletarFeitas();
+                deletar.deletarFeitas('formacoesFeitas');
             });
             editar = new index_1.Editar(kabanboard);
             $("#nav-link-kanban_aFazer").on('click', '.btnEditar', function () {

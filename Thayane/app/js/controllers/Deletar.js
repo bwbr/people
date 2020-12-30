@@ -14,7 +14,7 @@ System.register(["../views/KanbanView"], function (exports_1, context_1) {
                     this.kanban = kanban;
                     this._addKanbanView = new KanbanView_1.KanbanView('');
                 }
-                deletarAFazer(tabela) {
+                deletarKanban(tabela) {
                     let formacaoID = $(this.eu).data('key');
                     this.dao = ConnectionFactory
                         .getConnection()
@@ -24,29 +24,24 @@ System.register(["../views/KanbanView"], function (exports_1, context_1) {
                             .delete(formacaoID);
                     })
                         .catch(erro => erro);
-                    let title = this.eu.data('title');
-                    let card = this.kanban.pop(title);
-                    if (card == undefined)
+                    this.title = this.eu.data('title');
+                    this.card = this.kanban.pop(this.title);
+                    if (this.card == undefined)
                         return console.log("Não encontrado");
-                    this.kanban.aFazer.remover(card);
+                }
+                deletarAFazer(tabela) {
+                    this.deletarKanban(tabela);
+                    this.kanban.aFazer.remover(this.card);
                     this._addKanbanView.update(this.kanban);
                 }
-                deletarFazendo() {
-                    console.log("Removendo...");
-                    let title = this.eu.data('title');
-                    let card = this.kanban.pop(title);
-                    if (card == undefined)
-                        return console.log("Não encontrado");
-                    this.kanban.fazendo.remover(card);
+                deletarFazendo(tabela) {
+                    this.deletarKanban(tabela);
+                    this.kanban.fazendo.remover(this.card);
                     this._addKanbanView.update(this.kanban);
                 }
-                deletarFeitas() {
-                    console.log("Removendo...");
-                    let title = this.eu.data('title');
-                    let card = this.kanban.pop(title);
-                    if (card == undefined)
-                        return console.log("Não encontrado");
-                    this.kanban.feitas.remover(card);
+                deletarFeitas(tabela) {
+                    this.deletarKanban(tabela);
+                    this.kanban.feitas.remover(this.card);
                     this._addKanbanView.update(this.kanban);
                 }
                 deletarSkill(tabela) {
