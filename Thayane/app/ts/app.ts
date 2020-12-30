@@ -2,13 +2,14 @@ import { AddFormacaoController, MudarClasseResponsivo, AddSkillController, Delet
 import { ModalController } from './controllers/index';
 import { FormacaoDaoAFazer, FormacaoDaoFazendo, FormacaoDaoFeitas, SkillDao } from './dao/index';
 import { AddFormacoesView, AddSkillsView, KanbanView } from './views/index';
-import { AddFormacao, Kanban } from './models/index'
+import { AddFormacao, AddSkills, Kanban } from './models/index'
 
 const muda = new MudarClasseResponsivo();
 $.when(window).then(() => muda.tamanho());
 $(window).resize(() => muda.tamanho());
 
 const kabanboard = new Kanban();
+const skillboard = new AddSkills();
 const add = new AddFormacao('', '', 0, 'expandir0');
 const controllerFormacoes = new AddFormacaoController(kabanboard, add);
 $('[data-form-formacao]').submit(controllerFormacoes.adiciona.bind(controllerFormacoes));
@@ -35,7 +36,7 @@ $("#nav-link-kanban_feitas").on('click', '.btnDeletar', function() {
 });
 
 //Editar os cartões
-const editar = new Editar(kabanboard);
+const editar = new Editar(kabanboard, skillboard);
 $("#nav-link-kanban_aFazer").on('click', '.btnEditar', function() {
     editar.eu = $(this);
     editar.editarAFazer('formacoesAFazer');
@@ -118,5 +119,5 @@ $("#novaSkill").on('click', '.btnDeletar', function() {
 });
 $("#novaSkill").on('click', '.btnEditar', function() {
     editar.eu = $(this);
-    //editar.editarSkill();
+    editar.editarSkill('skills');
 });

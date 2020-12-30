@@ -1,7 +1,7 @@
-System.register(["../dao/index", "../models/index", "../views/KanbanView"], function (exports_1, context_1) {
+System.register(["../dao/index", "../models/index", "../views/index", "./AddSkillController"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var index_1, index_2, KanbanView_1, Editar;
+    var index_1, index_2, index_3, AddSkillController_1, Editar;
     return {
         setters: [
             function (index_1_1) {
@@ -10,15 +10,29 @@ System.register(["../dao/index", "../models/index", "../views/KanbanView"], func
             function (index_2_1) {
                 index_2 = index_2_1;
             },
-            function (KanbanView_1_1) {
-                KanbanView_1 = KanbanView_1_1;
+            function (index_3_1) {
+                index_3 = index_3_1;
+            },
+            function (AddSkillController_1_1) {
+                AddSkillController_1 = AddSkillController_1_1;
             }
         ],
         execute: function () {
             Editar = class Editar {
-                constructor(kanban) {
+                constructor(kanban, skill) {
                     this.kanban = kanban;
-                    this._addKanbanView = new KanbanView_1.KanbanView('');
+                    this.skill = skill;
+                    this._addKanbanView = new index_3.KanbanView('');
+                    this._addSkillView = new index_3.AddSkillsView('');
+                    this._skillController = new AddSkillController_1.AddSkillController();
+                }
+                deletar(tabela) {
+                    this.dao = ConnectionFactory.getConnection()
+                        .then((connection) => {
+                        connection.transaction([tabela], 'readwrite')
+                            .objectStore(tabela)
+                            .delete(this.algoID);
+                    });
                 }
                 pegarInformacoesKanban() {
                     this.algoID = $(this.eu).data('key');
@@ -31,21 +45,8 @@ System.register(["../dao/index", "../models/index", "../views/KanbanView"], func
                     if (this.card == undefined)
                         return;
                 }
-                pegarInformacoesSkills() {
-                    this.algoID = $(this.eu).data('key');
-                    this.algoTitulo = $(this.eu).data('titulo');
-                    this.sucesso = $(this.eu).data('sucesso');
-                }
                 addFormacao() {
                     return new index_2.AddFormacao("this.algoTitulo", "this.formacaoDescricao", parseInt(this.formacaoA), this.formacaoB);
-                }
-                deletar(tabela) {
-                    this.dao = ConnectionFactory.getConnection()
-                        .then((connection) => {
-                        connection.transaction([tabela], 'readwrite')
-                            .objectStore(tabela)
-                            .delete(this.algoID);
-                    });
                 }
                 editarAFazer(tabela) {
                     this.pegarInformacoesKanban();
@@ -104,12 +105,30 @@ System.register(["../dao/index", "../models/index", "../views/KanbanView"], func
                         this.kanban.removeFeitas(this.card);
                     });
                 }
-                editarSkill() {
-                    console.log("Editando...");
-                    this.pai = this.eu.parent();
-                    this.pai.text('TS');
-                    this.sobrinho = this.eu.siblings('.progress').children('.bg-success');
-                    this.sobrinho.css('width:50%');
+                pegarInformacoesSkills() {
+                    this.algoID = $(this.eu).data('key');
+                    this.algoTitulo = $(this.eu).data('titulo');
+                    this.sucesso = $(this.eu).data('sucesso');
+                }
+                addSkill() {
+                    return new index_2.AddSkill("this.algoTitulo", 50);
+                }
+                editarSkill(tabela) {
+                    this.pegarInformacoesSkills();
+                    this.deletar(tabela);
+                    this.eu.parent().remove();
+                    this.dao = ConnectionFactory.getConnection()
+                        .then((connection) => {
+                        let skill = this.addSkill();
+                        new index_1.SkillDao(connection)
+                            .adiciona(skill)
+                            .then(skillID => {
+                            skill.id = skillID;
+                            return skill;
+                        })
+                            .then(() => this.skill.adiciona(skill))
+                            .then(() => this._skillController.listarTodos());
+                    });
                 }
             };
             exports_1("Editar", Editar);

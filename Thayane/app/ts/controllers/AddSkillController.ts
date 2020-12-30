@@ -18,17 +18,17 @@ export class AddSkillController{
 
     listarTodos(): Promise<any> {
         return ConnectionFactory
-        .getConnection()
-        .then((connection:any) => {
-            return new SkillDao(connection)
-        })
-        .then(dao => dao.listaTodos())
-        .then((skills: any) => {
-            let skilllist = new AddSkills();
-            skills.forEach((skill:any) => skilllist.adiciona(skill));
-            this._addSkillsView.update(skilllist);
-        })
-        .catch(erro => console.log(erro));
+            .getConnection()
+            .then((connection:any) => {
+                return new SkillDao(connection)
+            })
+            .then(dao => dao.listaTodos())
+            .then((skills: any) => {
+                let skilllist = new AddSkills();
+                skills.forEach((skill:any) => skilllist.adiciona(skill));
+                this._addSkillsView.update(skilllist);
+            })
+            .catch(erro => console.log(erro));
     }
 
     adiciona(event: Event){

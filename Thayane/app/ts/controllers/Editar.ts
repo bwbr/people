@@ -1,15 +1,13 @@
-import { FormacaoDaoAFazer, FormacaoDaoFazendo, FormacaoDaoFeitas } from '../dao/index';
-import { AddFormacao } from '../models/index';
-import { Kanban } from '../models/Kanban';
-import { KanbanView } from '../views/KanbanView';
+import { FormacaoDaoAFazer, FormacaoDaoFazendo, FormacaoDaoFeitas, SkillDao } from '../dao/index';
+import { AddFormacao, AddSkill, AddSkills, Kanban } from '../models/index';
+import { AddSkillsView, KanbanView } from '../views/index';
+import { AddSkillController }  from './AddSkillController';
 
 export class Editar{
-    public eu: JQuery;
-    private pai: JQuery;
-    private sobrinho: JQuery;
-    private tio: JQuery;
-    private primo2: JQuery;  
+    public eu: JQuery;  
     private _addKanbanView = new KanbanView('');
+    private _addSkillView = new AddSkillsView('');
+    private _skillController = new AddSkillController();
     public dao: any;
 
     private algoID: string;
@@ -21,34 +19,7 @@ export class Editar{
     private title: string;
     private card: any;
 
-    constructor(readonly kanban: Kanban){   
-    }
-
-    pegarInformacoesKanban(){
-        this.algoID = $(this.eu).data('key');
-        this.algoTitulo = $(this.eu).data('titulo');
-        this.formacaoDescricao = $(this.eu).data('descricao');
-        this.formacaoA = $(this.eu).data('a');
-        this.formacaoB = $(this.eu).data('title');
-
-        this.title = this.eu.data('title'); 
-        this.card = this.kanban.pop(this.title);
-        if (this.card == undefined)  return;
-    }
-
-    pegarInformacoesSkills(){
-        this.algoID = $(this.eu).data('key');
-        this.algoTitulo = $(this.eu).data('titulo');
-        this.sucesso = $(this.eu).data('sucesso');
-    }
-
-    addFormacao(){
-        return new AddFormacao(
-            "this.algoTitulo",
-            "this.formacaoDescricao",
-            parseInt(this.formacaoA),
-            this.formacaoB
-        )
+    constructor(readonly kanban: Kanban, readonly skill: AddSkills){   
     }
 
     deletar(tabela:string){
@@ -61,6 +32,26 @@ export class Editar{
     }
     
     //Kanban
+    pegarInformacoesKanban(){
+        this.algoID = $(this.eu).data('key');
+        this.algoTitulo = $(this.eu).data('titulo');
+        this.formacaoDescricao = $(this.eu).data('descricao');
+        this.formacaoA = $(this.eu).data('a');
+        this.formacaoB = $(this.eu).data('title');
+
+        this.title = this.eu.data('title'); 
+        this.card = this.kanban.pop(this.title);
+        if (this.card == undefined)  return;
+    }
+    addFormacao(){
+        return new AddFormacao(
+            "this.algoTitulo",
+            "this.formacaoDescricao",
+            parseInt(this.formacaoA),
+            this.formacaoB
+        )
+    }
+
     editarAFazer(tabela:string){
         this.pegarInformacoesKanban();        
         this.deletar(tabela);
@@ -117,11 +108,33 @@ export class Editar{
     }
 
     //Skills
-    editarSkill(){
-        console.log("Editando...");
-        this.pai = this.eu.parent();
-        this.pai.text('TS');
-        this.sobrinho = this.eu.siblings('.progress').children('.bg-success');
-        this.sobrinho.css('width:50%');
+    pegarInformacoesSkills(){
+        this.algoID = $(this.eu).data('key');
+        this.algoTitulo = $(this.eu).data('titulo');
+        this.sucesso = $(this.eu).data('sucesso');
+    }
+    addSkill(){
+        return new AddSkill(
+            "this.algoTitulo",
+            50
+        )
+    }
+    editarSkill(tabela: string){
+        this.pegarInformacoesSkills();
+        this.deletar(tabela);
+        this.eu.parent().remove();
+
+        this.dao = ConnectionFactory.getConnection()
+        .then((connection: any) => {
+            let skill = this.addSkill();
+            new SkillDao(connection)
+            .adiciona(skill)
+            .then(skillID => {
+                skill.id = skillID;
+                return skill;
+            })
+            .then(() => this.skill.adiciona(skill))
+            .then(()=> this._skillController.listarTodos())
+        })
     }
 }
