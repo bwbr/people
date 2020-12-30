@@ -1,6 +1,6 @@
 import { KanbanView } from '../views/index';
 import { AddFormacao, Kanban } from '../models/index';
-import { FormacaoDaoAFazer } from '../dao/index';
+import { FormacaoDaoAFazer, FormacaoDaoFazendo, FormacaoDaoFeitas } from '../dao/index';
 
 var formacaoID = 1;
 
@@ -13,10 +13,12 @@ export class AddFormacaoController{
     
     constructor(readonly _kanban: Kanban, readonly _add: AddFormacao){
         this._numB = 'expandir' + this._numA;
-        this.listarTodos();        
+        this.listarTodosAFazer();  
+        this.listarTodosFazendo();
+        this.listarTodosFeitas();      
     }
 
-    listarTodos(): Promise<any> {
+    listarTodosAFazer(): Promise<any> {
         return ConnectionFactory
         .getConnection()
         .then((connection:any) => {
@@ -26,6 +28,42 @@ export class AddFormacaoController{
         .then((formacoes: any) => {
             formacoes.forEach((formacao:any) => {
                 this._kanban.aFazer.adiciona(formacao)
+                this._numA++;
+                this._numB = 'expandir' + this._numA;
+            })
+            this._addKanbanView.update(this._kanban);
+        })
+        .catch(erro => console.log(erro));
+    }
+
+    listarTodosFazendo(): Promise<any> {
+        return ConnectionFactory
+        .getConnection()
+        .then((connection:any) => {
+            return new FormacaoDaoFazendo(connection)
+        })
+        .then(dao => dao.listaTodos())
+        .then((formacoes: any) => {
+            formacoes.forEach((formacao:any) => {
+                this._kanban.fazendo.adiciona(formacao)
+                this._numA++;
+                this._numB = 'expandir' + this._numA;
+            })
+            this._addKanbanView.update(this._kanban);
+        })
+        .catch(erro => console.log(erro));
+    }
+
+    listarTodosFeitas(): Promise<any> {
+        return ConnectionFactory
+        .getConnection()
+        .then((connection:any) => {
+            return new FormacaoDaoFeitas(connection)
+        })
+        .then(dao => dao.listaTodos())
+        .then((formacoes: any) => {
+            formacoes.forEach((formacao:any) => {
+                this._kanban.feitas.adiciona(formacao)
                 this._numA++;
                 this._numB = 'expandir' + this._numA;
             })

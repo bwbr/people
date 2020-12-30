@@ -1,8 +1,4 @@
-import { Dao } from '../dao/Dao';
-import { SkillDao } from '../dao/index';
-import { AddSkills } from '../models/index';
 import { Kanban } from '../models/Kanban';
-import { AddSkillsView } from '../views/index';
 import { KanbanView } from '../views/KanbanView';
 
 export class BotoesDeletarEditar{

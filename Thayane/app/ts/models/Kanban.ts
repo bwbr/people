@@ -9,6 +9,12 @@ export class Kanban {
     adiciona(formacao: AddFormacao){
         this.aFazer.adiciona(formacao);
     }
+    adicionaFazendo(formacao: AddFormacao){
+        this.fazendo.adiciona(formacao);
+    }
+    adicionaFeitas(formacao: AddFormacao){
+        this.feitas.adiciona(formacao);
+    }
 
     removeAFazer(formacao: AddFormacao){
         this.aFazer.remover(formacao);

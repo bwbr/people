@@ -32,10 +32,10 @@ export class AddFormacoesView extends View<AddFormacoes>{
                         </div>
                             
                         <div class="card-footer d-flex justify-content-between">
-                            <button class="btnVazio btnMoverEsquerda" data-title="${formacao.b}">
+                            <button class="btnVazio btnMoverEsquerda" data-title="${formacao.b}" data-key="${formacao.id}" data-a="${formacao.a}" data-titulo="${formacao.formacaoTitulo}" data-descricao="${formacao.formacaoDescricao}">
                                 <i class="icones iconeMoverEsquerda"></i>
                             </button>
-                            <button class="btnVazio btnMoverDireita" data-title="${formacao.b}">
+                            <button class="btnVazio btnMoverDireita" data-title="${formacao.b}" data-key="${formacao.id}" data-a="${formacao.a}" data-titulo="${formacao.formacaoTitulo}" data-descricao="${formacao.formacaoDescricao}">
                                 <i class="icones iconeMoverDireita"></i>
                             </button>
                         </div>
