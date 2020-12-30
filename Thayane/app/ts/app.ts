@@ -38,15 +38,15 @@ $("#nav-link-kanban_feitas").on('click', '.btnDeletar', function() {
 const editar = new Editar(kabanboard);
 $("#nav-link-kanban_aFazer").on('click', '.btnEditar', function() {
     editar.eu = $(this);
-    editar.editar();
+    editar.editarAFazer('formacoesAFazer');
 });
 $("#nav-link-kanban_fazendo").on('click', '.btnEditar', function() {
     editar.eu = $(this);
-    editar.editar();
+    editar.editarFazendo('formacoesFazendo');
 });
 $("#nav-link-kanban_feitas").on('click', '.btnEditar', function() {
     editar.eu = $(this);
-    editar.editar();
+    editar.editarFeitas('formacoesFeitas');
 });
 
 //Expandir os cartões

@@ -43,15 +43,15 @@ System.register(["./controllers/index", "./views/index", "./models/index"], func
             editar = new index_1.Editar(kabanboard);
             $("#nav-link-kanban_aFazer").on('click', '.btnEditar', function () {
                 editar.eu = $(this);
-                editar.editar();
+                editar.editarAFazer('formacoesAFazer');
             });
             $("#nav-link-kanban_fazendo").on('click', '.btnEditar', function () {
                 editar.eu = $(this);
-                editar.editar();
+                editar.editarFazendo('formacoesFazendo');
             });
             $("#nav-link-kanban_feitas").on('click', '.btnEditar', function () {
                 editar.eu = $(this);
-                editar.editar();
+                editar.editarFeitas('formacoesFeitas');
             });
             expandir = new index_1.Expandir();
             $("#nav-link-kanban_aFazer").on('click', '.btnExpandir', function () {
