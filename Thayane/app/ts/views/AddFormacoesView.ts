@@ -1,6 +1,5 @@
 import { View } from './View';
 import { AddFormacoes } from '../models/index';
-import { BotoesDeletarEditar } from '../controllers/index';
 
 export class AddFormacoesView extends View<AddFormacoes>{    
     template(model: AddFormacoes): string{

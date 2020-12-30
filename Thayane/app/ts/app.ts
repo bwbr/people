@@ -1,4 +1,4 @@
-import { AddFormacaoController, MudarClasseResponsivo, AddSkillController, BotoesDeletarEditar, ContarFormacoes, MoverKanban, Expandir} from './controllers/index';
+import { AddFormacaoController, MudarClasseResponsivo, AddSkillController, Deletar, Editar, ContarFormacoes, MoverKanban, Expandir} from './controllers/index';
 import { ModalController } from './controllers/index';
 import { FormacaoDaoAFazer, FormacaoDaoFazendo, FormacaoDaoFeitas, SkillDao } from './dao/index';
 import { AddFormacoesView, AddSkillsView, KanbanView } from './views/index';
@@ -20,32 +20,33 @@ const modal = new ModalController();
 $('#btn-modal').click(() => modal.esconderModal());
 
 //Deletar os cartões
-const editarDeletar = new BotoesDeletarEditar(kabanboard);
+const deletar = new Deletar(kabanboard);
 $("#nav-link-kanban_aFazer").on('click', '.btnDeletar', function() {
-    editarDeletar.eu = $(this);
-    editarDeletar.deletarAFazer('formacoesAFazer');
+    deletar.eu = $(this);
+    deletar.deletarAFazer('formacoesAFazer');
 });
 $("#nav-link-kanban_fazendo").on('click', '.btnDeletar', function() {
-    editarDeletar.eu = $(this);
-    editarDeletar.deletarFazendo();
+    deletar.eu = $(this);
+    deletar.deletarFazendo();
 });
 $("#nav-link-kanban_feitas").on('click', '.btnDeletar', function() {
-    editarDeletar.eu = $(this);
-    editarDeletar.deletarFeitas();
+    deletar.eu = $(this);
+    deletar.deletarFeitas();
 });
 
 //Editar os cartões
+const editar = new Editar(kabanboard);
 $("#nav-link-kanban_aFazer").on('click', '.btnEditar', function() {
-    editarDeletar.eu = $(this);
-    editarDeletar.editar();
+    editar.eu = $(this);
+    editar.editar();
 });
 $("#nav-link-kanban_fazendo").on('click', '.btnEditar', function() {
-    editarDeletar.eu = $(this);
-    editarDeletar.editar();
+    editar.eu = $(this);
+    editar.editar();
 });
 $("#nav-link-kanban_feitas").on('click', '.btnEditar', function() {
-    editarDeletar.eu = $(this);
-    editarDeletar.editar();
+    editar.eu = $(this);
+    editar.editar();
 });
 
 //Expandir os cartões
@@ -112,10 +113,10 @@ var observaFeitas = new MutationObserver(function(mutations) {
 
 //Skills
 $("#novaSkill").on('click', '.btnDeletar', function() {
-    editarDeletar.eu = $(this);
-    editarDeletar.deletarSkill('skills');
+    deletar.eu = $(this);
+    deletar.deletarSkill('skills');
 });
 $("#novaSkill").on('click', '.btnEditar', function() {
-    editarDeletar.eu = $(this);
-    //editarDeletar.editarSkill();
+    editar.eu = $(this);
+    //editar.editarSkill();
 });

@@ -1,7 +1,7 @@
 System.register(["../views/KanbanView"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var KanbanView_1, BotoesDeletarEditar;
+    var KanbanView_1, Deletar;
     return {
         setters: [
             function (KanbanView_1_1) {
@@ -9,7 +9,7 @@ System.register(["../views/KanbanView"], function (exports_1, context_1) {
             }
         ],
         execute: function () {
-            BotoesDeletarEditar = class BotoesDeletarEditar {
+            Deletar = class Deletar {
                 constructor(kanban) {
                     this.kanban = kanban;
                     this._addKanbanView = new KanbanView_1.KanbanView('');
@@ -49,16 +49,6 @@ System.register(["../views/KanbanView"], function (exports_1, context_1) {
                     this.kanban.feitas.remover(card);
                     this._addKanbanView.update(this.kanban);
                 }
-                editar() {
-                    console.log("Editando...");
-                    this.pai = this.eu.parent();
-                    this.tio = this.pai.siblings('.quebrarTexto');
-                    this.tio.text('Oi');
-                    this.biso = this.pai.parents('.card-header');
-                    this.tioBiso = this.biso.siblings();
-                    this.primo2 = this.tioBiso.children('.card-body');
-                    this.primo2.text('Olá');
-                }
                 deletarSkill(tabela) {
                     let skillID = $(this.eu).data('key');
                     this.dao = ConnectionFactory
@@ -71,16 +61,8 @@ System.register(["../views/KanbanView"], function (exports_1, context_1) {
                     this.pai = this.eu.parent();
                     this.pai.remove();
                 }
-                editarSkill() {
-                    console.log("Editando...");
-                    this.pai = this.eu.parent();
-                    this.pai.text('TS');
-                    this.irmao = this.eu.siblings('.progress');
-                    this.sobrinho = this.irmao.children('.bg-success');
-                    this.sobrinho.css('width:50%');
-                }
             };
-            exports_1("BotoesDeletarEditar", BotoesDeletarEditar);
+            exports_1("Deletar", Deletar);
         }
     };
 });
