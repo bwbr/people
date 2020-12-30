@@ -14,16 +14,19 @@ System.register(["../views/KanbanView"], function (exports_1, context_1) {
                     this.kanban = kanban;
                     this._addKanbanView = new KanbanView_1.KanbanView('');
                 }
-                deletarKanban(tabela) {
-                    let formacaoID = $(this.eu).data('key');
+                deletar(tabela) {
+                    let algoID = $(this.eu).data('key');
                     this.dao = ConnectionFactory
                         .getConnection()
                         .then((conection) => {
                         conection.transaction([tabela], 'readwrite')
                             .objectStore(tabela)
-                            .delete(formacaoID);
+                            .delete(algoID);
                     })
                         .catch(erro => erro);
+                }
+                deletarKanban(tabela) {
+                    this.deletar(tabela);
                     this.title = this.eu.data('title');
                     this.card = this.kanban.pop(this.title);
                     if (this.card == undefined)
@@ -45,14 +48,7 @@ System.register(["../views/KanbanView"], function (exports_1, context_1) {
                     this._addKanbanView.update(this.kanban);
                 }
                 deletarSkill(tabela) {
-                    let skillID = $(this.eu).data('key');
-                    this.dao = ConnectionFactory
-                        .getConnection()
-                        .then((conection) => {
-                        conection.transaction([tabela], 'readwrite')
-                            .objectStore(tabela)
-                            .delete(skillID);
-                    }).catch(erro => erro);
+                    this.deletar(tabela);
                     this.pai = this.eu.parent();
                     this.pai.remove();
                 }
