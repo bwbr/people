@@ -12,18 +12,21 @@ export class Deletar{
     constructor(readonly kanban: Kanban){   
     }
 
-    //Deletar Kanban
-    deletarKanban(tabela:string){
-        let formacaoID: string = $(this.eu).data('key')
+    deletar(tabela:string){
+        let algoID: string = $(this.eu).data('key')
         this.dao = ConnectionFactory
             .getConnection()
             .then((conection: any) => {
                 conection.transaction([tabela], 'readwrite')
                     .objectStore(tabela)
-                    .delete(formacaoID);                
+                    .delete(algoID);                
             })
-            .catch(erro => erro); 
+            .catch(erro => erro);
+    }
 
+    //Deletar Kanban
+    deletarKanban(tabela:string){
+        this.deletar(tabela);
         this.title = this.eu.data('title'); 
         this.card = this.kanban.pop(this.title);
         if (this.card == undefined)  return console.log("Não encontrado");
@@ -46,15 +49,7 @@ export class Deletar{
 
     //Skills
     deletarSkill(tabela:string){  
-        let skillID: string = $(this.eu).data('key')
-        this.dao = ConnectionFactory
-            .getConnection()
-            .then((conection: any) => {
-                conection.transaction([tabela], 'readwrite')
-                    .objectStore(tabela)
-                    .delete(skillID);                
-            }).catch(erro => erro);                            
-
+        this.deletar(tabela);
         this.pai = this.eu.parent();
         this.pai.remove();
     }
