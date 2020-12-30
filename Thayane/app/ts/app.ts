@@ -37,15 +37,15 @@ $("#nav-link-kanban_feitas").on('click', '.btnDeletar', function() {
 
 //Editar os cartões
 const editar = new Editar(kabanboard, skillboard);
-$("#nav-link-kanban_aFazer").on('click', '.btnEditar', function() {
+$("#nav-link-kanban_aFazer").on('click', '.salvarEditou', function() {
     editar.eu = $(this);
     editar.editarAFazer('formacoesAFazer');
 });
-$("#nav-link-kanban_fazendo").on('click', '.btnEditar', function() {
+$("#nav-link-kanban_fazendo").on('click', '.salvarEditou', function() {
     editar.eu = $(this);
     editar.editarFazendo('formacoesFazendo');
 });
-$("#nav-link-kanban_feitas").on('click', '.btnEditar', function() {
+$("#nav-link-kanban_feitas").on('click', '.salvarEditou', function() {
     editar.eu = $(this);
     editar.editarFeitas('formacoesFeitas');
 });
