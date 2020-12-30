@@ -18,6 +18,12 @@ System.register(["./AddFormacoes"], function (exports_1, context_1) {
                 adiciona(formacao) {
                     this.aFazer.adiciona(formacao);
                 }
+                adicionaFazendo(formacao) {
+                    this.fazendo.adiciona(formacao);
+                }
+                adicionaFeitas(formacao) {
+                    this.feitas.adiciona(formacao);
+                }
                 removeAFazer(formacao) {
                     this.aFazer.remover(formacao);
                 }

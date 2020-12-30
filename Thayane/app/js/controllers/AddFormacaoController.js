@@ -25,9 +25,11 @@ System.register(["../views/index", "../models/index", "../dao/index"], function 
                     this._numA = 0;
                     this._addKanbanView = new index_1.KanbanView('#nav-link-kanban_afazer');
                     this._numB = 'expandir' + this._numA;
-                    this.listarTodos();
+                    this.listarTodosAFazer();
+                    this.listarTodosFazendo();
+                    this.listarTodosFeitas();
                 }
-                listarTodos() {
+                listarTodosAFazer() {
                     return ConnectionFactory
                         .getConnection()
                         .then((connection) => {
@@ -37,6 +39,40 @@ System.register(["../views/index", "../models/index", "../dao/index"], function 
                         .then((formacoes) => {
                         formacoes.forEach((formacao) => {
                             this._kanban.aFazer.adiciona(formacao);
+                            this._numA++;
+                            this._numB = 'expandir' + this._numA;
+                        });
+                        this._addKanbanView.update(this._kanban);
+                    })
+                        .catch(erro => console.log(erro));
+                }
+                listarTodosFazendo() {
+                    return ConnectionFactory
+                        .getConnection()
+                        .then((connection) => {
+                        return new index_3.FormacaoDaoFazendo(connection);
+                    })
+                        .then(dao => dao.listaTodos())
+                        .then((formacoes) => {
+                        formacoes.forEach((formacao) => {
+                            this._kanban.fazendo.adiciona(formacao);
+                            this._numA++;
+                            this._numB = 'expandir' + this._numA;
+                        });
+                        this._addKanbanView.update(this._kanban);
+                    })
+                        .catch(erro => console.log(erro));
+                }
+                listarTodosFeitas() {
+                    return ConnectionFactory
+                        .getConnection()
+                        .then((connection) => {
+                        return new index_3.FormacaoDaoFeitas(connection);
+                    })
+                        .then(dao => dao.listaTodos())
+                        .then((formacoes) => {
+                        formacoes.forEach((formacao) => {
+                            this._kanban.feitas.adiciona(formacao);
                             this._numA++;
                             this._numB = 'expandir' + this._numA;
                         });

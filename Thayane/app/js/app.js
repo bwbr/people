@@ -68,27 +68,27 @@ System.register(["./controllers/index", "./views/index", "./models/index"], func
             mover = new index_1.MoverKanban(kabanboard);
             $("#nav-link-kanban_aFazer").on('click', '.btnMoverDireita', function () {
                 mover.eu = $(this);
-                mover.moverAFazerFazendo();
+                mover.moverAFazerFazendo('formacoesAFazer');
             });
             $("#nav-link-kanban_aFazer").on('click', '.btnMoverEsquerda', function () {
                 mover.eu = $(this);
-                mover.moverAFazerFeitas();
+                mover.moverAFazerFeitas('formacoesAFazer');
             });
             $("#nav-link-kanban_fazendo").on('click', '.btnMoverDireita', function () {
                 mover.eu = $(this);
-                mover.moverFazendoFeitas();
+                mover.moverFazendoFeitas('formacoesFazendo');
             });
             $("#nav-link-kanban_fazendo").on('click', '.btnMoverEsquerda', function () {
                 mover.eu = $(this);
-                mover.moverFazendoAFazer();
+                mover.moverFazendoAFazer('formacoesFazendo');
             });
             $("#nav-link-kanban_feitas").on('click', '.btnMoverDireita', function () {
                 mover.eu = $(this);
-                mover.moverFeitasAFazer();
+                mover.moverFeitasAFazer('formacoesFeitas');
             });
             $("#nav-link-kanban_feitas").on('click', '.btnMoverEsquerda', function () {
                 mover.eu = $(this);
-                mover.moverFeitasFazendo();
+                mover.moverFeitasFazendo('formacoesFeitas');
             });
             contarFormacoes = new index_1.ContarFormacoes();
             _addKanbanView = new index_3.KanbanView('');
