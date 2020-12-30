@@ -19,20 +19,9 @@ System.register([], function (exports_1, context_1) {
                         request.onsuccess = (e) => resolve(e.target.result);
                         request.onerror = (e) => {
                             console.log(e.target.error);
-                            reject('Não foi possível adicionar a formação!');
+                            reject('Não foi possível adicionar!');
                         };
                     });
-                }
-                apagarRegistro(tabela, key) {
-                    this._connection
-                        .then((conection) => {
-                        let request = conection
-                            .transaction([tabela], 'readwrite')
-                            .objectStore(tabela)
-                            .delete(key);
-                        request.onsuccess = (e) => console.log(`Registro ${key} excluído com sucesso de ${tabela}`);
-                        request.onerror = (e) => console.log(`Não foi excluir o registro de ${tabela}`);
-                    }).catch((erro) => erro);
                 }
             };
             exports_1("Dao", Dao);

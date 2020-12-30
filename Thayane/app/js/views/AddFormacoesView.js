@@ -21,7 +21,7 @@ System.register(["./View"], function (exports_1, context_1) {
                             </div>
 
                             <div class="botoes">
-                                <button class="btnVazio btnDeletar deleto" data-title="${formacao.b}">
+                                <button class="btnVazio btnDeletar deleto" data-title="${formacao.b}" data-key="${formacao.id}">
                                     <i class="icones iconeDeletar"></i>
                                 </button>
 

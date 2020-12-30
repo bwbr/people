@@ -14,8 +14,16 @@ System.register(["../views/KanbanView"], function (exports_1, context_1) {
                     this.kanban = kanban;
                     this._addKanbanView = new KanbanView_1.KanbanView('');
                 }
-                deletarAFazer() {
-                    console.log("Removendo...");
+                deletarAFazer(tabela) {
+                    let formacaoID = $(this.eu).data('key');
+                    this.dao = ConnectionFactory
+                        .getConnection()
+                        .then((conection) => {
+                        conection.transaction([tabela], 'readwrite')
+                            .objectStore(tabela)
+                            .delete(formacaoID);
+                    })
+                        .catch(erro => erro);
                     let title = this.eu.data('title');
                     let card = this.kanban.pop(title);
                     if (card == undefined)

@@ -16,14 +16,21 @@ export class BotoesDeletarEditar{
     private primo2: JQuery;  
     private _addKanbanView = new KanbanView('');
     public dao: any;
-    private key:number;
 
     constructor(readonly kanban: Kanban){   
     }
     
     //Deletar Kanban
-    deletarAFazer(){
-        console.log("Removendo...");
+    deletarAFazer(tabela:string){
+        let formacaoID: string = $(this.eu).data('key')
+        this.dao = ConnectionFactory
+            .getConnection()
+            .then((conection: any) => {
+                conection.transaction([tabela], 'readwrite')
+                    .objectStore(tabela)
+                    .delete(formacaoID);                
+            })
+            .catch(erro => erro); 
         
         let title = this.eu.data('title'); 
         let card = this.kanban.pop(title);

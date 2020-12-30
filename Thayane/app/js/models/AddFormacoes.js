@@ -13,7 +13,6 @@ System.register([], function (exports_1, context_1) {
                     this._formacoes.push(formacao);
                 }
                 remover(formacao) {
-                    console.log("Removendo...");
                     const index = this._formacoes.indexOf(formacao, 0);
                     if (index > -1)
                         this._formacoes.splice(index, 1);

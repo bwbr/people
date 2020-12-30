@@ -1,7 +1,7 @@
 System.register(["./controllers/index", "./views/index", "./models/index"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var index_1, index_2, index_3, index_4, muda, kabanboard, add, controllerFormacoes, controllerSkills, modal, editarDeletarKanban, expandir, mover, contarFormacoes, _addKanbanView, observaAFazer, observaFazendo, observaFeitas;
+    var index_1, index_2, index_3, index_4, muda, kabanboard, add, controllerFormacoes, controllerSkills, modal, editarDeletar, expandir, mover, contarFormacoes, _addKanbanView, observaAFazer, observaFazendo, observaFeitas;
     return {
         setters: [
             function (index_1_1) {
@@ -27,30 +27,30 @@ System.register(["./controllers/index", "./views/index", "./models/index"], func
             $('[data-form-skill]').submit(controllerSkills.adiciona.bind(controllerSkills));
             modal = new index_2.ModalController();
             $('#btn-modal').click(() => modal.esconderModal());
-            editarDeletarKanban = new index_1.BotoesDeletarEditar(kabanboard);
+            editarDeletar = new index_1.BotoesDeletarEditar(kabanboard);
             $("#nav-link-kanban_aFazer").on('click', '.btnDeletar', function () {
-                editarDeletarKanban.eu = $(this);
-                editarDeletarKanban.deletarAFazer();
+                editarDeletar.eu = $(this);
+                editarDeletar.deletarAFazer('formacoesAFazer');
             });
             $("#nav-link-kanban_fazendo").on('click', '.btnDeletar', function () {
-                editarDeletarKanban.eu = $(this);
-                editarDeletarKanban.deletarFazendo();
+                editarDeletar.eu = $(this);
+                editarDeletar.deletarFazendo();
             });
             $("#nav-link-kanban_feitas").on('click', '.btnDeletar', function () {
-                editarDeletarKanban.eu = $(this);
-                editarDeletarKanban.deletarFeitas();
+                editarDeletar.eu = $(this);
+                editarDeletar.deletarFeitas();
             });
             $("#nav-link-kanban_aFazer").on('click', '.btnEditar', function () {
-                editarDeletarKanban.eu = $(this);
-                editarDeletarKanban.editar();
+                editarDeletar.eu = $(this);
+                editarDeletar.editar();
             });
             $("#nav-link-kanban_fazendo").on('click', '.btnEditar', function () {
-                editarDeletarKanban.eu = $(this);
-                editarDeletarKanban.editar();
+                editarDeletar.eu = $(this);
+                editarDeletar.editar();
             });
             $("#nav-link-kanban_feitas").on('click', '.btnEditar', function () {
-                editarDeletarKanban.eu = $(this);
-                editarDeletarKanban.editar();
+                editarDeletar.eu = $(this);
+                editarDeletar.editar();
             });
             expandir = new index_1.Expandir();
             $("#nav-link-kanban_aFazer").on('click', '.btnExpandir', function () {
@@ -111,13 +111,11 @@ System.register(["./controllers/index", "./views/index", "./models/index"], func
             });
             observaFeitas.observe(document.querySelector("#nav-link-kanban_feitas"), { childList: true });
             $("#novaSkill").on('click', '.btnDeletar', function () {
-                editarDeletarKanban.eu = $(this);
-                console.log(editarDeletarKanban.eu);
-                console.log($(this).data('key'));
-                editarDeletarKanban.deletarSkill('skills');
+                editarDeletar.eu = $(this);
+                editarDeletar.deletarSkill('skills');
             });
             $("#novaSkill").on('click', '.btnEditar', function () {
-                editarDeletarKanban.eu = $(this);
+                editarDeletar.eu = $(this);
             });
         }
     };

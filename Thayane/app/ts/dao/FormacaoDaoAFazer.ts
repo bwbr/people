@@ -22,8 +22,9 @@ export class FormacaoDaoAFazer extends Dao{
 
                 if(atual){
                     let dado:AddFormacao = atual.value;
-                    formacoes.push(new AddFormacao(dado.formacaoTitulo, dado.formacaoDescricao,
-                                                    dado.a, dado.b));
+                    let formacao = new AddFormacao(dado.formacaoTitulo, dado.formacaoDescricao, dado.a, dado.b);
+                    formacao.id = dado.id;
+                    formacoes.push(formacao);
                     atual.continue();
                 }else
                     resolve(formacoes);

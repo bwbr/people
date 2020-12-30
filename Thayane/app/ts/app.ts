@@ -20,32 +20,32 @@ const modal = new ModalController();
 $('#btn-modal').click(() => modal.esconderModal());
 
 //Deletar os cartões
-const editarDeletarKanban = new BotoesDeletarEditar(kabanboard);
+const editarDeletar = new BotoesDeletarEditar(kabanboard);
 $("#nav-link-kanban_aFazer").on('click', '.btnDeletar', function() {
-    editarDeletarKanban.eu = $(this);
-    editarDeletarKanban.deletarAFazer();
+    editarDeletar.eu = $(this);
+    editarDeletar.deletarAFazer('formacoesAFazer');
 });
 $("#nav-link-kanban_fazendo").on('click', '.btnDeletar', function() {
-    editarDeletarKanban.eu = $(this);
-    editarDeletarKanban.deletarFazendo();
+    editarDeletar.eu = $(this);
+    editarDeletar.deletarFazendo();
 });
 $("#nav-link-kanban_feitas").on('click', '.btnDeletar', function() {
-    editarDeletarKanban.eu = $(this);
-    editarDeletarKanban.deletarFeitas();
+    editarDeletar.eu = $(this);
+    editarDeletar.deletarFeitas();
 });
 
 //Editar os cartões
 $("#nav-link-kanban_aFazer").on('click', '.btnEditar', function() {
-    editarDeletarKanban.eu = $(this);
-    editarDeletarKanban.editar();
+    editarDeletar.eu = $(this);
+    editarDeletar.editar();
 });
 $("#nav-link-kanban_fazendo").on('click', '.btnEditar', function() {
-    editarDeletarKanban.eu = $(this);
-    editarDeletarKanban.editar();
+    editarDeletar.eu = $(this);
+    editarDeletar.editar();
 });
 $("#nav-link-kanban_feitas").on('click', '.btnEditar', function() {
-    editarDeletarKanban.eu = $(this);
-    editarDeletarKanban.editar();
+    editarDeletar.eu = $(this);
+    editarDeletar.editar();
 });
 
 //Expandir os cartões
@@ -112,12 +112,10 @@ var observaFeitas = new MutationObserver(function(mutations) {
 
 //Skills
 $("#novaSkill").on('click', '.btnDeletar', function() {
-    editarDeletarKanban.eu = $(this);
-    console.log(editarDeletarKanban.eu);
-    console.log($(this).data('key'));
-    editarDeletarKanban.deletarSkill('skills');
+    editarDeletar.eu = $(this);
+    editarDeletar.deletarSkill('skills');
 });
 $("#novaSkill").on('click', '.btnEditar', function() {
-    editarDeletarKanban.eu = $(this);
-    //editarDeletarKanban.editarSkill();
+    editarDeletar.eu = $(this);
+    //editarDeletar.editarSkill();
 });
