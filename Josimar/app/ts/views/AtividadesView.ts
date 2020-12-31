@@ -11,23 +11,23 @@ export class AtividadesView extends View<Atividades> {
                 ` 
                 <!--Begin Activity--> 
 
-                <div id="${atividade.id}" class="card activity mb-1 show" draggable="true" data-activity>
+                <div id="${atividade.id}" class="card activity mb-1 show" draggable="true"   data-toggle="collapse" data-target="#collapse-${atividade.id}" aria-expanded="false" aria-controls="collapse-${atividade.id}">
                     <div class="card-header" id="heading-${atividade.id}">
                         <div id="titulo-activity" class="mb-0 d-flex justify-content-between collapsed">
                           ${atividade.titulo}
                           <div class="d-flex justify-content-end">
                               <div id="collapse-${atividade.id}" class="collapse mr-3 fade">
-                                <a href="" id="edit_btn" class="btn pt-0 pb-0 pl-2 pr-1 text-dark border-0" data-toggle="collapse" data-target="#cards" aria-expanded="false" aria-controls="cards">
+                                <div href="" id="edit_btn" class="btn pt-0 pb-0 pl-2 pr-1 text-dark border-0" data-toggle="collapse" data-target="#cards" aria-expanded="false" aria-controls="cards">
                                     <i class="fas fa-edit"></i>
-                                </a>                                
-                                <a href="" id="trash_btn" class="btn pt-0 pb-0 pl-2 pr-1 text-dark border-0">
+                                </div>                                
+                                <div id="trash_btn" class="btn pt-0 pb-0 pl-2 pr-1 text-dark border-0">
                                     <i class="fas fa-trash"></i>
-                                </a>
+                                </div>
                               </div>
-                              <div id="collapse-${atividade.id}" class="collapse fade"  data-toggle="collapse" data-target="#collapse-${atividade.id}" aria-expanded="false" aria-controls="collapse-${atividade.id}"> 
+                              <div id="collapse-${atividade.id}" class="collapse fade"> 
                               <i class="fas fa-compress-alt"></i>
                               </div>
-                              <div id="collapse-${atividade.id}" class="collapse fede show"  data-toggle="collapse" data-target="#collapse-${atividade.id}" aria-expanded="false" aria-controls="collapse-${atividade.id}">
+                              <div id="collapse-${atividade.id}" class="collapse fede show">
                               <i class="fas fa-expand-alt"></i>
                               </div>
                           </div>                                
