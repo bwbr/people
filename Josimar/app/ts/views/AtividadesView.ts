@@ -11,7 +11,7 @@ export class AtividadesView extends View<Atividades> {
                 ` 
                 <!--Begin Activity--> 
 
-                <div id="${atividade.id}" class="card activity mb-1 show" draggable="true"   data-toggle="collapse" data-target="#collapse-${atividade.id}" aria-expanded="false" aria-controls="collapse-${atividade.id}">
+                <div id="${atividade.id}" class="card activity mb-1 show" data-activity="${atividade.id}" draggable="true" data-toggle="collapse" data-target="#collapse-${atividade.id}" aria-expanded="false" aria-controls="collapse-${atividade.id}">
                     <div class="card-header" id="heading-${atividade.id}">
                         <div id="titulo-activity" class="mb-0 d-flex justify-content-between collapsed">
                           ${atividade.titulo}

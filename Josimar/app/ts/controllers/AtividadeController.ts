@@ -1,7 +1,6 @@
-import {AtividadesView, MensagemView, View} from '../views/index';
-import {Atividade, Atividades, Badges} from '../models/index';
+import {AtividadesView, MensagemView} from '../views/index';
+import {Atividade, Atividades, Badges, Progressbar, DragAndDrop} from '../models/index';
 import {DB} from '../services/DB';
-import {Progressbar} from '../models/Progressbar';
 
 export class AtividadeController {
       
@@ -10,7 +9,8 @@ export class AtividadeController {
         private _inputDescricao: JQuery;        
         private _inputIdCard: JQuery;
         private _atividades = new Atividades();        
-        private _badge = new Badges();                
+        private _dragAndDrop = new DragAndDrop();          
+        private _badge = new Badges();                        
         private _progressbar = new Progressbar();
         private _mensagemView = new MensagemView('#mensagemView');
         private _todoColumnView = new AtividadesView('[data-ToDo]');
@@ -96,7 +96,7 @@ export class AtividadeController {
                 return atividades;
             })
             .then( atividades => {
-                console.log(atividades);                
+                console.log(atividades);
                 let cardTodo = atividades.filter( a => a.idCard === 'cardToDo').reduce((a, i) => {
                     a.adiciona(i);
                     return a;
@@ -112,75 +112,14 @@ export class AtividadeController {
                 this._todoColumnView.update(cardTodo, '');
                 this._inProgressColumnView.update(cardInProgres, '');
                 this._doneColumnView.update( cardDone, '');
+                this._dragAndDrop.drag_and_drop();
                 this._badge.badge();
                 this._progressbar.progressbar();
-                this.drag_and_drop(); //DRAG AND DROP
             });
-        }
-
-       
-
-        //DRAG AND DROP
-        drag_and_drop(): void{
-
-            var activity = <JQuery> $('.activity');
-            var card_body = <JQuery> $('.activities');
-
-            var draggedActivity: HTMLElement = null;           
-    
-            //Percorre / busca todas as divs com classes de ".activity"
-            for(let i = 0; i < activity.length; i++){
-                let a = activity[i];	
-    
-                a.addEventListener('dragstart', function (){
-    
-                        draggedActivity = this;	
-                        this.classList.remove("show");			
-                        this.classList.add("hide");	
-                });
-    
-                a.addEventListener('dragend', function (){
-    
-                        draggedActivity.classList.remove("hide");						
-                        draggedActivity.classList.add("show");			
-                        draggedActivity = null;
-    
-                });
-
-
-                for(let j = 0; j < card_body.length; j++){
-                    var cb = card_body[j];
-                    
-                    cb.addEventListener('dragstart', function (){
-                    });
-    
-                    cb.addEventListener('dragover', function(e){
-                        e.preventDefault();			
-                    });
-    
-                    cb.addEventListener('dragenter', function(e){
-                        e.preventDefault();
-                    });
-    
-                    cb.addEventListener('drop', function(){
-
-                        this.appendChild(draggedActivity);                         
-                        const _atividades = new Atividades();                                             
-                        const _progressbar = new Progressbar();
-                        const _badge = new Badges();
-                        
-                        _atividades.mover(draggedActivity.id, this.id);
-                        _badge.badge();
-                        _progressbar.progressbar();
-
-                    });
-                }  
-            } 
         }
         
         clear_all(): void{
             let table = 'Atividades';
             this._db.dropTable(table);
         }
-        
 }

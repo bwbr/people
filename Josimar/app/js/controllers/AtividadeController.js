@@ -1,7 +1,7 @@
-System.register(["../views/index", "../models/index", "../services/DB", "../models/Progressbar"], function (exports_1, context_1) {
+System.register(["../views/index", "../models/index", "../services/DB"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var index_1, index_2, DB_1, Progressbar_1, AtividadeController;
+    var index_1, index_2, DB_1, AtividadeController;
     return {
         setters: [
             function (index_1_1) {
@@ -12,9 +12,6 @@ System.register(["../views/index", "../models/index", "../services/DB", "../mode
             },
             function (DB_1_1) {
                 DB_1 = DB_1_1;
-            },
-            function (Progressbar_1_1) {
-                Progressbar_1 = Progressbar_1_1;
             }
         ],
         execute: function () {
@@ -22,7 +19,7 @@ System.register(["../views/index", "../models/index", "../services/DB", "../mode
                 constructor() {
                     this._atividades = new index_2.Atividades();
                     this._badge = new index_2.Badges();
-                    this._progressbar = new Progressbar_1.Progressbar();
+                    this._progressbar = new index_2.Progressbar();
                     this._mensagemView = new index_1.MensagemView('#mensagemView');
                     this._todoColumnView = new index_1.AtividadesView('[data-ToDo]');
                     this._inProgressColumnView = new index_1.AtividadesView('[data-InProgress]');
@@ -96,9 +93,9 @@ System.register(["../views/index", "../models/index", "../services/DB", "../mode
                         this._todoColumnView.update(cardTodo, '');
                         this._inProgressColumnView.update(cardInProgres, '');
                         this._doneColumnView.update(cardDone, '');
+                        this.drag_and_drop();
                         this._badge.badge();
                         this._progressbar.progressbar();
-                        this.drag_and_drop();
                     });
                 }
                 drag_and_drop() {
@@ -130,7 +127,7 @@ System.register(["../views/index", "../models/index", "../services/DB", "../mode
                             cb.addEventListener('drop', function () {
                                 this.appendChild(draggedActivity);
                                 const _atividades = new index_2.Atividades();
-                                const _progressbar = new Progressbar_1.Progressbar();
+                                const _progressbar = new index_2.Progressbar();
                                 const _badge = new index_2.Badges();
                                 _atividades.mover(draggedActivity.id, this.id);
                                 _badge.badge();
