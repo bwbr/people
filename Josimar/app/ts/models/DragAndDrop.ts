@@ -1,7 +1,7 @@
 
 import {Atividade, Atividades, Badges, Progressbar} from '../models/index';
 
-class DragAndDrop{
+export class DragAndDrop{
 
     private _activity: JQuery;
     private _card_body: JQuery;  
