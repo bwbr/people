@@ -14,8 +14,17 @@ System.register(["./controllers/AtividadeController"], function (exports_1, cont
             $('#cards').submit(controller.adiciona.bind(controller));
             $('#clear_btn').click(controller.limpa.bind(controller));
             $('#cancel_btn').click(controller.limpa.bind(controller));
-            $('#trash_btn').click(controller.deleta.bind(controller));
-            $('#trash_all_btn').click(controller.clear_all.bind(controller));
+            $('#clear_all_btn').click(controller.clear_all.bind(controller));
+            $("#cardToDo").on('click', '#trash_btn', function () {
+                var id = $(this).attr('data-activity');
+                controller.deleta(id);
+            });
+            $("#cardInProgress").on('click', '#trash_btn', function () {
+                controller.deleta($(this).attr('data-activity'));
+            });
+            $("#cardDone").on('click', '#trash_btn', function () {
+                controller.deleta($(this).attr('data-activity'));
+            });
         }
     };
 });
