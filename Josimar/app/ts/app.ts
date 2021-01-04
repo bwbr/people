@@ -1,6 +1,11 @@
 import {AtividadeController} from './controllers/AtividadeController';
+import {Media} from './helpers/Media'
 
 const controller = new AtividadeController();
+const media = new Media();
+
+$.when(window).then(() => media.layout());
+$(window).resize(() => media.layout());
 
 controller.lista();      
 controller.drag_and_drop();      

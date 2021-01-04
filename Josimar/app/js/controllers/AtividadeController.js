@@ -109,10 +109,10 @@ System.register(["../views/index", "../models/index", "../services/DB"], functio
                     this._atividades.deleta(id);
                     this.lista();
                 }
-                clear_all(event) {
-                    event.preventDefault();
+                clear_all() {
                     let table = 'Atividades';
                     this._db.dropTable(table);
+                    this.lista();
                 }
                 drag_and_drop() {
                     let activity = document.querySelectorAll('.activity');
@@ -159,6 +159,11 @@ System.register(["../views/index", "../models/index", "../services/DB"], functio
                 }
                 progressbar(total_toDo, total_inProgress, total_done) {
                     let total_activities = total_toDo + total_inProgress + total_done;
+                    if (total_activities == null) {
+                        total_toDo = 0.0;
+                        total_inProgress = 0.0;
+                        total_done = 0.0;
+                    }
                     let percent_toDo = this.percent(total_toDo, total_activities);
                     let percent_inProgress = this.percent(total_inProgress, total_activities);
                     let percent_done = this.percent(total_done, total_activities);
