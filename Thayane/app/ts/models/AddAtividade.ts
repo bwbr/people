@@ -1,12 +1,6 @@
 export class AddAtividade{
-    constructor(private _atividadeNome: string, private _atividadeData: Date){
-    }
+    public id: number;
 
-    get atividadeNome(){
-        return this._atividadeNome;
-    }
-
-    get atividadeData(){
-        return this._atividadeData;
+    constructor(readonly atividadeNome: string, readonly atividadeData: Date){
     }
 }

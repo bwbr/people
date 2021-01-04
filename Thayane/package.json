@@ -2,7 +2,7 @@
   "name": "thayane",
   "version": "1.0.0",
   "description": "colocando em prática o que foi aprendido nos cursos de html, css e js em um projeto de página com informações pessoais",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "tsc",
@@ -14,8 +14,12 @@
   "license": "ISC",
   "devDependencies": {
     "@types/jquery": "^2.0.42",
+    "@types/moment": "^2.13.0",
     "concurrently": "^3.4.0",
     "lite-server": "^2.3.0",
     "typescript": "^2.3.2"
+  },
+  "dependencies": {
+    "moment": "^2.29.1"
   }
 }

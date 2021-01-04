@@ -10,7 +10,7 @@ export class AddSkillsView extends View<AddSkills>{
                     <button class="btnVazio btnEditarSkill" data-key="${skill.id}" data-titulo="${skill.skillTitulo}" data-sucesso="${skill.skillPorcentagem}" type="button" data-toggle="collapse" data-target="#AdicionarSkill${skill.id}" aria-controls="AdicionarSkill${skill.id}" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="icones iconeEditar"></i> 
                     </button>
-                    <button class="btnVazio btnDeletarSkill" data-key="${skill.id}">   
+                    <button class="btnVazio btnDeletarSkill" data-key="${skill.id}" data-titulo="${skill.skillTitulo}">   
                         <i class="icones iconeDeletar"></i>
                     </button>
 
