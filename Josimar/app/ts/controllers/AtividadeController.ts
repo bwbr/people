@@ -134,8 +134,7 @@ export class AtividadeController {
         }
 
         //APAGA A TABELA DE ATIVIDADES
-        clear_all(event: Event): void{
-            event.preventDefault();          
+        clear_all(): void{         
             let table = 'Atividades';
             this._db.dropTable(table);
             this.lista();
@@ -216,6 +215,10 @@ export class AtividadeController {
     progressbar(total_toDo: number, total_inProgress: number, total_done: number){
 
         let total_activities: number = total_toDo + total_inProgress + total_done; 
+        
+        if(total_activities == null){
+            total_toDo = 0.0; total_inProgress= 0.0; total_done = 0.0;
+        }
 
         //calcula percentagem
         let percent_toDo = this.percent(total_toDo, total_activities);
