@@ -9,7 +9,7 @@ export class Editar{
     private _addSkillView = new AddSkillsView('');
     private _skillController = new AddSkillController();
     private _inputAlgoTitulo: JQuery;
-    private _inputFormacaoDescricao: JQuery;
+    private _inputAlgoConteudo: JQuery;
     public dao: any;
 
     private algoID: string;
@@ -47,15 +47,15 @@ export class Editar{
     }
     addFormacao(){
         this._inputAlgoTitulo = $(`#formacaoTitulo${this.formacaoA}`);
-        this._inputFormacaoDescricao = $(`#formacaoDescricao${this.formacaoA}`);
+        this._inputAlgoConteudo = $(`#formacaoDescricao${this.formacaoA}`);
         if(this._inputAlgoTitulo.val() == '')
             this._inputAlgoTitulo.val(this.algoTitulo);
-        if(this._inputFormacaoDescricao.val() == '')
-            this._inputFormacaoDescricao.val(this.formacaoDescricao);
+        if(this._inputAlgoConteudo.val() == '')
+            this._inputAlgoConteudo.val(this.formacaoDescricao);
         
         return new AddFormacao(
             this._inputAlgoTitulo.val(),
-            this._inputFormacaoDescricao.val(),
+            this._inputAlgoConteudo.val(),
             parseInt(this.formacaoA),
             this.formacaoB
         )
@@ -123,9 +123,16 @@ export class Editar{
         this.sucesso = $(this.eu).data('sucesso');
     }
     addSkill(){
+        this._inputAlgoTitulo = $(`#skillTitulo${this.algoID}`);
+        this._inputAlgoConteudo = $(`#skillPorcent${this.algoID}`);
+        if(this._inputAlgoTitulo.val() == '')
+            this._inputAlgoTitulo.val(this.algoTitulo);
+        if(this._inputAlgoConteudo.val() == '')
+            this._inputAlgoConteudo.val(this.sucesso);
+        
         return new AddSkill(
-            "this.algoTitulo",
-            50
+            this._inputAlgoTitulo.val(),
+            parseInt(this._inputAlgoConteudo.val())
         )
     }
     editarSkill(tabela: string){

@@ -27,7 +27,7 @@
 }
 
     /* Quando o botão expandir/cumprimir está no modo cumprimir e depois no modo expandir*/
-.collapsed > i{
+.btnEditar.collapsed > i{
     content: url(./dist/images/arrows-angle-expand.svg);    
 }
 .iconeExpandir{
