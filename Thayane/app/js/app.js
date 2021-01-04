@@ -112,11 +112,11 @@ System.register(["./controllers/index", "./views/index", "./models/index"], func
                 });
             });
             observaFeitas.observe(document.querySelector("#nav-link-kanban_feitas"), { childList: true });
-            $("#novaSkill").on('click', '.btnDeletar', function () {
+            $("#novaSkill").on('click', '.btnDeletarSkill', function () {
                 deletar.eu = $(this);
                 deletar.deletarSkill('skills');
             });
-            $("#novaSkill").on('click', '.btnEditar', function () {
+            $("#novaSkill").on('click', '.salvarSkill', function () {
                 editar.eu = $(this);
                 editar.editarSkill('skills');
             });

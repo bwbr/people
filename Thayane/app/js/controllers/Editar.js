@@ -47,12 +47,12 @@ System.register(["../dao/index", "../models/index", "../views/index", "./AddSkil
                 }
                 addFormacao() {
                     this._inputAlgoTitulo = $(`#formacaoTitulo${this.formacaoA}`);
-                    this._inputFormacaoDescricao = $(`#formacaoDescricao${this.formacaoA}`);
+                    this._inputAlgoConteudo = $(`#formacaoDescricao${this.formacaoA}`);
                     if (this._inputAlgoTitulo.val() == '')
                         this._inputAlgoTitulo.val(this.algoTitulo);
-                    if (this._inputFormacaoDescricao.val() == '')
-                        this._inputFormacaoDescricao.val(this.formacaoDescricao);
-                    return new index_2.AddFormacao(this._inputAlgoTitulo.val(), this._inputFormacaoDescricao.val(), parseInt(this.formacaoA), this.formacaoB);
+                    if (this._inputAlgoConteudo.val() == '')
+                        this._inputAlgoConteudo.val(this.formacaoDescricao);
+                    return new index_2.AddFormacao(this._inputAlgoTitulo.val(), this._inputAlgoConteudo.val(), parseInt(this.formacaoA), this.formacaoB);
                 }
                 editarAFazer(tabela) {
                     this.pegarInformacoesKanban();
@@ -117,7 +117,13 @@ System.register(["../dao/index", "../models/index", "../views/index", "./AddSkil
                     this.sucesso = $(this.eu).data('sucesso');
                 }
                 addSkill() {
-                    return new index_2.AddSkill("this.algoTitulo", 50);
+                    this._inputAlgoTitulo = $(`#skillTitulo${this.algoID}`);
+                    this._inputAlgoConteudo = $(`#skillPorcent${this.algoID}`);
+                    if (this._inputAlgoTitulo.val() == '')
+                        this._inputAlgoTitulo.val(this.algoTitulo);
+                    if (this._inputAlgoConteudo.val() == '')
+                        this._inputAlgoConteudo.val(this.sucesso);
+                    return new index_2.AddSkill(this._inputAlgoTitulo.val(), parseInt(this._inputAlgoConteudo.val()));
                 }
                 editarSkill(tabela) {
                     this.pegarInformacoesSkills();
