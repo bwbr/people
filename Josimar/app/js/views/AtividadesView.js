@@ -48,11 +48,6 @@ System.register(["./View"], function (exports_1, context_1) {
                         <!--Icones de navegação entre os cards-->
 
                         <div id="back" data-activity="${atividade.id}" class="btn btn-sm bg-light text-dark"><i class="fas fa-chevron-left"></i></div>
-                        <div class="d-none justify-content-around w-100">
-                          <a href="#"  data-activity="${atividade.id}" class="btn btn-sm bg-to-do text-dark"><i class="fas fa-list"></i></a>
-                          <a href="#"  data-activity="${atividade.id}" class="btn btn-sm bg-in-progress text-dark"><i class="fas fa-tasks"></i></a>
-                          <a href="#"  data-activity="${atividade.id}" class="btn btn-sm bg-done text-dark"><i class="fas fa-calendar-check"></i></a>
-                        </div>
                         <div id="next" data-activity="${atividade.id}" class="btn btn-sm bg-light text-dark"><i class="fas fa-chevron-right"></i></div>
                         </div>
                     </div>

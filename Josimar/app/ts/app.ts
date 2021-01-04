@@ -1,9 +1,9 @@
 import {AtividadeController} from './controllers/AtividadeController';
-import {Atividade, Atividades, Badges, Progressbar, DragAndDrop} from './models/index';
 
 const controller = new AtividadeController();
 
-controller.lista();        
+controller.lista();      
+controller.drag_and_drop();      
 
 // submete o form que adiciona atividades
 $('#cards').submit(controller.adiciona.bind(controller));
@@ -51,7 +51,7 @@ $("#cardInProgress").on('click', '#next', function() {
 // move do card Done para o próximo
 $("#cardDone").on('click', '#next', function() {   
     var id = $(this).attr('data-activity');   
-    controller.move(id, 'cardInToDo');
+    controller.move(id, 'cardToDo');
 });
 
 // move do card To Do para o anterior
@@ -71,4 +71,6 @@ $("#cardDone").on('click', '#back', function() {
     var id = $(this).attr('data-activity');   
     controller.move(id, 'cardInProgress');
 });
+
+
 
