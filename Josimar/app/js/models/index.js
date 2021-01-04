@@ -1,4 +1,4 @@
-System.register(["./Atividade", "./Atividades", "./Badges", "./Progressbar"], function (exports_1, context_1) {
+System.register(["./Atividade", "./Atividades", "./Badges", "./Progressbar", "./DragAndDrop"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     function exportStar_1(m) {
@@ -21,6 +21,9 @@ System.register(["./Atividade", "./Atividades", "./Badges", "./Progressbar"], fu
             },
             function (Progressbar_1_1) {
                 exportStar_1(Progressbar_1_1);
+            },
+            function (DragAndDrop_1_1) {
+                exportStar_1(DragAndDrop_1_1);
             }
         ],
         execute: function () {

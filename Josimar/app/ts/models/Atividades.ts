@@ -28,7 +28,7 @@ export class Atividades{
         this._db.update(table, values, condition);//atualiza
     }
 
-    deleta(id: any): void{
+    deleta(id: string): void{
             let table = 'Atividades';
             let condition = `id =${id}`;
             this._db.delete(table, condition);//deleta

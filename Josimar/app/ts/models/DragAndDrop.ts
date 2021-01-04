@@ -7,10 +7,10 @@ export class DragAndDrop{
     private _card_body: JQuery;  
     private _draggedActivity: HTMLElement;
 
-    constructor(){
+    constructor(readonly activitySel: HTMLElement){
         this._activity = <JQuery> $('.activity');
         this._card_body = <JQuery> $('.activities');
-        this._draggedActivity = null;
+        this._draggedActivity = activitySel;
     }
 
     //DRAG AND DROP

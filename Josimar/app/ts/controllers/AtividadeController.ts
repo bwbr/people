@@ -8,8 +8,7 @@ export class AtividadeController {
         private _inputTitulo: JQuery;
         private _inputDescricao: JQuery;        
         private _inputIdCard: JQuery;
-        private _atividades = new Atividades();        
-        private _dragAndDrop = new DragAndDrop();          
+        private _atividades = new Atividades();            
         private _badge = new Badges();                        
         private _progressbar = new Progressbar();
         private _mensagemView = new MensagemView('#mensagemView');
@@ -101,7 +100,7 @@ export class AtividadeController {
                     a.adiciona(i);
                     return a;
                 }, new Atividades());
-                let cardInProgres = atividades.filter( a => a.idCard === 'cardInProgress').reduce((a, i) => {
+                let cardInProgress = atividades.filter( a => a.idCard === 'cardInProgress').reduce((a, i) => {
                     a.adiciona(i);
                     return a;
                 }, new Atividades());
@@ -110,16 +109,26 @@ export class AtividadeController {
                     return a;
                 }, new Atividades()); 
                 this._todoColumnView.update(cardTodo, '');
-                this._inProgressColumnView.update(cardInProgres, '');
+                this._inProgressColumnView.update(cardInProgress, '');
                 this._doneColumnView.update( cardDone, '');
-                this._dragAndDrop.drag_and_drop();
                 this._badge.badge();
                 this._progressbar.progressbar();
             });
         }
         
+        //DELETA ATIVIDADE
+        deleta(id: string){
+            setTimeout(() => {
+                this._atividades.deleta(id);
+                this.lista();
+            }, 1); 
+        }
+
+        //APAGA A TABELA DE ATIVIDADES
         clear_all(): void{
-            let table = 'Atividades';
-            this._db.dropTable(table);
+            setTimeout(() => {                
+                let table = 'Atividades';
+                this._db.dropTable(table);
+            }, 1); 
         }
 }

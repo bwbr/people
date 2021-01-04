@@ -16,7 +16,6 @@ export class Badges{
             this._total_toDo + 
             this._total_inProgress + 
             this._total_done; 
-        console.log(total_activities);
         
         $('.badge-to-do').text(this.limitBadge(this._total_toDo));
         $('.badge-in-progress').text(this.limitBadge(this._total_inProgress));
