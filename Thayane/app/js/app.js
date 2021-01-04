@@ -1,7 +1,7 @@
 System.register(["./controllers/index", "./views/index", "./models/index"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var index_1, index_2, index_3, index_4, muda, kabanboard, skillboard, add, controllerFormacoes, controllerSkills, modal, deletar, editar, expandir, mover, contarFormacoes, _addKanbanView, observaAFazer, observaFazendo, observaFeitas;
+    var index_1, index_2, index_3, index_4, muda, kabanboard, skillboard, add, controllerFormacoes, controllerSkills, controllerAtividades, modal, deletar, editar, expandir, mover, contarFormacoes, _addKanbanView, observaAFazer, observaFazendo, observaFeitas;
     return {
         setters: [
             function (index_1_1) {
@@ -26,33 +26,42 @@ System.register(["./controllers/index", "./views/index", "./models/index"], func
             $('[data-form-formacao]').submit(controllerFormacoes.adiciona.bind(controllerFormacoes));
             controllerSkills = new index_1.AddSkillController();
             $('[data-form-skill]').submit(controllerSkills.adiciona.bind(controllerSkills));
+            controllerAtividades = new index_1.AddAtividadesController();
+            $('[data-form-skill]').submit(controllerAtividades.adicionouSkill.bind(controllerAtividades));
+            $('[data-form-formacao]').submit(controllerAtividades.adicionouFormacao.bind(controllerAtividades));
             modal = new index_2.ModalController();
             $('#btn-modal').click(() => modal.esconderModal());
             deletar = new index_1.Deletar(kabanboard);
             $("#nav-link-kanban_aFazer").on('click', '.btnDeletar', function () {
                 deletar.eu = $(this);
                 deletar.deletarAFazer('formacoesAFazer');
+                controllerAtividades.removeuFormacao();
             });
             $("#nav-link-kanban_fazendo").on('click', '.btnDeletar', function () {
                 deletar.eu = $(this);
                 deletar.deletarFazendo('formacoesFazendo');
+                controllerAtividades.removeuFormacao();
             });
             $("#nav-link-kanban_feitas").on('click', '.btnDeletar', function () {
                 deletar.eu = $(this);
                 deletar.deletarFeitas('formacoesFeitas');
+                controllerAtividades.removeuFormacao();
             });
             editar = new index_1.Editar(kabanboard, skillboard);
             $("#nav-link-kanban_aFazer").on('click', '.salvarEditou', function () {
                 editar.eu = $(this);
                 editar.editarAFazer('formacoesAFazer');
+                controllerAtividades.editouFormacao();
             });
             $("#nav-link-kanban_fazendo").on('click', '.salvarEditou', function () {
                 editar.eu = $(this);
                 editar.editarFazendo('formacoesFazendo');
+                controllerAtividades.editouFormacao();
             });
             $("#nav-link-kanban_feitas").on('click', '.salvarEditou', function () {
                 editar.eu = $(this);
                 editar.editarFeitas('formacoesFeitas');
+                controllerAtividades.editouFormacao();
             });
             expandir = new index_1.Expandir();
             $("#nav-link-kanban_aFazer").on('click', '.btnExpandir', function () {
@@ -115,10 +124,12 @@ System.register(["./controllers/index", "./views/index", "./models/index"], func
             $("#novaSkill").on('click', '.btnDeletarSkill', function () {
                 deletar.eu = $(this);
                 deletar.deletarSkill('skills');
+                controllerAtividades.removeuSkill();
             });
             $("#novaSkill").on('click', '.salvarSkill', function () {
                 editar.eu = $(this);
                 editar.editarSkill('skills');
+                controllerAtividades.editouSkill();
             });
         }
     };

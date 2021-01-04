@@ -1,8 +1,7 @@
-import { AddFormacaoController, MudarClasseResponsivo, AddSkillController, Deletar, Editar, ContarFormacoes, MoverKanban, Expandir} from './controllers/index';
+import { AddFormacaoController, MudarClasseResponsivo, AddSkillController, Deletar, Editar, ContarFormacoes, MoverKanban, Expandir, AddAtividadesController} from './controllers/index';
 import { ModalController } from './controllers/index';
-import { FormacaoDaoAFazer, FormacaoDaoFazendo, FormacaoDaoFeitas, SkillDao } from './dao/index';
-import { AddFormacoesView, AddSkillsView, KanbanView } from './views/index';
-import { AddFormacao, AddSkills, Kanban } from './models/index'
+import { KanbanView } from './views/index';
+import { AddFormacao, AddSkills, Kanban } from './models/index';
 
 const muda = new MudarClasseResponsivo();
 $.when(window).then(() => muda.tamanho());
@@ -17,6 +16,10 @@ $('[data-form-formacao]').submit(controllerFormacoes.adiciona.bind(controllerFor
 const controllerSkills = new AddSkillController();
 $('[data-form-skill]').submit(controllerSkills.adiciona.bind(controllerSkills));
 
+const controllerAtividades = new AddAtividadesController();
+$('[data-form-skill]').submit(controllerAtividades.adicionouSkill.bind(controllerAtividades));
+$('[data-form-formacao]').submit(controllerAtividades.adicionouFormacao.bind(controllerAtividades));
+
 const modal = new ModalController();
 $('#btn-modal').click(() => modal.esconderModal());
 
@@ -25,14 +28,17 @@ const deletar = new Deletar(kabanboard);
 $("#nav-link-kanban_aFazer").on('click', '.btnDeletar', function() {
     deletar.eu = $(this);
     deletar.deletarAFazer('formacoesAFazer');
+    controllerAtividades.removeuFormacao();
 });
 $("#nav-link-kanban_fazendo").on('click', '.btnDeletar', function() {
     deletar.eu = $(this);
     deletar.deletarFazendo('formacoesFazendo');
+    controllerAtividades.removeuFormacao();
 });
 $("#nav-link-kanban_feitas").on('click', '.btnDeletar', function() {
     deletar.eu = $(this);
     deletar.deletarFeitas('formacoesFeitas');
+    controllerAtividades.removeuFormacao();
 });
 
 //Editar os cartões
@@ -40,14 +46,17 @@ const editar = new Editar(kabanboard, skillboard);
 $("#nav-link-kanban_aFazer").on('click', '.salvarEditou', function() {
     editar.eu = $(this);
     editar.editarAFazer('formacoesAFazer');
+    controllerAtividades.editouFormacao();
 });
 $("#nav-link-kanban_fazendo").on('click', '.salvarEditou', function() {
     editar.eu = $(this);
     editar.editarFazendo('formacoesFazendo');
+    controllerAtividades.editouFormacao();
 });
 $("#nav-link-kanban_feitas").on('click', '.salvarEditou', function() {
     editar.eu = $(this);
     editar.editarFeitas('formacoesFeitas');
+    controllerAtividades.editouFormacao();
 });
 
 //Expandir os cartões
@@ -116,8 +125,10 @@ var observaFeitas = new MutationObserver(function(mutations) {
 $("#novaSkill").on('click', '.btnDeletarSkill', function() {
     deletar.eu = $(this);
     deletar.deletarSkill('skills');
+    controllerAtividades.removeuSkill();
 });
 $("#novaSkill").on('click', '.salvarSkill', function() {
     editar.eu = $(this);
     editar.editarSkill('skills');
+    controllerAtividades.editouSkill();
 });
