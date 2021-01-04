@@ -59,7 +59,7 @@ export class DragAndDrop{
                     const _progressbar = new Progressbar();
                     const _badge = new Badges();
                     
-                    _atividades.mover(draggedActivity.id, this.id);
+                    _atividades.move(draggedActivity.id, this.id);
 
                     _badge.badge();
                     _progressbar.progressbar();

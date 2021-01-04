@@ -117,6 +117,14 @@ export class AtividadeController {
         }
         
         //DELETA ATIVIDADE
+        move(id: string, idCard: string){
+            setTimeout(() => {
+                this._atividades.move(id, idCard);
+                this.lista();
+            }, 1); 
+        }
+
+        //DELETA ATIVIDADE
         deleta(id: string){
             setTimeout(() => {
                 this._atividades.deleta(id);
@@ -125,7 +133,8 @@ export class AtividadeController {
         }
 
         //APAGA A TABELA DE ATIVIDADES
-        clear_all(): void{
+        clear_all(event: Event): void{
+            event.preventDefault();
             setTimeout(() => {                
                 let table = 'Atividades';
                 this._db.dropTable(table);
