@@ -113,6 +113,7 @@ System.register(["../views/index", "../models/index", "../services/DB"], functio
                     event.preventDefault();
                     let table = 'Atividades';
                     this._db.dropTable(table);
+                    this.lista();
                 }
                 drag_and_drop() {
                     let activity = document.querySelectorAll('.activity');

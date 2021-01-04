@@ -138,6 +138,7 @@ export class AtividadeController {
             event.preventDefault();          
             let table = 'Atividades';
             this._db.dropTable(table);
+            this.lista();
         }
 
        //DRAG AND DROP

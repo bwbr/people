@@ -1,15 +1,21 @@
-System.register(["./controllers/AtividadeController"], function (exports_1, context_1) {
+System.register(["./controllers/AtividadeController", "./helpers/Media"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var AtividadeController_1, controller;
+    var AtividadeController_1, Media_1, controller, media;
     return {
         setters: [
             function (AtividadeController_1_1) {
                 AtividadeController_1 = AtividadeController_1_1;
+            },
+            function (Media_1_1) {
+                Media_1 = Media_1_1;
             }
         ],
         execute: function () {
             controller = new AtividadeController_1.AtividadeController();
+            media = new Media_1.Media();
+            $.when(window).then(() => media.layout());
+            $(window).resize(() => media.layout());
             controller.lista();
             controller.drag_and_drop();
             $('#cards').submit(controller.adiciona.bind(controller));
