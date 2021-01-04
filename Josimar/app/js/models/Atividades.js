@@ -27,7 +27,7 @@ System.register(["../services/DB"], function (exports_1, context_1) {
                         .then(() => this._db.insert(table, columns, values))
                         .then(() => atividade);
                 }
-                mover(id, idCard) {
+                move(id, idCard) {
                     let table = 'Atividades';
                     let condition = `id =${id}`;
                     let values = `idCard = '${idCard}'`;

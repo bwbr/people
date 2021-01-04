@@ -45,7 +45,7 @@ System.register(["../models/index"], function (exports_1, context_1) {
                                 const _atividades = new index_1.Atividades();
                                 const _progressbar = new index_1.Progressbar();
                                 const _badge = new index_1.Badges();
-                                _atividades.mover(draggedActivity.id, this.id);
+                                _atividades.move(draggedActivity.id, this.id);
                                 _badge.badge();
                                 _progressbar.progressbar();
                             });

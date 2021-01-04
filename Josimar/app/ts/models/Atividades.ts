@@ -21,7 +21,7 @@ export class Atividades{
             .then(() => atividade );//salva
     }
 
-    mover(id: any, idCard: string): void{
+    move(id: string, idCard: string): void{
         let table = 'Atividades';
         let condition = `id =${id}`;
         let values = `idCard = '${idCard}'`;

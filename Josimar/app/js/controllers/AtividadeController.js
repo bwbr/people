@@ -97,13 +97,20 @@ System.register(["../views/index", "../models/index", "../services/DB"], functio
                         this._progressbar.progressbar();
                     });
                 }
+                move(id, idCard) {
+                    setTimeout(() => {
+                        this._atividades.move(id, idCard);
+                        this.lista();
+                    }, 1);
+                }
                 deleta(id) {
                     setTimeout(() => {
                         this._atividades.deleta(id);
                         this.lista();
                     }, 1);
                 }
-                clear_all() {
+                clear_all(event) {
+                    event.preventDefault();
                     setTimeout(() => {
                         let table = 'Atividades';
                         this._db.dropTable(table);
