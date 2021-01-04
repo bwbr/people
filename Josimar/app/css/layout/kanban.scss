@@ -57,7 +57,26 @@
         }
     }
 }
-
+.nav{
+    .badge-to-do{
+        background:darken($color: $bg-to-do-hex, $amount: 20);
+        @extend %shadow-box-inset;
+        color: $title-kanban;
+        margin: 5px;
+    }
+    .badge-in-progress{
+        background:darken($color: $bg-in-progress-hex, $amount: 20);
+        @extend %shadow-box-inset;
+        color: $title-kanban;
+        margin: 5px;
+    }
+    .badge-done{
+        background:darken($color: $bg-done-hex, $amount: 20);
+        @extend %shadow-box-inset;
+        color: $title-kanban;
+        margin: 5px;
+    }
+}
 .nav-tabs{
     border:0;
     .nav-link-to-do{
@@ -87,6 +106,7 @@
         padding-top:10px;
         padding-bottom:10px;
     }
+
 }
 
 .card-to-do{

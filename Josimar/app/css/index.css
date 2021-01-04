@@ -52,7 +52,7 @@ table {
   -moz-box-shadow: -6px 8px 10px -2px rgba(0, 0, 0, 0.33) !important;
   box-shadow: -6px 8px 10px -2px rgba(0, 0, 0, 0.33) !important; }
 
-.kanban .form input, .kanban .form textarea, .card-to-do .card-header .badge, .card-in-progress .card-header .badge, .card-done .card-header .badge, .contato .form input, .contato .form textarea {
+.kanban .form input, .kanban .form textarea, .nav .badge-to-do, .nav .badge-in-progress, .nav .badge-done, .card-to-do .card-header .badge, .card-in-progress .card-header .badge, .card-done .card-header .badge, .contato .form input, .contato .form textarea {
   -webkit-box-shadow: inset -6px 8px 10px -2px rgba(0, 0, 0, 0.33) !important;
   -moz-box-shadow: inset -6px 8px 10px -2px rgba(0, 0, 0, 0.33) !important;
   box-shadow: inset -6px 8px 10px -2px rgba(0, 0, 0, 0.33) !important; }
@@ -185,6 +185,19 @@ a:hover, a :active, a :link {
       text-transform: none !important;
       text-decoration: none !important;
       color: #222222 !important; }
+
+.nav .badge-to-do {
+  background: #a02622;
+  color: #ffffff;
+  margin: 5px; }
+.nav .badge-in-progress {
+  background: #c77c11;
+  color: #ffffff;
+  margin: 5px; }
+.nav .badge-done {
+  background: #357935;
+  color: #ffffff;
+  margin: 5px; }
 
 .nav-tabs {
   border: 0; }

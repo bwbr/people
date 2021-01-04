@@ -11,6 +11,7 @@ System.register(["./controllers/AtividadeController"], function (exports_1, cont
         execute: function () {
             controller = new AtividadeController_1.AtividadeController();
             controller.lista();
+            controller.drag_and_drop();
             $('#cards').submit(controller.adiciona.bind(controller));
             $('#clear_btn').click(controller.limpa.bind(controller));
             $('#cancel_btn').click(controller.limpa.bind(controller));
@@ -34,7 +35,7 @@ System.register(["./controllers/AtividadeController"], function (exports_1, cont
             });
             $("#cardDone").on('click', '#next', function () {
                 var id = $(this).attr('data-activity');
-                controller.move(id, 'cardInToDo');
+                controller.move(id, 'cardToDo');
             });
             $("#cardToDo").on('click', '#back', function () {
                 var id = $(this).attr('data-activity');

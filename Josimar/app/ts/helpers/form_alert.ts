@@ -1,6 +1,3 @@
-
-
-
 $('#cards').submit(e => {
   alerts(e);
 });
