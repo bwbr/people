@@ -1,7 +1,7 @@
 System.register(["./View"], function (exports_1, context_1) {
     "use strict";
-    var View_1, AtividadesView;
     var __moduleName = context_1 && context_1.id;
+    var View_1, AtividadesView;
     return {
         setters: [
             function (View_1_1) {

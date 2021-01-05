@@ -8,8 +8,8 @@ const apigithub = new ApiGithub();
 $.when(window).then(() => media.layout());
 $(window).resize(() => media.layout());
 
-apigithub.github();    
-controller.lista();      
+apigithub.github();  
+controller.lista();    
 controller.drag_and_drop();    
 
 // submete o form que adiciona atividades

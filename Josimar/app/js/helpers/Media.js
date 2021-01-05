@@ -1,7 +1,7 @@
 System.register([], function (exports_1, context_1) {
     "use strict";
-    var Media;
     var __moduleName = context_1 && context_1.id;
+    var Media;
     return {
         setters: [],
         execute: function () {

@@ -1,7 +1,7 @@
-System.register(["../views/index", "../models/index", "../services/DB"], function (exports_1, context_1) {
+System.register(["../views/index", "../models/index", "../helpers/index", "../services/DB"], function (exports_1, context_1) {
     "use strict";
-    var index_1, index_2, DB_1, AtividadeController;
     var __moduleName = context_1 && context_1.id;
+    var index_1, index_2, index_3, DB_1, AtividadeController;
     return {
         setters: [
             function (index_1_1) {
@@ -9,6 +9,9 @@ System.register(["../views/index", "../models/index", "../services/DB"], functio
             },
             function (index_2_1) {
                 index_2 = index_2_1;
+            },
+            function (index_3_1) {
+                index_3 = index_3_1;
             },
             function (DB_1_1) {
                 DB_1 = DB_1_1;
@@ -18,6 +21,7 @@ System.register(["../views/index", "../models/index", "../services/DB"], functio
             AtividadeController = class AtividadeController {
                 constructor() {
                     this._atividades = new index_2.Atividades();
+                    this._badge = new index_3.Badge();
                     this._mensagemView = new index_1.MensagemView('#mensagemView');
                     this._todoColumnView = new index_1.AtividadesView('[data-ToDo]');
                     this._inProgressColumnView = new index_1.AtividadesView('[data-InProgress]');
@@ -97,8 +101,8 @@ System.register(["../views/index", "../models/index", "../services/DB"], functio
                         this._todoColumnView.update(cardTodo, '');
                         this._inProgressColumnView.update(cardInProgress, '');
                         this._doneColumnView.update(cardDone, '');
-                        this.badge(total_toDo, total_inProgress, total_done);
                         this.drag_and_drop();
+                        this._badge.badge();
                     });
                 }
                 move(id, idCard) {
@@ -150,13 +154,6 @@ System.register(["../views/index", "../models/index", "../services/DB"], functio
                         }
                     }
                 }
-                badge(total_toDo, total_inProgress, total_done) {
-                    let total_activities = total_toDo + total_inProgress + total_done;
-                    $('.badge-to-do').text(this.limitBadge(total_toDo));
-                    $('.badge-in-progress').text(this.limitBadge(total_inProgress));
-                    $('.badge-done').text(`${this.limitBadge(total_done)} / ${total_activities}`);
-                    this.progressbar(total_toDo, total_inProgress, total_done);
-                }
                 progressbar(total_toDo, total_inProgress, total_done) {
                     let total_activities = total_toDo + total_inProgress + total_done;
                     if (total_activities == null) {
@@ -176,15 +173,6 @@ System.register(["../views/index", "../models/index", "../services/DB"], functio
                     this.colorBgProgress(percent_toDo, document.querySelector("#progress-to-do"));
                     this.colorBgProgress(percent_inProgress, document.querySelector("#progress-in-progress"));
                     this.colorBgProgress(percent_done, document.querySelector("#progress-done"));
-                }
-                limitBadge(qtd) {
-                    let limitQtd = "99+";
-                    if (qtd > 99) {
-                        return limitQtd;
-                    }
-                    else {
-                        return qtd;
-                    }
                 }
                 percent(n, total) {
                     let p;

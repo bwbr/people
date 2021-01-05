@@ -1,7 +1,7 @@
 System.register(["./controllers/AtividadeController", "./helpers/index"], function (exports_1, context_1) {
     "use strict";
-    var AtividadeController_1, index_1, controller, media, apigithub;
     var __moduleName = context_1 && context_1.id;
+    var AtividadeController_1, index_1, controller, media, apigithub;
     return {
         setters: [
             function (AtividadeController_1_1) {

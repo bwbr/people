@@ -1,5 +1,6 @@
 import {AtividadesView, MensagemView} from '../views/index';
 import {Atividade, Atividades} from '../models/index';
+import {Media, ApiGithub, Badge} from '../helpers/index'
 import {DB} from '../services/DB';
 
 export class AtividadeController {
@@ -8,7 +9,8 @@ export class AtividadeController {
         private _inputTitulo: JQuery;
         private _inputDescricao: JQuery;        
         private _inputIdCard: JQuery;
-        private _atividades = new Atividades();  
+        private _atividades = new Atividades(); 
+        private _badge = new Badge(); 
         private _mensagemView = new MensagemView('#mensagemView');
         private _todoColumnView = new AtividadesView('[data-ToDo]');
         private _inProgressColumnView = new AtividadesView('[data-InProgress]');
@@ -116,8 +118,8 @@ export class AtividadeController {
                 this._todoColumnView.update(cardTodo, '');
                 this._inProgressColumnView.update(cardInProgress, '');
                 this._doneColumnView.update( cardDone, '');
-                this.badge(total_toDo, total_inProgress, total_done);
                 this.drag_and_drop();
+                this._badge.badge();
             });
         }
         
@@ -197,20 +199,6 @@ export class AtividadeController {
         }	    
     }
 
-    //BADGE
-    badge(total_toDo: number, total_inProgress: number, total_done: number){      
-
-        let total_activities: number = total_toDo + total_inProgress + total_done; 
-
-        //exibe a quantidade de atividades nos badgies
-        $('.badge-to-do').text(this.limitBadge(total_toDo));
-        $('.badge-in-progress').text(this.limitBadge(total_inProgress));
-        $('.badge-done').text(`${this.limitBadge(total_done)} / ${total_activities}`);  
-
-        this.progressbar(total_toDo, total_inProgress, total_done);      
-
-    }
-
     //PROGRESSBAR
     progressbar(total_toDo: number, total_inProgress: number, total_done: number){
 
@@ -239,16 +227,6 @@ export class AtividadeController {
         this.colorBgProgress(percent_toDo, document.querySelector("#progress-to-do"));//background de progresso to-do
         this.colorBgProgress(percent_inProgress, document.querySelector("#progress-in-progress"));//background  de progresso to-do
         this.colorBgProgress(percent_done, document.querySelector("#progress-done"));//background de progresso done
-    }
-    
-    //BADGE: Retorna a quantidade limite para o badge
-    limitBadge (qtd: number){
-        let limitQtd: string = "99+";
-        if(qtd > 99){ 
-            return limitQtd; //limita 2 digitos para quantidade maior que 100 atividades
-        }else{
-            return qtd; //retorna o valor até 99 atividades;
-        }
     }
 
     //PROGRESSBAR: Retorna a percentagem
