@@ -6,4 +6,4 @@
 
 ## Thayane 
 
-- https://bwbr.github.io/people/Thayane/app
+- https://bwbr.github.io/people/Thayane/
