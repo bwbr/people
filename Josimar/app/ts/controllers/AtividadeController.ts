@@ -1,5 +1,6 @@
 import {AtividadesView, MensagemView} from '../views/index';
 import {Atividade, Atividades} from '../models/index';
+import {Badge, Progressbar} from '../helpers/index'
 import {DB} from '../services/DB';
 
 export class AtividadeController {
@@ -8,7 +9,9 @@ export class AtividadeController {
         private _inputTitulo: JQuery;
         private _inputDescricao: JQuery;        
         private _inputIdCard: JQuery;
-        private _atividades = new Atividades();  
+        private _atividades = new Atividades(); 
+        private _badge = new Badge();  
+        private _progressbar = new Progressbar(); 
         private _mensagemView = new MensagemView('#mensagemView');
         private _todoColumnView = new AtividadesView('[data-ToDo]');
         private _inProgressColumnView = new AtividadesView('[data-InProgress]');
@@ -116,8 +119,9 @@ export class AtividadeController {
                 this._todoColumnView.update(cardTodo, '');
                 this._inProgressColumnView.update(cardInProgress, '');
                 this._doneColumnView.update( cardDone, '');
-                this.badge(total_toDo, total_inProgress, total_done);
                 this.drag_and_drop();
+                this._badge.badge();
+                this._progressbar.progressbar();
             });
         }
         
@@ -195,83 +199,5 @@ export class AtividadeController {
                 });
             }  
         }	    
-    }
-
-    //BADGE
-    badge(total_toDo: number, total_inProgress: number, total_done: number){      
-
-        let total_activities: number = total_toDo + total_inProgress + total_done; 
-
-        //exibe a quantidade de atividades nos badgies
-        $('.badge-to-do').text(this.limitBadge(total_toDo));
-        $('.badge-in-progress').text(this.limitBadge(total_inProgress));
-        $('.badge-done').text(`${this.limitBadge(total_done)} / ${total_activities}`);  
-
-        this.progressbar(total_toDo, total_inProgress, total_done);      
-
-    }
-
-    //PROGRESSBAR
-    progressbar(total_toDo: number, total_inProgress: number, total_done: number){
-
-        let total_activities: number = total_toDo + total_inProgress + total_done; 
-        
-        if(total_activities == null){
-            total_toDo = 0.0; total_inProgress= 0.0; total_done = 0.0;
-        }
-
-        //calcula percentagem
-        let percent_toDo = this.percent(total_toDo, total_activities);
-        let percent_inProgress = this.percent(total_inProgress, total_activities);
-        let percent_done = this.percent(total_done, total_activities);
-        
-        //atualiza skills progress-bar
-        $("#progress-to-do").css("width", `${(percent_toDo)}%`); //width de progresso to-do
-        $("#progress-in-progress").css("width", `${(percent_inProgress)}%`); //width de progresso in-progress
-        $("#progress-done").css("width", `${(percent_done)}%`); //width de progresso done
-
-        //atualiza skills porcentagens
-        $(".percent-to-do").text(`${(percent_toDo).toFixed()}%`); //porcentagem progresso to-do
-        $(".percent-in-progress").text(`${(percent_inProgress).toFixed()}%`); //porcentagem progresso in-progress
-        $(".percent-done").text(`${(percent_done).toFixed()}%`); //porcentagem progresso done
-
-        //alterna as cores das barras de progresso
-        this.colorBgProgress(percent_toDo, document.querySelector("#progress-to-do"));//background de progresso to-do
-        this.colorBgProgress(percent_inProgress, document.querySelector("#progress-in-progress"));//background  de progresso to-do
-        this.colorBgProgress(percent_done, document.querySelector("#progress-done"));//background de progresso done
-    }
-    
-    //BADGE: Retorna a quantidade limite para o badge
-    limitBadge (qtd: number){
-        let limitQtd: string = "99+";
-        if(qtd > 99){ 
-            return limitQtd; //limita 2 digitos para quantidade maior que 100 atividades
-        }else{
-            return qtd; //retorna o valor até 99 atividades;
-        }
-    }
-
-    //PROGRESSBAR: Retorna a percentagem
-    percent(n: number, total: number){
-        let p: any;
-
-        if(p < 1){
-            p = 0;
-        }else{
-            p = (n / total) * 100;
-        }
-
-        return p;           
-    }
-
-    //PROGRESSBAR: função alterna cor do progress-bar
-    colorBgProgress(percent_name:any, progress_name: Element){
-        if(parseFloat(percent_name) == 100){
-            progress_name.classList.remove('progress-bar-blue'); //background progress
-            progress_name.classList.add('progress-bar-success'); //background success
-        }else{
-            progress_name.classList.remove('progress-bar-success'); //background success
-            progress_name.classList.add('progress-bar-blue'); //background progress
-        }
     }
 }

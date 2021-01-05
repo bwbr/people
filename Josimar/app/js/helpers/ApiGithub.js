@@ -1,7 +1,7 @@
 System.register([], function (exports_1, context_1) {
     "use strict";
-    var ApiGithub;
     var __moduleName = context_1 && context_1.id;
+    var ApiGithub;
     return {
         setters: [],
         execute: function () {

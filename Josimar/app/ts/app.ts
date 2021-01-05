@@ -1,15 +1,21 @@
 import {AtividadeController} from './controllers/AtividadeController';
-import {Media, ApiGithub} from './helpers/index'
+import {ApiGithub, Media, FormAlert, HideNav, ScrollSmooth} from './helpers/index'
 
 const controller = new AtividadeController();
 const media = new Media();
 const apigithub = new ApiGithub();
+const formAlert = new FormAlert();
+const hideNav = new HideNav();
+const scrollsmooth = new ScrollSmooth();
 
 $.when(window).then(() => media.layout());
 $(window).resize(() => media.layout());
 
-apigithub.github();    
-controller.lista();      
+apigithub.github(); 
+formAlert.form_alert(); 
+hideNav.hide_nav();
+scrollsmooth.scroll_smooth();
+controller.lista();    
 controller.drag_and_drop();    
 
 // submete o form que adiciona atividades
@@ -89,6 +95,32 @@ $("#cardDone").on('click', '#back', function() {
     controller.move(id, 'cardInProgress');
     $("#nav-done").removeClass('active');
     $("#nav-in-progress").addClass('active');
+});
+
+//EDITA ATIVIDADE
+
+// deleta para criar novo no ToDo
+$("#cardToDo").on('click', '#edit_btn', function() {   
+    var id = $(this).attr('data-activity');   
+    controller.deleta(id);
+    $("#nav-to-do").removeClass('active');
+    $("#nav-to-do").addClass('active');
+});
+
+// deleta para criar novo
+$("#cardInProgress").on('click', '#edit_btn', function() {   
+    var id = $(this).attr('data-activity');   
+    controller.deleta(id);
+    $("#nav-in-progress").removeClass('active');
+    $("#nav-to-do").addClass('active');
+});
+
+// deleta para criar novo
+$("#cardDone").on('click', '#edit_btn', function() {   
+    var id = $(this).attr('data-activity');   
+    controller.deleta(id);
+    $("#nav-done").removeClass('active');
+    $("#nav-to-do").addClass('active');
 });
 
 
