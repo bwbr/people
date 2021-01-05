@@ -1,4 +1,4 @@
-System.register(["./ApiGithub", "./Badge", "./FormAlert", "./HideNav", "./Media", "./Progressbar", "./ScrollSmooth"], function (exports_1, context_1) {
+System.register(["./ApiGithub", "./Badge", "./DragAndDrop", "./FormAlert", "./HideNav", "./Media", "./Progressbar", "./ScrollSmooth"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     function exportStar_1(m) {
@@ -15,6 +15,9 @@ System.register(["./ApiGithub", "./Badge", "./FormAlert", "./HideNav", "./Media"
             },
             function (Badge_1_1) {
                 exportStar_1(Badge_1_1);
+            },
+            function (DragAndDrop_1_1) {
+                exportStar_1(DragAndDrop_1_1);
             },
             function (FormAlert_1_1) {
                 exportStar_1(FormAlert_1_1);

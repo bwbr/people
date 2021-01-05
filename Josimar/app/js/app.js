@@ -25,7 +25,6 @@ System.register(["./controllers/AtividadeController", "./helpers/index"], functi
             hideNav.hide_nav();
             scrollsmooth.scroll_smooth();
             controller.lista();
-            controller.drag_and_drop();
             $('#cards').submit(controller.adiciona.bind(controller));
             $('#clear_btn').click(controller.limpa.bind(controller));
             $('#cancel_btn').click(controller.limpa.bind(controller));
