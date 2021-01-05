@@ -6,7 +6,6 @@
         "noImplicitAny": true,
         "module": "system",
         "moduleResolution": "node", //*
-        "allowSyntheticDefaultImports": true, //*
         "removeComments": true //remove comentarios
     },
     "include": [

@@ -17,12 +17,13 @@
     "@types/moment": "^2.13.0",
     "@types/node": "^8.10.66",
     "concurrently": "^3.4.0",
-    "lite-server": "^2.6.1",
-    "typescript": "^2.3.4"
+    "lite-server": "^2.6.1"
   },
   "dependencies": {
+    "@types/moment-timezone": "^0.5.30",
     "@types/websql": "0.0.27",
     "jquery": "^3.5.1",
-    "moment": "^2.29.1"
+    "moment": "^2.29.1",
+    "typescript": "^2.7.2"
   }
 }

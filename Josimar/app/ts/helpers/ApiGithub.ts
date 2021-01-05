@@ -1,4 +1,4 @@
-import moment from 'moment';
+declare var moment: any;
 
 export class ApiGithub{
 
@@ -41,8 +41,7 @@ export class ApiGithub{
                 let link_commit: string = `${url_github}${e.repo.name}/commit/${e.payload.head}`;// link_commit concatena o link do github para o commit + o numero do commit 
                 let link_repo: string = `${url_github}${e.repo.name}`;// link_repo concatena o link do github para o repositório  
                 
-                //let created: any = moment(e.created_at).locale('pt-br').calendar(); // created recebe a data da criação do evento
-                
+                const created: any = moment(e.created_at).locale('pt-br').calendar(); // created recebe a data da criação do evento
                 
                 let div: Element = document.createElement('div');     
                 
@@ -71,7 +70,7 @@ export class ApiGithub{
                         <span class="col-sm-12 col-md-4">Tipo: <a href="${link_commit}">${e.type}</a> </span>
                         <span class="col-sm-12 col-md-4">Repositório: <a href="${link_repo}">${e.repo.name}</a> </span>
                         </p>
-                        <small class="w-25 text-muted text-right ml-3 border-left">${/* created */"Moment"}</small>
+                        <small class="w-25 text-muted text-right ml-3 border-left">${created}</small>
                     </div>
                     </div>
                 `;

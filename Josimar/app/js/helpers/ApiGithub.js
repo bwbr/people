@@ -32,6 +32,7 @@ System.register([], function (exports_1, context_1) {
                             let url_github = `https://github.com/`;
                             let link_commit = `${url_github}${e.repo.name}/commit/${e.payload.head}`;
                             let link_repo = `${url_github}${e.repo.name}`;
+                            const created = moment(e.created_at).locale('pt-br').calendar();
                             let div = document.createElement('div');
                             let org;
                             if (!e.org) {
@@ -53,7 +54,7 @@ System.register([], function (exports_1, context_1) {
                         <span class="col-sm-12 col-md-4">Tipo: <a href="${link_commit}">${e.type}</a> </span>
                         <span class="col-sm-12 col-md-4">Repositório: <a href="${link_repo}">${e.repo.name}</a> </span>
                         </p>
-                        <small class="w-25 text-muted text-right ml-3 border-left">${"Moment"}</small>
+                        <small class="w-25 text-muted text-right ml-3 border-left">${created}</small>
                     </div>
                     </div>
                 `;
