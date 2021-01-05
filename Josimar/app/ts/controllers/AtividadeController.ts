@@ -1,6 +1,6 @@
 import {AtividadesView, MensagemView} from '../views/index';
 import {Atividade, Atividades} from '../models/index';
-import {Badge, Progressbar} from '../helpers/index'
+import {Badge, DragAndDrop, Progressbar} from '../helpers/index'
 import {DB} from '../services/DB';
 
 export class AtividadeController {
@@ -11,6 +11,7 @@ export class AtividadeController {
         private _inputIdCard: JQuery;
         private _atividades = new Atividades(); 
         private _badge = new Badge();  
+        private _dragAndDrop = new DragAndDrop();  
         private _progressbar = new Progressbar(); 
         private _mensagemView = new MensagemView('#mensagemView');
         private _todoColumnView = new AtividadesView('[data-ToDo]');
@@ -119,7 +120,7 @@ export class AtividadeController {
                 this._todoColumnView.update(cardTodo, '');
                 this._inProgressColumnView.update(cardInProgress, '');
                 this._doneColumnView.update( cardDone, '');
-                this.drag_and_drop();
+                this._dragAndDrop.drag_and_drop();
                 this._badge.badge();
                 this._progressbar.progressbar();
             });
@@ -143,61 +144,4 @@ export class AtividadeController {
             this._db.dropTable(table);
             this.lista();
         }
-
-       //DRAG AND DROP
-       drag_and_drop(){
-
-        let activity = document.querySelectorAll('.activity');
-        let card_body = document.querySelectorAll('.activities');
-
-        const controller = new AtividadeController();
-        
-        let draggedActivity: any = null;           
-
-        //Percorre / busca todas as divs com classes de ".activity"
-        for(let i = 0; i < activity.length; i++){
-            let a = activity[i];	
-
-            a.addEventListener('dragstart', function (){
-
-                    draggedActivity = this;	
-                    this.classList.remove("show");			
-                    this.classList.add("hide");	
-            });
-
-            a.addEventListener('dragend', function (){
-
-                    draggedActivity.classList.remove("hide");						
-                    draggedActivity.classList.add("show");			
-                    draggedActivity = null;
-
-            });
-
-            for(let j = 0; j < card_body.length; j++){
-                const cb = card_body[j];
-                
-                cb.addEventListener('dragstart', function (){
-                });
-
-                cb.addEventListener('dragover', function(e){
-                    e.preventDefault();			
-                });
-
-                cb.addEventListener('dragenter', function(e){
-                    e.preventDefault();
-                });
-
-                cb.addEventListener('drop', function(e){
-                    
-                    this.append(draggedActivity); 
-
-                    const _atividades = new Atividades();
-                    _atividades.move(draggedActivity.id, this.id);
-
-                    controller.lista();
-
-                });
-            }  
-        }	    
-    }
 }

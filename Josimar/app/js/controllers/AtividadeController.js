@@ -22,6 +22,7 @@ System.register(["../views/index", "../models/index", "../helpers/index", "../se
                 constructor() {
                     this._atividades = new index_2.Atividades();
                     this._badge = new index_3.Badge();
+                    this._dragAndDrop = new index_3.DragAndDrop();
                     this._progressbar = new index_3.Progressbar();
                     this._mensagemView = new index_1.MensagemView('#mensagemView');
                     this._todoColumnView = new index_1.AtividadesView('[data-ToDo]');
@@ -102,7 +103,7 @@ System.register(["../views/index", "../models/index", "../helpers/index", "../se
                         this._todoColumnView.update(cardTodo, '');
                         this._inProgressColumnView.update(cardInProgress, '');
                         this._doneColumnView.update(cardDone, '');
-                        this.drag_and_drop();
+                        this._dragAndDrop.drag_and_drop();
                         this._badge.badge();
                         this._progressbar.progressbar();
                     });
@@ -119,42 +120,6 @@ System.register(["../views/index", "../models/index", "../helpers/index", "../se
                     let table = 'Atividades';
                     this._db.dropTable(table);
                     this.lista();
-                }
-                drag_and_drop() {
-                    let activity = document.querySelectorAll('.activity');
-                    let card_body = document.querySelectorAll('.activities');
-                    const controller = new AtividadeController();
-                    let draggedActivity = null;
-                    for (let i = 0; i < activity.length; i++) {
-                        let a = activity[i];
-                        a.addEventListener('dragstart', function () {
-                            draggedActivity = this;
-                            this.classList.remove("show");
-                            this.classList.add("hide");
-                        });
-                        a.addEventListener('dragend', function () {
-                            draggedActivity.classList.remove("hide");
-                            draggedActivity.classList.add("show");
-                            draggedActivity = null;
-                        });
-                        for (let j = 0; j < card_body.length; j++) {
-                            const cb = card_body[j];
-                            cb.addEventListener('dragstart', function () {
-                            });
-                            cb.addEventListener('dragover', function (e) {
-                                e.preventDefault();
-                            });
-                            cb.addEventListener('dragenter', function (e) {
-                                e.preventDefault();
-                            });
-                            cb.addEventListener('drop', function (e) {
-                                this.append(draggedActivity);
-                                const _atividades = new index_2.Atividades();
-                                _atividades.move(draggedActivity.id, this.id);
-                                controller.lista();
-                            });
-                        }
-                    }
                 }
             };
             exports_1("AtividadeController", AtividadeController);

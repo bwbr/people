@@ -15,8 +15,7 @@ apigithub.github();
 formAlert.form_alert(); 
 hideNav.hide_nav();
 scrollsmooth.scroll_smooth();
-controller.lista();    
-controller.drag_and_drop();    
+controller.lista();     
 
 // submete o form que adiciona atividades
 $('#cards').submit(controller.adiciona.bind(controller));
