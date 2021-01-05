@@ -1,14 +1,16 @@
 import {AtividadeController} from './controllers/AtividadeController';
-import {Media} from './helpers/Media'
+import {Media, ApiGithub} from './helpers/index'
 
 const controller = new AtividadeController();
 const media = new Media();
+const apigithub = new ApiGithub();
 
 $.when(window).then(() => media.layout());
 $(window).resize(() => media.layout());
 
+apigithub.github();    
 controller.lista();      
-controller.drag_and_drop();      
+controller.drag_and_drop();    
 
 // submete o form que adiciona atividades
 $('#cards').submit(controller.adiciona.bind(controller));

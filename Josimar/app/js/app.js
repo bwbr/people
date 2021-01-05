@@ -1,21 +1,23 @@
-System.register(["./controllers/AtividadeController", "./helpers/Media"], function (exports_1, context_1) {
+System.register(["./controllers/AtividadeController", "./helpers/index"], function (exports_1, context_1) {
     "use strict";
-    var AtividadeController_1, Media_1, controller, media;
+    var AtividadeController_1, index_1, controller, media, apigithub;
     var __moduleName = context_1 && context_1.id;
     return {
         setters: [
             function (AtividadeController_1_1) {
                 AtividadeController_1 = AtividadeController_1_1;
             },
-            function (Media_1_1) {
-                Media_1 = Media_1_1;
+            function (index_1_1) {
+                index_1 = index_1_1;
             }
         ],
         execute: function () {
             controller = new AtividadeController_1.AtividadeController();
-            media = new Media_1.Media();
+            media = new index_1.Media();
+            apigithub = new index_1.ApiGithub();
             $.when(window).then(() => media.layout());
             $(window).resize(() => media.layout());
+            apigithub.github();
             controller.lista();
             controller.drag_and_drop();
             $('#cards').submit(controller.adiciona.bind(controller));

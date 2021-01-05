@@ -8,7 +8,7 @@ export class AtividadeController {
         private _inputTitulo: JQuery;
         private _inputDescricao: JQuery;        
         private _inputIdCard: JQuery;
-        private _atividades = new Atividades();     
+        private _atividades = new Atividades();  
         private _mensagemView = new MensagemView('#mensagemView');
         private _todoColumnView = new AtividadesView('[data-ToDo]');
         private _inProgressColumnView = new AtividadesView('[data-InProgress]');

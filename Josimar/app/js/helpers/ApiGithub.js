@@ -9,8 +9,7 @@ System.register([], function (exports_1, context_1) {
                 constructor() {
                     this.user = "josimarsts";
                     this.url_user = `https://api.github.com/users/${this.user}`;
-                    this.url_github = `https://github.com/`;
-                    this.url_events = `https://api.github.com/users/${this.user}/events`;
+                    this.url_events = `${this.url_user}/events`;
                 }
                 github() {
                     this.github_user();
@@ -30,15 +29,16 @@ System.register([], function (exports_1, context_1) {
                         .then(evento => evento.json())
                         .then(ev => {
                         ev.forEach(function (e) {
-                            let link_commit = `${this.url_github}${e.repo.name}/commit/${e.payload.head}`;
-                            let link_repo = `${this.url_github}${e.repo.name}`;
+                            let url_github = `https://github.com/`;
+                            let link_commit = `${url_github}${e.repo.name}/commit/${e.payload.head}`;
+                            let link_repo = `${url_github}${e.repo.name}`;
                             let div = document.createElement('div');
                             let org;
                             if (!e.org) {
                                 org = ``;
                             }
                             else {
-                                let link_org = `${this.url_github}${e.org.login}`;
+                                let link_org = `${url_github}${e.org.login}`;
                                 org = `<span class="col-sm-12 col-md-4">Org:
                             <a href="${link_org}">
                             <img alt="${e.org.login}" width="32" height="32" src="${e.org.avatar_url}" class="icon-org"/> ${e.org.login}
