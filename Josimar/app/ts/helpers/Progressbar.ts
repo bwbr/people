@@ -7,9 +7,9 @@ export class Progressbar{
     private progress_toDo: JQuery;
     private progress_inProgress: JQuery;
     private progress_done: JQuery; 
-    private percent_toDo: number = 0;
-    private percent_inProgress: number = 0;
-    private percent_done: number = 0;
+    private percent_toDo: number;
+    private percent_inProgress: number;
+    private percent_done: number;
     
 
         //PROGRESSBAR
@@ -22,12 +22,19 @@ export class Progressbar{
             this.progress_toDo = $("#progress-to-do");
             this.progress_inProgress = $("#progress-in-progress");
             this.progress_done = $("#progress-done");
-    
-            //calcula percentagem
-            this.percent_toDo = this.percent(this.total_toDo, this.total_activities);
-            this.percent_inProgress = this.percent(this.total_inProgress, this.total_activities);
-            this.percent_done = this.percent(this.total_done, this.total_activities);
-            
+        
+            if(this.total_activities > 0){
+                //calcula percentagem
+                this.percent_toDo = this.percent(this.total_toDo, this.total_activities);
+                this.percent_inProgress = this.percent(this.total_inProgress, this.total_activities);
+                this.percent_done = this.percent(this.total_done, this.total_activities); 
+            }else{
+                 //calcula percentagem
+                 this.percent_toDo = 0;
+                 this.percent_inProgress = 0;
+                 this.percent_done = 0; 
+            }
+
             //atualiza skills progress-bar
             this.progress_toDo.css("width", `${(this.percent_toDo)}%`); //width de progresso to-do
             this.progress_inProgress.css("width", `${(this.percent_inProgress)}%`); //width de progresso in-progress
