@@ -22,10 +22,10 @@ System.register(["./View"], function (exports_1, context_1) {
                           ${atividade.titulo}
                           <div class="d-flex justify-content-end">
                               <div id="collapse-${atividade.id}" class="collapse mr-3 fade">
-                                <div href="" id="edit_btn" class="btn pt-0 pb-0 pl-2 pr-1 text-dark border-0" data-toggle="collapse" data-target="#cards" aria-expanded="false" aria-controls="cards">
+                                <div href="" id="edit_btn" data-activity="${atividade.id}" class="btn pt-0 pb-0 pl-2 pr-1 text-dark border-0" data-toggle="collapse" data-target="#cards" aria-expanded="false" aria-controls="cards">
                                     <i class="fas fa-edit"></i>
                                 </div>                                
-                                <div id="trash_btn" class="btn pt-0 pb-0 pl-2 pr-1 text-dark border-0" data-activity="${atividade.id}">
+                                <div id="trash_btn" data-activity="${atividade.id}" class="btn pt-0 pb-0 pl-2 pr-1 text-dark border-0">
                                     <i class="fas fa-trash"></i>
                                 </div>
                               </div>

@@ -22,7 +22,7 @@ export class Badge{
         //exibe a quantidade de atividades nos badgies
         this.badge_toDo.text(this.limitBadge(this.total_toDo));
         this.badge_inProgress.text(this.limitBadge(this.total_inProgress));
-        this.badge_done.text(`${this.limitBadge(this.total_done)} / ${this.total_activities}`);        
+        this.badge_done.text(this.limitBadge(this.total_done));        
 
     }
 

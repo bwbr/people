@@ -22,6 +22,7 @@ System.register(["../views/index", "../models/index", "../helpers/index", "../se
                 constructor() {
                     this._atividades = new index_2.Atividades();
                     this._badge = new index_3.Badge();
+                    this._progressbar = new index_3.Progressbar();
                     this._mensagemView = new index_1.MensagemView('#mensagemView');
                     this._todoColumnView = new index_1.AtividadesView('[data-ToDo]');
                     this._inProgressColumnView = new index_1.AtividadesView('[data-InProgress]');
@@ -103,6 +104,7 @@ System.register(["../views/index", "../models/index", "../helpers/index", "../se
                         this._doneColumnView.update(cardDone, '');
                         this.drag_and_drop();
                         this._badge.badge();
+                        this._progressbar.progressbar();
                     });
                 }
                 move(id, idCard) {
@@ -152,46 +154,6 @@ System.register(["../views/index", "../models/index", "../helpers/index", "../se
                                 controller.lista();
                             });
                         }
-                    }
-                }
-                progressbar(total_toDo, total_inProgress, total_done) {
-                    let total_activities = total_toDo + total_inProgress + total_done;
-                    if (total_activities == null) {
-                        total_toDo = 0.0;
-                        total_inProgress = 0.0;
-                        total_done = 0.0;
-                    }
-                    let percent_toDo = this.percent(total_toDo, total_activities);
-                    let percent_inProgress = this.percent(total_inProgress, total_activities);
-                    let percent_done = this.percent(total_done, total_activities);
-                    $("#progress-to-do").css("width", `${(percent_toDo)}%`);
-                    $("#progress-in-progress").css("width", `${(percent_inProgress)}%`);
-                    $("#progress-done").css("width", `${(percent_done)}%`);
-                    $(".percent-to-do").text(`${(percent_toDo).toFixed()}%`);
-                    $(".percent-in-progress").text(`${(percent_inProgress).toFixed()}%`);
-                    $(".percent-done").text(`${(percent_done).toFixed()}%`);
-                    this.colorBgProgress(percent_toDo, document.querySelector("#progress-to-do"));
-                    this.colorBgProgress(percent_inProgress, document.querySelector("#progress-in-progress"));
-                    this.colorBgProgress(percent_done, document.querySelector("#progress-done"));
-                }
-                percent(n, total) {
-                    let p;
-                    if (p < 1) {
-                        p = 0;
-                    }
-                    else {
-                        p = (n / total) * 100;
-                    }
-                    return p;
-                }
-                colorBgProgress(percent_name, progress_name) {
-                    if (parseFloat(percent_name) == 100) {
-                        progress_name.classList.remove('progress-bar-blue');
-                        progress_name.classList.add('progress-bar-success');
-                    }
-                    else {
-                        progress_name.classList.remove('progress-bar-success');
-                        progress_name.classList.add('progress-bar-blue');
                     }
                 }
             };

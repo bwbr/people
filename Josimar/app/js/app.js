@@ -1,7 +1,7 @@
 System.register(["./controllers/AtividadeController", "./helpers/index"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var AtividadeController_1, index_1, controller, media, apigithub;
+    var AtividadeController_1, index_1, controller, media, apigithub, formAlert, hideNav, scrollsmooth;
     return {
         setters: [
             function (AtividadeController_1_1) {
@@ -15,9 +15,15 @@ System.register(["./controllers/AtividadeController", "./helpers/index"], functi
             controller = new AtividadeController_1.AtividadeController();
             media = new index_1.Media();
             apigithub = new index_1.ApiGithub();
+            formAlert = new index_1.FormAlert();
+            hideNav = new index_1.HideNav();
+            scrollsmooth = new index_1.ScrollSmooth();
             $.when(window).then(() => media.layout());
             $(window).resize(() => media.layout());
             apigithub.github();
+            formAlert.form_alert();
+            hideNav.hide_nav();
+            scrollsmooth.scroll_smooth();
             controller.lista();
             controller.drag_and_drop();
             $('#cards').submit(controller.adiciona.bind(controller));
@@ -68,6 +74,24 @@ System.register(["./controllers/AtividadeController", "./helpers/index"], functi
                 controller.move(id, 'cardInProgress');
                 $("#nav-done").removeClass('active');
                 $("#nav-in-progress").addClass('active');
+            });
+            $("#cardToDo").on('click', '#edit_btn', function () {
+                var id = $(this).attr('data-activity');
+                controller.deleta(id);
+                $("#nav-to-do").removeClass('active');
+                $("#nav-to-do").addClass('active');
+            });
+            $("#cardInProgress").on('click', '#edit_btn', function () {
+                var id = $(this).attr('data-activity');
+                controller.deleta(id);
+                $("#nav-in-progress").removeClass('active');
+                $("#nav-to-do").addClass('active');
+            });
+            $("#cardDone").on('click', '#edit_btn', function () {
+                var id = $(this).attr('data-activity');
+                controller.deleta(id);
+                $("#nav-done").removeClass('active');
+                $("#nav-to-do").addClass('active');
             });
         }
     };

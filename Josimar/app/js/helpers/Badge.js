@@ -16,7 +16,7 @@ System.register([], function (exports_1, context_1) {
                     this.badge_done = $('.badge-done');
                     this.badge_toDo.text(this.limitBadge(this.total_toDo));
                     this.badge_inProgress.text(this.limitBadge(this.total_inProgress));
-                    this.badge_done.text(`${this.limitBadge(this.total_done)} / ${this.total_activities}`);
+                    this.badge_done.text(this.limitBadge(this.total_done));
                 }
                 limitBadge(qtd) {
                     let limitQtd = "99+";
