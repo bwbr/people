@@ -76,19 +76,19 @@ System.register(["./controllers/AtividadeController", "./helpers/index"], functi
             });
             $("#cardToDo").on('click', '#edit_btn', function () {
                 var id = $(this).attr('data-activity');
-                controller.deleta(id);
+                controller.edita(id);
                 $("#nav-to-do").removeClass('active');
                 $("#nav-to-do").addClass('active');
             });
             $("#cardInProgress").on('click', '#edit_btn', function () {
                 var id = $(this).attr('data-activity');
-                controller.deleta(id);
+                controller.edita(id);
                 $("#nav-in-progress").removeClass('active');
                 $("#nav-to-do").addClass('active');
             });
             $("#cardDone").on('click', '#edit_btn', function () {
                 var id = $(this).attr('data-activity');
-                controller.deleta(id);
+                controller.edita(id);
                 $("#nav-done").removeClass('active');
                 $("#nav-to-do").addClass('active');
             });

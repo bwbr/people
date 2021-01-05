@@ -21,6 +21,7 @@ System.register(["../views/index", "../models/index", "../helpers/index", "../se
             AtividadeController = class AtividadeController {
                 constructor() {
                     this._atividades = new index_2.Atividades();
+                    this._formAlert = new index_3.FormAlert();
                     this._badge = new index_3.Badge();
                     this._dragAndDrop = new index_3.DragAndDrop();
                     this._progressbar = new index_3.Progressbar();
@@ -104,6 +105,7 @@ System.register(["../views/index", "../models/index", "../helpers/index", "../se
                         this._inProgressColumnView.update(cardInProgress, '');
                         this._doneColumnView.update(cardDone, '');
                         this._dragAndDrop.drag_and_drop();
+                        this._formAlert.removeAlert();
                         this._badge.badge();
                         this._progressbar.progressbar();
                     });
@@ -114,6 +116,12 @@ System.register(["../views/index", "../models/index", "../helpers/index", "../se
                 }
                 deleta(id) {
                     this._atividades.deleta(id);
+                    this._mensagemView.update('Atividade excluída!', 'alert-warning');
+                    this.lista();
+                }
+                edita(id) {
+                    this._atividades.deleta(id);
+                    this._mensagemView.update('Atividade incorreta excluída! Crie uma nova corretamente.', 'alert-warning');
                     this.lista();
                 }
                 clear_all() {

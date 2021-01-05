@@ -6,6 +6,11 @@ System.register([], function (exports_1, context_1) {
         setters: [],
         execute: function () {
             Progressbar = class Progressbar {
+                constructor() {
+                    this.percent_toDo = 0;
+                    this.percent_inProgress = 0;
+                    this.percent_done = 0;
+                }
                 progressbar() {
                     this.total_toDo = $('#cardToDo .card').length;
                     this.total_inProgress = $('#cardInProgress .activity').length;
@@ -14,25 +19,18 @@ System.register([], function (exports_1, context_1) {
                     this.progress_toDo = $("#progress-to-do");
                     this.progress_inProgress = $("#progress-in-progress");
                     this.progress_done = $("#progress-done");
-                    let percent_toDo = this.percent(this.total_toDo, this.total_activities);
-                    let percent_inProgress = this.percent(this.total_inProgress, this.total_activities);
-                    let percent_done = this.percent(this.total_done, this.total_activities);
-                    this.progress_toDo.css("width", `${(percent_toDo)}%`);
-                    this.progress_inProgress.css("width", `${(percent_inProgress)}%`);
-                    this.progress_done.css("width", `${(percent_done)}%`);
-                    this.colorBgProgress(percent_toDo, this.progress_toDo);
-                    this.colorBgProgress(percent_inProgress, this.progress_inProgress);
-                    this.colorBgProgress(percent_done, this.progress_done);
+                    this.percent_toDo = this.percent(this.total_toDo, this.total_activities);
+                    this.percent_inProgress = this.percent(this.total_inProgress, this.total_activities);
+                    this.percent_done = this.percent(this.total_done, this.total_activities);
+                    this.progress_toDo.css("width", `${(this.percent_toDo)}%`);
+                    this.progress_inProgress.css("width", `${(this.percent_inProgress)}%`);
+                    this.progress_done.css("width", `${(this.percent_done)}%`);
+                    this.colorBgProgress(this.percent_toDo, this.progress_toDo);
+                    this.colorBgProgress(this.percent_inProgress, this.progress_inProgress);
+                    this.colorBgProgress(this.percent_done, this.progress_done);
                 }
                 percent(n, total) {
-                    let p;
-                    if (p < 1) {
-                        p = 0;
-                    }
-                    else {
-                        p = (n / total) * 100;
-                    }
-                    return p;
+                    return (n / total) * 100;
                 }
                 colorBgProgress(percent_name, progress_name) {
                     if (parseFloat(percent_name) == 100) {

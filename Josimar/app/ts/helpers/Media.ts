@@ -20,7 +20,6 @@ export class Media{
     
     layout(){
         let winWidth = $(window).width();// comprimento do browser
-        //let docWidth = document.body.clientWidth; //comprimento do documento HTML
 
         if (winWidth <= 760){
 
@@ -35,9 +34,6 @@ export class Media{
             }
             
         } 
-        
-        //document.body.onresize = () => layout ();
-        console.log(document.body.clientWidth, this.navTabContent.hasClass("tab-content"));	
     }
     
     addClasses(){

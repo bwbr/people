@@ -1,6 +1,6 @@
 import {AtividadesView, MensagemView} from '../views/index';
 import {Atividade, Atividades} from '../models/index';
-import {Badge, DragAndDrop, Progressbar} from '../helpers/index'
+import {Badge, DragAndDrop, FormAlert, Progressbar} from '../helpers/index'
 import {DB} from '../services/DB';
 
 export class AtividadeController {
@@ -10,6 +10,7 @@ export class AtividadeController {
         private _inputDescricao: JQuery;        
         private _inputIdCard: JQuery;
         private _atividades = new Atividades(); 
+        private _formAlert = new FormAlert();
         private _badge = new Badge();  
         private _dragAndDrop = new DragAndDrop();  
         private _progressbar = new Progressbar(); 
@@ -121,6 +122,7 @@ export class AtividadeController {
                 this._inProgressColumnView.update(cardInProgress, '');
                 this._doneColumnView.update( cardDone, '');
                 this._dragAndDrop.drag_and_drop();
+                this._formAlert.removeAlert();
                 this._badge.badge();
                 this._progressbar.progressbar();
             });
@@ -135,6 +137,14 @@ export class AtividadeController {
         //DELETA ATIVIDADE
         deleta(id: string){
             this._atividades.deleta(id);
+            this._mensagemView.update('Atividade excluída!', 'alert-warning'); //mensagem de exclusão
+            this.lista();
+        }
+
+        //EDITA ATIVIDADE (***REFATORAR O CÓDIGO UTILIZANDO O SELECT E UPDATE NO BANCO DE DADOS***)
+        edita(id: string){
+            this._atividades.deleta(id);                    
+            this._mensagemView.update('Atividade incorreta excluída! Crie uma nova corretamente.', 'alert-warning'); //mensagem de edição 
             this.lista();
         }
 
