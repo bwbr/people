@@ -8,7 +8,7 @@ export class AtividadeController {
         private _inputTitulo: JQuery;
         private _inputDescricao: JQuery;        
         private _inputIdCard: JQuery;
-        private _atividades = new Atividades();     
+        private _atividades = new Atividades();  
         private _mensagemView = new MensagemView('#mensagemView');
         private _todoColumnView = new AtividadesView('[data-ToDo]');
         private _inProgressColumnView = new AtividadesView('[data-InProgress]');
@@ -121,7 +121,7 @@ export class AtividadeController {
             });
         }
         
-        //DELETA ATIVIDADE
+        //MOVE ATIVIDADE
         move(id: string, idCard: string){
             this._atividades.move(id, idCard);
             this.lista();

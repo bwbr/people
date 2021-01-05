@@ -1,7 +1,7 @@
 System.register(["../services/DB"], function (exports_1, context_1) {
     "use strict";
-    var __moduleName = context_1 && context_1.id;
     var DB_1, Atividades;
+    var __moduleName = context_1 && context_1.id;
     return {
         setters: [
             function (DB_1_1) {
