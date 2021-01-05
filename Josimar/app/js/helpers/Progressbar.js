@@ -6,11 +6,6 @@ System.register([], function (exports_1, context_1) {
         setters: [],
         execute: function () {
             Progressbar = class Progressbar {
-                constructor() {
-                    this.percent_toDo = 0;
-                    this.percent_inProgress = 0;
-                    this.percent_done = 0;
-                }
                 progressbar() {
                     this.total_toDo = $('#cardToDo .card').length;
                     this.total_inProgress = $('#cardInProgress .activity').length;
@@ -19,9 +14,16 @@ System.register([], function (exports_1, context_1) {
                     this.progress_toDo = $("#progress-to-do");
                     this.progress_inProgress = $("#progress-in-progress");
                     this.progress_done = $("#progress-done");
-                    this.percent_toDo = this.percent(this.total_toDo, this.total_activities);
-                    this.percent_inProgress = this.percent(this.total_inProgress, this.total_activities);
-                    this.percent_done = this.percent(this.total_done, this.total_activities);
+                    if (this.total_activities > 0) {
+                        this.percent_toDo = this.percent(this.total_toDo, this.total_activities);
+                        this.percent_inProgress = this.percent(this.total_inProgress, this.total_activities);
+                        this.percent_done = this.percent(this.total_done, this.total_activities);
+                    }
+                    else {
+                        this.percent_toDo = 0;
+                        this.percent_inProgress = 0;
+                        this.percent_done = 0;
+                    }
                     this.progress_toDo.css("width", `${(this.percent_toDo)}%`);
                     this.progress_inProgress.css("width", `${(this.percent_inProgress)}%`);
                     this.progress_done.css("width", `${(this.percent_done)}%`);
