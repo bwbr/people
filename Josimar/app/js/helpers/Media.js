@@ -27,7 +27,6 @@ System.register([], function (exports_1, context_1) {
                             this.removeClasses();
                         }
                     }
-                    console.log(document.body.clientWidth, this.navTabContent.hasClass("tab-content"));
                 }
                 addClasses() {
                     this.navTabContent.addClass('tab-content');
