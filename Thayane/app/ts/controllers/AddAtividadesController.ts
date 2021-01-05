@@ -1,3 +1,4 @@
+declare var moment:any;
 import { AddAtividadesView } from '../views/index';
 import { AddAtividades, AddAtividade } from '../models/index';
 import { AtividadeDao } from '../dao/AtividadesDao';
@@ -5,7 +6,7 @@ import { AtividadeDao } from '../dao/AtividadesDao';
 export class AddAtividadesController{
     public atividadeNome: JQuery;
     private _tipo:string;
-    private _atividadeData: Date;
+    private _atividadeData: any;
     private _atividades = new AddAtividades();
     private _addAtividadesView = new AddAtividadesView('#addAtividades');
     
@@ -59,9 +60,10 @@ export class AddAtividadesController{
         this.adiciona();
     }
     adicionou(){
+        let now = moment().format('lll');
         return new AddAtividade(
             this._tipo + this.atividadeNome.val(),
-            new Date()
+            this._atividadeData = now
         );
     }
 
@@ -82,9 +84,13 @@ export class AddAtividadesController{
         this.adicionaMudanca();
     }
     mudou(){
+        let local = moment.locale('pt-br');
+        console.log(local)
+        let now = moment().format('lll');
+
         return new AddAtividade(
             this._tipo,
-            this._atividadeData = new Date()
+            this._atividadeData = now
         );
     }
 }

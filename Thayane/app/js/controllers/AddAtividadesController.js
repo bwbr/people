@@ -66,7 +66,8 @@ System.register(["../views/index", "../models/index", "../dao/AtividadesDao"], f
                     this.adiciona();
                 }
                 adicionou() {
-                    return new index_2.AddAtividade(this._tipo + this.atividadeNome.val(), new Date());
+                    let now = moment().format('lll');
+                    return new index_2.AddAtividade(this._tipo + this.atividadeNome.val(), this._atividadeData = now);
                 }
                 removeuSkill() {
                     this._tipo = "Skill removida";
@@ -85,7 +86,10 @@ System.register(["../views/index", "../models/index", "../dao/AtividadesDao"], f
                     this.adicionaMudanca();
                 }
                 mudou() {
-                    return new index_2.AddAtividade(this._tipo, this._atividadeData = new Date());
+                    let local = moment.locale('pt-br');
+                    console.log(local);
+                    let now = moment().format('lll');
+                    return new index_2.AddAtividade(this._tipo, this._atividadeData = now);
                 }
             };
             exports_1("AddAtividadesController", AddAtividadesController);
