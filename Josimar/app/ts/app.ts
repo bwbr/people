@@ -45,37 +45,48 @@ $("#cardDone").on('click', '#trash_btn', function() {
 $("#cardToDo").on('click', '#next', function() {  
     var id = $(this).attr('data-activity');  
     controller.move(id, 'cardInProgress');
+    $("#nav-to-do").removeClass('active');
+    $("#nav-in-progress").addClass('active');
 });
 
 // move do card In Progress para o próximo
 $("#cardInProgress").on('click', '#next', function() {   
     var id = $(this).attr('data-activity'); 
     controller.move(id, 'cardDone');
+    $("#nav-in-progress").removeClass('active');
+    $("#nav-done").addClass('active');
 });
 
 // move do card Done para o próximo
 $("#cardDone").on('click', '#next', function() {   
     var id = $(this).attr('data-activity');   
     controller.move(id, 'cardToDo');
+    $("#nav-done").removeClass('active');
+    $("#nav-to-do").addClass('active');
 });
 
 // move do card To Do para o anterior
 $("#cardToDo").on('click', '#back', function() {  
     var id = $(this).attr('data-activity');  
     controller.move(id, 'cardDone');
+    $("#nav-to-do").removeClass('active');
+    $("#nav-done").addClass('active');
 });
 
 // move do card In Progress para o anterior
 $("#cardInProgress").on('click', '#back', function() {   
     var id = $(this).attr('data-activity'); 
     controller.move(id, 'cardToDo');
+    $("#nav-in-progress").removeClass('active');
+    $("#nav-to-do").addClass('active');
 });
 
 // move do card Done para o anterior
 $("#cardDone").on('click', '#back', function() {   
     var id = $(this).attr('data-activity');   
     controller.move(id, 'cardInProgress');
+    $("#nav-done").removeClass('active');
+    $("#nav-in-progress").addClass('active');
 });
-
 
 

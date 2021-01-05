@@ -1,7 +1,7 @@
 System.register(["../views/index", "../models/index", "../services/DB"], function (exports_1, context_1) {
     "use strict";
-    var __moduleName = context_1 && context_1.id;
     var index_1, index_2, DB_1, AtividadeController;
+    var __moduleName = context_1 && context_1.id;
     return {
         setters: [
             function (index_1_1) {

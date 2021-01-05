@@ -121,7 +121,7 @@ export class AtividadeController {
             });
         }
         
-        //DELETA ATIVIDADE
+        //MOVE ATIVIDADE
         move(id: string, idCard: string){
             this._atividades.move(id, idCard);
             this.lista();
